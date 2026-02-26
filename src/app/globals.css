@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens (CSS Custom Properties) ── */
+:root {
+  /* Hero & Landing */
+  --color-hero-bg: #e8d5b8;
+  --color-hero-bg-light: #f2e6d3;
+  --color-hero-overlay: rgba(232, 213, 184, 0.3);
+  --color-hero-text: #1a1a1a;
+  --color-hero-desc: #3d3d3d;
+
+  /* Brand */
+  --color-brand-primary: #1a1a1a;
+  --color-brand-accent: #c8102e;
+  --color-brand-white: #ffffff;
+
+  /* Nav */
+  --color-nav-link: #2d2d2d;
+  --color-nav-link-hover: #000000;
+  --color-nav-active: #c8102e;
+  --color-nav-search-bg: #f5f5f5;
+  --color-nav-search-border: #e0e0e0;
+
+  /* CTA */
+  --color-cta-bg: #1a1a1a;
+  --color-cta-text: #ffffff;
+  --color-cta-hover: #333333;
+
+  /* Page */
+  --color-page-bg: #ffffff;
+  --color-page-text: #1a1a1a;
+
+  /* Studio (dark theme) */
+  --color-studio-bg: #13131f;
+  --color-studio-panel: #1e1e2e;
+  --color-studio-surface: #2a2a3c;
+  --color-studio-accent: #7c5cfc;
+  --color-studio-accent-light: #9d85fd;
+
+  /* Radii */
+  --radius-hero: 28px;
+  --radius-pill: 9999px;
+  --radius-button: 9999px;
+
+  /* Spacing */
+  --hero-padding-x: clamp(1.25rem, 4vw, 3rem);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-page-bg);
+    color: var(--color-page-text);
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+
+  /* Number input: hide spinners */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  /* Range slider track */
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    @apply h-1.5 rounded-full bg-surface;
+  }
+
+  input[type='range']::-moz-range-track {
+    @apply h-1.5 rounded-full bg-surface;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SCROLL-TRIGGERED ANIMATIONS
+   ══════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+/* ── Base hidden state: elements start invisible ── */
+.anim-ready {
+  opacity: 0;
+}
+
+/* ── Visible state: triggered by IntersectionObserver ── */
+.anim-visible.anim-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.anim-visible.anim-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.anim-visible.anim-scale-in {
+  animation: scaleIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.anim-visible.anim-slide-left {
+  animation: slideInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.anim-visible.anim-slide-right {
+  animation: slideInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.anim-visible.anim-blur-in {
+  animation: blurIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Stagger delays for child items ── */
+.anim-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.anim-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.anim-stagger > *:nth-child(3) { animation-delay: 160ms; }
+.anim-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.anim-stagger > *:nth-child(5) { animation-delay: 320ms; }
+.anim-stagger > *:nth-child(6) { animation-delay: 400ms; }
+.anim-stagger > *:nth-child(7) { animation-delay: 480ms; }
+.anim-stagger > *:nth-child(8) { animation-delay: 560ms; }
+
+/* ── Respect prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .anim-ready {
+    opacity: 1;
+  }
+  .anim-visible.anim-fade-up,
+  .anim-visible.anim-fade-in,
+  .anim-visible.anim-scale-in,
+  .anim-visible.anim-slide-left,
+  .anim-visible.anim-slide-right,
+  .anim-visible.anim-blur-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
