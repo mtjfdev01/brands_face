@@ -593,12 +593,12 @@ function DieLine({ l, w, h, materials }: { l: number; w: number; h: number; mate
   const rot: [number, number, number] = [-Math.PI / 2, 0, 0];
   return (
     <group position={[0, -h / 2 + 0.002, 0]}>
-      <group ref={el => fg.current[0] = el}><mesh rotation={rot} material={materials[3]} receiveShadow><planeGeometry args={[l, w]} /></mesh></group>
-      <group ref={el => fg.current[1] = el}><mesh rotation={rot} material={materials[4]} receiveShadow><planeGeometry args={[l, h]} /></mesh></group>
-      <group ref={el => fg.current[2] = el}><mesh rotation={rot} material={materials[5]} receiveShadow><planeGeometry args={[l, h]} /></mesh></group>
-      <group ref={el => fg.current[3] = el}><mesh rotation={rot} material={materials[2]} receiveShadow><planeGeometry args={[l, w]} /></mesh></group>
-      <group ref={el => fg.current[4] = el}><mesh rotation={rot} material={materials[1]} receiveShadow><planeGeometry args={[w, h]} /></mesh></group>
-      <group ref={el => fg.current[5] = el}><mesh rotation={rot} material={materials[0]} receiveShadow><planeGeometry args={[w, h]} /></mesh></group>
+      <group ref={(el) => { fg.current[0] = el; }}><mesh rotation={rot} material={materials[3]} receiveShadow><planeGeometry args={[l, w]} /></mesh></group>
+      <group ref={(el) => { fg.current[1] = el; }}><mesh rotation={rot} material={materials[4]} receiveShadow><planeGeometry args={[l, h]} /></mesh></group>
+      <group ref={(el) => { fg.current[2] = el; }}><mesh rotation={rot} material={materials[5]} receiveShadow><planeGeometry args={[l, h]} /></mesh></group>
+      <group ref={(el) => { fg.current[3] = el; }}><mesh rotation={rot} material={materials[2]} receiveShadow><planeGeometry args={[l, w]} /></mesh></group>
+      <group ref={(el) => { fg.current[4] = el; }}><mesh rotation={rot} material={materials[1]} receiveShadow><planeGeometry args={[w, h]} /></mesh></group>
+      <group ref={(el) => { fg.current[5] = el; }}><mesh rotation={rot} material={materials[0]} receiveShadow><planeGeometry args={[w, h]} /></mesh></group>
       <DieLineFoldMarks l={l} w={w} h={h} />
     </group>
   );
