@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands Face | Mega Project Master V11.2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+                /* The gloss layer */
+                .face::before {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; width: 100%; height: 100%;
+                    background: linear-gradient(135deg, 
+                        rgba(255,255,255,0.3) 0%, 
+                        rgba(255,255,255,0) 50%, 
+                        rgba(0,0,0,0.1) 100%);
+                    pointer-events: none;
+                    z-index: 5;
+                    transition: opacity 0.3s;
+                }
+
+        :root {
+            --accent: #fbb13c;
+            --panel-bg: rgba(13, 17, 23, 0.95);
+            --glass-border: rgba(251, 177, 60, 0.2);
+            --input-bg: #05070a;
+            --primary: #0a0d1d; --canvas:  #05070a;
+            --box-color: #b22222; --reflectivity: 0.5;
+            --logo-x: 0%; --logo-y: 0%; --logo-size: 50%;
+            --gold-grad: linear-gradient(135deg, #a67c00 0%, #bf953f 25%, #fcf6ba 50%, #bf953f 75%, #aa771c 100%);
+            --silver-grad: linear-gradient(135deg, #7a7a7a 0%, #b8b8b8 25%, #ffffff 50%, #b8b8b8 75%, #808080 100%);
+        }
+
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'Manrope', sans-serif; background: var(--canvas); color: white; }
+        .lab-layout { display: grid; grid-template-columns: 1fr 400px; height: 100vh; }
+
+        .preview-zone {
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, #162030 0%, #05070a 100%);
+            display: flex; align-items: center; justify-content: center;
+            /* CHANGE: Higher value = less distortion */
+            perspective: 3000px; 
+            cursor: move;
+            padding-right: 50px; /* Creates a buffer so panels don't hit the sidebar */
+            box-sizing: border-box;
+        }
+
+        #scene { 
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 0; height: 0; 
+            transform-style: preserve-3d;
+            transform-origin: 0 0 0;
+            transition: none; 
+        }
+
+        #canvasZoom::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Add this new class to handle the smooth folding transition ONLY when needed */
+        .smooth-transition {
+            /* Slightly faster for a snappier feel */
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+
+        .face {
+            position: absolute;
+            background-color: var(--box-color);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 0 50px rgba(0,0,0,var(--reflectivity));
+            display: flex; align-items: center; justify-content: center;
+            backface-visibility: visible;
+            /* IMPORTANT: Force the origin to center for 3D mode stability */
+            transform-origin: center center; 
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        /* Update the top face to hinge from the back */
+        #top {
+            /* This ensures the 'hinge' is at the back of the box */
+            transform-origin: bottom !important;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0, 1);
+            z-index: 2;
+        }
+
+        /* Internal shadow for the box depth */
+        .box-interior {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            pointer-events: none;
+            backface-visibility: hidden;
+            transform: translateZ(-1px); /* Sits just inside the face */
+        }
+
+        /* Rigid - Smooth, matte, premium */
+        .mat-rigid { 
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.3); 
+        }
+
+        /* Kraft - Rough, fibrous, organic */
+        .mat-kraft { 
+            background-image: url('https://www.transparenttextures.com/patterns/cardboard.png');
+            background-blend-mode: multiply;
+            filter: sepia(0.2) contrast(1.1);
+        }
+
+        /* Corrugated - Vertical ridges */
+        .mat-corrugated { 
+            background-image: linear-gradient(90deg, 
+                rgba(0,0,0,0.15) 0%, 
+                rgba(255,255,255,0.05) 50%, 
+                rgba(0,0,0,0.15) 100%);
+            background-size: 8px 100%;
+            background-blend-mode: soft-light;
+        }
+
+        /* METALLIC: High contrast with a "moving" reflection */
+        .mat-metallic { 
+            background-image: linear-gradient(135deg, 
+                rgba(255,255,255,0.8) 0%, 
+                transparent 30%, 
+                rgba(255,255,255,0.5) 50%, 
+                transparent 70%, 
+                rgba(0,0,0,0.4) 100%);
+            background-size: 300% 300%; /* Allows the reflection to "slide" */
+            filter: contrast(1.4) brightness(1.1);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        /* ART CARD: Smooth, flat, and premium matte */
+        .mat-artcard { 
+            background-image: none; /* Keep it clean and plane */
+            filter: contrast(1.05) brightness(1.0);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.1); /* Very soft depth */
+        }
+
+        /* This adds a "Sheen" layer that only appears on Metallic */
+        .face.mat-metallic::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.4) 50%, transparent 55%);
+            background-size: 200% 200%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Corrugated edges - Show the "inside" of the cardboard on cut sides */
+        .mat-corrugated#left, .mat-corrugated#right {
+            background-image: repeating-linear-gradient(0deg, #222 0px, #222 2px, transparent 2px, transparent 4px);
+            background-size: 100% 4px;
+        }
+
+        /* Fix: Ensure the Art Layer always respects size/pos */
+        .art-layer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-size: var(--logo-size, 50%) auto;
+            background-position: calc(50% + var(--logo-x, 0%)) calc(50% + var(--logo-y, 0%));
+            background-repeat: no-repeat;
+            transform: translateZ(2px); /* Higher Z-index to prevent flickering */
+        }
+
+        /* Ensure the face itself can show the layer */
+        .face {
+            transform-style: preserve-3d;
+        }
+
+        /* Fix: Foil & UV now use the same positioning logic */
+        .fx-gold, .fx-silver, .fx-uv-applied {
+            background-image: none !important; /* Hide the original logo image */
+            -webkit-mask-image: var(--side-art);
+            mask-image: var(--side-art);
+            -webkit-mask-size: var(--logo-size, 50%) auto;
+            mask-size: var(--logo-size, 50%) auto;
+            -webkit-mask-position: calc(50% + var(--logo-x, 0%)) calc(50% + var(--logo-y, 0%));
+            mask-position: calc(50% + var(--logo-x, 0%)) calc(50% + var(--logo-y, 0%));
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+        }
+
+        .fx-gold { background: var(--gold-grad) !important; }
+        .fx-silver { background: var(--silver-grad) !important; }
+
+        /* UV fix: Only brightens the logo shape, not the whole side */
+        .fx-uv-applied {
+            background: rgba(255,255,255,0.3) !important;
+            backdrop-filter: brightness(1.5) contrast(1.2);
+            box-shadow: none; 
+        }
+
+        .fx-uv .art-layer {
+            filter: brightness(1.2) contrast(1.2);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
+        }
+        /* SPOT UV (REPAIRED) */
+        .fx-uv-applied { 
+            filter: brightness(1.1) contrast(1.1);
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+            /* This creates the 'wet' look */
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+            background-size: 200% 200%;
+            transition: background-position 0.2s;
+        }
+
+        .sidebar { 
+            background: #0d1117; 
+            color: #e6edf3; 
+            padding: 24px; 
+            box-shadow: -10px 0 50px rgba(0,0,0,0.8); 
+            overflow-y: auto;
+            border-left: 1px solid #30363d;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) #0d1117;
+        }
+
+        /* Section Cards */
+        .control-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .card-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Sleek Buttons */
+        .u-btn, .m-btn, .side-btn, .fx-btn { 
+            padding: 12px 8px; 
+            border: 1px solid #30363d; 
+            background: #161b22; 
+            color: #8b949e;
+            font-size: 10px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .u-btn:hover, .m-btn:hover, .side-btn:hover, .fx-btn:hover {
+            border-color: #8b949e;
+            color: #f0f6fc;
+            background: #21262d;
+        }
+
+        .u-btn.active, .m-btn.active, .side-btn.active, .fx-btn.active { 
+            background: var(--accent); 
+            color: #0d1117; 
+            border-color: var(--accent); 
+            box-shadow: 0 0 15px rgba(251, 177, 60, 0.3);
+        }
+
+        /* Modern Inputs */
+        .input-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+        input[type="number"], select { 
+            width: 100%; 
+            padding: 10px; 
+            background: var(--input-bg);
+            border: 1px solid #30363d; 
+            border-radius: 6px; 
+            color: #fff;
+            font-weight: 600; 
+            outline: none;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: var(--accent);
+        }
+
+        /* Design Pods (Colors) */
+        .design-pods {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .pod {
+            background: #161b22;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Custom File Upload */
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #1a1f2a 0%, #1f2530 100%);
+            border: 2px dashed var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .file-input-label:hover {
+            background: linear-gradient(135deg, #252c38 0%, #2a3240 100%);
+            border-color: #fcc566;
+            box-shadow: 0 0 15px rgba(251, 177, 60, 0.2);
+        }
+
+        .file-input-label:active {
+            transform: scale(0.98);
+        }
+
+        .upload-icon {
+            font-size: 14px;
+        }
+
+        .file-input-wrapper .file-name {
+            font-size: 9px;
+            color: #8b949e;
+            margin-top: 6px;
+            text-align: center;
+            word-break: break-word;
+        }
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent);
+            margin: 10px 0;
+        }
+
+        .m-grid, .side-grid, .fx-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 8px; 
+        }
+
+        label { 
+            display: block; 
+            font-size: 10px; 
+            font-weight: 950; 
+            text-transform: uppercase; 
+            color: rgba(210, 210, 215, 0.9); 
+            margin-bottom: 12px;
+            letter-spacing: 0.7px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+    /* Add a highlight overlay to every face */
+.face::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
+    pointer-events: none;
+}
+
+/* Specific shading class we will control with JS */
+.face-shading {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: black;
+    opacity: 0; /* JS will toggle this from 0 to 0.7 */
+    transition: opacity 0.1s;
+    pointer-events: none;
+}
+/* Styling for the Unfolded Die-line */
+.is-flattened .face {
+    /* Use the variable instead of hardcoded red */
+    background-color: var(--box-color) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.6) !important;
+    opacity: 0.9; /* Gives it that blueprint feel */
+}
+
+/* Optional: Add technical 'crease' markers only in die-line mode */
+.is-flattened .face::before {
+    content: '';
+    position: absolute;
+    width: 100%; height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+        /* Optimization for Screenshots */
+        .taking-screenshot #scene {
+            transition: none !important;
+        }
+        .taking-screenshot .face {
+            backface-visibility: visible !important;
+            -webkit-font-smoothing: antialiased;
+            /* This forces the browser to render the face with higher priority */
+            transform-style: preserve-3d; 
+        }
+
+        /* Material Thickness Effects */
+        .edge-layer {
+            position: absolute;
+            background: #d2b48c; /* Default cardboard color */
+            pointer-events: none;
+            display: none; /* Only show in 3D mode */
+        }
+
+        /* Corrugated Flute Pattern */
+        .mat-corrugated .edge-layer {
+            background-image: radial-gradient(circle at 50% 100%, transparent 40%, #a68b6a 45%, #a68b6a 55%, transparent 60%);
+            background-size: 10px 10px; /* This creates the 'wavy' flute look */
+        }
+
+        /* Rigid Board (Solid/Dense) */
+        .mat-rigid .edge-layer {
+            background: #222; /* High-end black rigid board core */
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Art Card (Very Thin) */
+        .mat-artcard .edge-layer {
+            background: #fff;
+            height: 1px !important; /* Almost invisible */
+        }
+
+        /* ===== SMART LOGO PLACEMENT STYLES ===== */
+
+        /* Grid Overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 25px 25px;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .grid-overlay.active {
+            opacity: 0.3;
+        }
+
+        /* Snap Points */
+        .snap-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .snap-point.active {
+            opacity: 0.7;
+        }
+
+        /* Logo Bounding Box */
+        .logo-bounds {
+            position: absolute;
+            border: 2px dashed var(--accent);
+            pointer-events: none;
+            z-index: 9;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .logo-bounds.active {
+            opacity: 0.5;
+        }
+
+        /* Smart Control Buttons Active States */
+        .u-btn.active-smart {
+            background: var(--accent);
+            color: #0d1117;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(251, 177, 60, 0.3);
+        }
+
+        /* Aspect Ratio Lock Animation */
+        @keyframes lockPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .aspect-locked {
+            animation: lockPulse 0.5s ease;
+        }
+    </style>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="lab-layout">
+    <div class="preview-zone" id="vPort">
+        <div id="zoom-ctrl" style="position: absolute; left: 25px; top: 50%; transform: translateY(-50%); z-index: 1000; background: rgba(10, 13, 29, 0.7); backdrop-filter: blur(10px); padding: 20px 10px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <span style="font-size: 9px; font-weight: 800; color: #aaa; letter-spacing: 1px;">ZOOM</span>
+            <input type="range" id="canvasZoom" min="0.2" max="2.0" step="0.05" value="0.8" 
+                   style="appearance: none; width: 150px; height: 4px; background: #333; transform: rotate(-90deg); margin: 60px 0; cursor: pointer; accent-color: var(--accent);" 
+                   oninput="updateCanvasZoom(this.value)">
+            <span id="canvasZoomDisplay" style="font-size: 11px; font-weight: 800; color: var(--accent);">80%</span>
+        </div>
+
+        <div id="dim-display" style="position: absolute; bottom: 20px; left: 20px; color: var(--accent); font-weight: 800; font-size: 12px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 4px; pointer-events: none;">
+            DIMENSIONS: <span id="dim-text">10 x 8 x 5 IN</span>
+        </div>
+        <div id="floor-shadow" style="
+            position: absolute; 
+            width: 400px; height: 400px; 
+            background: radial-gradient(rgba(0,0,0,0.5) 0%, transparent 70%); 
+            transform: rotateX(90deg) translateZ(-200px); 
+            filter: blur(20px); 
+            pointer-events: none;">
+        </div>
+        <div id="scene">
+            <div class="face" id="front"><div class="art-layer"></div></div>
+            <div class="face" id="back"><div class="art-layer"></div></div>
+            <div class="face" id="left"><div class="art-layer"></div></div>
+            <div class="face" id="right"><div class="art-layer"></div></div>
+            <div class="face" id="top"><div class="art-layer"></div></div>
+            <div class="face" id="bottom"><div class="art-layer"></div></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div style="margin-bottom: 30px; border-bottom: 1px solid #30363d; padding-bottom: 20px;">
+            <h2 style="margin:0; font-weight: 800; letter-spacing: -1px; font-size: 24px;">BOX<span style="color: var(--accent)">STUDIO</span></h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                <span style="font-size: 11px; color: var(--accent); font-weight: 900; letter-spacing: 1px; text-transform: uppercase;">By Brands Face</span>
+                <span style="font-size:9px; background: rgba(251,177,60,0.1); color: var(--accent); padding: 2px 6px; border-radius: 4px;">ENGINE READY</span>
+            </div>
+        </div>
+
+        <div class="control-card">
+            <div class="card-label"><span>01</span> Configuration</div>
+            <select id="product-presets" onchange="applyPreset(this.value)" style="margin-bottom: 15px;">
+                <option value="custom">Manual Dimensions</option>
+                <option value="iphone">iPhone Pro Max Box</option>
+                <option value="sneaker">Sneaker Box</option>
+                <option value="laptop">MacBook / Laptop</option>
+                <option value="watch">Luxury Watch Box</option>
+                <option value="pizza">Pizza Box</option>
+            </select>
+            
+            <div style="display:flex; gap:5px; margin-bottom:12px;">
+                <button id="unit-in" class="u-btn active" style="flex:1" onclick="setUnit('in')">Inches</button>
+                <button id="unit-cm" class="u-btn" style="flex:1" onclick="setUnit('cm')">Metric</button>
+            </div>
+            
+            <div class="input-row">
+                <div><input type="number" id="L" value="10" oninput="validateAndDraw(this)"><small style="font-size:8px; color:#555">LENGTH</small></div>
+                <div><input type="number" id="W" value="8" oninput="validateAndDraw(this)"><small style="font-size:8px; color:#555">WIDTH</small></div>
+                <div><input type="number" id="H" value="5" oninput="validateAndDraw(this)"><small style="font-size:8px; color:#555">HEIGHT</small></div>
+            </div>
+        </div>
+
+        <div class="control-card">
+            <div class="card-label"><span>02</span> Surface & Finish</div>
+            <div class="m-grid" style="margin-bottom: 20px;">
+                <button class="m-btn active" onclick="setMat('rigid', this)">Rigid</button>
+                <button class="m-btn" onclick="setMat('kraft', this)">Kraft</button>
+                <button class="m-btn" onclick="setMat('corrugated', this)">Corrug.</button>
+                <button class="m-btn" onclick="setMat('metallic', this)">Metallic</button>
+                <button class="m-btn" onclick="setMat('artcard', this)">Art Card</button>
+            </div>
+            
+            <div class="design-pods">
+                <div class="pod">
+                    <label>Box Color</label>
+                    <input type="color" id="colorPicker" value="#b22222" oninput="applyCustomColor(this.value)" style="width:100%; height:30px; border:none; background:none; cursor:pointer;">
+                </div>
+            </div>
+        </div>
+
+        <div class="control-card">
+            <div class="card-label"><span>03</span> Branding Effects</div>
+            <label style="font-size: 9px; color: #555;">CHOOSE TARGET FACE</label>
+            <div class="side-grid" style="margin-bottom: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                <button class="side-btn active" onclick="setLogoSide('front', this)">Front</button>
+                <button class="side-btn" onclick="setLogoSide('back', this)">Back</button>
+                <button class="side-btn" onclick="setLogoSide('top', this)">Top</button>
+                <button class="side-btn" onclick="setLogoSide('bottom', this)">Bottom</button>
+                <button class="side-btn" onclick="setLogoSide('left', this)">Left</button>
+                <button class="side-btn" onclick="setLogoSide('right', this)">Right</button>
+            </div>
+            
+            <div class="file-input-wrapper">
+                <label for="logo-file" class="file-input-label">
+                    <span class="upload-icon">📤</span>
+                    <span>Choose Logo File</span>
+                </label>
+                <input type="file" id="logo-file" accept="image/*" onchange="handleLogoWithName(event)">
+                <div class="file-name" id="file-name"></div>
+            </div>
+
+            <!-- Smart Placement Controls -->
+            <div style="margin-bottom: 15px; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <label style="font-size: 9px; color: var(--accent); margin: 0;">SMART PLACEMENT</label>
+                    <button onclick="toggleGrid()" id="grid-toggle" class="u-btn" style="font-size: 8px; padding: 4px 8px;">
+                        Grid: Off
+                    </button>
+                </div>
+                
+                <!-- Quick Position Buttons -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px;">
+                    <button class="u-btn" onclick="positionLogo('center')" style="font-size: 8px; padding: 6px 4px;">Center</button>
+                    <button class="u-btn" onclick="positionLogo('top-left')" style="font-size: 8px; padding: 6px 4px;">Top Left</button>
+                    <button class="u-btn" onclick="positionLogo('top-right')" style="font-size: 8px; padding: 6px 4px;">Top Right</button>
+                    <button class="u-btn" onclick="positionLogo('bottom-left')" style="font-size: 8px; padding: 6px 4px;">Bottom Left</button>
+                </div>
+                
+                <!-- Smart Scaling -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px;">
+                    <button class="u-btn" onclick="scaleLogo('fit')" style="font-size: 8px; padding: 6px 4px;">Auto Fit</button>
+                    <button class="u-btn" onclick="scaleLogo('fill')" style="font-size: 8px; padding: 6px 4px;">Fill Area</button>
+                    <button class="u-btn" onclick="toggleAspectLock()" id="aspect-lock" class="u-btn" style="font-size: 8px; padding: 6px 4px;">
+                        🔒 Lock Ratio
+                    </button>
+                </div>
+                
+                <!-- Copy/Paste Position -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    <button class="u-btn" onclick="copyPosition()" style="font-size: 8px; padding: 6px 4px;">📋 Copy Pos</button>
+                    <button class="u-btn" onclick="pastePosition()" style="font-size: 8px; padding: 6px 4px;">📝 Paste Pos</button>
+                </div>
+            </div>
+
+            <label style="font-size: 9px; color: #555;">FINISH TYPE</label>
+            <div class="fx-grid" style="margin-bottom: 15px;">
+                <button class="fx-btn active" onclick="setLogoFX('none', this)">Ink</button>
+                <button class="fx-btn" onclick="setLogoFX('gold', this)">Gold</button>
+                <button class="fx-btn" onclick="setLogoFX('silver', this)">Silver</button>
+                <button class="fx-btn" onclick="setLogoFX('uv', this)">UV</button>
+            </div>
+            
+            <button class="u-btn" onclick="applyLogoToAll(false)" style="width:100%; font-size:9px; border-style:dashed; color:var(--accent); margin-bottom: 8px;">Clone Artwork to all sides</button>
+            <button class="u-btn" onclick="applyLogoToAll(true)" style="width:100%; font-size:8px; border-style:solid; background: rgba(251,177,60,0.15); color:var(--accent); margin-bottom: 15px;">Clone With Finish Effect</button>
+
+            <div style="margin-top: 20px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                <label style="margin-bottom:5px;">Scale & Positioning</label>
+                <input type="range" min="10" max="95" value="50" oninput="updateLogoPos('size', this.value)">
+                <input type="range" min="-45" max="45" value="0" oninput="updateLogoPos('x', this.value)">
+                <input type="range" min="-45" max="45" value="0" oninput="updateLogoPos('y', this.value)">
+            </div>
+        </div>
+
+        <div class="control-card" style="border-color: rgba(255,255,255,0.1);">
+            <div class="card-label"><span>04</span> Presentation</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <button id="fold-btn" class="u-btn" onclick="toggleFold()">Fold State</button>
+                <button id="lid-btn" class="u-btn" onclick="toggleLid()">Lid Action</button>
+            </div>
+            <button id="spin-btn" class="u-btn" onclick="toggleAutoSpin()" style="width:100%; background: #21262d;">Toggle Showcase Spin</button>
+            <button class="u-btn" onclick="toggleXRay()" style="width:100%; background: rgba(251,177,60,0.15); margin-top: 8px;">👻 Ghost / X-Ray Mode</button>
+            
+            <div class="fx-grid" style="margin-top: 15px;">
+                <button class="fx-btn" onclick="setEnv('dark')">Dark</button>
+                <button class="fx-btn" onclick="setEnv('bright')">Day</button>
+                <button class="fx-btn" onclick="setEnv('warm')">Warm</button>
+            </div>
+        </div>
+
+        <div class="control-card">
+            <div class="card-label"><span>05</span> Save & Export</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <button class="u-btn" onclick="saveDesign()">💾 Save Design</button>
+                <button class="u-btn" onclick="loadDesign()">📂 Load Design</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                <button class="u-btn" onclick="exportAsPNG()">🖼️ PNG</button>
+                <button class="u-btn" onclick="exportAsPDF()">📄 PDF</button>
+                <button class="u-btn" onclick="shareDesign()">🔗 Share</button>
+            </div>
+            <div id="save-status" style="margin-top: 10px; font-size: 10px; color: var(--accent); display: none;">
+                ✓ Design saved!
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const scene = document.getElementById('scene');
+const vPort = document.getElementById('vPort');
+let sideArtworks = { front: '', back: '', top: '', bottom: '', left: '', right: '' };
+let selectedSide = 'front';
+let currentUnit = 'in';
+let currentMaterial = 'rigid';
+let currentEffect = 'none';
+let canvasZoom = 1.0;
+let isFlattened = false;
+let isLidOpen = false;
+let maxCanvasZoom = 2.0; // Dynamic max zoom based on box size
+
+// Unified Rotation State
+let rotX = -15; 
+let rotY = 45;  
+let isAutoSpinning = false;
+let rafID = null;
+
+// Calculate max zoom based on box dimensions - Universal solution
+function calculateMaxZoom() {
+    const factor = (currentUnit === 'in') ? 35 : 13.8;
+    const l = parseFloat(document.getElementById('L').value) * factor || 100;
+    const w = parseFloat(document.getElementById('W').value) * factor || 100;
+    const h = parseFloat(document.getElementById('H').value) * factor || 100;
+    
+    // Get the largest dimension (this is the limiting factor when rotated)
+    const maxDim = Math.max(l, w, h);
+    
+    // Preview area available for the 3D box
+    const previewWidth = 1100;
+    const previewHeight = 700;
+    const availableSpace = Math.min(previewWidth, previewHeight);
+    
+    // Calculate the ABSOLUTE maximum zoom that keeps the box within bounds
+    // This ensures NO box can ever go out of screen regardless of size
+    // Safety margin of 15% to account for 3D rotation and transformations
+    const absoluteMaxZoom = (availableSpace / maxDim) * 0.85;
+    
+    // Minimum zoom is 25% of the absolute max (ensures entire box is visible)
+    const minZoom = Math.max(0.15, absoluteMaxZoom * 0.25);
+    
+    // Maximum zoom is the absolute max calculated above
+    const maxZoom = absoluteMaxZoom;
+    
+    // Store these values
+    maxCanvasZoom = maxZoom;
+    
+    // Update slider with safe range
+    const slider = document.getElementById('canvasZoom');
+    slider.min = minZoom;
+    slider.max = maxZoom;
+    slider.step = (maxZoom - minZoom) / 100; // Smooth increments based on range
+    
+    // Set default zoom to 60% of max for safe initial view (leaves room to zoom in/out)
+    const defaultZoom = maxZoom * 0.6;
+    
+    // ALWAYS reset zoom when dimensions change to prevent overflow
+    // This ensures the box readjusts immediately
+    canvasZoom = defaultZoom;
+    slider.value = canvasZoom;
+    document.getElementById('canvasZoomDisplay').innerText = Math.round(canvasZoom * 100) + "%";
+    
+    // Trigger render update
+    updateSceneTransform();
+}
+
+function updateCanvasZoom(val) {
+    canvasZoom = parseFloat(val);
+    document.getElementById('canvasZoomDisplay').innerText = Math.round(canvasZoom * 100) + "%";
+    updateSceneTransform();
+}
+
+// Validate input and enforce size limits (1-30 inches / 2.54-76.2 cm)
+function validateAndDraw(input) {
+    let val = parseFloat(input.value);
+    const minVal = 1;
+    const maxVal = 30;
+    
+    // Enforce bounds
+    if (val < minVal) {
+        input.value = minVal;
+    } else if (val > maxVal) {
+        input.value = maxVal;
+    }
+    
+    // Trigger draw with validated value
+    draw();
+}
+
+// 1. Unified Render Function
+function updateSceneTransform() {
+    if (isFlattened) {
+        // DIE-LINE MODE: Center, scale first, then rotate
+        scene.style.transform = `translate(-50%, -50%) scale(${0.45 * canvasZoom}) rotateX(0deg) rotateY(0deg)`;
+        
+        document.querySelectorAll('.face').forEach(f => {
+            f.style.filter = 'brightness(1)';
+            f.style.border = "1px dashed rgba(255,255,255,0.4)";
+        });
+    } else {
+        // 3D MODE: Center, scale first (uniform), then rotate
+        scene.style.transform = `translate(-50%, -50%) scale(${canvasZoom}) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+        document.querySelectorAll('.face').forEach(face => {
+            face.style.border = "1px solid rgba(255,255,255,0.1)";
+            // Keep your existing material/lighting logic here
+            if (face.classList.contains('mat-metallic')) {
+                let metalLight = 1.0 + (Math.abs(rotY) / 180);
+                face.style.filter = `brightness(${Math.max(0.3, Math.min(2, metalLight))}) contrast(1.3)`;
+            }
+            const art = face.querySelector('.art-layer');
+            if (art && (art.classList.contains('fx-gold') || art.classList.contains('fx-silver'))) {
+                // Move the gradient based on rotation to simulate light reflection
+                const shiftX = 50 + (rotY * 0.5);
+                const shiftY = 50 + (rotX * 0.5);
+                art.style.backgroundPosition = `${shiftX}% ${shiftY}%`;
+            }
+
+            // 1. Reset specific metallic effects
+            if (face.classList.contains('mat-metallic')) {
+                // Shift the background position based on rotation to simulate a reflection moving
+                const moveX = (rotY * 0.5) + 50;
+                const moveY = (rotX * 0.5) + 50;
+                face.style.backgroundPosition = `${moveX}% ${moveY}%`;
+
+                // Boost the brightness for that metallic "flash"
+                let metalLight = 1.0 + (Math.abs(rotY) / 180);
+                face.style.filter = `brightness(${Math.max(0.3, Math.min(2, metalLight))}) contrast(1.3)`;
+            }
+            // 2. Art Card remains steady and "Plane"
+            else if (face.classList.contains('mat-artcard')) {
+                face.style.filter = `brightness(1) contrast(1)`;
+            }
+            // 3. Other materials: keep the existing gentle lighting logic
+            else {
+                let light = 0.9;
+                if (face.classList.contains('mat-kraft')) {
+                    light += (rotX * -0.003);
+                } else {
+                    if (face.id === 'front') light += (rotX * -0.005) + (rotY * 0.005);
+                    if (face.id === 'top')   light += (rotX * 0.01);
+                }
+                face.style.filter = `brightness(${Math.max(0.3, Math.min(1.4, light))})`;
+            }
+        });
+    }
+}
+
+// 2. The Draw Function (Ensures faces have size and position)
+function draw() {
+    const factor = (currentUnit === 'in') ? 35 : 13.8;
+    const l = parseFloat(document.getElementById('L').value) * factor || 100;
+    const w = parseFloat(document.getElementById('W').value) * factor || 100;
+    const h = parseFloat(document.getElementById('H').value) * factor || 100;
+
+    const angle = isFlattened ? 0 : 90;
+    const openAngle = isFlattened ? 0 : -10;
+
+    const faces = {
+        'front':  `translate3d(${-l/2}px, ${-h/2}px, ${isFlattened ? 0 : w/2}px)`,
+        'back':   isFlattened ? `translate3d(${l/2 + w}px, ${-h/2}px, 0)` : `translate3d(${-l/2}px, ${-h/2}px, ${-w/2}px) rotateY(180deg)`,
+        'left':   `translate3d(${-l/2 - w}px, ${-h/2}px, ${isFlattened ? 0 : w/2}px) rotateY(${-angle}deg)`,
+        'right':  `translate3d(${l/2}px, ${-h/2}px, ${isFlattened ? 0 : w/2}px) rotateY(${angle}deg)`,
+        'top':    isLidOpen
+                   ? `translate3d(${-l/2}px, ${-h/2 - w}px, ${w/2}px) rotateX(${openAngle}deg)`
+                   : `translate3d(${-l/2}px, ${-h/2 - w}px, ${w/2}px) rotateX(${angle}deg)`,
+        'bottom': `translate3d(${-l/2}px, ${h/2}px, ${isFlattened ? 0 : w/2}px) rotateX(${-angle}deg)`
+    };
+
+    for (let id in faces) {
+        const el = document.getElementById(id);
+        if(!el) continue;
+
+        if (id === 'left' || id === 'right') { el.style.width = w + 'px'; el.style.height = h + 'px'; el.style.transformOrigin = (id === 'left') ? 'right' : 'left'; }
+        else if (id === 'top' || id === 'bottom') { el.style.width = l + 'px'; el.style.height = w + 'px'; el.style.transformOrigin = (id === 'top') ? 'bottom' : 'top'; }
+        else { el.style.width = l + 'px'; el.style.height = h + 'px'; el.style.transformOrigin = 'center'; }
+
+        el.style.transform = faces[id];
+    }
+
+    updateSceneTransform(); // Apply rotation after sizing
+    calculateMaxZoom(); // Recalculate zoom limits when dimensions change
+
+    // Update dimension label
+    const dimText = document.getElementById('dim-text');
+    if (dimText) {
+        const unit = (currentUnit === 'in') ? 'IN' : 'CM';
+        dimText.innerText = `${document.getElementById('L').value} x ${document.getElementById('W').value} x ${document.getElementById('H').value} ${unit}`;
+    }
+}
+
+// 3. Smooth Mouse Control
+vPort.addEventListener('mousemove', (e) => {
+    if (isFlattened || isAutoSpinning) return;
+
+    // Remove transition class so movement is instant
+    scene.classList.remove('smooth-transition');
+
+    const xPct = (e.clientX / window.innerWidth) - 0.5;
+    const yPct = (e.clientY / window.innerHeight) - 0.5;
+    
+    // Increased sensitivity for a more natural feel
+    rotY = xPct * 180; 
+    rotX = yPct * -90; 
+    
+    updateSceneTransform();
+
+    // Lighting & Foil
+    const holder = document.getElementById('logo-holder');
+    if (holder && (holder.classList.contains('fx-gold') || holder.classList.contains('fx-silver'))) {
+        holder.style.backgroundPosition = `${50 + (xPct * 100)}% ${50 + (yPct * 100)}%`;
+    }
+});
+
+// 4. Auto-Spin Logic
+function toggleAutoSpin() {
+    isAutoSpinning = !isAutoSpinning;
+    const btn = document.getElementById('spin-btn');
+    btn.textContent = isAutoSpinning ? 'Stop Auto-Spin' : 'Start Auto-Spin';
+    if (isAutoSpinning) renderLoop();
+    else cancelAnimationFrame(rafID);
+}
+
+function renderLoop() {
+    if (!isAutoSpinning) return;
+    rotY += 0.5;
+    updateSceneTransform();
+    rafID = requestAnimationFrame(renderLoop);
+}
+
+// 5. Utility Functions (Logo, Materials, Units)
+function applyLogoToAll(withFinish = false) {
+    const currentArt = sideArtworks[selectedSide];
+    if (!currentArt) {
+        alert("Please upload a logo to the current side first.");
+        return;
+    }
+
+    const sides = ['front', 'back', 'top', 'bottom', 'left', 'right'];
+    const source = document.querySelector(`#${selectedSide} .art-layer`);
+    const sourceFace = document.getElementById(selectedSide);
+    
+    sides.forEach(side => {
+        sideArtworks[side] = currentArt;
+        const artLayer = document.querySelector(`#${side} .art-layer`);
+        if (!artLayer || !source) return;
+        
+        // Always copy the image URL and mask
+        artLayer.style.backgroundImage = `url(${currentArt})`;
+        artLayer.style.setProperty('--side-art', `url(${currentArt})`);
+        
+        // Copy scale/position variables
+        const getVar = (el, prop) => {
+            const v = el.style.getPropertyValue(prop);
+            if (v) return v;
+            try { return getComputedStyle(el).getPropertyValue(prop) || ''; } catch(e) { return ''; }
+        };
+        artLayer.style.setProperty('--logo-size', getVar(source, '--logo-size') || '50%');
+        artLayer.style.setProperty('--logo-x', getVar(source, '--logo-x') || '0%');
+        artLayer.style.setProperty('--logo-y', getVar(source, '--logo-y') || '0%');
+        
+        // Copy finish effects if withFinish is true
+        if (withFinish) {
+            // Copy FX classes
+            artLayer.classList.remove('fx-gold', 'fx-silver', 'fx-uv-applied');
+            if (source.classList.contains('fx-gold')) {
+                artLayer.classList.add('fx-gold');
+                artLayer.style.backgroundImage = 'none';
+            } else if (source.classList.contains('fx-silver')) {
+                artLayer.classList.add('fx-silver');
+                artLayer.style.backgroundImage = 'none';
+            } else if (source.classList.contains('fx-uv-applied')) {
+                artLayer.classList.add('fx-uv-applied');
+                artLayer.style.backgroundImage = 'none';
+            } else {
+                // Plain ink - show as is
+                artLayer.style.backgroundImage = `url(${currentArt})`;
+            }
+        } else {
+            // Remove all FX classes when cloning without finishes
+            artLayer.classList.remove('fx-gold', 'fx-silver', 'fx-uv-applied');
+            artLayer.style.backgroundImage = `url(${currentArt})`;
+        }
+    });
+}
+
+function applyInnerColor(hex) {
+    document.querySelectorAll('.face').forEach(f => {
+        // We apply this to the face background. 
+        // Note: For a true inner color, you'd need "double-walled" divs.
+        f.style.borderColor = hex; 
+    });
+    document.getElementById('innerHexDisplay').innerText = hex.toUpperCase();
+}
+
+function setLogoFX(type, btn) {
+    document.querySelectorAll('.fx-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentEffect = type;
+
+    const targetFace = document.getElementById(selectedSide);
+    if (!targetFace) return;
+    const artLayer = targetFace.querySelector('.art-layer');
+    if (!artLayer) return;
+    const url = sideArtworks[selectedSide];
+
+    // Remove all FX classes first
+    artLayer.classList.remove('fx-gold', 'fx-silver', 'fx-uv-applied');
+    
+    // Always ensure the mask is set to the logo URL
+    artLayer.style.setProperty('--side-art', `url(${url})`);
+
+    if (type === 'none') {
+        artLayer.style.backgroundImage = `url(${url})`;
+        artLayer.style.backgroundSize = "var(--logo-size) auto";
+    } else {
+        // For FX, we hide the background-image and use the Mask + Background Color
+        artLayer.style.backgroundImage = "none";
+        artLayer.classList.add('fx-' + (type === 'uv' ? 'uv-applied' : type));
+    }
+}
+
+function handleLogoWithName(event) {
+    const file = event.target.files[0];
+    if (!file) return; // User cancelled
+
+    // Display file name
+    const fileName = file.name;
+    const fileNameDisplay = document.getElementById('file-name');
+    if (fileNameDisplay) {
+        fileNameDisplay.textContent = `📄 ${fileName}`;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const url = e.target.result;
+        
+        // 1. Store the URL for this specific side
+        sideArtworks[selectedSide] = url;
+        
+        // 2. Apply to the current side's Art Layer
+        const targetFace = document.getElementById(selectedSide);
+        const artLayer = targetFace.querySelector('.art-layer');
+        
+        artLayer.style.backgroundImage = `url(${url})`;
+        artLayer.style.setProperty('--side-art', `url(${url})`);
+        
+        // 3. Clear the input so the SAME logo can be selected for another side
+        event.target.value = ""; 
+
+        // 4. Hide the placeholder text
+        const txt = document.getElementById('l-txt');
+        if(txt) txt.style.display = 'none';
+    }
+    reader.readAsDataURL(file);
+}
+
+function handleLogo(event) {
+    const file = event.target.files[0];
+    if (!file) return; // User cancelled
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const url = e.target.result;
+        
+        // 1. Store the URL for this specific side
+        sideArtworks[selectedSide] = url;
+        
+        // 2. Apply to the current side's Art Layer
+        const targetFace = document.getElementById(selectedSide);
+        const artLayer = targetFace.querySelector('.art-layer');
+        
+        artLayer.style.backgroundImage = `url(${url})`;
+        artLayer.style.setProperty('--side-art', `url(${url})`);
+        
+        // 3. Clear the input so the SAME logo can be selected for another side
+        event.target.value = ""; 
+
+        // 4. Hide the placeholder text
+        const txt = document.getElementById('l-txt');
+        if(txt) txt.style.display = 'none';
+    }
+    reader.readAsDataURL(file);
+}
+
+function setLogoSide(sideId, btn) {
+    selectedSide = sideId;
+    document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Alert the user (optional, or update a label)
+    console.log("Now editing: " + sideId);
+}
+
+function updateLogoPos(type, val) {
+    const targetFace = document.getElementById(selectedSide);
+    if (!targetFace) return;
+    const artLayer = targetFace.querySelector('.art-layer');
+    if (!artLayer) return;
+
+    const cssVar = `--logo-${type}`;
+    const suffix = (type === 'size' || type === 'x' || type === 'y') ? '%' : '';
+    const valueToSet = val + suffix;
+    
+    // Apply to the CSS variable
+    artLayer.style.setProperty(cssVar, valueToSet);
+    
+    // Ensure it updates for FX variants as well - the CSS vars should handle this
+    // Force a repaint by toggling a class if needed
+    if (artLayer.classList.contains('fx-gold') || artLayer.classList.contains('fx-silver') || artLayer.classList.contains('fx-uv-applied')) {
+        // Temporarily toggle to force recalculation
+        artLayer.style.backgroundSize = 'var(--logo-size) auto';
+        artLayer.style.backgroundPosition = `calc(50% + var(--logo-x)) calc(50% + var(--logo-y))`;
+    }
+}
+
+function applyCustomColor(hex) {
+    // This updates the entire project's color variable
+    document.documentElement.style.setProperty('--box-color', hex);
+    document.getElementById('hexDisplay').innerText = hex.toUpperCase();
+    
+    // If we are in Die-line mode, we might want to refresh the brightness
+    if (isFlattened) {
+        document.querySelectorAll('.face').forEach(f => f.style.filter = 'brightness(1)');
+    }
+}
+
+// ==================== SMART LOGO PLACEMENT SYSTEM ====================
+
+// State variables
+let isGridVisible = false;
+let isAspectLocked = true;
+let copiedPosition = null;
+let snapPoints = [];
+
+// Initialize smart placement
+function initSmartPlacement() {
+    // Add grid overlay to all faces
+    document.querySelectorAll('.face').forEach(face => {
+        const grid = document.createElement('div');
+        grid.className = 'grid-overlay';
+        face.appendChild(grid);
+        
+        const bounds = document.createElement('div');
+        bounds.className = 'logo-bounds';
+        face.appendChild(bounds);
+    });
+    
+    // Update snap points when box changes
+    updateSnapPoints();
+}
+
+// Toggle grid visibility
+function toggleGrid() {
+    isGridVisible = !isGridVisible;
+    const btn = document.getElementById('grid-toggle');
+    
+    if (!btn) {
+        console.error("Grid toggle button not found!");
+        return;
+    }
+    
+    // Toggle grid on all faces
+    document.querySelectorAll('.face').forEach(face => {
+        if (isGridVisible) {
+            face.style.backgroundImage = `
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+            `;
+            face.style.backgroundSize = '25px 25px';
+        } else {
+            face.style.backgroundImage = '';
+            face.style.backgroundSize = '';
+        }
+    });
+    
+    btn.textContent = isGridVisible ? 'Grid: On' : 'Grid: Off';
+    btn.style.background = isGridVisible ? 'var(--accent)' : '';
+    btn.style.color = isGridVisible ? '#0d1117' : '';
+}
+
+// Toggle aspect ratio lock
+function toggleAspectLock() {
+    isAspectLocked = !isAspectLocked;
+    const btn = document.getElementById('aspect-lock');
+    
+    btn.textContent = isAspectLocked ? '🔒 Locked' : '🔓 Unlocked';
+    btn.classList.toggle('active-smart', isAspectLocked);
+    btn.classList.add('aspect-locked');
+    
+    setTimeout(() => {
+        btn.classList.remove('aspect-locked');
+    }, 500);
+    
+    // If locked, adjust current logo to maintain aspect
+    if (isAspectLocked) {
+        const currentSize = getComputedStyle(document.documentElement).getPropertyValue('--logo-size').trim();
+        if (currentSize) {
+            const sizeValue = parseFloat(currentSize);
+            document.documentElement.style.setProperty('--logo-size', sizeValue + '%');
+        }
+    }
+}
+
+// Simplified position function
+function positionLogo(position) {
+    console.log("Positioning logo to:", position);
+    
+    if (!selectedSide) {
+        alert("Please select a side first!");
+        return;
+    }
+    
+    let x = 0;
+    let y = 0;
+    
+    switch(position) {
+        case 'center':
+            x = 0; y = 0;
+            break;
+        case 'top-left':
+            x = -40; y = -40;
+            break;
+        case 'top-right':
+            x = 40; y = -40;
+            break;
+        case 'bottom-left':
+            x = -40; y = 40;
+            break;
+        case 'bottom-right':
+            x = 40; y = 40;
+            break;
+    }
+    
+    // Update CSS variables
+    document.documentElement.style.setProperty('--logo-x', x + '%');
+    document.documentElement.style.setProperty('--logo-y', y + '%');
+    
+    // Force update on current side
+    const face = document.getElementById(selectedSide);
+    if (face) {
+        const artLayer = face.querySelector('.art-layer');
+        if (artLayer) {
+            artLayer.style.backgroundPosition = `calc(50% + ${x}%) calc(50% + ${y}%)`;
+        }
+    }
+    
+    // Show visual feedback
+    showSimpleFeedback(`Positioned to ${position}`);
+}
+
+// Smart logo scaling
+function scaleLogo(mode) {
+    if (!selectedSide) return;
+    
+    const face = document.getElementById(selectedSide);
+    if (!face) return;
+    
+    const faceWidth = face.offsetWidth;
+    const faceHeight = face.offsetHeight;
+    
+    let newSize = 50; // Default
+    
+    switch(mode) {
+        case 'fit': // Auto-fit (90% of smallest dimension)
+            const minDimension = Math.min(faceWidth, faceHeight);
+            newSize = (minDimension / Math.max(faceWidth, faceHeight)) * 80;
+            break;
+            
+        case 'fill': // Fill (95% of area)
+            newSize = 95;
+            break;
+            
+        case 'large':
+            newSize = 70;
+            break;
+            
+        case 'small':
+            newSize = 30;
+            break;
+            
+        case 'custom':
+            const customSize = prompt('Enter logo size percentage (10-100):', '50');
+            if (customSize && !isNaN(customSize)) {
+                newSize = Math.min(100, Math.max(10, parseInt(customSize)));
+            }
+            break;
+    }
+    
+    // Apply size with aspect ratio lock
+    if (isAspectLocked) {
+        document.documentElement.style.setProperty('--logo-size', newSize + '%');
+    } else {
+        // If unlocked, user can adjust width/height separately
+        document.documentElement.style.setProperty('--logo-size', newSize + '%');
+    }
+    
+    // Show feedback
+    showSimpleFeedback(`Scaled to ${mode} (${Math.round(newSize)}%)`);
+}
+
+// Update visual bounding box
+function updateLogoBounds() {
+    if (!selectedSide) return;
+    
+    const face = document.getElementById(selectedSide);
+    if (!face) return;
+    
+    const bounds = face.querySelector('.logo-bounds');
+    if (!bounds) return;
+    
+    // Get current logo properties
+    const size = getComputedStyle(document.documentElement).getPropertyValue('--logo-size').trim();
+    const x = getComputedStyle(document.documentElement).getPropertyValue('--logo-x').trim();
+    const y = getComputedStyle(document.documentElement).getPropertyValue('--logo-y').trim();
+    
+    if (!size || !x || !y) return;
+    
+    // Calculate bounds
+    const sizeValue = parseFloat(size);
+    const xValue = parseFloat(x);
+    const yValue = parseFloat(y);
+    
+    // Update bounds element
+    bounds.style.width = sizeValue + '%';
+    bounds.style.height = 'auto'; // Maintain aspect ratio
+    bounds.style.left = '50%';
+    bounds.style.top = '50%';
+    bounds.style.transform = `translate(-50%, -50%) translate(${xValue}%, ${yValue}%)`;
+    bounds.classList.add('active');
+}
+
+// Copy current position settings
+function copyPosition() {
+    if (!selectedSide) {
+        showSimpleFeedback('Select a side first');
+        return;
+    }
+    
+    copiedPosition = {
+        size: getComputedStyle(document.documentElement).getPropertyValue('--logo-size').trim(),
+        x: getComputedStyle(document.documentElement).getPropertyValue('--logo-x').trim(),
+        y: getComputedStyle(document.documentElement).getPropertyValue('--logo-y').trim()
+    };
+    
+    showSimpleFeedback('✓ Position copied');
+}
+
+// Paste position to current side
+function pastePosition() {
+    if (!copiedPosition) {
+        showSimpleFeedback('No position copied');
+        return;
+    }
+    
+    if (!selectedSide) {
+        showSimpleFeedback('Select a side first');
+        return;
+    }
+    
+    // Apply copied position
+    document.documentElement.style.setProperty('--logo-size', copiedPosition.size);
+    document.documentElement.style.setProperty('--logo-x', copiedPosition.x);
+    document.documentElement.style.setProperty('--logo-y', copiedPosition.y);
+    
+    // Update bounds
+    updateLogoBounds();
+    
+    showSimpleFeedback('✓ Position pasted');
+}
+
+// Create snap points for grid
+function updateSnapPoints() {
+    // Clear existing snap points
+    document.querySelectorAll('.snap-point').forEach(point => point.remove());
+    snapPoints = [];
+    
+    // Define snap point positions (percentages from center)
+    const snapPositions = [
+        {x: -50, y: -50}, // Top-left
+        {x: 0, y: -50},   // Top-center
+        {x: 50, y: -50},  // Top-right
+        {x: -50, y: 0},   // Middle-left
+        {x: 0, y: 0},     // Center
+        {x: 50, y: 0},    // Middle-right
+        {x: -50, y: 50},  // Bottom-left
+        {x: 0, y: 50},    // Bottom-center
+        {x: 50, y: 50}    // Bottom-right
+    ];
+    
+    // Add snap points to all faces
+    document.querySelectorAll('.face').forEach(face => {
+        snapPositions.forEach(pos => {
+            const point = document.createElement('div');
+            point.className = 'snap-point';
+            point.style.left = '50%';
+            point.style.top = '50%';
+            point.style.transform = `translate(${pos.x}%, ${pos.y}%)`;
+            face.appendChild(point);
+            
+            snapPoints.push({
+                element: point,
+                x: pos.x,
+                y: pos.y,
+                face: face.id
+            });
+        });
+    });
+}
+
+// Auto-detect best logo size based on face dimensions
+function autoDetectLogoSize() {
+    if (!selectedSide) return;
+    
+    const face = document.getElementById(selectedSide);
+    if (!face) return;
+    
+    const width = face.offsetWidth;
+    const height = face.offsetHeight;
+    
+    // Smart size calculation:
+    // - For large faces: 40-60%
+    // - For small faces: 70-90%
+    // - Consider aspect ratio
+    
+    const area = width * height;
+    let recommendedSize;
+    
+    if (area > 50000) { // Large face
+        recommendedSize = 45;
+    } else if (area > 20000) { // Medium face
+        recommendedSize = 60;
+    } else { // Small face
+        recommendedSize = 75;
+    }
+    
+    // Adjust for aspect ratio
+    const aspectRatio = width / height;
+    if (aspectRatio > 1.5 || aspectRatio < 0.67) { // Very wide or tall
+        recommendedSize *= 0.8;
+    }
+    
+    return Math.min(90, Math.max(30, Math.round(recommendedSize)));
+}
+
+// Show simple feedback
+function showSimpleFeedback(message) {
+    // Remove any existing feedback
+    const oldFeedback = document.querySelector('.simple-feedback');
+    if (oldFeedback) oldFeedback.remove();
+    
+    // Create new feedback
+    const feedback = document.createElement('div');
+    feedback.className = 'simple-feedback';
+    feedback.textContent = message;
+    feedback.style.cssText = `
+        position: fixed;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: #0d1117;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 800;
+        z-index: 10000;
+        animation: fadeInOut 2s;
+    `;
+    
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.remove();
+    }, 1500);
+}
+
+// Add fade animation
+if (!document.querySelector('#grid-animations')) {
+    const style = document.createElement('style');
+    style.id = 'grid-animations';
+    style.textContent = `
+        @keyframes fadeInOut {
+            0% { opacity: 0; bottom: 100px; }
+            20% { opacity: 1; bottom: 120px; }
+            80% { opacity: 1; bottom: 120px; }
+            100% { opacity: 0; bottom: 140px; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Snap to nearest grid point
+function snapToNearestPoint() {
+    if (!isGridVisible || !selectedSide) return;
+    
+    const currentX = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--logo-x').trim() || '0');
+    const currentY = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--logo-y').trim() || '0');
+    
+    let nearestDist = Infinity;
+    let nearestX = currentX;
+    let nearestY = currentY;
+    
+    // Find nearest snap point
+    snapPoints.forEach(point => {
+        if (point.face === selectedSide) {
+            const dist = Math.sqrt(
+                Math.pow(point.x - currentX, 2) + 
+                Math.pow(point.y - currentY, 2)
+            );
+            
+            if (dist < nearestDist && dist < 15) { // 15% threshold
+                nearestDist = dist;
+                nearestX = point.x;
+                nearestY = point.y;
+            }
+        }
+    });
+    
+    // If close enough to a point, snap to it
+    if (nearestDist < 15 && nearestDist > 0) {
+        document.documentElement.style.setProperty('--logo-x', nearestX + '%');
+        document.documentElement.style.setProperty('--logo-y', nearestY + '%');
+        updateLogoBounds();
+    }
+}
+
+function setMat(type, btn) {
+    document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMaterial = type;
+    document.querySelectorAll('.face').forEach(f => {
+        f.classList.remove('mat-kraft', 'mat-corrugated', 'mat-metallic', 'mat-artcard');
+        if (type !== 'rigid') f.classList.add('mat-' + type);
+    });
+}
+
+function setEnv(type) {
+    const v = document.getElementById('vPort');
+    if(type === 'dark') v.style.background = 'radial-gradient(circle at 50% 50%, #162030 0%, #05070a 100%)';
+    else if(type === 'bright') v.style.background = 'radial-gradient(circle at 50% 50%, #ffffff 0%, #e0e0e0 100%)';
+    else v.style.background = 'radial-gradient(circle at 50% 50%, #4a3528 0%, #1a0f0a 100%)';
+}
+
+function applyPreset(product) {
+    const L = document.getElementById('L');
+    const W = document.getElementById('W');
+    const H = document.getElementById('H');
+
+    // Dimensions are set based on Inches (our default)
+    const presets = {
+        'iphone': { l: 7.5, w: 4.0, h: 1.2 },
+        'sneaker': { l: 14.0, w: 10.0, h: 5.0 },
+        'laptop': { l: 16.0, w: 11.5, h: 1.5 },
+        'watch': { l: 5.0, w: 5.0, h: 4.0 },
+        'pizza': { l: 12.0, w: 12.0, h: 1.8 }
+    };
+
+    if (presets[product]) {
+        let data = presets[product];
+        
+        // If the user is currently in CM mode, convert the preset values
+        const ratio = (currentUnit === 'cm') ? 2.54 : 1;
+        
+        L.value = (data.l * ratio).toFixed(1);
+        W.value = (data.w * ratio).toFixed(1);
+        H.value = (data.h * ratio).toFixed(1);
+        
+        // Trigger the draw function to update the 3D model
+        draw();
+    }
+}
+
+function setUnit(u) {
+    if (u === currentUnit) return;
+    const inputs = ['L', 'W', 'H'].map(id => document.getElementById(id));
+    const ratio = (u === 'cm') ? 2.54 : 1/2.54;
+    inputs.forEach(el => el.value = (parseFloat(el.value) * ratio).toFixed(1));
+    currentUnit = u;
+    document.querySelectorAll('.u-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('unit-'+u).classList.add('active');
+    draw();
+}
+
+function toggleFold() {
+    isFlattened = !isFlattened;
+    // Add/Remove a class to the scene for easier CSS targeting
+    if(isFlattened) scene.classList.add('is-flattened');
+    else scene.classList.remove('is-flattened');
+    document.getElementById('fold-btn').innerText = isFlattened ? "FOLD TO 3D" : "UNFOLD TO DIE-LINE";
+    scene.classList.add('smooth-transition');
+    if (isFlattened) {
+        rotX = 0;
+        rotY = 0;
+    } else {
+        rotX = -15;
+        rotY = 45;
+    }
+    draw(); 
+}
+
+function toggleXRay() {
+    document.querySelectorAll('.face').forEach(f => {
+        f.style.opacity = f.style.opacity === '0.5' ? '1' : '0.5';
+    });
+}
+
+function toggleLid() {
+    if (isFlattened) return;
+    isLidOpen = !isLidOpen;
+    const topFace = document.getElementById('top');
+    const lidBtn = document.getElementById('lid-btn');
+    const factor = (currentUnit === 'in') ? 35 : 13.8;
+    const l = parseFloat(document.getElementById('L').value) * factor;
+    const w = parseFloat(document.getElementById('W').value) * factor;
+    const h = parseFloat(document.getElementById('H').value) * factor;
+    if (isLidOpen) {
+        // -10deg gives a nice "fully flipped back" look
+        topFace.style.transform = `translate3d(${-l/2}px, ${-h/2 - w}px, ${w/2}px) rotateX(-10deg)`;
+        lidBtn.innerText = "Close Lid";
+    } else {
+        // 90deg is the "Closed" flat position
+        topFace.style.transform = `translate3d(${-l/2}px, ${-h/2 - w}px, ${w/2}px) rotateX(90deg)`;
+        lidBtn.innerText = "Open Lid";
+    }
+}
+
+// SAVE function
+function saveDesign() {
+    try {
+        // Get current design state
+        const design = {
+            version: "1.0",
+            timestamp: new Date().toISOString(),
+            dimensions: {
+                L: document.getElementById('L').value,
+                W: document.getElementById('W').value,
+                H: document.getElementById('H').value,
+                unit: currentUnit
+            },
+            materials: currentMaterial,
+            colors: {
+                exterior: document.getElementById('colorPicker').value,
+                interior: document.getElementById('innerColorPicker').value
+            },
+            logos: sideArtworks,
+            effects: currentEffect,
+            settings: {
+                logoSize: getComputedStyle(document.documentElement).getPropertyValue('--logo-size').trim() || '50%',
+                logoX: getComputedStyle(document.documentElement).getPropertyValue('--logo-x').trim() || '0%',
+                logoY: getComputedStyle(document.documentElement).getPropertyValue('--logo-y').trim() || '0%',
+                isLidOpen: isLidOpen,
+                isFlattened: isFlattened
+            }
+        };
+        
+        // Save to localStorage
+        localStorage.setItem('boxStudioDesign', JSON.stringify(design));
+        
+        // Show success message
+        const statusEl = document.getElementById('save-status');
+        if (statusEl) {
+            statusEl.style.display = 'block';
+            statusEl.textContent = '✓ Design saved!';
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 2000);
+        }
+        
+        console.log('Design saved successfully:', design);
+        return design;
+    } catch (error) {
+        console.error('Error saving design:', error);
+        alert('Error saving design. Please try again.');
+    }
+}
+
+// LOAD function
+function loadDesign() {
+    try {
+        const saved = localStorage.getItem('boxStudioDesign');
+        if (!saved) {
+            alert('No saved design found. Save a design first.');
+            return;
+        }
+        
+        const design = JSON.parse(saved);
+        
+        // Confirm loading
+        if (!confirm('Load saved design? This will overwrite current work.')) {
+            return;
+        }
+        
+        // Load dimensions
+        document.getElementById('L').value = design.dimensions.L;
+        document.getElementById('W').value = design.dimensions.W;
+        document.getElementById('H').value = design.dimensions.H;
+        
+        // Load unit
+        currentUnit = design.dimensions.unit || 'in';
+        document.querySelectorAll('.u-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('unit-' + currentUnit)?.classList.add('active');
+        
+        // Load colors
+        document.getElementById('colorPicker').value = design.colors.exterior;
+        document.getElementById('innerColorPicker').value = design.colors.interior;
+        applyCustomColor(design.colors.exterior);
+        applyInnerColor(design.colors.interior);
+        
+        // Load material
+        currentMaterial = design.materials || 'rigid';
+        document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.m-btn').forEach(b => {
+            if (b.textContent.toLowerCase().includes(currentMaterial)) {
+                b.classList.add('active');
+            }
+        });
+        setMat(currentMaterial, document.querySelector('.m-btn.active'));
+        
+        // Load effect
+        currentEffect = design.effects || 'none';
+        document.querySelectorAll('.fx-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.fx-btn').forEach(b => {
+            if (b.textContent.toLowerCase().includes(currentEffect)) {
+                b.classList.add('active');
+            }
+        });
+        
+        // Load logos
+        if (design.logos) {
+            sideArtworks = design.logos;
+            Object.keys(sideArtworks).forEach(side => {
+                if (sideArtworks[side]) {
+                    const face = document.getElementById(side);
+                    const artLayer = face?.querySelector('.art-layer');
+                    if (artLayer && sideArtworks[side]) {
+                        artLayer.style.backgroundImage = `url(${sideArtworks[side]})`;
+                        artLayer.style.setProperty('--side-art', `url(${sideArtworks[side]})`);
+                    }
+                }
+            });
+        }
+        
+        // Load logo positioning
+        if (design.settings) {
+            document.documentElement.style.setProperty('--logo-size', design.settings.logoSize);
+            document.documentElement.style.setProperty('--logo-x', design.settings.logoX);
+            document.documentElement.style.setProperty('--logo-y', design.settings.logoY);
+        }
+        
+        // Load view states
+        isLidOpen = design.settings?.isLidOpen || false;
+        isFlattened = design.settings?.isFlattened || false;
+        
+        if (isFlattened) {
+            document.getElementById('fold-btn').innerText = "FOLD TO 3D";
+            scene.classList.add('is-flattened');
+        } else {
+            document.getElementById('fold-btn').innerText = "UNFOLD TO DIE-LINE";
+            scene.classList.remove('is-flattened');
+        }
+        
+        // Update lid button
+        document.getElementById('lid-btn').innerText = isLidOpen ? "Close Lid" : "Open Lid";
+        
+        // Redraw everything
+        draw();
+        
+        // Show success
+        const statusEl = document.getElementById('save-status');
+        if (statusEl) {
+            statusEl.style.display = 'block';
+            statusEl.textContent = '✓ Design loaded!';
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 2000);
+        }
+        
+        console.log('Design loaded successfully:', design);
+        
+    } catch (error) {
+        console.error('Error loading design:', error);
+        alert('Error loading design. The saved file might be corrupted.');
+    }
+}
+
+// PNG Export function
+function exportAsPNG() {
+    try {
+        // Show loading state
+        const originalText = event.target.textContent;
+        event.target.textContent = '⏳ Rendering...';
+        event.target.disabled = true;
+        
+        // Capture the entire preview zone
+        html2canvas(document.querySelector('.preview-zone'), {
+            backgroundColor: null,
+            scale: 2, // Higher quality
+            useCORS: true,
+            allowTaint: true,
+            logging: false
+        }).then(canvas => {
+            // Create download link
+            const link = document.createElement('a');
+            const timestamp = new Date().toISOString().slice(0,19).replace(/[:]/g, '-');
+            link.download = `box-design-${timestamp}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Reset button
+            event.target.textContent = originalText;
+            event.target.disabled = false;
+            
+            // Show success
+            const statusEl = document.getElementById('save-status');
+            if (statusEl) {
+                statusEl.style.display = 'block';
+                statusEl.textContent = '✓ PNG exported!';
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 2000);
+            }
+        }).catch(error => {
+            console.error('Error exporting PNG:', error);
+            event.target.textContent = originalText;
+            event.target.disabled = false;
+            alert('Error exporting PNG. Please try again.');
+        });
+        
+    } catch (error) {
+        console.error('Error in exportAsPNG:', error);
+        alert('Error exporting PNG.');
+    }
+}
+
+// Real PDF export function
+async function exportAsPDF() {
+    try {
+        // Capture as canvas
+        const canvas = await html2canvas(document.querySelector('.preview-zone'), {
+            scale: 2,
+            useCORS: true
+        });
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('l', 'mm', 'a4');
+        
+        // Add image to PDF
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 280;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        
+        doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+        
+        // Add design info
+        doc.setFontSize(12);
+        doc.text('Box Design Specification', 10, imgHeight + 20);
+        doc.text(`Dimensions: ${document.getElementById('L').value} × ${document.getElementById('W').value} × ${document.getElementById('H').value} ${currentUnit}`, 10, imgHeight + 30);
+        doc.text(`Material: ${currentMaterial}`, 10, imgHeight + 40);
+        
+        // Save PDF
+        doc.save(`box-design-${new Date().toISOString().slice(0,10)}.pdf`);
+        
+    } catch (error) {
+        console.error('Error exporting PDF:', error);
+        alert('Error exporting PDF. Try PNG export instead.');
+    }
+}
+
+// Share function
+function shareDesign() {
+    try {
+        // First save the design
+        const design = saveDesign();
+        
+        // Create shareable data
+        const shareData = {
+            title: 'Box Design',
+            text: 'Check out my custom box design!',
+            url: window.location.href.split('?')[0] + '?design=' + btoa(JSON.stringify(design))
+        };
+        
+        // Try Web Share API first
+        if (navigator.share) {
+            navigator.share(shareData)
+                .then(() => console.log('Shared successfully'))
+                .catch(error => console.log('Error sharing:', error));
+        } else {
+            // Fallback: copy link to clipboard
+            const shareUrl = shareData.url;
+            navigator.clipboard.writeText(shareUrl)
+                .then(() => {
+                    alert('Share link copied to clipboard!\n\n' + shareUrl);
+                })
+                .catch(err => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareUrl;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('Share link copied to clipboard!');
+                });
+        }
+        
+    } catch (error) {
+        console.error('Error sharing:', error);
+        alert('Error sharing design. Please try again.');
+    }
+}
+
+// Initialize - calculate zoom limits on page load
+window.addEventListener('load', () => {
+    draw();
+    calculateMaxZoom();
+    applyCustomColor('#b22222');
+    initializeFromStorage();
+});
+
+// Add this function to initialize saved designs on page load
+function initializeFromStorage() {
+    const saved = localStorage.getItem('boxStudioDesign');
+    if (saved) {
+        // Auto-load last design with confirmation
+        setTimeout(() => {
+            if (confirm('Load your last saved design?')) {
+                loadDesign();
+            }
+        }, 500);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    applyCustomColor('#b22222');
+    
+    // Initialize smart placement system
+    setTimeout(() => {
+        initSmartPlacement();
+        console.log('[SMART PLACEMENT] System initialized');
+    }, 500);
+});
+</script>
+</body>
+</html>

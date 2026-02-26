@@ -6,6 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 
 import PromoCard, { PromoSlide } from "./PromoCard";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 function ArrowButton({
   className,
@@ -125,7 +126,7 @@ export default function PromoCardsSlider() {
   ];
 
   return (
-    <section className="relative w-full py-12 md:py-16">
+    <AnimateOnScroll animation="fade-in" as="section" className="relative w-full py-12 md:py-16">
       {/* custom nav buttons (overlay) */}
       <ArrowButton
         direction="prev"
@@ -156,6 +157,6 @@ export default function PromoCardsSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </section>
+    </AnimateOnScroll>
   );
 }

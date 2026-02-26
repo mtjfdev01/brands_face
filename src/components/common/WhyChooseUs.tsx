@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 /* ── Types ── */
 export type FeatureCard = {
@@ -21,7 +22,7 @@ type Props = {
 function Card({ feature }: { feature: FeatureCard }) {
   return (
     <div
-      className={`${feature.bgColor} rounded-3xl p-6 md:p-8 flex flex-col items-center text-center h-full`}
+      className={`${feature.bgColor} rounded-3xl p-6 md:p-8 flex flex-col items-center text-center h-full transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl`}
     >
       {/* Title */}
       <h3 className="text-lg font-bold text-gray-900 leading-snug md:text-xl">
@@ -59,29 +60,33 @@ export default function WhyChooseUs({ heading, subheading, features }: Props) {
     <section className="w-full py-14 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Heading */}
-        <h2 className="text-center text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-          {heading}
-        </h2>
+        <AnimateOnScroll animation="blur-in">
+          <h2 className="text-center text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+            {heading}
+          </h2>
+        </AnimateOnScroll>
 
         {/* Subheading */}
-        <p className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-gray-600 md:text-lg">
-          {subheading}
-        </p>
+        <AnimateOnScroll animation="fade-up" delay={100}>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-gray-600 md:text-lg">
+            {subheading}
+          </p>
+        </AnimateOnScroll>
 
         {/* Top row — 4 cards */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <AnimateOnScroll animation="fade-up" stagger delay={200} className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {topRow.map((feature) => (
             <Card key={feature.id} feature={feature} />
           ))}
-        </div>
+        </AnimateOnScroll>
 
         {/* Bottom row — 2 wider cards, centered */}
         {bottomRow.length > 0 && (
-          <div className="mt-4 md:mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
+          <AnimateOnScroll animation="fade-up" stagger delay={400} className="mt-4 md:mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
             {bottomRow.map((feature) => (
               <Card key={feature.id} feature={feature} />
             ))}
-          </div>
+          </AnimateOnScroll>
         )}
       </div>
     </section>

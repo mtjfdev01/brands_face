@@ -123,14 +123,14 @@ export default function GetQuotePage() {
     <div className="min-h-screen bg-white">
       {/* ── Top navbar ── */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-lg font-bold text-gray-900 tracking-tight"
+            className="text-xl font-bold text-gray-900 tracking-tight"
           >
             Brands Cafe
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600">
+          <nav className="hidden md:flex items-center gap-6 text-base text-gray-600">
             <Link href="/" className="hover:text-gray-900 transition-colors">
               Home
             </Link>
@@ -139,7 +139,7 @@ export default function GetQuotePage() {
           </nav>
           <Link
             href="#"
-            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors"
           >
             Need help?
           </Link>
@@ -163,25 +163,25 @@ export default function GetQuotePage() {
       </section>
 
       {/* ── Main: left form + right sticky image ── */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 py-8 lg:py-12">
+      <main className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 py-12 lg:py-16">
           {/* Left: Scrollable form */}
-          <div className="w-full lg:w-1/2 xl:w-[55%]">
-            <h2 className="text-lg font-bold text-gray-900 mb-2">
+          <div className="w-full lg:w-[58%] xl:w-[60%]">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 md:text-3xl">
               Product Details
             </h2>
 
             <form onSubmit={handleSubmit}>
               {/* 1. Contact details */}
               <AccordionSection title="Enter your details">
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="Your Full Name"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                   />
                   <input
                     type="email"
@@ -189,30 +189,30 @@ export default function GetQuotePage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                   />
                   <input
                     type="tel"
                     placeholder="(555) 555-0000 (your area)"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                   />
                   <input
                     type="text"
                     placeholder="Your Company"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                   />
                 </div>
               </AccordionSection>
 
               {/* 2. Dimensions */}
               <AccordionSection title="Dimension" required>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <div className="flex-1">
-                    <label className="text-xs text-gray-500 mb-1 block">
+                    <label className="text-base text-gray-500 mb-1.5 block">
                       Width
                     </label>
                     <input
@@ -222,12 +222,12 @@ export default function GetQuotePage() {
                       onChange={(e) => setWidth(e.target.value)}
                       min={0}
                       step={0.1}
-                      className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-full border border-gray-200 rounded-xl px-5 py-3.5 text-lg text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                     />
                   </div>
-                  <span className="text-gray-300 mt-5">×</span>
+                  <span className="text-gray-300 mt-7 text-xl">×</span>
                   <div className="flex-1">
-                    <label className="text-xs text-gray-500 mb-1 block">
+                    <label className="text-base text-gray-500 mb-1.5 block">
                       Height
                     </label>
                     <input
@@ -237,12 +237,12 @@ export default function GetQuotePage() {
                       onChange={(e) => setHeight(e.target.value)}
                       min={0}
                       step={0.1}
-                      className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-full border border-gray-200 rounded-xl px-5 py-3.5 text-lg text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                     />
                   </div>
-                  <span className="text-gray-300 mt-5">×</span>
+                  <span className="text-gray-300 mt-7 text-xl">×</span>
                   <div className="flex-1">
-                    <label className="text-xs text-gray-500 mb-1 block">
+                    <label className="text-base text-gray-500 mb-1.5 block">
                       Depth
                     </label>
                     <input
@@ -252,16 +252,16 @@ export default function GetQuotePage() {
                       onChange={(e) => setDepth(e.target.value)}
                       min={0}
                       step={0.1}
-                      className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-full border border-gray-200 rounded-xl px-5 py-3.5 text-lg text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
                     />
                   </div>
-                  <span className="text-xs text-gray-400 mt-5">in</span>
+                  <span className="text-base text-gray-400 mt-7">in</span>
                 </div>
               </AccordionSection>
 
               {/* 3. Material */}
               <AccordionSection title="Material" count={MATERIALS.length}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {MATERIALS.map((m) => (
                     <OptionCard
                       key={m.id}
@@ -276,7 +276,7 @@ export default function GetQuotePage() {
 
               {/* 4. Thickness */}
               <AccordionSection title="Thickness" count={THICKNESSES.length}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {THICKNESSES.map((t) => (
                     <OptionCard
                       key={t.id}
@@ -291,7 +291,7 @@ export default function GetQuotePage() {
 
               {/* 5. Add ons */}
               <AccordionSection title="Add ons" count={ADDONS.length}>
-                <div className="grid grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-2 gap-3">
                   {ADDONS.map((a) => (
                     <OptionCard
                       key={a.id}

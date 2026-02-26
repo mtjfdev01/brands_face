@@ -87,8 +87,8 @@ export default function IndustryPackagingSlider({ title, items }: Props) {
         </h2>
       </AnimateOnScroll>
 
-      <AnimateOnScroll animation="fade-up" delay={100}>
-      <div className="relative px-4 md:px-6">
+      <AnimateOnScroll animation="fade-in" delay={100}>
+        <div className="relative px-4 md:px-6">
         {/* Navigation arrows */}
         <NavArrow
           direction="prev"
@@ -164,7 +164,7 @@ export default function IndustryPackagingSlider({ title, items }: Props) {
             ))}
           </Swiper>
         </div>
-      </div>
+        </div>
       </AnimateOnScroll>
     </section>
   );

@@ -97,6 +97,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -120,54 +121,58 @@ export default function ProductSlider({ title, items }: Props) {
   return (
     <section className="w-full py-12 md:py-16">
       {/* Title */}
-      <h2 className="mb-8 text-center text-3xl font-semibold md:text-4xl">
-        {title}
-      </h2>
+      <AnimateOnScroll animation="blur-in">
+        <h2 className="mb-8 text-center text-3xl font-semibold md:text-4xl">
+          {title}
+        </h2>
+      </AnimateOnScroll>
 
-      <div className="relative">
-        {/* arrows */}
-        <button className={`${prev} absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/80 px-4 py-3 text-white`}>
-          ‹
-        </button>
+      <AnimateOnScroll animation="fade-in" delay={150}>
+        <div className="relative">
+          {/* arrows */}
+          <button className={`${prev} absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/80 px-4 py-3 text-white`}>
+            ‹
+          </button>
 
-        <button className={`${next} absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/80 px-4 py-3 text-white`}>
-          ›
-        </button>
+          <button className={`${next} absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/80 px-4 py-3 text-white`}>
+            ›
+          </button>
 
-        <Swiper
-          modules={[Navigation]}
-          navigation={{ prevEl: `.${prev}`, nextEl: `.${next}` }}
-          spaceBetween={20}
-          slidesPerView={2} // mobile
-          breakpoints={{
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-            1280: { slidesPerView: 6 },
-          }}
-          className="px-10"
-        >
-          {items.map((item) => (
-            <SwiperSlide key={item.id}>
-              <Link href={item.href} className="group block">
-                <div className="rounded-2xl bg-[#F6EFE6] p-6">
-                  <div className="relative h-[140px] w-full">
-                    <Image
-                      src={item.imageSrc}
-                      alt={item.title}
-                      fill
-                      className="object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
+          <Swiper
+            modules={[Navigation]}
+            navigation={{ prevEl: `.${prev}`, nextEl: `.${next}` }}
+            spaceBetween={20}
+            slidesPerView={2}
+            breakpoints={{
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+              1280: { slidesPerView: 6 },
+            }}
+            className="px-10"
+          >
+            {items.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Link href={item.href} className="group block">
+                  <div className="rounded-2xl bg-[#F6EFE6] p-6">
+                    <div className="relative h-[140px] w-full">
+                      <Image
+                        src={item.imageSrc}
+                        alt={item.title}
+                        fill
+                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <p className="mt-3 text-center text-sm font-medium md:text-base">
-                  {item.title}
-                </p>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+                  <p className="mt-3 text-center text-sm font-medium md:text-base">
+                    {item.title}
+                  </p>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </AnimateOnScroll>
     </section>
   );
 }

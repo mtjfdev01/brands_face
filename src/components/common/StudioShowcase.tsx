@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 /* ── Feature bullet data ── */
 const FEATURES = [
@@ -22,7 +23,7 @@ export default function StudioShowcase() {
         {/* ── Top: Heading + Features ── */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-12 md:mb-16">
           {/* Left — Heading + CTA */}
-          <div className="max-w-xl">
+          <AnimateOnScroll animation="slide-left" className="max-w-xl">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-[1.15] tracking-tight italic">
               The easiest way to{" "}
               <span className="not-italic">design custom packaging</span>
@@ -47,10 +48,10 @@ export default function StudioShowcase() {
                 />
               </svg>
             </button>
-          </div>
+          </AnimateOnScroll>
 
           {/* Right — Feature list */}
-          <ul className="space-y-4 pt-1">
+          <AnimateOnScroll animation="slide-right" stagger as="ul" className="space-y-4 pt-1">
             {FEATURES.map((feature) => (
               <li key={feature} className="flex items-start gap-3">
                 <svg
@@ -71,10 +72,11 @@ export default function StudioShowcase() {
                 </span>
               </li>
             ))}
-          </ul>
+          </AnimateOnScroll>
         </div>
 
         {/* ── Bottom: Editor mockup ── */}
+        <AnimateOnScroll animation="scale-in" delay={200}>
         <div
           onClick={handleOpenStudio}
           role="button"
@@ -180,6 +182,7 @@ export default function StudioShowcase() {
           {/* Glow effect behind the frame */}
           <div className="absolute -inset-4 bg-blue-400/20 rounded-[40px] blur-3xl -z-10 group-hover:bg-blue-400/30 transition-colors duration-500" />
         </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

@@ -1,0 +1,3247 @@
+﻿:root {
+  --primary: #1a4d2e;
+  --accent: #2ecc71;
+  --dark: #0f3620;
+  --light: #f0fdf4;
+  --white: #ffffff;
+  --glass: rgba(26, 77, 46, 0.65);
+  --dropdown-fade1: #2d6a45;
+  --dropdown-fade2: #3d8e5f;
+  --dropdown-fade3: #2ecc71;
+  --dropdown-hover-fade: rgba(46, 204, 113, 0.18);
+  --dropdown-hover-glass: rgba(255, 255, 255, 0.18);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+}
+
+/* --- NAVIGATION --- */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 5%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Creates three equal columns */
+  align-items: center;
+  z-index: 1000;
+  transition: 0.4s;
+}
+
+nav.scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  padding: 15px 5%;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure the left side aligns to the start */
+.nav-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Ensure the right side aligns to the end */
+/* --- THE GREEN BUTTONS CODE --- */
+/* Ensure the right side aligns to the end */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px; /* Tighter gap to prevent layout shifting */
+}
+
+/* TARGET ONLY THE NAV TEXT LINKS - This will NOT touch the WhatsApp/Floating buttons */
+.nav-right a:not(.fab) {
+  text-decoration: none;
+  color: #ffffff !important; /* White text */
+  background: #1a4d2e; /* Your primary green */
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #1a4d2e;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect specifically for these buttons */
+.nav-right a:not(.fab):hover {
+  background: #0f3620; /* Your dark green */
+  border-color: #0f3620;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  color: #2ecc71 !important;
+}
+.nav-right a:hover {
+  background: #0f3620; /* Your dark green */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect: The "Machined Button" look */
+.nav-right a:hover {
+  color: var(--primary);
+  background: rgba(22, 89, 39, 0.05);
+  border: 1px solid rgba(22, 89, 39, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+/* The Active Link (Current Page) */
+.nav-right a.active {
+  background: var(--primary);
+  color: var(--white) !important;
+  box-shadow: 0 5px 15px rgba(22, 89, 39, 0.2);
+}
+
+/* Center the logo specifically */
+/* Replace your .logo styles in style.css */
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem; /* Elegant size */
+  font-weight: 500; /* Not too bold, not too thin */
+  letter-spacing: 0.4em; /* This is the secret to the luxury look */
+  color: var(--dark); /* Usually black or very dark green */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  transition: 0.3s;
+  text-transform: uppercase; /* Ensures it stays in caps */
+}
+
+.logo:hover {
+  opacity: 0.7; /* Soft fade on hover is very high-end */
+}
+
+/* Update scrolled state if you want the logo to stay dark or change */
+nav.scrolled .logo {
+  color: #000;
+  font-size: 1.6rem; /* Slightly shrink on scroll for sophistication */
+}
+
+/* Smaller button for the nav bar specifically */
+.btn-nav {
+  padding: 10px 20px !important;
+  font-size: 0.85rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-right {
+    display: none; /* Keep links hidden on mobile as per your original design */
+  }
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  background: radial-gradient(circle at top right, #e8f5e9, #f7faf4);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text {
+  flex: 1.2;
+  z-index: 10;
+}
+.hero-text h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.hero-text p {
+  font-size: 1.2rem;
+  max-width: 550px;
+  margin-bottom: 35px;
+  color: #444;
+}
+
+.cta-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 18px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 10px 20px rgba(22, 89, 39, 0.2);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background: var(--dark);
+}
+.btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+/* 3D Box */
+.hero-visual {
+  flex: 0.8;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+}
+/* Styling for the new Real Image */
+.hero-visual {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(
+    0 20px 50px rgba(0, 0, 0, 0.15)
+  ); /* Adds a realistic shadow */
+}
+
+.hero-image {
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+  /* Gentle floating animation to keep it dynamic */
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* --- PRODUCT GRID --- */
+.section {
+  padding: 100px 8%;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.section-title h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+/* FORCE SPACE AT THE BOTTOM OF PRODUCTS */
+.section {
+  padding-bottom: 40px !important;
+  margin-bottom: 20px !important;
+}
+
+.product-grid {
+  margin-bottom: 40px !important;
+}
+.product-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 20px;
+  transition: 0.4s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.product-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+}
+.product-card i {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: block;
+  font-style: normal;
+}
+.product-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  min-height: 2.5em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* --- INFO GRID --- */
+.info-grid-section {
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+.info-item {
+  text-align: center;
+  padding: 20px;
+}
+.info-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.info-item h4 {
+  font-family: "Playfair Display";
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.info-item p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* --- PROCESS --- */
+.process-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 50px;
+  justify-content: center;
+}
+.step {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.5);
+}
+.step-num {
+  width: 70px;
+  height: 70px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  box-shadow: 0 10px 20px rgba(22, 89, 39, 0.2);
+}
+
+/* --- CONTACT/WIZARD --- */
+.quote-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.step-dot {
+  width: 25%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.step-dot.active {
+  background: var(--accent);
+}
+
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.wizard-input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  outline: none;
+}
+.wizard-input-small {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  margin-top: 5px;
+}
+.wizard-input-full {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+}
+.specs-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.upload-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-align: center;
+}
+.back-link {
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 34, 16, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-content {
+  background: white;
+  max-width: 1000px;
+  width: 100%;
+  border-radius: 30px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  max-height: 90vh;
+}
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--dark);
+}
+.modal-visual {
+  flex: 1;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+.modal-details {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal-details h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+.finish-title {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+.finish-list {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#gridScroll::-webkit-scrollbar {
+  width: 5px;
+}
+#gridScroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+#gridScroll::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+/* --- FLOATING BUTTONS --- */
+.contact-stack {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 2000;
+}
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+.fab:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+.fab-whatsapp {
+  background: var(--whatsapp);
+}
+.fab-call {
+  background: var(--primary);
+}
+.fab-chat {
+  background: var(--dark);
+}
+
+/* --- MARQUEE --- */
+.marquee {
+  background: var(--primary);
+  color: white;
+  padding: 25px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 40px 0;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: scroll 35s linear infinite;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+/* --- FOOTER --- */
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 80px 8% 40px;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+}
+
+/* --- FOOTER UNIFY OVERRIDE --- */
+footer.site-footer,
+.site-footer {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+}
+footer.site-footer a,
+.site-footer a {
+  color: #ffffff !important;
+}
+footer.site-footer .footer-bottom,
+.site-footer .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 120px;
+  }
+  .hero-visual {
+    height: 250px;
+    margin-top: 40px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .modal-content {
+    flex-direction: column;
+  }
+}
+/* Shake animation for invalid inputs */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.input-error {
+  border: 2px solid #ff4d4d !important;
+  animation: shake 0.3s ease-in-out;
+}
+.client-slider {
+  background: var(--white);
+  padding: 60px 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.trust-label {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+.logo-track {
+  display: flex;
+  width: calc(250px * 10); /* Adjust based on number of logos */
+  animation: scrollLogos 25s linear infinite;
+}
+
+.logo-slide {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  color: #bbb;
+  filter: grayscale(1);
+  transition: 0.3s;
+}
+
+.logo-slide:hover {
+  filter: grayscale(0);
+  color: var(--primary);
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 5));
+  }
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.work-item {
+  background: white;
+  padding: 15px;
+  border-radius: 4px; /* Slightly sharper corners for luxury look */
+  transition: 0.4s;
+}
+
+.work-img-container {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.work-item.tall .work-img-container {
+  height: 450px;
+}
+
+.work-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s;
+}
+
+.work-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(22, 89, 39, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 2;
+}
+
+.work-overlay span {
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.work-item:hover .work-overlay {
+  opacity: 1;
+}
+.work-item:hover img {
+  transform: scale(1.1);
+}
+
+.work-info {
+  margin-top: 20px;
+}
+
+.work-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.work-info p {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* The Outer Bar - Increased height to 220px */
+.product-flow-bar {
+  width: 100%;
+  height: 220px;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 40px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+/* The Moving Track */
+.flow-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  /* Adjusted speed to 30s so larger boxes don't move too fast */
+  animation: productGliding 30s linear infinite;
+}
+
+/* Individual Box Styling - Doubled to 200px */
+.flow-item {
+  width: 200px;
+  margin: 0 80px; /* Increased gap for larger scale */
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flow-item img {
+  max-width: 100%;
+  max-height: 180px; /* Doubled height */
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.12));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Effect - Makes them look massive and premium */
+.flow-item:hover img {
+  transform: scale(1.1) translateY(-10px);
+  filter: drop-shadow(0 20px 30px rgba(22, 89, 39, 0.25));
+}
+
+/* Animation Logic - Adjusted for the new width */
+@keyframes productGliding {
+  from {
+    transform: translateX(0);
+  }
+  /* (Item Width 200px + Margin 160px) * 5 items = 1800px */
+  to {
+    transform: translateX(-1800px);
+  }
+}
+.industry-tech-bar {
+  width: 100%;
+  height: 60px;
+  background: #8b0000; /* Deep Industrial Red */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-top: 2px solid #ff4d4d; /* Bright red "Power" line */
+  border-bottom: 2px solid #4a0000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle Tech Pattern */
+.tech-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0.5;
+}
+
+.industry-track {
+  display: flex;
+  white-space: nowrap;
+  animation: industryScroll 25s linear infinite;
+}
+
+.ind-item {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Orbitron", "Inter", sans-serif; /* Tech fonts look best here */
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 0 40px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* The "LED" Status Light */
+.led {
+  width: 8px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+  margin-right: 12px;
+  box-shadow: 0 0 8px #ff4d4d;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes industryScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(0.8);
+  }
+}
+
+/* Adding a "Glass" sheen over the bar */
+.industry-tech-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
+} /* This targets your existing contact section */
+#contact {
+  position: relative; /* Essential to keep the image inside this section */
+  overflow: hidden;
+}
+
+.box-watermark {
+  position: absolute;
+  /* Center it exactly in the middle of the section */
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* This handles the perfect centering */
+
+  /* Zoom effect: Adjust this width to make it bigger or smaller */
+  width: 80%;
+  max-width: 1200px;
+
+  opacity: 0.4; /* Keeps it subtle so you can read the form */
+  pointer-events: none;
+  z-index: 1;
+  object-fit: contain;
+}
+
+/* This ensures your existing content stays on top of the image */
+#contact .section-title,
+#contact .quote-container {
+  position: relative;
+  z-index: 2;
+}
+.packaging-stage {
+  position: relative;
+  background: #c8cfd3; /* Darker green for high contrast */
+  padding: 150px 8%;
+  overflow: hidden;
+}
+
+.animation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.moving-3d {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  filter: drop-shadow(0 0 30px rgba(163, 217, 165, 0.4));
+}
+
+/* --- THE PACKAGING VORTEX SECTION --- */
+/* --- THE FIX: LAYERED 3D SECTION --- */
+.three-d-stage {
+  position: relative; /* This is the anchor */
+  padding: 120px 8%;
+  background: radial-gradient(circle at center, #d1d8dc, #a9b3b9);
+  overflow: hidden;
+  min-height: 600px; /* Gives enough space for the floating boxes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vortex-container {
+  position: absolute; /* This prevents it from pushing the text away */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits behind the grid */
+  pointer-events: none; /* Allows you to click the text/buttons through the boxes */
+}
+
+.vortex-item {
+  position: absolute;
+  top: 50%; /* Center the pivot point */
+  left: 50%;
+  margin-left: -225px; /* Half of width to center perfectly */
+  margin-top: -225px; /* Half of height to center perfectly */
+  width: 450px;
+  height: 450px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* THE TEXT GRID - This now sits ON TOP of the animation */
+:root {
+  --primary: #1a4d2e;
+  --accent: #2ecc71;
+  --dark: #0f3620;
+  --light: #f0fdf4;
+  --white: #ffffff;
+  --glass: rgba(26, 77, 46, 0.9);
+  --whatsapp: #25d366;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+}
+
+/* --- NAVIGATION --- */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 5%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Creates three equal columns */
+  align-items: center;
+  z-index: 1000;
+  transition: 0.4s;
+}
+
+nav.scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  padding: 15px 5%;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure the left side aligns to the start */
+.nav-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Ensure the right side aligns to the end */
+/* --- THE GREEN BUTTONS CODE --- */
+/* Ensure the right side aligns to the end */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px; /* Tighter gap to prevent layout shifting */
+}
+
+/* TARGET ONLY THE NAV TEXT LINKS - This will NOT touch the WhatsApp/Floating buttons */
+.nav-right a:not(.fab) {
+  text-decoration: none;
+  color: #ffffff !important; /* White text */
+  background: #1a4d2e; /* Your primary green */
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #1a4d2e;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect specifically for these buttons */
+.nav-right a:not(.fab):hover {
+  background: #0f3620; /* Your dark green */
+  border-color: #0f3620;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  color: #ffffff !important;
+}
+.nav-right a:hover {
+  background: #0f3620; /* Your dark green */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect: The "Machined Button" look */
+.nav-right a:hover {
+  color: var(--primary);
+  background: rgba(22, 89, 39, 0.05);
+  border: 1px solid rgba(22, 89, 39, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+/* The Active Link (Current Page) */
+.nav-right a.active {
+  background: var(--primary);
+  color: var(--white) !important;
+  box-shadow: 0 5px 15px rgba(22, 89, 39, 0.2);
+}
+
+/* Center the logo specifically */
+/* Replace your .logo styles in style.css */
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem; /* Elegant size */
+  font-weight: 500; /* Not too bold, not too thin */
+  letter-spacing: 0.4em; /* This is the secret to the luxury look */
+  color: var(--dark); /* Usually black or very dark green */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  transition: 0.3s;
+  text-transform: uppercase; /* Ensures it stays in caps */
+}
+
+.logo:hover {
+  opacity: 0.7; /* Soft fade on hover is very high-end */
+}
+
+/* Update scrolled state if you want the logo to stay dark or change */
+nav.scrolled .logo {
+  color: #000;
+  font-size: 1.6rem; /* Slightly shrink on scroll for sophistication */
+}
+
+/* Smaller button for the nav bar specifically */
+.btn-nav {
+  padding: 10px 20px !important;
+  font-size: 0.85rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-right {
+    display: none; /* Keep links hidden on mobile as per your original design */
+  }
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  background: radial-gradient(circle at top right, #e8f5e9, #f7faf4);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text {
+  flex: 1.2;
+  z-index: 10;
+}
+.hero-text h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.hero-text p {
+  font-size: 1.2rem;
+  max-width: 550px;
+  margin-bottom: 35px;
+  color: #444;
+}
+
+.cta-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 18px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 10px 20px rgba(22, 89, 39, 0.2);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background: var(--dark);
+}
+.btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+/* 3D Box */
+.hero-visual {
+  flex: 0.8;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+}
+/* Styling for the new Real Image */
+.hero-visual {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(
+    0 20px 50px rgba(0, 0, 0, 0.15)
+  ); /* Adds a realistic shadow */
+}
+
+.hero-image {
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+  /* Gentle floating animation to keep it dynamic */
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* --- PRODUCT GRID (TIGHTENED) --- */
+.section {
+  padding: 60px 8% 20px; /* Reduced top/bottom padding significantly */
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 30px; /* Cut in half to bring grid closer to title */
+}
+.section-title h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; /* Tighter gap */
+}
+.product-card {
+  background: var(--white);
+  padding: 30px; /* Reduced internal padding */
+  border-radius: 20px;
+  transition: 0.4s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* --- INFO GRID (COMPACT) --- */
+.info-grid-section {
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 30px 0; /* Keeps the transition lean */
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.info-item {
+  text-align: center;
+  padding: 10px; /* Removed bulky padding */
+}
+
+/* --- PROCESS (MOVED UP) --- */
+.process-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px; /* Reduced from 50px to snap it up to the content above */
+  justify-content: center;
+}
+.step {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+/* --- CONTACT/WIZARD --- */
+.quote-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.step-dot {
+  width: 25%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.step-dot.active {
+  background: var(--accent);
+}
+
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.wizard-input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  outline: none;
+}
+.wizard-input-small {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  margin-top: 5px;
+}
+.wizard-input-full {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+}
+.specs-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.upload-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-align: center;
+}
+.back-link {
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 34, 16, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-content {
+  background: white;
+  max-width: 1000px;
+  width: 100%;
+  border-radius: 30px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  max-height: 90vh;
+}
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--dark);
+}
+.modal-visual {
+  flex: 1;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+.modal-details {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal-details h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+.finish-title {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+.finish-list {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#gridScroll::-webkit-scrollbar {
+  width: 5px;
+}
+#gridScroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+#gridScroll::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+/* --- FLOATING BUTTONS --- */
+.contact-stack {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 2000;
+}
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+.fab:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+.fab-whatsapp {
+  background: var(--whatsapp);
+}
+.fab-call {
+  background: var(--primary);
+}
+.fab-chat {
+  background: var(--dark);
+}
+
+/* --- MARQUEE --- */
+.marquee {
+  background: var(--primary);
+  color: white;
+  padding: 25px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 40px 0;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: scroll 35s linear infinite;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+/* --- FOOTER --- */
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 80px 8% 40px;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 120px;
+  }
+  .hero-visual {
+    height: 250px;
+    margin-top: 40px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .modal-content {
+    flex-direction: column;
+  }
+}
+/* Shake animation for invalid inputs */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.input-error {
+  border: 2px solid #ff4d4d !important;
+  animation: shake 0.3s ease-in-out;
+}
+.client-slider {
+  background: var(--white);
+  padding: 60px 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.trust-label {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #999;
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+.logo-track {
+  display: flex;
+  width: calc(250px * 10); /* Adjust based on number of logos */
+  animation: scrollLogos 25s linear infinite;
+}
+
+.logo-slide {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  color: #bbb;
+  filter: grayscale(1);
+  transition: 0.3s;
+}
+
+.logo-slide:hover {
+  filter: grayscale(0);
+  color: var(--primary);
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 5));
+  }
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.work-item {
+  background: white;
+  padding: 15px;
+  border-radius: 4px; /* Slightly sharper corners for luxury look */
+  transition: 0.4s;
+}
+
+.work-img-container {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.work-item.tall .work-img-container {
+  height: 450px;
+}
+
+.work-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s;
+}
+
+.work-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(22, 89, 39, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 2;
+}
+
+.work-overlay span {
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.work-item:hover .work-overlay {
+  opacity: 1;
+}
+.work-item:hover img {
+  transform: scale(1.1);
+}
+
+.work-info {
+  margin-top: 20px;
+}
+
+.work-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.work-info p {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* The Outer Bar - Increased height to 220px */
+.product-flow-bar {
+  width: 100%;
+  height: 220px;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 40px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+/* The Moving Track */
+.flow-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  /* Adjusted speed to 30s so larger boxes don't move too fast */
+  animation: productGliding 30s linear infinite;
+}
+
+/* Individual Box Styling - Doubled to 200px */
+.flow-item {
+  width: 200px;
+  margin: 0 80px; /* Increased gap for larger scale */
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flow-item img {
+  max-width: 100%;
+  max-height: 180px; /* Doubled height */
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.12));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Effect - Makes them look massive and premium */
+.flow-item:hover img {
+  transform: scale(1.1) translateY(-10px);
+  filter: drop-shadow(0 20px 30px rgba(22, 89, 39, 0.25));
+}
+
+/* Animation Logic - Adjusted for the new width */
+@keyframes productGliding {
+  from {
+    transform: translateX(0);
+  }
+  /* (Item Width 200px + Margin 160px) * 5 items = 1800px */
+  to {
+    transform: translateX(-1800px);
+  }
+}
+.industry-tech-bar {
+  width: 100%;
+  height: 60px;
+  background: #8b0000; /* Deep Industrial Red */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-top: 2px solid #ff4d4d; /* Bright red "Power" line */
+  border-bottom: 2px solid #4a0000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle Tech Pattern */
+.tech-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0.5;
+}
+
+.industry-track {
+  display: flex;
+  white-space: nowrap;
+  animation: industryScroll 25s linear infinite;
+}
+
+.ind-item {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Orbitron", "Inter", sans-serif; /* Tech fonts look best here */
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 0 40px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* The "LED" Status Light */
+.led {
+  width: 8px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+  margin-right: 12px;
+  box-shadow: 0 0 8px #ff4d4d;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes industryScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(0.8);
+  }
+}
+
+/* Adding a "Glass" sheen over the bar */
+.industry-tech-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
+} /* This targets your existing contact section */
+#contact {
+  position: relative; /* Essential to keep the image inside this section */
+  overflow: hidden;
+}
+
+.box-watermark {
+  position: absolute;
+  /* Center it exactly in the middle of the section */
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* This handles the perfect centering */
+
+  /* Zoom effect: Adjust this width to make it bigger or smaller */
+  width: 80%;
+  max-width: 1200px;
+
+  opacity: 0.4; /* Keeps it subtle so you can read the form */
+  pointer-events: none;
+  z-index: 1;
+  object-fit: contain;
+}
+
+/* This ensures your existing content stays on top of the image */
+#contact .section-title,
+#contact .quote-container {
+  position: relative;
+  z-index: 2;
+}
+.packaging-stage {
+  position: relative;
+  background: #c8cfd3; /* Darker green for high contrast */
+  padding: 150px 8%;
+  overflow: hidden;
+}
+
+.animation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.moving-3d {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  filter: drop-shadow(0 0 30px rgba(163, 217, 165, 0.4));
+}
+/* --- NEW ISOLATED KINETIC SECTION --- */
+/* --- THE FINAL ATMOSPHERE CSS --- */
+.kinetic-stage {
+  position: relative;
+  padding: 100px 5%;
+  background: #e0e5e9; /* Industrial Grey */
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* THE LIQUID WAVES */
+.atmosphere {
+  position: absolute;
+  top: 050;
+  left: 50;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.wave {
+  position: absolute;
+  width: 150vw;
+  height: 150vw;
+  top: -50%;
+  left: -25%;
+  background: radial-gradient(
+    circle,
+    rgba(22, 89, 39, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 43%;
+  animation: waveRotate 25s infinite linear;
+}
+
+.wave-2 {
+  background: radial-gradient(
+    circle,
+    rgba(163, 217, 165, 0.15) 0%,
+    transparent 60%
+  );
+  animation: waveRotate 35s infinite linear reverse;
+  top: -30%;
+  left: -10%;
+}
+
+@keyframes waveRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* THE 3D PRODUCTS */
+.kinetic-vortex {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.kinetic-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin: -200px 0 0 -200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+/* PRODUCT IMAGES */
+.k-sheet {
+  background-image: url("paper-sheet.png");
+  animation: cinematicFlow 18s infinite ease-in-out;
+}
+.k-box {
+  background-image: url("box7.png");
+  animation: cinematicFlow 18s infinite ease-in-out;
+  animation-delay: 6s;
+}
+.k-pouch {
+  background-image: url("pouch.png");
+  animation: cinematicFlow 18s infinite ease-in-out;
+  animation-delay: 12s;
+}
+
+@keyframes cinematicFlow {
+  0% {
+    transform: translate3d(60vw, 10vh, -500px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(0, -30px, 0) rotate(10deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(-60vw, 10vh, 500px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+/* THE TEXT CARDS */
+.kinetic-grid {
+  position: relative;
+  z-index: 10; /* Ensures cards are on top of waves and boxes */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+.kinetic-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+/* This targets the dropdown list itself */
+select option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* It's also good to ensure the select box looks right before clicking */
+select {
+  background-color: #ffffff;
+  color: #333333;
+}
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-template-rows: 300px 300px; /* Adjust height as needed */
+  gap: 15px; /* The "split" lines */
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+.split-frame {
+  background-image: url("portfolio-wide.webp"); /* Replace with your image path */
+  background-size: 200% 200%; /* Scale up so 1/4th fills one frame */
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Position the background for each quadrant */
+.top-left {
+  background-position: 0% 0%;
+}
+.top-right {
+  background-position: 100% 0%;
+}
+.bottom-left {
+  background-position: 0% 100%;
+}
+.bottom-right {
+  background-position: 100% 100%;
+}
+
+/* Elegant hover effect */
+.split-grid:hover .split-frame {
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.split-frame:hover {
+  transform: scale(1.02) !important;
+  opacity: 1 !important;
+  z-index: 2;
+}
+/* 1. SECTION WRAPPER */
+.split-portfolio-section {
+  padding: 60px 0;
+  background: var(--white);
+}
+
+/* 2. TEXT ABOVE THE IMAGE */
+.section-header.center {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.section-header .subtitle {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+/* 3. THE 4-FRAME GRID */
+.quad-split-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  height: 500px;
+  padding: 0 5%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.split-frame {
+  /* Fixed background creates the "moving frames" effect */
+  background-image: url("portfolio-wide.webp");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 4px;
+  transition:
+    transform 0s ease,
+    box-shadow 0s ease;
+}
+
+.split-frame:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+/* 4. MOBILE FIX (CRITICAL) */
+@media (max-width: 768px) {
+  .quad-split-row {
+    display: none !important;
+  }
+  .split-frame {
+    /* Parallax/Fixed bg usually glithes on mobile, so we turn it off */
+    background-attachment: scroll;
+  }
+}
+/* Main Dropdown Container */
+/* This targets the menu that opens INSIDE the first dropdown */
+.dropdown-menu ul {
+  position: absolute;
+  top: 0 !important; /* Moves it back up to the top of the parent item */
+  right: 100% !important; /* Forces it to pop out to the LEFT side */
+  left: auto !important;
+
+  width: 250px; /* Set a fixed width */
+  margin-top: 0;
+  border-radius: 4px;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+/* The main dropdown (Rigid, Art Card, etc.) should NOT scroll */
+.dropdown-menu {
+  max-height: none !important;
+  overflow: visible !important; /* This allows sub-menus to pop out to the side */
+}
+
+/* ONLY the long sub-menus should scroll */
+.dropdown-menu ul {
+  max-height: 400px; /* Limit the height of the long lists */
+  overflow-y: auto; /* Add scrollbar here */
+  overflow-x: hidden;
+  padding-right: 5px; /* Space for the scrollbar */
+}
+
+/* Ensure the parent <li> is the anchor for the side-pop */
+.dropdown-menu li {
+  position: relative;
+}
+/* Ensure the parent nav item is the 'anchor' */
+.nav-item-dropdown {
+  position: relative;
+}
+
+/* Show the menu on hover */
+.nav-item-dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+/* Rotate the arrow 180 degrees on hover */
+.nav-item-dropdown:hover .arrow-icon {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* 3. Show it on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Individual Main Product Item */
+.dropdown-item {
+  position: relative;
+  padding: 0;
+}
+
+/* This ensures the list items don't look like big green buttons */
+.dropdown-item a {
+  background: #034426 !important;
+  border: #e1e7e2 !important;
+  box-shadow: none !important;
+  color: #d4edd8 !important;
+  padding: 10px 20px !important;
+  text-transform: none !important;
+  display: block !important;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.dropdown-item a:hover {
+  background: #036103 !important; /* Light green hover tint */
+  color: #1a4d2e !important; /* Your brand green */
+}
+
+/* Sub-menu (The Second Level) */
+.submenu {
+  position: absolute;
+  right: 100%; /* Push to the right of the main list */
+  top: 0;
+  background: rgb(255, 255, 255);
+  min-width: 200px;
+  list-style: none;
+  padding: 10px 0;
+  display: none; /* Hidden by default */
+  box-shadow: 15px 15px 35px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #eee;
+}
+
+.dropdown-item:hover .submenu {
+  display: block; /* Show on hover */
+}
+
+.submenu li a {
+  padding: 8px 25px;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+/* Remove the dot (list bullet) */
+.nav-item.dropdown {
+  list-style: none !important;
+}
+
+/* Ensure no default bullets on the menu itself */
+#nav-products-dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Hide the arrow if it's appearing via CSS */
+.nav-link small,
+.nav-link::after {
+  display: none !important;
+}
+/* The main container for the dropdown */
+.nav-item.dropdown {
+  position: relative;
+}
+
+/* 2. The menu that opens */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Directly below the nav bar */
+
+  /* THE MAGIC FIX */
+  right: 0; /* Align the right edge of the menu with the arrow */
+  left: auto; /* Stop it from stretching to the right */
+
+  width: 280px; /* Give it a fixed width so it doesn't overlap */
+  display: none; /* Hidden by default */
+
+  /* Optional: adds a nice shadow that doesn't overlap neighbors */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* Makes sure it stays on top of other elements */
+
+  /* Force visibility settings */
+  display: block !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+/* Show on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+/* Navigation Base State */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+  background: transparent;
+}
+
+/* Scrolled State: Half-white / Glass effect */
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.85) !important; /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  padding: 10px 5%; /* Thinner bar on scroll */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo Squeeze Transition */
+.logo img {
+  transition: transform 0.4s ease;
+  transform-origin: center;
+}
+
+/* Remove dropdown arrow/dot if they returned */
+.nav-item.dropdown::after,
+.nav-item.dropdown::before {
+  display: none !important;
+}
+
+.dropdown-menu {
+  list-style: none !important;
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* --- Dropdown Styling --- */
+.nav-item.dropdown {
+  position: relative;
+  list-style: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: linear-gradient(
+    120deg,
+    var(--dropdown-fade1) 0%,
+    var(--dropdown-fade2) 70%,
+    var(--dropdown-fade3) 100%
+  );
+  min-width: 260px;
+  padding: 18px 0 18px 0;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 32px 0 rgba(26, 77, 46, 0.18),
+    0 1.5px 8px 0 rgba(46, 204, 113, 0.08);
+  border-top: 4px solid var(--accent);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.98);
+  transition: all 0.32s cubic-bezier(0.4, 1.3, 0.6, 1);
+  z-index: 1000;
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  position: relative;
+}
+.dropdown-item a {
+  display: flex;
+  align-items: center;
+  padding: 13px 28px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition:
+    background 0.32s cubic-bezier(0.4, 1.3, 0.6, 1),
+    color 0.22s,
+    box-shadow 0.22s;
+  letter-spacing: 0.02em;
+  background: linear-gradient(
+    90deg,
+    transparent 80%,
+    var(--dropdown-hover-glass) 100%
+  );
+}
+
+.dropdown-item:hover > a {
+  background: linear-gradient(
+    90deg,
+    var(--dropdown-hover-fade) 0%,
+    var(--dropdown-fade2) 100%
+  );
+  color: var(--primary);
+  box-shadow:
+    0 4px 18px 0 rgba(46, 204, 113, 0.13),
+    0 1.5px 8px 0 rgba(26, 77, 46, 0.08);
+  filter: brightness(1.08) saturate(1.2);
+}
+
+/* --- The Sub-Menu (Fixed Merging) --- */
+.submenu {
+  position: absolute;
+  left: 100%; /* Sits exactly to the right */
+  top: 0;
+  background: #fff;
+  min-width: 200px;
+  padding: 10px 0;
+  display: none; /* Hide by default */
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.08);
+  margin-left: 10px; /* THIS IS THE GAP to prevent merging */
+  border-radius: 4px;
+}
+
+.dropdown-item:hover .submenu {
+  display: block;
+}
+.menu-arrow {
+  font-size: 8px;
+  opacity: 0.4;
+}
+
+/* --- Navbar Scroll Transitions --- */
+nav {
+  transition:
+    background 0.4s ease,
+    padding 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+  padding: 10px 5%;
+}
+nav .logo img {
+  transition: width 0.4s ease; /* Makes the squeeze smooth */
+}
+/* The Side-Menu for Sub-products */
+.submenu {
+  position: absolute;
+  left: 100%; /* Positions it to the right of the main menu */
+  top: 0;
+  background: white;
+  min-width: 200px;
+  display: none; /* Hidden until hovered */
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #eee;
+  padding: 10px 0;
+}
+
+/* Show the submenu when hovering over the main item */
+.dropdown-item:hover .submenu {
+  display: block !important;
+}
+
+.arrow-right {
+  font-size: 8px;
+  opacity: 0.5;
+  float: right;
+}
+.form-step {
+  display: none; /* Hide all by default */
+  animation: fadeIn 0.4s ease;
+}
+
+.form-step.active {
+  display: block; /* Only show active */
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #888;
+  transition: 0.3s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.modal-container {
+  background: #fff;
+  width: 90%;
+  max-width: 1000px;
+  height: 80vh;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  display: flex;
+  height: 100%;
+}
+
+/* Sidebar Styling */
+.modal-sidebar {
+  width: 250px;
+  background: #f8f9fa;
+  border-right: 1px solid #eee;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.modal-sidebar li {
+  padding: 12px;
+  margin-bottom: 5px;
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.modal-sidebar li:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Main Content Area */
+.modal-content-area {
+  flex: 1 !important;
+  padding: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  /* This is the most important line for wall-to-wall */
+  align-items: stretch !important;
+  background: #ffffff !important;
+}
+
+.product-header-img img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-content-area h2 {
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+.modal-content-area p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #666;
+}
+.modal-sidebar li.active-sub {
+  background: #1a4d2e !important; /* Your brand green */
+  color: white !important;
+  border-color: #1a4d2e;
+  font-weight: 600;
+  transform: scale(1.02);
+}
+
+.modal-sidebar {
+  background: #fdfdfd;
+  padding: 15px;
+  border-right: 1px solid #f0f0f0;
+}
+/* The Bar */
+.form-trigger-bar {
+  width: 100%;
+  background: #1a4d2e; /* Dark Green for both buttons */
+  color: #fff;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+  box-shadow: 0 4px 10px rgba(22, 89, 39, 0.12);
+  text-decoration: none;
+}
+
+.form-trigger-bar:hover {
+  background: #0f3d1b;
+}
+
+/* The Collapsible Logic */
+.form-content-collapsed {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+  background: #f9f9f9;
+  border-radius: 0 0 8px 8px;
+}
+
+.form-content-collapsed.open {
+  max-height: 1000px; /* Large enough to fit content */
+  transition: max-height 0.8s ease-in-out;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-top: none;
+}
+
+/* Form Layout Inside */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.embedded-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+/* Form Layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+/* THE VISIBLE CELLS */
+.modal-input {
+  background-color: #f4f7f5 !important; /* Soft gray-green tint */
+  border: 1px solid #ced4da !important;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.modal-input:focus {
+  background-color: #ffffff !important;
+  border-color: #1a4d2e !important; /* Your brand green */
+  box-shadow: 0 0 0 3px rgba(22, 89, 39, 0.1);
+  outline: none;
+}
+
+/* File Upload Styling */
+.file-upload-wrapper {
+  border: 2px dashed #ced4da;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.file-hint {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 5px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 10px;
+  background: #1a4d2e;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* 1. Prevent the main dropdown from causing horizontal scroll */
+#nav-products-dropdown {
+  right: auto;
+  left: 0;
+}
+
+/* 2. The Submenu (The one opening to the right) */
+.dropdown-item .submenu {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Opens to the right by default */
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* 3. THE FIX: Flip the last few items to open LEFT */
+/* If you have 8 items, items 6, 7, and 8 should open to the left */
+.dropdown-item:nth-last-child(-n + 3) .submenu {
+  left: auto;
+  right: 100%; /* This flips it to open on the left side of the parent */
+  margin-right: 5px; /* Optional spacing */
+}
+
+/* 4. Show on hover */
+.dropdown-item:hover > .submenu {
+  visibility: visible;
+  opacity: 1;
+}
+/* Find your submenu CSS and replace it with this */
+.dropdown-item .submenu {
+  position: absolute;
+  top: 0;
+  /* Instead of left: 100%, we use right: 100% */
+  right: 100%;
+  left: auto;
+
+  visibility: hidden;
+  opacity: 0;
+  background: #ffffff;
+  min-width: 200px;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); /* Shadow on the left side */
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+/* Ensure it shows on hover */
+.dropdown-item:hover > .submenu {
+  visibility: visible;
+  opacity: 1;
+}
+/* Container for the card */
+.product-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: transparent; /* Ensures the card itself doesn't fight the PNG */
+  transition: transform 0.3s ease;
+}
+
+/* The PNG "Icon" style - Double Size & Transparent */
+.card-icon-img {
+  /* This looks for a --size variable in HTML, otherwise uses 160px */
+  width: var(--size, 160px);
+  height: auto; /* Let height adjust naturally to keep proportions */
+  max-height: 200px; /* Prevents any image from becoming too tall */
+
+  object-fit: contain;
+  margin-bottom: 20px;
+  background: none !important;
+  padding: 0 !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+  min-height: 200px;
+}
+
+.product-card:hover .card-icon-img {
+  transform: scale(1.05); /* Slight pop effect on hover */
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+}
+/* 1. The Container: This is the "Box" the image sits in */
+.modal-content-area {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* This forces the button to fill the width */
+  background: #ffffff;
+  min-width: 0;
+}
+
+.product-header-img {
+  width: 100% !important;
+  height: 310px !important; /* Increased from 300px to 400px */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-bottom: 5px !important; /* Space between image and title */
+  overflow: hidden;
+}
+
+/* 2. The Actual Image */
+#modalProductImg {
+  width: 100% !important;
+  max-width: 450px !important; /* This is where you control the "Big Box" size */
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* Fix text alignment to match the sidebar's professional look */
+#modalTitle,
+#modalDesc,
+.product-overview-section {
+  text-align: left !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+#modalTitle {
+  font-size: 2.2rem;
+  color: #1a4d2e;
+  margin-bottom: 10px;
+}
+#modalProductImg:hover {
+  transform: scale(1.02); /* Subtle pop effect when hovering the big image */
+}
+#subProductList li {
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+#subProductList li:hover {
+  background: #f0f7f1; /* Light green hover */
+}
+/* Ensure the container isn't restricted */
+.expandable-form-container {
+  margin-top: 10px !important;
+  width: 100% !important;
+}
+
+.form-trigger-bar {
+  width: 100% !important;
+  box-sizing: border-box !important; /* Vital for wall-to-wall */
+  padding: 18px 25px !important;
+  border-radius: 6px !important; /* Slightly sharper corners look more premium */
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.general-link {
+  font-weight: bold;
+  color: #1a4d2e;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 10px !important;
+  padding-bottom: 15px !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.general-link:hover {
+  color: #1a6d30;
+  background: transparent !important; /* Keep it clean */
+  text-decoration: underline;
+}
+/* This forces the content to fill the width from wall to wall */
+.modal-content-area {
+  flex: 1 !important;
+  padding: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  background: #ffffff !important;
+
+  /* THE FIX: This allows the area to scroll if the form is too long */
+  max-height: 80vh; /* Limits height to 80% of the screen height */
+  overflow-y: auto; /* Adds the scrollbar when needed */
+  overflow-x: hidden; /* Prevents messy side-scrolling */
+}
+
+/* Optional: Make the scrollbar look professional and thin */
+.modal-content-area::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-content-area::-webkit-scrollbar-thumb {
+  background-color: #1a4d2e; /* Matches your green theme */
+  border-radius: 10px;
+}
+
+/* Forces the Green Button and the collapsible form to take full width */
+.expandable-form-container,
+.form-trigger-bar,
+#modalInquiryForm {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Keeps the image centered but allows the container to be wide */
+.product-header-img {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* Styles the new "Back" link in the sidebar */
+.general-link {
+  color: #1a4d2e !important;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px !important;
+  margin-bottom: 10px !important;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.general-link:hover {
+  text-decoration: underline;
+}
+/* Ensure the sub-category text stays readable on hover */
+#subProductList li:hover {
+  background-color: #f0f7f1 !important; /* Very light green background */
+  color: #1a4d2e !important; /* Forces the text to stay your brand green */
+  cursor: pointer;
+}
+
+/* If you have an 'active' state, make sure that stays readable too */
+#subProductList li.active-sub {
+  background-color: #1a4d2e !important; /* Green background for active item */
+  color: #ffffff !important; /* White text ONLY for the active green box */
+}
+/* This targets the <span> or <button> used for closing */
+/* 1. The Close Button - Fixed in the corner */
+.close-modal {
+  position: absolute !important;
+  top: 20px !important;
+  right: 25px !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: #f1f1f1 !important;
+  border-radius: 50% !important;
+  border: none !important;
+  font-size: 28px !important;
+  cursor: pointer !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 2. The Wall-to-Wall Right Panel */
+.modal-content-area {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important; /* Forces the Green Button to hit walls */
+  padding: 40px !important;
+  overflow-y: auto !important; /* Adds the scrollbar for the form */
+  max-height: 85vh !important;
+}
+.product-info-section {
+  margin-top: 0 !important; /* Title stays tight to the image area */
+  text-align: left !important;
+  width: 100% !important;
+}
+
+#modalTitle {
+  font-size: 2.5rem !important; /* Big and premium */
+  margin-bottom: 10px !important;
+  font-weight: 700 !important;
+}
+/* Make the image container large */
+.header-image-container {
+  flex: 1.2 !important; /* Adjust this to make image bigger or smaller */
+  display: flex !important;
+  justify-content: center !important;
+}
+.product-main-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 30px !important;
+  margin-bottom: 20px !important;
+}
+
+.header-text-content {
+  flex: 1 !important;
+}
+/* This ensures the text container takes up the full width to allow centering */
+.header-text-side {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* Centers the content vertically */
+  justify-content: center !important; /* Centers the content horizontally */
+  text-align: center !important;
+}
+#modalTitle,
+#modalDesc {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+/* 1st Level Dropdown (Categories) */
+.main-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--primary);
+  min-width: 220px;
+  list-style: none;
+  padding: 10px 0;
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown:hover .main-dropdown-menu {
+  display: block;
+}
+
+/* Category Items */
+.cat-item {
+  position: relative; /* Essential for sub-menu positioning */
+}
+
+.cat-link {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.cat-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+
+/* 2nd Level Dropdown (Sub-Products) */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%; /* Shows to the LEFT of the main menu */
+  background: #353a85; /* Slightly lighter shade of primary */
+  min-width: 200px;
+  list-style: none;
+  padding: 10px 0;
+  border-right: 2px solid var(--accent);
+}
+
+.cat-item:hover .sub-menu {
+  display: block;
+}
+
+.sub-menu li a {
+  display: block;
+  padding: 8px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  cursor: default;
+}
+
+.sub-menu li a:hover {
+  color: white;
+}
+
+.arrow {
+  font-weight: bold;
+  font-family: serif;
+}
+
+/* Apply same visuals to the alternate nav structure used on product pages */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--primary);
+  min-width: 220px;
+  list-style: none;
+  padding: 10px 0;
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 1200;
+}
+
+.nav-item.dropdown:hover > .dropdown-menu,
+.nav-item.dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  position: relative;
+}
+
+.dropdown-item > a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.dropdown-item > a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background: #353a85;
+  min-width: 200px;
+  list-style: none;
+  padding: 10px 0;
+  border-right: 2px solid var(--accent);
+  max-height: 55vh;
+  overflow-y: auto;
+  z-index: 1250;
+}
+
+.dropdown-item:hover > .submenu {
+  display: block;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.submenu li a:hover {
+  color: white;
+}

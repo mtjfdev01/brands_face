@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 /* ── Link columns data ── */
 const FOOTER_LINKS = {
@@ -77,9 +78,11 @@ export default function Footer() {
       {/* ── CTA Banner ── */}
       <div className="bg-[var(--color-brand-accent)] py-12 md:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <AnimateOnScroll animation="blur-in">
           <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             Ready to Elevate Your Brand?
           </h2>
+          </AnimateOnScroll>
           <p className="mt-3 text-white/80 text-sm sm:text-base max-w-xl mx-auto">
             Get custom packaging that makes your product unforgettable.
             Free design support, fast shipping, low MOQs.

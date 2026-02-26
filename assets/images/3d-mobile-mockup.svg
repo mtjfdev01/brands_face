@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" aria-labelledby="title desc" role="img">
+  <title id="title">3D Box Mockup — Premium</title>
+  <desc id="desc">Isometric, refined 3D box mockup with polished highlights, soft cast shadows, and a partially open lid to communicate the 3D studio feature.</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfbfb" />
+      <stop offset="1" stop-color="#f3f6f4" />
+    </linearGradient>
+    <linearGradient id="topGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#e9f7ee" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="sideGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7f7f5"/>
+      <stop offset="1" stop-color="#e6efe6"/>
+    </linearGradient>
+    <filter id="shadowSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="24" stdDeviation="36" flood-color="#000" flood-opacity="0.16"/>
+    </filter>
+    <filter id="shadowSoftSmall" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bgGrad)" />
+
+  <g transform="translate(150,90)">
+    <!-- ground shadow -->
+    <ellipse cx="450" cy="640" rx="340" ry="52" fill="rgba(16,22,16,0.08)" filter="url(#shadowSoft)" />
+
+    <!-- isometric box group -->
+    <g transform="translate(80,20) scale(0.85)">
+      <!-- right face -->
+      <path d="M760 220 L980 320 L980 640 L760 540 Z" fill="url(#sideGrad)" stroke="#dfe7e0" stroke-width="1" />
+
+      <!-- back face -->
+      <path d="M300 80 L760 220 L760 540 L300 420 Z" fill="#f7f7f6" stroke="#e6e9e6" stroke-width="1" />
+
+      <!-- front face -->
+      <path d="M300 80 L300 420 L540 500 L540 100 Z" fill="#ffffff" stroke="#e9ece9" stroke-width="1" />
+
+      <!-- lid (slightly open) -->
+      <path d="M300 80 L540 0 L1020 140 L760 220 Z" fill="url(#topGrad)" stroke="#f0f2f0" stroke-width="1" />
+
+      <!-- soft top highlight -->
+      <path d="M540 8 L1008 140 L760 220 L540 100 Z" fill="rgba(255,255,255,0.42)" />
+
+      <!-- inner depth shadow under lid -->
+      <path d="M520 90 L760 170 L760 220 L520 140 Z" fill="rgba(0,0,0,0.06)" />
+
+      <!-- logo plate on the front face -->
+      <rect x="360" y="250" width="200" height="110" rx="12" fill="#f3faf3" stroke="#e6efe6" stroke-width="1" />
+      <text x="460" y="318" font-family="'Playfair Display', serif" font-size="44" text-anchor="middle" fill="#164a2d">Brands Face</text>
+
+      <!-- material texture subtle lines -->
+      <g opacity="0.03" stroke="#000" stroke-width="1">
+        <path d="M320 300 L720 360" />
+        <path d="M320 320 L720 380" />
+      </g>
+
+      <!-- crisp edges for realism -->
+      <polyline points="300,80 760,220 980,320" fill="none" stroke="#dfe7e0" stroke-width="1" stroke-linejoin="round"/>
+
+      <!-- small spec label -->
+      <g transform="translate(760,80) rotate(-10)">
+        <rect x="0" y="0" width="220" height="56" rx="12" fill="#ffffff" opacity="0.95" stroke="#e7ebe6"/>
+        <text x="110" y="36" font-family="Inter, Helvetica, Arial" font-size="16" text-anchor="middle" fill="#164a2d">Interactive 3D Preview</text>
+      </g>
+    </g>
+  </g>
+</svg>

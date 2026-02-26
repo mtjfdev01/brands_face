@@ -176,7 +176,7 @@ export default function ScrollCards() {
   const [entered, setEntered] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [sliderRevealed, setSliderRevealed] = useState(false);
+  const [mobileHeroVisible, setMobileHeroVisible] = useState(true);
   const rafRef = useRef(0);
 
   useEffect(() => {
@@ -198,6 +198,14 @@ export default function ScrollCards() {
     rafRef.current = requestAnimationFrame(() => {
       const vh = window.innerHeight;
       const scrollY = window.scrollY;
+      const heroFraction = clamp(scrollY / vh); // 0→1 as hero scrolls away
+
+      // Mobile: keep cards only in HomeHero with no scroll-driven movement.
+      if (isMobile) {
+        setMobileHeroVisible(heroFraction < 1);
+        setProgress(0);
+        return;
+      }
 
       const flowerEl = document.getElementById("card-flower-section");
       if (!flowerEl) {
@@ -211,8 +219,6 @@ export default function ScrollCards() {
 
       /* Hero takes ~0 to 0.35 of total progress */
       /* Flower takes ~0.35 to 1.0 of total progress */
-      const heroFraction = clamp(scrollY / vh); // 0→1 as hero scrolls away
-
       if (heroFraction < 1) {
         /* Still in hero area: map 0→1 scroll to 0→0.35 progress */
         setProgress(heroFraction * 0.35);
@@ -222,7 +228,7 @@ export default function ScrollCards() {
         setProgress(0.35 + fp * 0.65);
       }
     });
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -273,8 +279,7 @@ const heroFan = useMemo(
 );
 
   /* ── Anchor: cards drag diagonally — down AND rightward ── */
-  const mobileHeroRestore = isMobile && !sliderRevealed && p <= 0.26;
-  const dragProgress = mobileHeroRestore ? 0 : dragT;
+  const dragProgress = isMobile ? 0 : dragT;
   const anchorLeft = isMobile ? 50 : lerp(22.5, 50, dragProgress);
   const flowerLiftT = easeOut(sub(p, 0.50, 0.88)); // heading out -> flower open
   const anchorTop = (isMobile ? lerp(28, 48, dragProgress) : lerp(45, 65, dragProgress)) - lerp(0, 14, flowerLiftT);
@@ -282,13 +287,6 @@ const heroFan = useMemo(
   /* Card size: responsive per breakpoint */
   const cardW = lerp(lerp(cfg.heroW, cfg.dragW, dragProgress), cfg.flowerW, flowerT);
   const cardH = lerp(lerp(cfg.heroH, cfg.dragH, dragProgress), cfg.flowerH, flowerT);
-
-  /* ── Mobile handoff with hysteresis: reveal slider down, restore cards up ── */
-  useEffect(() => {
-    if (!isMobile) return;
-    if (p >= 0.34 && !sliderRevealed) setSliderRevealed(true);
-    if (p <= 0.26 && sliderRevealed) setSliderRevealed(false);
-  }, [isMobile, p, sliderRevealed]);
 
   /* ── Exit animation: slower, stretched to section end ── */
   const exitT = easeOut(sub(p, 0.78, 1.0));
@@ -298,16 +296,19 @@ const heroFan = useMemo(
   const exitLift = lerp(0, -140, exitT);
 
   /* ── Should cards be visible? ── */
-  const beyondFlower = isMobile ? sliderRevealed : p >= 1;
+  const beyondFlower = isMobile ? !mobileHeroVisible : p >= 1;
   const visible = entered && !beyondFlower;
 
   return (
     <>
-    {/* ── Mobile slider (appears after drag completes) ── */}
-    {isMobile && <MobileCardSlider show={beyondFlower} />}
+    {/* Mobile slider intentionally disabled: cards stay only in HomeHero. */}
 
     <div
-      className="fixed inset-0 z-20 pointer-events-none"
+      className={`${
+        isMobile
+          ? "absolute inset-x-0 top-0 h-[112svh]"
+          : "fixed inset-0"
+      } z-20 pointer-events-none`}
       style={{
         opacity: visible ? exitOpacity : 0,
         transform: `translateY(${exitLift}px) rotate(${exitRotate}deg) scale(${exitScale})`,

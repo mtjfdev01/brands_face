@@ -20,21 +20,21 @@ export default function AccordionSection({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="border-b border-gray-200 py-5">
+    <div className="border-b border-gray-200 py-6">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between text-left group"
       >
-        <h3 className="text-sm font-semibold text-gray-900">
+        <h3 className="text-lg font-semibold text-gray-900">
           {title}
           {count !== undefined && (
-            <span className="ml-1.5 text-gray-400 font-normal">{count}</span>
+            <span className="ml-2 text-gray-400 font-normal text-base">{count}</span>
           )}
           {required && <span className="ml-1 text-red-500">*</span>}
         </h3>
         <svg
-          className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+          className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
             open ? "rotate-180" : ""
           }`}
           fill="none"
@@ -52,7 +52,7 @@ export default function AccordionSection({
 
       <div
         className={`grid transition-all duration-300 ${
-          open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+          open ? "grid-rows-[1fr] opacity-100 mt-5" : "grid-rows-[0fr] opacity-0"
         }`}
       >
         <div className="overflow-hidden">{children}</div>

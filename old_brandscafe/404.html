@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a4d2e">
+  <meta name="description" content="Page not found. The page you are looking for does not exist.">
+  <meta name="robots" content="noindex, follow">
+  <title>404 - Page Not Found | Brands Face</title>
+  <link rel="canonical" href="https://brandsface.com/404.html">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+      color: #0f3620;
+      text-align: center;
+      padding: 80px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .error-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .error-code {
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      font-weight: 700;
+      color: #1a4d2e;
+      line-height: 1;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #0f3620;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    a {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #1a4d2e;
+      color: white;
+      box-shadow: 0 4px 15px rgba(26, 77, 46, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #0f3620;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(26, 77, 46, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #1a4d2e;
+      border: 2px solid #1a4d2e;
+    }
+
+    .btn-secondary:hover {
+      background: #1a4d2e;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a4d2e 0%, #0f3620 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+    }
+
+    .loader-spinner {
+      position: relative;
+      width: 50px;
+      height: 50px;
+    }
+
+    .loader-spinner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top: 4px solid #2ecc71;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loader-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 80px);
+      color: #2ecc71;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 5rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Loading Animation -->
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading...</div>
+  </div>
+
+  <div class="error-container">
+    <div class="error-code">404</div>
+    <h1>Page Not Found</h1>
+    <p>Sorry, the page you are looking for doesn't exist or has been moved. Let's get you back on track.</p>
+    
+    <div class="cta-buttons">
+      <a href="/" class="btn-primary">Go to Home</a>
+      <a href="/#products" class="btn-secondary">Browse Products</a>
+    </div>
+  </div>
+
+  <script src="loading-animation.js"></script>
+</body>
+</html>

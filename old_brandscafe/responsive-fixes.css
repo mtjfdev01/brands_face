@@ -1,0 +1,562 @@
+/*
+  responsive-fixes.css
+  Purpose: Add homepage-only responsive improvements.
+  - Do not change visual design for laptop/desktop (no overrides for large screens).
+  - Provide fluid scaling, preserved aspect ratios, and minimal media queries.
+  - Each block below contains a short comment explaining why it was added.
+*/
+
+/* ---------- Global image / media defaults ---------- */
+/* Ensure all images, videos and svgs never stretch and keep aspect ratio. */
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- VISUAL SCALE RESET (homepage baseline) ---------- */
+/* Establish a single homepage scale variable referencing laptop baseline (~1366-1440px).
+   Smaller screens get a proportional scale value; desktop remains 1.0. */
+:root {
+  --hp-scale: 1;
+}
+@media (max-width: 1365px) {
+  :root {
+    /* unitless scale: maps viewport [320px..1365px] to [0.6..1] smoothly */
+    --hp-scale: clamp(0.6, calc((100vw - 320px) / 1045), 1);
+  }
+}
+
+/* Apply scale to the root font-size so rem-based spacing and type scale proportionally.
+   This keeps desktop pixel-identical while smaller screens are uniformly scaled down. */
+@media (max-width: 1365px) {
+  html {
+    font-size: calc(16px * var(--hp-scale));
+  }
+}
+
+/* Make inline SVGs and icons scale with surrounding font-size when used inside buttons */
+button svg,
+a svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* ---------- HERO: fluid image and CTA scaling ---------- */
+/* Keep laptop look intact: only apply stacking/size changes on narrower viewports. */
+
+/* Restrict hero image to a responsive range so it scales smoothly across all widths. */
+.hero-image {
+  /* min: small phones, preferred: responsive vw, max: keeps original laptop appearance */
+  max-width: clamp(
+    220px,
+    40vw,
+    480px
+  ); /* scales fluidly, max reduced to preserve original desktop size */
+  height: auto;
+  object-fit: contain; /* preserve aspect ratio */
+}
+
+/* Product / icon images inside cards should use the inline --size var but be responsive. */
+.card-icon-img {
+  width: clamp(80px, 18vw, var(--size, 200px));
+  height: auto;
+  margin: 0 auto 18px;
+  display: block;
+}
+
+/* Make primary CTA buttons scale with viewport but maintain same visual weight on laptop. */
+.btn,
+.btn-lab {
+  font-size: clamp(0.78rem, 1.6vw, 1rem);
+  padding: clamp(10px, 1.6vw, 18px) clamp(18px, 2.6vw, 35px);
+}
+
+/* Ensure the 3D Mock-up button has clear, premium aesthetic with visible border */
+.btn-lab {
+  border: 2px solid #000 !important;
+  background: #f5f5f5 !important;
+  color: #000 !important;
+  transition: all 0.3s ease;
+}
+
+.btn-lab:hover {
+  background: #2a2a2a !important;
+  color: #fff !important;
+}
+
+/* ---------- FLOW / MARQUEE / INDUSTRY bars ---------- */
+/* Reduce moving track sizes on smaller screens so items never overflow or overlap. */
+@media (max-width: 900px) {
+  .flow-item {
+    width: 140px;
+    margin: 0 28px;
+  }
+  .flow-item img {
+    max-height: 120px;
+  }
+  .industry-track .ind-item {
+    padding: 0 18px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .flow-item {
+    width: 110px;
+    margin: 0 18px;
+  }
+  .flow-item img {
+    max-height: 96px;
+  }
+  .industry-tech-bar {
+    height: auto;
+    padding: 10px 0;
+  }
+  .industry-track {
+    gap: 10px;
+  }
+}
+
+/* ---------- HERO stacking for tablet & mobile ---------- */
+@media (max-width: 1024px) {
+  /* switch to vertical flow so text and imagery don't squeeze horizontally */
+  .hero {
+    height: auto; /* remove the 100vh requirement on smaller screens */
+    min-height: 68vh; /* preserves a tall, immersive look without overflow */
+    flex-direction: column;
+    padding: 6% 6%;
+    padding-top: calc(100px + 6%); /* account for sticky navbar height */
+    gap: 18px;
+  }
+
+  .hero-text {
+    flex: none; /* prevent text from shrinking too small */
+    width: 100%;
+    text-align: center;
+    padding-top: 12px;
+  }
+
+  .hero-visual {
+    flex: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .cta-group {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Tighter mobile adjustments: stack CTAs vertically and maintain spacing */
+@media (max-width: 600px) {
+  .cta-group {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+  }
+  .btn,
+  .btn-lab {
+    width: 90%; /* consistent button width */
+    max-width: 420px; /* cap max width on larger phones */
+    justify-content: center;
+  }
+  .hero-text p {
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+  }
+}
+
+/* ---------- PRODUCT GRID & CARDS: preserve spacing and no overlap ---------- */
+@media (max-width: 900px) {
+  .product-card {
+    padding: clamp(18px, 3.2vw, 32px);
+  }
+  .product-grid {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  /* Keep at least two products per row on small phones/tablets to match scaled desktop */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .product-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+  .product-card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ---------- FORM / Modal responsiveness ---------- */
+/* Make the modal's internal layout stack on small screens to avoid cramped columns. */
+.modal-container {
+  max-width: 1120px;
+  width: 100%;
+}
+
+@media (max-width: 920px) {
+  .modal-container {
+    padding: 12px;
+  }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .modal-sidebar {
+    order: 2;
+    width: 100%;
+  }
+  .modal-content-area {
+    order: 1;
+    width: 100%;
+  }
+  .product-header-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .product-header-img img {
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+/* ---------- TOUCH / FAB adjustments (floating contact icons) ---------- */
+@media (max-width: 600px) {
+  /* Floating contact stack: proper positioning and z-index */
+  .contact-stack {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2000; /* above all sections including floating boxes */
+  }
+  .fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .fab:hover,
+  .fab:active {
+    transform: scale(1.1);
+  }
+  .fab-whatsapp {
+    background: #25d366;
+  }
+  .fab-call {
+    background: var(--primary);
+  }
+  .fab-chat {
+    background: var(--dark);
+  }
+}
+
+/* ---------- Prevent excessive expansion on very large monitors ---------- */
+@media (min-width: 2000px) {
+  /* Limit the hero text line length to keep the design balanced */
+  .hero-text h1 {
+    max-width: 1100px;
+  }
+  .hero {
+    padding-left: clamp(60px, 6vw, 160px);
+    padding-right: clamp(60px, 6vw, 160px);
+  }
+}
+
+/* Hero CTAs: responsive scaling will be handled via --hp-scale and rem sizing.
+   Removed the mobile-only CTA toggle to restore original visible CTAs and
+   to keep the homepage visual scale consistent with the laptop baseline. */
+
+/* ---------- NAVBAR / HERO stacking fix (mobile only) ---------- */
+/* Cause: Navbar was fixed and removed from flow, overlapping hero content on small screens.
+   Fix: Use `position: sticky` on small viewports so navbar remains at top but occupies layout space,
+   preventing overlap. Desktop/laptop `position: fixed` remains unchanged. */
+@media (max-width: 900px) {
+  nav {
+    position: sticky !important;
+    top: 0;
+    z-index: 1100; /* keep navbar above backgrounds */
+    /* ensure it visually separates from hero without changing desktop look */
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* NAVBAR: Visual cleanup and proper alignment */
+@media (max-width: 900px) {
+  nav {
+    padding: calc(14px * var(--hp-scale)) 5% !important;
+  }
+  .logo {
+    font-size: calc(1.8rem * var(--hp-scale));
+    letter-spacing: calc(0.4em * var(--hp-scale));
+    line-height: 1.1;
+  }
+  .nav-right a:not(.fab) {
+    padding: calc(10px * var(--hp-scale)) calc(16px * var(--hp-scale));
+    font-size: calc(0.75rem * var(--hp-scale));
+    line-height: 1.2;
+    height: auto;
+  }
+  .fab {
+    width: calc(60px * var(--hp-scale));
+    height: calc(60px * var(--hp-scale));
+  }
+}
+
+/* ---------- PRODUCT GRID: ensure minimum two columns on small screens ---------- */
+@media (max-width: 520px) {
+  /* Keep at least two products per row until extremely narrow screens */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .product-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+  .product-card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  /* On very narrow phones collapse to one column to avoid tiny cards */
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- KINETIC FLOATING BOXES: proportional size reduction ---------- */
+/* Reduce box size to be elegant and premium; preserve animation paths and timing. */
+@media (max-width: 1365px) {
+  .kinetic-item {
+    width: calc(400px * var(--hp-scale)) !important;
+    height: calc(400px * var(--hp-scale)) !important;
+    margin-left: calc(-200px * var(--hp-scale)) !important;
+    margin-top: calc(-200px * var(--hp-scale)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .kinetic-item {
+    width: calc(280px * var(--hp-scale)) !important;
+    height: calc(280px * var(--hp-scale)) !important;
+    margin-left: calc(-140px * var(--hp-scale)) !important;
+    margin-top: calc(-140px * var(--hp-scale)) !important;
+  }
+}
+
+/* ---------- QUAD IMAGE GRID: keep one row and maintain proportions on small devices ---------- */
+@media (max-width: 1024px) {
+  /* Force a single-row flexible layout while maintaining aspect ratio and hover behavior */
+  .quad-split-row {
+    display: flex;
+    flex-wrap: nowrap; /* prevent wrapping to two rows */
+    gap: 12px;
+    align-items: stretch;
+    overflow: visible;
+  }
+  .quad-split-row .split-frame {
+    flex: 1 1 calc(25% - 9px);
+    min-width: 0; /* allow shrinking without overflow */
+    aspect-ratio: 4 / 3; /* maintain proportional frames */
+    overflow: hidden;
+  }
+  .quad-split-row .split-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* preserves visual crop similar to desktop */
+  }
+}
+
+@media (max-width: 700px) {
+  /* Ensure frames scale but stay in one row; images preserve aspect ratio */
+  .quad-split-row .split-frame {
+    flex-basis: calc(25% - 9px);
+  }
+}
+
+/* ---------- KINETIC GRID: 2×2 layout for 4 info cards ---------- */
+@media (max-width: 1365px) {
+  .kinetic-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .kinetic-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+/* Ensure kinetic-stage animation container does not clip floating boxes */
+@media (max-width: 1365px) {
+  .kinetic-stage {
+    min-height: auto;
+    padding: calc(60px * var(--hp-scale)) 5%;
+  }
+}
+
+/* Touch-fallback: apply same visual styles used by :hover when touch triggers the JS class */
+@media (max-width: 1024px) {
+  .split-frame.touch-hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    z-index: 2 !important;
+  }
+}
+
+/* ---------- MOBILE OPTIMIZATION: 480px and below (extra small screens) ---------- */
+/* Aggressive fixes for very small screens to eliminate overlaps and crashes */
+@media (max-width: 480px) {
+  /* HEADER: Create clear separation between nav and hero */
+  nav {
+    position: sticky !important;
+    top: 0;
+    height: auto;
+    padding: 10px 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    z-index: 1100;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Logo: reduce size and ensure it doesn't overflow */
+  .logo {
+    font-size: 1.2rem !important;
+    letter-spacing: 0.2em !important;
+    line-height: 1;
+    flex: 0 0 auto;
+  }
+
+  /* Get a Quote button: align with logo in navbar */
+  .nav-left {
+    flex: 0 0 auto;
+  }
+
+  .nav-right {
+    display: none; /* hide nav links on tiny screens */
+  }
+
+  /* HERO: Add clearance below sticky navbar to prevent text crash */
+  .hero {
+    padding-top: 80px !important; /* account for sticky navbar */
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-bottom: 20px !important;
+    min-height: auto;
+    gap: 16px !important;
+  }
+
+  .hero-text h1 {
+    margin-top: 0 !important;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  /* CTA BUTTONS: Stack vertically with clearance */
+  .cta-group {
+    flex-direction: column !important;
+    gap: 15px !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 12px;
+  }
+
+  .btn,
+  .btn-lab {
+    width: 100% !important;
+    max-width: 320px !important;
+    font-size: 0.9rem !important;
+    padding: 12px 20px !important;
+    justify-content: center !important;
+  }
+
+  /* 3D MOCK-UP button: clear border and aesthetic */
+  .btn-lab {
+    border: 2px solid #000 !important;
+    background: #f5f5f5 !important;
+    color: #000 !important;
+  }
+
+  /* HERO IMAGE: Add spacing from buttons */
+  .hero-visual {
+    margin-top: 30px !important;
+    width: 100% !important;
+  }
+
+  .hero-image {
+    max-width: 280px !important;
+    width: 100%;
+  }
+
+  /* FLOATING ACTION BUTTONS (FABs): Position above red marquee */
+  .contact-stack {
+    position: fixed !important;
+    bottom: 100px !important; /* clear of the red industry bar */
+    right: 15px !important;
+    left: auto !important;
+    top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    z-index: 2000 !important;
+  }
+
+  .fab {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+  }
+
+  .fab-whatsapp {
+    background: #25d366;
+  }
+
+  .fab-call {
+    background: var(--primary);
+  }
+
+  .fab-chat {
+    background: var(--dark);
+  }
+}
+
+/* End of responsive-fixes.css */
