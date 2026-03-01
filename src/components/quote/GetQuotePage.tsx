@@ -128,7 +128,7 @@ export default function GetQuotePage() {
             href="/"
             className="text-xl font-bold text-gray-900 tracking-tight"
           >
-            Brands Cafe
+            Brands Face
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-base text-gray-600">
             <Link href="/" className="hover:text-gray-900 transition-colors">
@@ -153,7 +153,7 @@ export default function GetQuotePage() {
             Get a Custom Quote
           </h1>
           <p className="mt-4 text-base text-gray-600 leading-relaxed md:text-lg">
-            As we are Brands Cafe, we are available 24/7 to assist and guide
+            As we are Brands Face, we are available 24/7 to assist and guide
             you. Just inform us about the packaging and we will create an instant
             quote. Answer a few questions related to size, material, features and
             numbers. Quotes for printed roll stock or custom-sized bags can be

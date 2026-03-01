@@ -81,7 +81,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="mt-10 text-[10px] text-[#1a1a1a]/40">
-          &copy; BrandsCafe, all rights reserved, {new Date().getFullYear()}
+          &copy; Brands Face, all rights reserved, {new Date().getFullYear()}
         </p>
       </div>
 
@@ -115,7 +115,7 @@ export default function Footer() {
         >
           <div className="flex items-end justify-end pr-2 sm:pr-4">
             <p className="text-[18vw] sm:text-[16vw] md:text-[14vw] font-black text-[#1a3c28] leading-[0.85] tracking-tighter select-none">
-              CAFE
+              FACE
             </p>
             {/* Registered mark */}
             <span className="text-[4vw] sm:text-[3.5vw] md:text-[3vw] font-bold text-[#1a3c28] mb-[1vw] ml-1 select-none">&reg;</span>

@@ -17,7 +17,7 @@ const SLIDES: SlideData[] = [
   {
     title: 'Custom CBD Packaging',
     description:
-      'Get custom CBD packaging from Brands Cafe that protects potency, meets state labeling rules, and suits your product requirements. We offer free design support, US manufacturing, and fast shipping.',
+      'Get custom CBD packaging from Brands Face that protects potency, meets state labeling rules, and suits your product requirements. We offer free design support, US manufacturing, and fast shipping.',
     ctaText: 'Get a Free Quote',
     bgImage: '/hero/slide1-bg.jpg',
     productImage: '/hero/slide1-product.png',

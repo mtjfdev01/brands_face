@@ -120,8 +120,8 @@ export default function Footer() {
               <Link href="/" className="inline-block">
                 <div className="relative w-[140px] h-[40px]">
                   <Image
-                    src="/brandscafe/logo.svg"
-                    alt="Brands Cafe"
+                    src="/brands-face/logo.svg"
+                    alt="Brands Face"
                     fill
                     className="object-contain object-left brightness-0 invert"
                   />
@@ -254,7 +254,7 @@ export default function Footer() {
           {/* ── Bottom bar ── */}
           <div className="mt-8 pt-6 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-gray-500">
-              &copy; {new Date().getFullYear()} Brands Cafe. All rights reserved.
+              &copy; {new Date().getFullYear()} Brands Face. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">

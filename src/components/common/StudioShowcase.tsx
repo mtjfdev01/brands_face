@@ -97,7 +97,7 @@ export default function StudioShowcase() {
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="bg-white/10 rounded-md px-4 py-1 text-xs text-white/50 font-mono max-w-xs w-full text-center">
-                  brandscafe.com/studio
+                  brandsface.com/studio
                 </div>
               </div>
               <div className="w-[54px]" /> {/* spacer for symmetry */}
@@ -107,7 +107,7 @@ export default function StudioShowcase() {
             <div className="relative w-full aspect-[16/9] bg-[#13131f]">
               <Image
                 src="/studio.png"
-                alt="Brands Cafe 3D Studio — Design your custom packaging"
+                alt="Brands Face 3D Studio — Design your custom packaging"
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 1280px) 100vw, 1280px"

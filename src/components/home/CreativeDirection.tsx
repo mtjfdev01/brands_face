@@ -4,14 +4,14 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 const CARDS = [
-  { image: "/inspirations/djuce.jpg", color: "#c4a265" },
-  { image: "/inspirations/kuyichi.jpg", color: "#8b6f47" },
-  { image: "/inspirations/oase.jpg", color: "#5a7a5a" },
-  { image: "/inspirations/psi-bufet.jpg", color: "#a0522d" },
-  { image: "/inspirations/your-kaya.jpg", color: "#d4a0a0" },
-  { image: "/inspirations/hemp-juice.jpg", color: "#c87941" },
-  { image: "/inspirations/fluus.jpg", color: "#6b8e9b" },
-  { image: "/inspirations/xlash.jpg", color: "#9b8ec4" },
+  { image: "/assets/images/1.png", color: "#c4a265" },
+  { image: "/assets/images/2.png", color: "#8b6f47" },
+  { image: "/assets/images/3.png", color: "#5a7a5a" },
+  { image: "/assets/images/4.png", color: "#a0522d" },
+  { image: "/assets/images/5.png", color: "#d4a0a0" },
+  { image: "/assets/images/6.png", color: "#c87941" },
+  { image: "/assets/images/7.png", color: "#6b8e9b" },
+  { image: "/assets/images/8.png", color: "#9b8ec4" },
 ];
 
 const ENTER_MS = 900;

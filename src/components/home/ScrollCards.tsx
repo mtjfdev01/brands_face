@@ -12,14 +12,14 @@ interface Card {
 }
 
 const CARDS: Card[] = [
-  { title: "Kraft Mailer Box", category: "E-commerce", image: "/inspirations/djuce.jpg", color: "#c4a265" },
-  { title: "Rigid Gift Box", category: "Luxury", image: "/inspirations/kuyichi.jpg", color: "#8b6f47" },
-  { title: "CBD Product Box", category: "Health & Wellness", image: "/inspirations/oase.jpg", color: "#5a7a5a" },
-  { title: "Subscription Box", category: "Subscription", image: "/inspirations/psi-bufet.jpg", color: "#a0522d" },
-  { title: "Cosmetic Box", category: "Beauty", image: "/inspirations/your-kaya.jpg", color: "#d4a0a0" },
-  { title: "Food Packaging", category: "Food & Beverage", image: "/inspirations/hemp-juice.jpg", color: "#c87941" },
-  { title: "Sleeve Box", category: "Retail", image: "/inspirations/fluus.jpg", color: "#6b8e9b" },
-  { title: "Display Box", category: "Point of Sale", image: "/inspirations/xlash.jpg", color: "#9b8ec4" },
+  { title: "Rigid Boxes", category: "rigid_boxes", image: "/assets/images/4.png", color: "#c4a265" },
+  { title: "Corrugated", category: "corrugated", image: "/assets/images/10.png", color: "#8b6f47" },
+  { title: "Custom Pouches", category: "custom_pouches", image: "/assets/images/13.png", color: "#5a7a5a" },
+  { title: "Gift Boxes", category: "gift_boxes", image: "/assets/images/8.png", color: "#a0522d" },
+  { title: "Kraft Paper", category: "kraft_paper", image: "/assets/images/1.png", color: "#d4a0a0" },
+  { title: "Labels & Tags", category: "labels_tags", image: "/assets/images/2.png", color: "#c87941" },
+  { title: "Premium Finish", category: "premium_finish", image: "/assets/images/3.png", color: "#6b8e9b" },
+  { title: "Art Card", category: "art_card", image: "/assets/images/5.png", color: "#9b8ec4" },
 ];
 
 /* ── Math ── */
@@ -36,11 +36,8 @@ function easeOut(t: number) {
   return 1 - Math.pow(1 - t, 3);
 }
 /* Responsive config — flower radius + card sizes per breakpoint */
-function getResponsiveConfig() {
-  if (typeof window === "undefined")
-    return { rx: 85 * 1.2, ry: 60 * 1.08, heroW: 220, heroH: 351, dragW: 174, dragH: 261, flowerW: 230, flowerH: 330 };
-
-  const w = window.innerWidth;
+function getResponsiveConfig(width: number) {
+  const w = width;
 
   if (w < 640)
     return { rx: 48, ry: 36, heroW: 120, heroH: 182, dragW: 92, dragH: 138, flowerW: 88, flowerH: 130 };
@@ -176,11 +173,17 @@ export default function ScrollCards() {
   const [entered, setEntered] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileHeroVisible, setMobileHeroVisible] = useState(true);
+  const [viewportWidth, setViewportWidth] = useState<number | null>(null);
+  const [sliderRevealed, setSliderRevealed] = useState(false);
+  const [mobileSeenSlider, setMobileSeenSlider] = useState(false);
   const rafRef = useRef(0);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 640);
+    const check = () => {
+      const w = window.innerWidth;
+      setViewportWidth(w);
+      setIsMobile(w < 640);
+    };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -199,13 +202,6 @@ export default function ScrollCards() {
       const vh = window.innerHeight;
       const scrollY = window.scrollY;
       const heroFraction = clamp(scrollY / vh); // 0→1 as hero scrolls away
-
-      // Mobile: keep cards only in HomeHero with no scroll-driven movement.
-      if (isMobile) {
-        setMobileHeroVisible(heroFraction < 1);
-        setProgress(0);
-        return;
-      }
 
       const flowerEl = document.getElementById("card-flower-section");
       if (!flowerEl) {
@@ -228,7 +224,7 @@ export default function ScrollCards() {
         setProgress(0.35 + fp * 0.65);
       }
     });
-  }, [isMobile]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -248,7 +244,11 @@ export default function ScrollCards() {
   const centerLogoT = easeOut(sub(p, 0.75, 0.92));
 
 /* ✅ Responsive config (must be BEFORE return) */
-const cfg = getResponsiveConfig();
+const cfg = useMemo(
+  // Keep SSR + first client render aligned to avoid hydration style mismatch.
+  () => getResponsiveConfig(viewportWidth ?? 1280),
+  [viewportWidth],
+);
 const { rx: FLOWER_RX, ry: FLOWER_RY } = cfg;
 
 const FLOWER = useMemo(() => {
@@ -279,14 +279,31 @@ const heroFan = useMemo(
 );
 
   /* ── Anchor: cards drag diagonally — down AND rightward ── */
-  const dragProgress = isMobile ? 0 : dragT;
+  const mobileHeroRestore = isMobile && mobileSeenSlider && !sliderRevealed && p <= 0.30;
+  const dragProgress = mobileHeroRestore ? 0 : dragT;
+  const phaseHeroFan = mobileHeroRestore ? HERO_FAN : heroFan;
   const anchorLeft = isMobile ? 50 : lerp(22.5, 50, dragProgress);
   const flowerLiftT = easeOut(sub(p, 0.50, 0.88)); // heading out -> flower open
   const anchorTop = (isMobile ? lerp(28, 48, dragProgress) : lerp(45, 65, dragProgress)) - lerp(0, 14, flowerLiftT);
 
   /* Card size: responsive per breakpoint */
-  const cardW = lerp(lerp(cfg.heroW, cfg.dragW, dragProgress), cfg.flowerW, flowerT);
-  const cardH = lerp(lerp(cfg.heroH, cfg.dragH, dragProgress), cfg.flowerH, flowerT);
+  const heroWForPhase = mobileHeroRestore ? 220 : cfg.heroW;
+  const heroHForPhase = mobileHeroRestore ? 351 : cfg.heroH;
+  // Mobile only: keep hero size for first 10% of hero scroll, then downsize.
+  const mobileHeroProgress = clamp(p / 0.35);
+  const sizeDragT = isMobile ? sub(mobileHeroProgress, 0.10, 1.0) : dragProgress;
+  const cardW = lerp(lerp(heroWForPhase, cfg.dragW, sizeDragT), cfg.flowerW, flowerT);
+  const cardH = lerp(lerp(heroHForPhase, cfg.dragH, sizeDragT), cfg.flowerH, flowerT);
+
+  /* ── Mobile handoff with hysteresis: reveal slider down, restore cards up ── */
+  useEffect(() => {
+    if (!isMobile) return;
+    if (p >= 0.34 && !sliderRevealed) setSliderRevealed(true);
+    if (p <= 0.26 && sliderRevealed) setSliderRevealed(false);
+  }, [isMobile, p, sliderRevealed]);
+  useEffect(() => {
+    if (isMobile && sliderRevealed && !mobileSeenSlider) setMobileSeenSlider(true);
+  }, [isMobile, sliderRevealed, mobileSeenSlider]);
 
   /* ── Exit animation: slower, stretched to section end ── */
   const exitT = easeOut(sub(p, 0.78, 1.0));
@@ -296,19 +313,29 @@ const heroFan = useMemo(
   const exitLift = lerp(0, -140, exitT);
 
   /* ── Should cards be visible? ── */
-  const beyondFlower = isMobile ? !mobileHeroVisible : p >= 1;
+  const beyondFlower = isMobile ? sliderRevealed : p >= 1;
   const visible = entered && !beyondFlower;
+  const scrollToOpenedFlower = useCallback(() => {
+    const flowerEl = document.getElementById("card-flower-section");
+    if (!flowerEl) return;
+
+    // Jump to the bloom part (not just section start) for both desktop and mobile.
+    const flowerScrollable = Math.max(0, flowerEl.offsetHeight - window.innerHeight);
+    const targetY = flowerEl.offsetTop + flowerScrollable * 0.55;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <>
-    {/* Mobile slider intentionally disabled: cards stay only in HomeHero. */}
+    {/* ── Mobile slider (appears after drag completes) ── */}
+    {isMobile && <MobileCardSlider show={beyondFlower} />}
 
     <div
-      className={`${
-        isMobile
-          ? "absolute inset-x-0 top-0 h-[112svh]"
-          : "fixed inset-0"
-      } z-20 pointer-events-none`}
+      className="fixed inset-0 z-20 pointer-events-none"
       style={{
         opacity: visible ? exitOpacity : 0,
         transform: `translateY(${exitLift}px) rotate(${exitRotate}deg) scale(${exitScale})`,
@@ -331,8 +358,8 @@ const heroFan = useMemo(
 
 {CARDS.map((card, idx) => {
   const isCoreCard = idx < 4;
-  // Keep flower visuals tied to the same 4 cards seen in hero.
-  const sourceCard = idx < 4 ? card : CARDS[idx - 4];
+  // Use all 8 unique cards in the flower (no repeated visuals).
+  const sourceCard = card;
 
   let rotate = 0,
     x = 0,
@@ -344,7 +371,7 @@ const heroFan = useMemo(
 
   if (circleT > 0) {
     // Clockwise completion: cards fill the circle sequentially by index.
-    const base = isCoreCard ? heroFan[idx] : heroFan[idx - 4];
+    const base = isCoreCard ? phaseHeroFan[idx] : phaseHeroFan[idx - 4];
     const start = isCoreCard
       ? { rotate: base.rotate, x: base.x, y: base.y, scale: base.scale }
       : {
@@ -369,7 +396,7 @@ const heroFan = useMemo(
      * Keep your original behavior.
      */
     if (isCoreCard) {
-      const hf = heroFan[idx];
+      const hf = phaseHeroFan[idx];
       const ff = heroFan[idx];
       rotate = lerp(hf.rotate, ff.rotate, dragProgress);
       x = lerp(hf.x, ff.x, dragProgress);
@@ -384,7 +411,7 @@ const heroFan = useMemo(
      * HERO entry: keep original behavior.
      */
     if (isCoreCard) {
-      const hf = heroFan[idx];
+      const hf = phaseHeroFan[idx];
       const entryT = entered ? 1 : 0;
       // Start tightly packed, then spread to the current hero fan layout.
       rotate = lerp(hf.rotate * 0.25, hf.rotate, entryT);
@@ -406,7 +433,10 @@ const heroFan = useMemo(
   return (
     <div
       key={`${sourceCard.title}-${idx}`}
-      className="absolute left-1/2 top-1/2 origin-center"
+      className={`absolute left-1/2 top-1/2 origin-center ${
+        inHeroLikePhase ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
+      }`}
+      onClick={inHeroLikePhase ? scrollToOpenedFlower : undefined}
       style={{
         width: cardW,
         height: cardH,
@@ -416,7 +446,7 @@ const heroFan = useMemo(
         willChange: "transform, opacity",
         transition:
           entered && p < 0.01 && isCoreCard
-            ? `transform 1.8s cubic-bezier(0.16,1,0.3,1) ${heroFan[idx].delay}ms, opacity 0.9s ease ${heroFan[idx].delay}ms`
+            ? `transform 1.8s cubic-bezier(0.16,1,0.3,1) ${phaseHeroFan[idx].delay}ms, opacity 0.9s ease ${phaseHeroFan[idx].delay}ms`
             : "none",
       }}
     >

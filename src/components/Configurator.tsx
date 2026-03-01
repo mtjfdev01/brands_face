@@ -41,7 +41,7 @@ export default function Configurator() {
               </svg>
             </div>
             <div>
-              <h1 className="text-lg font-bold tracking-tight">Brands Cafe</h1>
+              <h1 className="text-lg font-bold tracking-tight">Brands Face</h1>
               <p className="text-[10px] text-gray-500 uppercase tracking-widest">
                 3D Box Configurator
               </p>

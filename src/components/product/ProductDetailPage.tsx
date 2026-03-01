@@ -17,7 +17,7 @@ export default function ProductDetailPage({ product }: Props) {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link href="/" className="text-lg font-bold text-gray-900 tracking-tight">
-            Brands Cafe
+            Brands Face
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600">

@@ -148,7 +148,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = PRODUCTS[slug] ?? FALLBACK_PRODUCT;
   return {
-    title: `${product.title} | Brands Cafe`,
+    title: `${product.title} | Brands Face`,
     description: product.description,
   };
 }

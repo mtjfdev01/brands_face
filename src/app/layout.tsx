@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Brands Cafe | Custom Packaging Design Studio',
+  title: 'Brands Face | Custom Packaging Design Studio',
   description:
     'Design custom packaging boxes in 3D. Choose from 12 box types, materials, finishes, and upload artwork for real-time preview.',
 };

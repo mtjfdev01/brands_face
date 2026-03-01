@@ -8,6 +8,7 @@ import ComparisonSection from "@/components/home/ComparisonSection";
 import CreativeDirection from "@/components/home/CreativeDirection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Footer from "@/components/home/Footer";
+import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,7 @@ export default function HomePage() {
       <HomeHero />
       <CardFlowerSection />
       <ScrollCards />
+      <AdvanceStudioShowCase />
       <ComparisonSection />
       <CreativeDirection />
       <TestimonialsSection />

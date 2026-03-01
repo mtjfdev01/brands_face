@@ -14,8 +14,8 @@ export default function HeroNavbar() {
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <div className="relative w-[120px] h-[36px] sm:w-[140px] sm:h-[40px]">
             <Image
-              src="/brandscafe/logo.svg"
-              alt="Brands Cafe"
+              src="/brands-face/logo.svg"
+              alt="Brands Face"
               fill
               className="object-contain object-left"
               priority

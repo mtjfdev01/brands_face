@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 
 const ANIMATION_DELAY = 1500;
 
@@ -14,6 +15,7 @@ export default function HomeHero() {
 
   return (
     <section className="relative w-full h-[112svh] md:h-screen overflow-hidden bg-[#1a3a2a]">
+      <HomeHeroNavbar />
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-900/30 rounded-full blur-[120px]" />
@@ -50,7 +52,7 @@ export default function HomeHero() {
                 transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 350}ms`,
               }}
             >
-              Brands Cafe
+              Brands Face
             </h1>
 
             {/* Description */}

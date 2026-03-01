@@ -13,11 +13,11 @@ interface Benefit {
 }
 
 const BENEFITS: Benefit[] = [
-  { label: "Strategy before execution", us: true, them: false, bg: "/comparison/strategy-bg.jpg", product: "/comparison/strategy-product.png" },
-  { label: "Conversion-focused content", us: true, them: false, bg: "/comparison/conversion-bg.jpg", product: "/comparison/conversion-product.png" },
-  { label: "Clear ROI tracking & reporting", us: true, them: true, bg: "/comparison/roi-bg.jpg", product: "/comparison/roi-product.png" },
-  { label: "Real testing & optimization", us: true, them: false, bg: "/comparison/testing-bg.jpg", product: "/comparison/testing-product.png" },
-  { label: "Transparent reporting", us: true, them: false, bg: "/comparison/reporting-bg.jpg", product: "/comparison/reporting-product.png" },
+  { label: "Strategy before execution", us: true, them: false, bg: "/assets/images/14.png", product: "/assets/images/4.png" },
+  { label: "Conversion-focused content", us: true, them: false, bg: "/assets/images/15.png", product: "/assets/images/10.png" },
+  { label: "Clear ROI tracking & reporting", us: true, them: true, bg: "/assets/images/16.png", product: "/assets/images/13.png" },
+  { label: "Real testing & optimization", us: true, them: false, bg: "/assets/images/17.jpg", product: "/assets/images/8.png" },
+  { label: "Transparent reporting", us: true, them: false, bg: "/assets/images/12.png", product: "/assets/images/5.png" },
 ];
 
 export default function ComparisonSection() {
@@ -168,7 +168,7 @@ export default function ComparisonSection() {
                   <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                   </svg>
-                  BrandsCafe
+                  Brands Face
                 </span>
               </span>
               <span className="text-white/40 text-xs sm:text-sm font-medium text-center">Other Options</span>
