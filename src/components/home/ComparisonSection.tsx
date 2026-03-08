@@ -13,8 +13,8 @@ interface Benefit {
 }
 
 const BENEFITS: Benefit[] = [
-  { label: "Strategy before execution", us: true, them: false, bg: "/assets/images/14.png", product: "/assets/images/4.png" },
-  { label: "Conversion-focused content", us: true, them: false, bg: "/assets/images/15.png", product: "/assets/images/10.png" },
+  { label: "Strategy before execution", us: true, them: false, bg: "/assets/images/compare.png", product: "/assets/images/4.png" },
+  { label: "Conversion-focused content", us: true, them: false, bg: "/assets/images/compare_2.png", product: "/assets/images/compare_2.png" },
   { label: "Clear ROI tracking & reporting", us: true, them: true, bg: "/assets/images/16.png", product: "/assets/images/13.png" },
   { label: "Real testing & optimization", us: true, them: false, bg: "/assets/images/17.jpg", product: "/assets/images/8.png" },
   { label: "Transparent reporting", us: true, them: false, bg: "/assets/images/12.png", product: "/assets/images/5.png" },
@@ -88,7 +88,8 @@ export default function ComparisonSection() {
                 transition: "opacity 0.7s ease",
               }}
             >
-              {/* Background image */}
+              {/* Background image (temporarily disabled) */}
+              {/*
               <Image
                 src={b.bg}
                 alt=""
@@ -97,20 +98,20 @@ export default function ComparisonSection() {
                 sizes="(max-width:1024px) 100vw, 500px"
                 priority={idx === 0}
               />
+              */}
               {/* Ambient glow overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/40 via-transparent to-emerald-950/60" />
 
               {/* Product cutout */}
-              <div className="absolute inset-0 flex items-center justify-center p-8 sm:p-10">
-                <div className="relative w-[55%] sm:w-[50%] aspect-[3/4] drop-shadow-2xl"
-                  style={{ transform: "rotate(-3deg)" }}
-                >
+              <div className="absolute inset-0">
+                <div className="relative w-full h-full drop-shadow-2xl">
                   <Image
                     src={b.product}
                     alt={b.label}
                     fill
-                    className="object-contain"
-                    sizes="280px"
+                    className="object-cover"
+                    sizes="(max-width: 1023px) 100vw, 42vw"
+                    quality={95}
                   />
                 </div>
               </div>

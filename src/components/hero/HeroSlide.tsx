@@ -9,7 +9,6 @@ export interface SlideData {
   description: string;
   ctaText: string;
   ctaHref?: string;
-  bgImage: string;
   productImage: string;
   align?: 'left' | 'center';
 }
@@ -21,29 +20,24 @@ interface HeroSlideProps {
 export default function HeroSlide({ slide }: HeroSlideProps) {
   return (
     <div className="relative w-full h-full">
-      {/* ── Background image (full cover) ── */}
-      <Image
-        src={slide.bgImage}
-        alt=""
-        fill
-        className="object-cover"
-        priority
-        sizes="100vw"
-      />
-
-      {/* ── Subtle readability overlay on the left ── */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-hero-overlay)] via-transparent to-transparent" />
+      {/* ── HomeHero-inspired color scheme + ambient glows ── */}
+      <div className="absolute inset-0 bg-[#1a3a2a]" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 h-[420px] w-[420px] rounded-full bg-emerald-900/30 blur-[110px]" />
+        <div className="absolute bottom-1/4 right-1/4 h-[320px] w-[320px] rounded-full bg-emerald-800/20 blur-[95px]" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/20" />
 
       {/* ── Content area ── */}
       <div className="relative z-10 h-full flex items-center px-[var(--hero-padding-x)]">
         <div className="flex items-center justify-between w-full h-full">
           {/* ── Left text block ── */}
           <div className="max-w-xl pt-4 pb-12 sm:pb-16">
-            <h2 className="text-[var(--color-hero-text)] text-3xl sm:text-4xl lg:text-[42px] font-bold leading-[1.15] tracking-tight">
+            <h2 className="text-white text-3xl sm:text-4xl lg:text-[42px] font-bold leading-[1.15] tracking-tight">
               {slide.title}
             </h2>
 
-            <p className="mt-4 sm:mt-5 text-[var(--color-hero-desc)] text-sm sm:text-[15px] leading-relaxed max-w-md">
+            <p className="mt-4 sm:mt-5 text-gray-200 text-sm sm:text-[15px] leading-relaxed max-w-md">
               {slide.description}
             </p>
 

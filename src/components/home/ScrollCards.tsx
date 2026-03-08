@@ -2,25 +2,10 @@
 
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { HOME_CARDS } from "@/data/homeCards";
 
-/* ── Card data ── */
-interface Card {
-  title: string;
-  category: string;
-  image: string;
-  color: string;
-}
-
-const CARDS: Card[] = [
-  { title: "Rigid Boxes", category: "rigid_boxes", image: "/assets/images/4.png", color: "#c4a265" },
-  { title: "Corrugated", category: "corrugated", image: "/assets/images/10.png", color: "#8b6f47" },
-  { title: "Custom Pouches", category: "custom_pouches", image: "/assets/images/13.png", color: "#5a7a5a" },
-  { title: "Gift Boxes", category: "gift_boxes", image: "/assets/images/8.png", color: "#a0522d" },
-  { title: "Kraft Paper", category: "kraft_paper", image: "/assets/images/1.png", color: "#d4a0a0" },
-  { title: "Labels & Tags", category: "labels_tags", image: "/assets/images/2.png", color: "#c87941" },
-  { title: "Premium Finish", category: "premium_finish", image: "/assets/images/3.png", color: "#6b8e9b" },
-  { title: "Art Card", category: "art_card", image: "/assets/images/5.png", color: "#9b8ec4" },
-];
+const CARDS = HOME_CARDS;
 
 /* ── Math ── */
 function clamp(v: number, min = 0, max = 1) {
@@ -68,11 +53,12 @@ const HERO_FAN = [
    DRAG PHASE  (0.20 → 0.35)  Cards drag from hero-left → viewport-center, shrink
    HOLD PHASE  (0.35 → 0.50)  Heading visible, cards folded center
    SPREAD      (0.50 → 0.65)  Heading exits, more cards appear, fan widens
-   BLOOM       (0.65 → 0.88)  All 8 cards bloom to flower, logo appears
+   BLOOM       (0.65 → 0.88)  All cards bloom to flower, logo appears
    HOLD FLOWER (0.88 → 1.00)  Hold final state
    ────────────────────────────────────────────────── */
 
 const ENTRY_DELAY = 1500; // matches curtain
+const CORE_CARDS_COUNT = 4;
 
 /* ── Mobile card slider ── */
 function MobileCardSlider({ show }: { show: boolean }) {
@@ -170,12 +156,14 @@ function MobileCardSlider({ show }: { show: boolean }) {
 }
 
 export default function ScrollCards() {
+  const router = useRouter();
   const [entered, setEntered] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [viewportWidth, setViewportWidth] = useState<number | null>(null);
   const [sliderRevealed, setSliderRevealed] = useState(false);
   const [mobileSeenSlider, setMobileSeenSlider] = useState(false);
+  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const rafRef = useRef(0);
 
   useEffect(() => {
@@ -252,11 +240,14 @@ const cfg = useMemo(
 const { rx: FLOWER_RX, ry: FLOWER_RY } = cfg;
 
 const FLOWER = useMemo(() => {
-  return Array.from({ length: 8 }, (_, i) => {
-    const angle = ((i * 45 - 90) * Math.PI) / 180;
+  const count = CARDS.length;
+  const step = 360 / count;
+  return Array.from({ length: count }, (_, i) => {
+    const angleDeg = i * step - 90;
+    const angle = (angleDeg * Math.PI) / 180;
 
     return {
-      rotate: i * 45 - 180,
+      rotate: angleDeg - 90,
       x: Math.cos(angle) * FLOWER_RX,
       y: Math.sin(angle) * FLOWER_RY,
       scale: 0.68,
@@ -315,6 +306,8 @@ const heroFan = useMemo(
   /* ── Should cards be visible? ── */
   const beyondFlower = isMobile ? sliderRevealed : p >= 1;
   const visible = entered && !beyondFlower;
+  const inCircleLinkPhase = p >= 0.65 && visible;
+  const flowerOpened = inCircleLinkPhase && !isMobile;
   const scrollToOpenedFlower = useCallback(() => {
     const flowerEl = document.getElementById("card-flower-section");
     if (!flowerEl) return;
@@ -357,8 +350,8 @@ const heroFan = useMemo(
 
 
 {CARDS.map((card, idx) => {
-  const isCoreCard = idx < 4;
-  // Use all 8 unique cards in the flower (no repeated visuals).
+  const isCoreCard = idx < CORE_CARDS_COUNT;
+  // Use all unique cards in the flower (no repeated visuals).
   const sourceCard = card;
 
   let rotate = 0,
@@ -371,7 +364,7 @@ const heroFan = useMemo(
 
   if (circleT > 0) {
     // Clockwise completion: cards fill the circle sequentially by index.
-    const base = isCoreCard ? phaseHeroFan[idx] : phaseHeroFan[idx - 4];
+    const base = isCoreCard ? phaseHeroFan[idx] : phaseHeroFan[idx % CORE_CARDS_COUNT];
     const start = isCoreCard
       ? { rotate: base.rotate, x: base.x, y: base.y, scale: base.scale }
       : {
@@ -381,7 +374,7 @@ const heroFan = useMemo(
           scale: base.scale * 0.95,
         };
     // Simple follow sequence: front-most card moves first, others follow.
-    const followOrder = [3, 0, 1, 2, 4, 5, 6, 7];
+    const followOrder = [3, 0, 1, 2, ...Array.from({ length: Math.max(0, CARDS.length - CORE_CARDS_COUNT) }, (_, i) => i + CORE_CARDS_COUNT)];
     const seq = followOrder.indexOf(idx);
     const delay = seq * 0.07;
     const t = easeOut(clamp((circleT - delay) / (1 - delay)));
@@ -425,27 +418,47 @@ const heroFan = useMemo(
   // Hero arrangement: explicit stack order to keep fan clean like reference.
   const heroZOrder = [10, 20, 30, 40]; // back -> front (idx 3 is front-most)
   const inHeroLikePhase = isCoreCard && p < 0.50;
+  const cardIsInteractive = inHeroLikePhase || inCircleLinkPhase;
+  const isHoveredInFlower = flowerOpened && hoveredCardIndex === idx;
+  const renderScale = isHoveredInFlower ? scale * 1.3 : scale;
 
   // Other phases: depth by y for stable layering.
   const depthByY = Math.round((y + 100) * 2);
-  const zIndex = inHeroLikePhase ? heroZOrder[idx] : 300 + depthByY + idx;
+  const zIndex = isHoveredInFlower ? 999 : (inHeroLikePhase ? heroZOrder[idx] : 300 + depthByY + idx);
 
   return (
     <div
       key={`${sourceCard.title}-${idx}`}
       className={`absolute left-1/2 top-1/2 origin-center ${
-        inHeroLikePhase ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
+        cardIsInteractive ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
       }`}
-      onClick={inHeroLikePhase ? scrollToOpenedFlower : undefined}
+      onClick={() => {
+        if (inCircleLinkPhase) {
+          router.push(`/category/${sourceCard.category}`);
+          return;
+        }
+
+        if (inHeroLikePhase) {
+          scrollToOpenedFlower();
+        }
+      }}
+      onMouseEnter={() => {
+        if (flowerOpened) setHoveredCardIndex(idx);
+      }}
+      onMouseLeave={() => {
+        if (flowerOpened) setHoveredCardIndex(null);
+      }}
       style={{
         width: cardW,
         height: cardH,
         opacity,
         zIndex,
-        transform: `translate(-50%, -50%) translate(${x}%, ${y}%) rotate(${rotate}deg) scale(${scale})`,
+        transform: `translate(-50%, -50%) translate(${x}%, ${y}%) rotate(${rotate}deg) scale(${renderScale})`,
         willChange: "transform, opacity",
         transition:
-          entered && p < 0.01 && isCoreCard
+          flowerOpened
+            ? "transform 220ms ease, opacity 220ms ease"
+            : entered && p < 0.01 && isCoreCard
             ? `transform 1.8s cubic-bezier(0.16,1,0.3,1) ${phaseHeroFan[idx].delay}ms, opacity 0.9s ease ${phaseHeroFan[idx].delay}ms`
             : "none",
       }}

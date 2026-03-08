@@ -26,7 +26,7 @@ export async function GET(
     process.cwd(),
     "assets",
     "images",
-    "logos",
+    "categories",
     path.basename(requested),
   );
 

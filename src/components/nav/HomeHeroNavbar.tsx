@@ -3,16 +3,19 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { HOME_CARDS } from "@/data/homeCards";
 
 const MENU_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "#" },
-  { label: "Products", href: "/products/rigid" },
+  { label: "About", href: "/about" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Contact", href: "/quote" },
 ];
 
 export default function HomeHeroNavbar() {
   const [open, setOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
 
   return (
     <div className="absolute inset-x-0 top-0 z-40 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5">
@@ -21,7 +24,7 @@ export default function HomeHeroNavbar() {
           {/* Left: logo */}
           <Link href="/" className="relative w-[122px] h-[36px] shrink-0">
             <Image
-              src="/assets/images/logos/brands_face_logo_round_transparent.png"
+              src="/assets/images/logos/logo.png"
               alt="Brands Face"
               fill
               className="object-contain object-left"
@@ -41,6 +44,45 @@ export default function HomeHeroNavbar() {
                 </Link>
               </li>
             ))}
+            <li
+              className="relative"
+              onMouseEnter={() => setCategoriesOpen(true)}
+              onMouseLeave={() => setCategoriesOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setCategoriesOpen((v) => !v)}
+                className="inline-flex items-center gap-1 text-sm lg:text-[15px] text-white/85 hover:text-white font-medium transition-colors"
+                aria-expanded={categoriesOpen}
+              >
+                Categories
+                <svg
+                  className={`h-4 w-4 transition-transform ${categoriesOpen ? "rotate-180" : ""}`}
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 8l4 4 4-4" />
+                </svg>
+              </button>
+
+              <div
+                className={`absolute left-1/2 top-full mt-0 w-[280px] -translate-x-1/2 rounded-xl border border-white/15 bg-[#0f3325]/95 p-2 shadow-2xl backdrop-blur-xl transition-all ${
+                  categoriesOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
+                }`}
+              >
+                {HOME_CARDS.map((card) => (
+                  <Link
+                    key={card.category}
+                    href={`/category/${card.category}`}
+                    className="block rounded-lg px-3 py-2 text-sm text-white/85 hover:bg-white/10 hover:text-white transition-colors"
+                  >
+                    {card.title}
+                  </Link>
+                ))}
+              </div>
+            </li>
           </ul>
 
           {/* Right: CTAs desktop */}
@@ -88,7 +130,7 @@ export default function HomeHeroNavbar() {
         {/* Mobile panel */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-400 ease-out ${
-            open ? "max-h-[360px] opacity-100" : "max-h-0 opacity-0"
+            open ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           <div className="px-4 pb-4 pt-1 border-t border-white/10 bg-[#0f3325]/90">
@@ -104,6 +146,44 @@ export default function HomeHeroNavbar() {
                   </Link>
                 </li>
               ))}
+              <li className="col-span-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileCategoriesOpen((v) => !v)}
+                  className="flex w-full items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white/90"
+                  aria-expanded={mobileCategoriesOpen}
+                >
+                  Categories
+                  <svg
+                    className={`h-4 w-4 transition-transform ${mobileCategoriesOpen ? "rotate-180" : ""}`}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 8l4 4 4-4" />
+                  </svg>
+                </button>
+                <div
+                  className={`mt-2 grid grid-cols-2 gap-2 overflow-hidden transition-all ${
+                    mobileCategoriesOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  {HOME_CARDS.map((card) => (
+                    <Link
+                      key={card.category}
+                      href={`/category/${card.category}`}
+                      onClick={() => {
+                        setOpen(false);
+                        setMobileCategoriesOpen(false);
+                      }}
+                      className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/85 hover:bg-white/10 transition-colors"
+                    >
+                      {card.title}
+                    </Link>
+                  ))}
+                </div>
+              </li>
             </ul>
 
             <div className="mt-3 grid grid-cols-2 gap-2.5">

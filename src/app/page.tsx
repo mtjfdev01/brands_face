@@ -5,6 +5,7 @@ import HomeHero from "@/components/home/HomeHero";
 import CardFlowerSection from "@/components/home/CardFlowerSection";
 import ScrollCards from "@/components/home/ScrollCards";
 import ComparisonSection from "@/components/home/ComparisonSection";
+import ProcessProcedureSection from "@/components/home/ProcessProcedureSection";
 import CreativeDirection from "@/components/home/CreativeDirection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Footer from "@/components/home/Footer";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <ScrollCards />
       <AdvanceStudioShowCase />
       <ComparisonSection />
+      <ProcessProcedureSection />
       <CreativeDirection />
       <TestimonialsSection />
       <Footer />

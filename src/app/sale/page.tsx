@@ -8,6 +8,7 @@ import StudioShowcase from '@/components/common/StudioShowcase';
 import Footer from '@/components/common/Footer';
 import Hero from '@/components/hero/Hero';
 import PromoCardsSlider from '@/components/promo/PromoCarsSlider';
+import AdvanceStudioShowCase from '@/components/common/AdvanceStudioShowCase';
 
 export default function SalePage() {
   const industries: IndustryItem[] = [
@@ -201,15 +202,15 @@ export default function SalePage() {
   return (
     <main className="min-h-screen bg-[var(--color-page-bg)]">
       <Hero />
-      <PromoCardsSlider />
-      <ProductSlider
+      {/* <ProductSlider
         title="Let's Make the Right Custom Retail Boxes"
         items={products}
-      />
+      /> */}
       <IndustryPackagingSlider
         title="All-Inclusive Industrial Packaging Supplies"
         items={industries}
       />
+            {/* <PromoCardsSlider /> */}
       <WhyChooseUs
         heading="A Big Why?"
         subheading="Why Choose Us? We transform your product packaging. Let's make your product roar. Let's make your product take the lead. Join us to be a Success Story. Join us, because We are an American packaging company for Americans."
@@ -221,7 +222,8 @@ export default function SalePage() {
         subheading='Indeed, you are just a call away from us. Hence, you set the new trends of packaging products with us. Because we think "Beautiful". We think "Revolutionary". For You!'
         videos={trendVideos}
       />
-      <StudioShowcase />
+      {/* <StudioShowcase /> */}
+      <AdvanceStudioShowCase />
       <Footer />
     </main>
   );

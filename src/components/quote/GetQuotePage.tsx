@@ -79,6 +79,10 @@ export default function GetQuotePage() {
   const [unboxing, setUnboxing] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number | null>(null);
   const [customQty, setCustomQty] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState("");
+  const [previewImageError, setPreviewImageError] = useState(false);
 
   const toggleAddon = (id: string) => {
     setAddons((prev) => {
@@ -98,48 +102,84 @@ export default function GetQuotePage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Collect all form data - integrate with API later
+    setSubmitError("");
+    setSubmitSuccess("");
+
+    const parsedWidth = Number(width);
+    const parsedHeight = Number(height);
+    const parsedDepth = Number(depth);
+    const parsedQuantity = quantity ?? Number(customQty);
+
+    if (![parsedWidth, parsedHeight, parsedDepth].every((value) => Number.isFinite(value) && value > 0)) {
+      setSubmitError("Please enter valid dimensions (width, height, depth).");
+      return;
+    }
+
+    if (!Number.isInteger(parsedQuantity) || parsedQuantity <= 0) {
+      setSubmitError("Please select or enter a valid quantity.");
+      return;
+    }
+
     const formData = {
       fullName,
       email,
       phone,
       company,
-      dimensions: { width, height, depth },
+      dimensions: { width: parsedWidth, height: parsedHeight, depth: parsedDepth },
       material,
       thickness,
       addons: Array.from(addons),
       finish,
       extraFinishes: Array.from(extraFinishes),
       unboxing,
-      quantity: quantity ?? Number(customQty),
+      quantity: parsedQuantity,
     };
-    console.log("Quote request:", formData);
-    alert("Thank you! Your quote request has been submitted. We'll get back to you within 24 hours.");
+
+    try {
+      setIsSubmitting(true);
+      const response = await fetch("/api/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = (await response.json()) as { message?: string };
+      if (!response.ok) {
+        setSubmitError(data.message ?? "Unable to submit quote right now.");
+        return;
+      }
+
+      setSubmitSuccess(data.message ?? "Quote request submitted successfully.");
+    } catch {
+      setSubmitError("Unable to submit quote right now. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f5f0ea]">
       {/* ── Top navbar ── */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#103a2a]/90 backdrop-blur-sm">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl font-bold text-gray-900 tracking-tight"
+            className="text-xl font-bold text-white tracking-tight"
           >
             Brands Face
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-base text-gray-600">
-            <Link href="/" className="hover:text-gray-900 transition-colors">
+          <nav className="hidden md:flex items-center gap-6 text-base text-emerald-100/75">
+            <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
-            <span className="text-gray-300">/</span>
-            <span className="text-gray-900 font-medium">Get a Quote</span>
+            <span className="text-emerald-100/35">/</span>
+            <span className="text-white font-medium">Get a Quote</span>
           </nav>
           <Link
             href="#"
-            className="text-base font-medium text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-base font-medium text-emerald-100/80 hover:text-white transition-colors"
           >
             Need help?
           </Link>
@@ -147,12 +187,12 @@ export default function GetQuotePage() {
       </header>
 
       {/* ── Banner ── */}
-      <section className="bg-gray-100 py-12 md:py-16">
+      <section className="bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-12 md:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl tracking-tight">
+          <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl tracking-tight">
             Get a Custom Quote
           </h1>
-          <p className="mt-4 text-base text-gray-600 leading-relaxed md:text-lg">
+          <p className="mt-4 text-base text-emerald-100/85 leading-relaxed md:text-lg">
             As we are Brands Face, we are available 24/7 to assist and guide
             you. Just inform us about the packaging and we will create an instant
             quote. Answer a few questions related to size, material, features and
@@ -167,7 +207,7 @@ export default function GetQuotePage() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 py-12 lg:py-16">
           {/* Left: Scrollable form */}
           <div className="w-full lg:w-[58%] xl:w-[60%]">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 md:text-3xl">
+            <h2 className="mb-4 text-2xl font-bold text-[#103a2a] md:text-3xl">
               Product Details
             </h2>
 
@@ -181,7 +221,7 @@ export default function GetQuotePage() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
-                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                   />
                   <input
                     type="email"
@@ -189,21 +229,21 @@ export default function GetQuotePage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                   />
                   <input
                     type="tel"
                     placeholder="(555) 555-0000 (your area)"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                   />
                   <input
                     type="text"
                     placeholder="Your Company"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full border border-gray-200 rounded-xl px-6 py-4 text-lg text-gray-900 placeholder:text-gray-400 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                   />
                 </div>
               </AccordionSection>
@@ -212,7 +252,7 @@ export default function GetQuotePage() {
               <AccordionSection title="Dimension" required>
                 <div className="flex items-center gap-4">
                   <div className="flex-1">
-                    <label className="text-base text-gray-500 mb-1.5 block">
+                    <label className="mb-1.5 block text-base text-[#103a2a]/70">
                       Width
                     </label>
                     <input
@@ -222,12 +262,12 @@ export default function GetQuotePage() {
                       onChange={(e) => setWidth(e.target.value)}
                       min={0}
                       step={0.1}
-                      className="w-full border border-gray-200 rounded-xl px-5 py-3.5 text-lg text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                     />
                   </div>
-                  <span className="text-gray-300 mt-7 text-xl">×</span>
+                  <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
                   <div className="flex-1">
-                    <label className="text-base text-gray-500 mb-1.5 block">
+                    <label className="mb-1.5 block text-base text-[#103a2a]/70">
                       Height
                     </label>
                     <input
@@ -237,12 +277,12 @@ export default function GetQuotePage() {
                       onChange={(e) => setHeight(e.target.value)}
                       min={0}
                       step={0.1}
-                      className="w-full border border-gray-200 rounded-xl px-5 py-3.5 text-lg text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                     />
                   </div>
-                  <span className="text-gray-300 mt-7 text-xl">×</span>
+                  <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
                   <div className="flex-1">
-                    <label className="text-base text-gray-500 mb-1.5 block">
+                    <label className="mb-1.5 block text-base text-[#103a2a]/70">
                       Depth
                     </label>
                     <input
@@ -252,10 +292,10 @@ export default function GetQuotePage() {
                       onChange={(e) => setDepth(e.target.value)}
                       min={0}
                       step={0.1}
-                      className="w-full border border-gray-200 rounded-xl px-5 py-3.5 text-lg text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                     />
                   </div>
-                  <span className="text-base text-gray-400 mt-7">in</span>
+                  <span className="mt-7 text-base text-[#103a2a]/45">in</span>
                 </div>
               </AccordionSection>
 
@@ -366,8 +406,8 @@ export default function GetQuotePage() {
                         }}
                         className={`px-5 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
                           quantity === qty
-                            ? "border-[var(--color-brand-primary)] bg-gray-50 text-gray-900"
-                            : "border-gray-200 text-gray-600 hover:border-gray-300"
+                            ? "border-[#103a2a] bg-emerald-50 text-[#103a2a]"
+                            : "border-[#103a2a]/15 text-[#103a2a]/70 hover:border-[#103a2a]/35"
                         }`}
                       >
                         {qty.toLocaleString()}
@@ -375,7 +415,7 @@ export default function GetQuotePage() {
                     ))}
                   </div>
                   <div className="mt-3 flex items-center gap-2">
-                    <span className="text-xs text-gray-500">Or enter custom:</span>
+                    <span className="text-xs text-[#103a2a]/65">Or enter custom:</span>
                     <input
                       type="number"
                       placeholder="Custom qty"
@@ -385,7 +425,7 @@ export default function GetQuotePage() {
                         setQuantity(null);
                       }}
                       min={1}
-                      className="w-32 border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition-all"
+                      className="w-32 rounded-xl border border-[#103a2a]/15 bg-white px-3 py-2 text-sm text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                     />
                   </div>
                 </div>
@@ -393,15 +433,26 @@ export default function GetQuotePage() {
 
               {/* Submit */}
               <div className="py-8">
+                {submitError ? (
+                  <p className="mb-3 text-sm font-medium text-red-600">{submitError}</p>
+                ) : null}
+                {submitSuccess ? (
+                  <p className="mb-3 text-sm font-medium text-emerald-700">{submitSuccess}</p>
+                ) : null}
+
                 <button
                   type="submit"
-                  className="w-full bg-[var(--color-brand-primary)] text-white text-sm font-semibold py-4 rounded-xl hover:bg-[var(--color-cta-hover)] transition-colors shadow-lg hover:shadow-xl active:scale-[0.99]"
+                  disabled={isSubmitting}
+                  className="w-full bg-[var(--color-brand-primary)] text-white text-sm font-semibold py-4 rounded-xl hover:bg-[var(--color-cta-hover)] transition-colors shadow-lg hover:shadow-xl active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Submit Quote Request
+                  {isSubmitting ? "Submitting..." : "Submit Quote Request"}
                 </button>
-                <p className="mt-3 text-xs text-gray-400 text-center">
+                <p className="mt-3 text-center text-xs text-[#103a2a]/55">
                   We&apos;ll respond within 24 hours with a detailed quote
                   tailored to your requirements.
+                </p>
+                <p className="mt-1 text-center text-[11px] text-[#103a2a]/45">
+                  Attachment upload is intentionally skipped for now and will be added after storage integration.
                 </p>
               </div>
             </form>
@@ -410,7 +461,7 @@ export default function GetQuotePage() {
           {/* Right: Sticky product image */}
           <div className="hidden lg:block w-full lg:w-1/2 xl:w-[45%]">
             <div className="sticky top-20">
-              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-gray-100">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#103a2a]/20">
                 <Image
                   src="/products/quote-showcase.jpg"
                   alt="Custom packaging products showcase"
@@ -418,73 +469,76 @@ export default function GetQuotePage() {
                   className="object-cover"
                   sizes="50vw"
                   priority
+                  onError={() => setPreviewImageError(true)}
                 />
 
                 {/* Fallback when image missing */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                  <svg
-                    className="w-16 h-16 text-gray-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                    />
-                  </svg>
-                  <p className="mt-4 text-sm font-medium text-gray-400">
-                    Your custom packaging preview
-                  </p>
-                  <p className="mt-1 text-xs text-gray-300">
-                    Configure options on the left
-                  </p>
-                </div>
+                {previewImageError ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#103a2a]/95 to-[#1a3a2a]/95">
+                    <svg
+                      className="h-16 w-16 text-emerald-200/45"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                      />
+                    </svg>
+                    <p className="mt-4 text-sm font-medium text-emerald-100/85">
+                      Your custom packaging preview
+                    </p>
+                    <p className="mt-1 text-xs text-emerald-100/65">
+                      Configure options on the left
+                    </p>
+                  </div>
+                ) : null}
               </div>
 
               {/* Summary card */}
-              <div className="mt-4 bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                <h4 className="text-sm font-semibold text-gray-900 mb-3">
+              <div className="mt-4 rounded-2xl border border-[#103a2a]/10 bg-white/90 p-5 backdrop-blur-sm">
+                <h4 className="mb-3 text-sm font-semibold text-[#103a2a]">
                   Your Selection
                 </h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Material</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="text-[#103a2a]/60">Material</span>
+                    <span className="font-medium text-[#103a2a]">
                       {material
                         ? MATERIALS.find((m) => m.id === material)?.label
                         : "—"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Thickness</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="text-[#103a2a]/60">Thickness</span>
+                    <span className="font-medium text-[#103a2a]">
                       {thickness
                         ? THICKNESSES.find((t) => t.id === thickness)?.label
                         : "—"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Finish</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="text-[#103a2a]/60">Finish</span>
+                    <span className="font-medium text-[#103a2a]">
                       {finish
                         ? FINISHES.find((f) => f.id === finish)?.label
                         : "—"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Dimensions</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="text-[#103a2a]/60">Dimensions</span>
+                    <span className="font-medium text-[#103a2a]">
                       {width && height && depth
                         ? `${width} × ${height} × ${depth} in`
                         : "—"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Quantity</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="text-[#103a2a]/60">Quantity</span>
+                    <span className="font-medium text-[#103a2a]">
                       {quantity
                         ? quantity.toLocaleString()
                         : customQty
@@ -494,8 +548,8 @@ export default function GetQuotePage() {
                   </div>
                   {addons.size > 0 && (
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Add-ons</span>
-                      <span className="font-medium text-gray-900 text-right max-w-[180px]">
+                      <span className="text-[#103a2a]/60">Add-ons</span>
+                      <span className="max-w-[180px] text-right font-medium text-[#103a2a]">
                         {Array.from(addons)
                           .map(
                             (id) =>
