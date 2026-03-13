@@ -10,6 +10,7 @@ import CreativeDirection from "@/components/home/CreativeDirection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Footer from "@/components/home/Footer";
 import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
+import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 
 export default function HomePage() {
   return (
@@ -19,11 +20,13 @@ export default function HomePage() {
         mobileSrc="/hero/hero mobile banner.png"
       />
       <HomeHero />
-      <CardFlowerSection />
       <ScrollCards />
-      <AdvanceStudioShowCase />
+      <CardFlowerSection />
       <ComparisonSection />
       <ProcessProcedureSection />
+ 
+      {/* <CategoryFocusCarousel /> */}
+      <AdvanceStudioShowCase />
       <CreativeDirection />
       <TestimonialsSection />
       <Footer />

@@ -43,16 +43,20 @@ export default function ProcessProcedureSection() {
     const target = sectionRef.current;
     if (!target) return;
 
+    const isMobile = window.innerWidth < 640;
+    const enterThreshold = isMobile ? 0.18 : 0.55;
+    const exitThreshold = isMobile ? 0.06 : 0.2;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         // Hysteresis: enter a bit later, exit a bit earlier.
-        if (entry.intersectionRatio >= 0.55) {
+        if (entry.intersectionRatio >= enterThreshold) {
           setInView(true);
-        } else if (entry.intersectionRatio <= 0.2) {
+        } else if (entry.intersectionRatio <= exitThreshold) {
           setInView(false);
         }
       },
-      { threshold: [0.2, 0.55] },
+      { threshold: [exitThreshold, enterThreshold], rootMargin: "0px 0px -8% 0px" },
     );
 
     observer.observe(target);

@@ -207,10 +207,12 @@ export default function SalePage() {
         items={products}
       /> */}
       <IndustryPackagingSlider
-        title="All-Inclusive Industrial Packaging Supplies"
+        title="Products Related to selected Category"
         items={industries}
       />
             {/* <PromoCardsSlider /> */}
+      <AdvanceStudioShowCase />
+
       <WhyChooseUs
         heading="A Big Why?"
         subheading="Why Choose Us? We transform your product packaging. Let's make your product roar. Let's make your product take the lead. Join us to be a Success Story. Join us, because We are an American packaging company for Americans."
@@ -223,7 +225,6 @@ export default function SalePage() {
         videos={trendVideos}
       />
       {/* <StudioShowcase /> */}
-      <AdvanceStudioShowCase />
       <Footer />
     </main>
   );

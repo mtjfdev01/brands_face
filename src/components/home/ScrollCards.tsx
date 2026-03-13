@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { HOME_CARDS } from "@/data/homeCards";
+import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 
 const CARDS = HOME_CARDS;
 
@@ -25,11 +26,11 @@ function getResponsiveConfig(width: number) {
   const w = width;
 
   if (w < 640)
-    return { rx: 48, ry: 36, heroW: 120, heroH: 182, dragW: 92, dragH: 138, flowerW: 88, flowerH: 130 };
+    return { rx: 48, ry: 50, heroW: 200, heroH: 310, dragW: 92, dragH: 138, flowerW: 100, flowerH: 149 };
   if (w < 1024)
-    return { rx: 70, ry: 55, heroW: 180, heroH: 280, dragW: 145, dragH: 220, flowerW: 165, flowerH: 242 };
+    return { rx: 70, ry: 55, heroW: 180, heroH: 280, dragW: 145, dragH: 220, flowerW: 188, flowerH: 276 };
 
-  return { rx: 85 * 1.2, ry: 60 * 1.08, heroW: 220, heroH: 351, dragW: 174, dragH: 261, flowerW: 230, flowerH: 330 };
+  return { rx: 85 * 1.2, ry: 60 * 1.08, heroW: 220, heroH: 351, dragW: 174, dragH: 261, flowerW: 264, flowerH: 378 };
 }
 
 
@@ -272,19 +273,20 @@ const heroFan = useMemo(
   /* ── Anchor: cards drag diagonally — down AND rightward ── */
   const mobileHeroRestore = isMobile && mobileSeenSlider && !sliderRevealed && p <= 0.30;
   const dragProgress = mobileHeroRestore ? 0 : dragT;
-  const phaseHeroFan = mobileHeroRestore ? HERO_FAN : heroFan;
+  const phaseHeroFan = mobileHeroRestore ? heroFan : heroFan;
   const anchorLeft = isMobile ? 50 : lerp(22.5, 50, dragProgress);
   const flowerLiftT = easeOut(sub(p, 0.50, 0.88)); // heading out -> flower open
-  const anchorTop = (isMobile ? lerp(28, 48, dragProgress) : lerp(45, 65, dragProgress)) - lerp(0, 14, flowerLiftT);
+  const anchorTop = (isMobile ? lerp(36, 52, dragProgress) : lerp(45, 65, dragProgress)) - lerp(0, 14, flowerLiftT);
 
   /* Card size: responsive per breakpoint */
-  const heroWForPhase = mobileHeroRestore ? 220 : cfg.heroW;
-  const heroHForPhase = mobileHeroRestore ? 351 : cfg.heroH;
+  const heroWForPhase = mobileHeroRestore ? cfg.heroW : cfg.heroW;
+  const heroHForPhase = mobileHeroRestore ? cfg.heroH : cfg.heroH;
   // Mobile only: keep hero size for first 10% of hero scroll, then downsize.
   const mobileHeroProgress = clamp(p / 0.35);
   const sizeDragT = isMobile ? sub(mobileHeroProgress, 0.10, 1.0) : dragProgress;
-  const cardW = lerp(lerp(heroWForPhase, cfg.dragW, sizeDragT), cfg.flowerW, flowerT);
-  const cardH = lerp(lerp(heroHForPhase, cfg.dragH, sizeDragT), cfg.flowerH, flowerT);
+  const flowerCompleteBoost = isMobile ? 1 : lerp(1, 1.14, easeOut(sub(p, 0.88, 1.0)));
+  const cardW = lerp(lerp(heroWForPhase, cfg.dragW, sizeDragT), cfg.flowerW, flowerT) * flowerCompleteBoost;
+  const cardH = lerp(lerp(heroHForPhase, cfg.dragH, sizeDragT), cfg.flowerH, flowerT) * flowerCompleteBoost;
 
   /* ── Mobile handoff with hysteresis: reveal slider down, restore cards up ── */
   useEffect(() => {
@@ -325,7 +327,19 @@ const heroFan = useMemo(
   return (
     <>
     {/* ── Mobile slider (appears after drag completes) ── */}
-    {isMobile && <MobileCardSlider show={beyondFlower} />}
+    {/* {isMobile && <MobileCardSlider show={beyondFlower} />} */}
+    {isMobile && (
+      <div
+        style={{
+          opacity: beyondFlower ? 1 : 0,
+          transform: beyondFlower ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+          pointerEvents: beyondFlower ? "auto" : "none",
+        }}
+      >
+        <CategoryFocusCarousel />
+      </div>
+    )}
 
     <div
       className="fixed inset-0 z-20 pointer-events-none"
