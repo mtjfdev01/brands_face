@@ -24,8 +24,6 @@ export default function HomePage() {
       <CardFlowerSection />
       <ComparisonSection />
       <ProcessProcedureSection />
- 
-      <CategoryFocusCarousel />
       <AdvanceStudioShowCase />
       <CreativeDirection />
       <TestimonialsSection />
