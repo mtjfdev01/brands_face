@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { HOME_CARDS } from "@/data/homeCards";
 import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
+import AllCategoriesOverlay from "@/components/home/AllCategoriesOverlay";
 
 const CARDS = HOME_CARDS;
 
@@ -165,6 +166,7 @@ export default function ScrollCards() {
   const [sliderRevealed, setSliderRevealed] = useState(false);
   const [mobileSeenSlider, setMobileSeenSlider] = useState(false);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+  const [showAllCategories, setShowAllCategories] = useState(false);
   const rafRef = useRef(0);
 
   useEffect(() => {
@@ -326,6 +328,22 @@ const heroFan = useMemo(
 
   return (
     <>
+    <button
+      type="button"
+      onClick={() => setShowAllCategories(true)}
+      className="fixed bottom-6 left-1/2 z-40 inline-flex -translate-x-1/2 items-center gap-2 rounded-full border border-[#103a2a]/20 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#103a2a] backdrop-blur transition hover:border-[#103a2a]/45 hover:bg-white sm:text-sm"
+      style={{
+        opacity: visible && !isMobile ? 1 : 0,
+        transform: visible && !isMobile ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(10px)",
+        pointerEvents: visible && !isMobile ? "auto" : "none",
+      }}
+    >
+      See all categories
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M13 5l7 7-7 7" />
+      </svg>
+    </button>
+
     {/* ── Mobile slider (appears after drag completes) ── */}
     {/* {isMobile && <MobileCardSlider show={beyondFlower} />} */}
     {isMobile && (
@@ -520,6 +538,8 @@ const heroFan = useMemo(
         </div>
       </div>
     </div>
+
+    <AllCategoriesOverlay open={showAllCategories} onClose={() => setShowAllCategories(false)} />
     </>
   );
 }

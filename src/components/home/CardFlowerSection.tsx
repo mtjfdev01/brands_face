@@ -65,9 +65,9 @@ export default function CardFlowerSection() {
   const headingY = lerp(60, 0, headingIn) + lerp(0, -80, headingOut);
 
   const sideLabelsOpacity = headingIn * (1 - easeOut(sub(p, 0.45, 0.65)));
-  // As flower exits, compress section height to avoid trailing blank space.
+  // Keep the flower journey shorter so users don't need long drag/scroll.
   const shrinkT = easeOut(sub(p, 0.82, 1.0));
-  const sectionVh = lerp(220, 170, shrinkT);
+  const sectionVh = lerp(165, 130, shrinkT);
 
   if (isMobile) {
     return <div id="card-flower-section" />;

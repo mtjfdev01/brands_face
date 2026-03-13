@@ -17,8 +17,8 @@ export default function CurtainOverlay({
   desktopSrc,
   mobileSrc,
   alt = "Brands Face",
-  holdDuration = 1500,
-  slideDuration = 1200,
+  holdDuration = 1000,
+  slideDuration = 800,
 }: Props) {
   const [phase, setPhase] = useState<"hold" | "sliding" | "done">("hold");
   const touchStartY = useRef<number | null>(null);

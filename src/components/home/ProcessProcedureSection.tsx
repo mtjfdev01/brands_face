@@ -37,7 +37,11 @@ const STEPS: Step[] = [
 
 export default function ProcessProcedureSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const [inView, setInView] = useState(false);
+  const [connectorPoints, setConnectorPoints] = useState<Array<{ x: number; y: number }>>([]);
+  const [gridSize, setGridSize] = useState({ width: 1, height: 1 });
 
   useEffect(() => {
     const target = sectionRef.current;
@@ -63,6 +67,41 @@ export default function ProcessProcedureSection() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const updateConnectorPoints = () => {
+      const grid = gridRef.current;
+      if (!grid) return;
+
+      const gridRect = grid.getBoundingClientRect();
+      setGridSize({
+        width: Math.max(gridRect.width, 1),
+        height: Math.max(gridRect.height, 1),
+      });
+      const points = cardRefs.current
+        .map((card) => {
+          if (!card) return null;
+          const rect = card.getBoundingClientRect();
+          return {
+            x: rect.left - gridRect.left + rect.width / 2,
+            y: rect.top - gridRect.top + rect.height / 2,
+          };
+        })
+        .filter((point): point is { x: number; y: number } => point !== null);
+
+      setConnectorPoints(points);
+    };
+
+    const syncPoints = () => window.requestAnimationFrame(updateConnectorPoints);
+    const timeout = window.setTimeout(syncPoints, 80);
+    syncPoints();
+
+    window.addEventListener("resize", syncPoints);
+    return () => {
+      window.clearTimeout(timeout);
+      window.removeEventListener("resize", syncPoints);
+    };
+  }, [inView]);
+
   return (
     <section ref={sectionRef} className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
       <div className="pointer-events-none absolute inset-0">
@@ -82,11 +121,45 @@ export default function ProcessProcedureSection() {
         </div>
 
         <div className="mt-10">
-          <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
+          <div ref={gridRef} className="relative grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
+            {connectorPoints.length === STEPS.length && (
+              <svg
+                className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+                viewBox={`0 0 ${gridSize.width} ${gridSize.height}`}
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <polyline
+                  points={connectorPoints.map((point) => `${point.x},${point.y}`).join(" ")}
+                  fill="none"
+                  stroke="#2D7A63"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="8 10"
+                  opacity="0.45"
+                />
+                {connectorPoints.map((point, idx) => (
+                  <circle
+                    key={`connector-node-${idx}`}
+                    cx={point.x}
+                    cy={point.y}
+                    r="5.5"
+                    fill="white"
+                    stroke="#2D7A63"
+                    strokeWidth="2"
+                    opacity="0.8"
+                  />
+                ))}
+              </svg>
+            )}
             {STEPS.map((step, idx) => (
               <article
                 key={step.title}
-                className="relative rounded-2xl border border-[#103a2a]/10 bg-white p-5 shadow-sm transition-all duration-700 sm:p-6"
+                ref={(el) => {
+                  cardRefs.current[idx] = el;
+                }}
+                className="relative z-10 rounded-2xl border border-[#103a2a]/10 bg-white p-5 shadow-sm transition-all duration-700 sm:p-6"
                 style={{
                   opacity: inView ? 1 : 0,
                   transform: inView
@@ -96,7 +169,7 @@ export default function ProcessProcedureSection() {
                 }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="relative mt-1 h-10 w-10 shrink-0">
+                  <div className="relative mt-1 hidden h-10 w-10 shrink-0 sm:block">
                     <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${step.accent}`} />
                     <div className="absolute inset-[2px] rounded-full bg-white" />
                     <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-[#103a2a]">
@@ -104,8 +177,17 @@ export default function ProcessProcedureSection() {
                     </span>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-bold text-[#103a2a] sm:text-xl">{step.title}</h3>
+                  <div className="w-full">
+                    <div className="flex items-center gap-3 sm:block">
+                      <div className="relative h-8 w-8 shrink-0 sm:hidden">
+                        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${step.accent}`} />
+                        <div className="absolute inset-[2px] rounded-full bg-white" />
+                        <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-[#103a2a]">
+                          {idx + 1}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-[#103a2a] sm:text-xl">{step.title}</h3>
+                    </div>
                     <p className="mt-2 text-sm leading-relaxed text-[#103a2a]/75 sm:text-[15px]">{step.description}</p>
                   </div>
                 </div>

@@ -25,7 +25,7 @@ export default function HomePage() {
       <ComparisonSection />
       <ProcessProcedureSection />
  
-      {/* <CategoryFocusCarousel /> */}
+      <CategoryFocusCarousel />
       <AdvanceStudioShowCase />
       <CreativeDirection />
       <TestimonialsSection />
