@@ -3,6 +3,8 @@ import { dbQuery } from "@/lib/postgres";
 import { ensureQuoteSchema } from "@/lib/quoteSchema";
 import { getAdminSessionFromRequest } from "@/lib/adminAuth";
 
+export const dynamic = "force-dynamic";
+
 type QuoteRow = {
   id: number;
   full_name: string;

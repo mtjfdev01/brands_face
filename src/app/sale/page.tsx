@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import ProductSlider, { type Item as ProductItem } from '@/components/common/ProductRowScroll';
 import IndustryPackagingSlider, { type IndustryItem } from '@/components/common/IndustryPackagingSlider';
 import WhyChooseUs, { type FeatureCard } from '@/components/common/WhyChooseUs';
@@ -201,7 +202,9 @@ export default function SalePage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-page-bg)]">
-      <Hero />
+      <Suspense fallback={<div className="w-full px-3 sm:px-4 lg:px-5 pt-3 sm:pt-4 pb-12 md:pb-16" />}>
+        <Hero />
+      </Suspense>
       {/* <ProductSlider
         title="Let's Make the Right Custom Retail Boxes"
         items={products}
