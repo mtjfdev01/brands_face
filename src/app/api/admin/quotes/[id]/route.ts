@@ -118,11 +118,15 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     }
 
     if (hasCounter) {
-      if (body.counterOffer !== null && (!Number.isFinite(body.counterOffer) || body.counterOffer < 0)) {
+      const counterOffer = body.counterOffer;
+      if (typeof counterOffer === "undefined") {
+        return NextResponse.json({ message: "Counter offer payload is invalid." }, { status: 400 });
+      }
+      if (counterOffer !== null && (!Number.isFinite(counterOffer) || counterOffer < 0)) {
         return NextResponse.json({ message: "Counter offer must be a valid positive number or null." }, { status: 400 });
       }
       updates.push(`counter_offer = $${idx++}`);
-      values.push(body.counterOffer ?? null);
+      values.push(counterOffer ?? null);
     }
 
     updates.push("updated_at = NOW()");
