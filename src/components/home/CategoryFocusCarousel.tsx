@@ -169,7 +169,7 @@ export default function CategoryFocusCarousel() {
             className="group inline-flex items-center gap-2 text-sm font-semibold tracking-[0.08em] text-[#103a2a] transition hover:text-[#0b5d44]"
           >
             <span className="relative">
-              See all categories
+              See all Product Categories
               <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-100 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-transform duration-300 group-hover:scale-x-110" />
             </span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">

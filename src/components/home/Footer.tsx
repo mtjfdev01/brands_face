@@ -89,7 +89,7 @@ export default function Footer() {
       <div ref={ref} className="relative z-0 w-full overflow-hidden pb-4 sm:pb-6">
         {/* Decorative swirl */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.06]">
-          <span className="text-[40vw] font-black text-[#1a1a1a] leading-none">&amp;</span>
+          {/* <span className="text-[40vw] font-black text-[#1a1a1a] leading-none">&amp;</span> */}
         </div>
 
         {/* BRANDS — slides from left */}

@@ -2,12 +2,11 @@
 
 import { useEffect, useMemo, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { useSearchParams } from 'next/navigation';
 
 import 'swiper/css';
-import 'swiper/css/effect-fade';
 
 import HomeHeroNavbar from '@/components/nav/HomeHeroNavbar';
 import HeroSlide, { type SlideData } from '@/components/hero/HeroSlide';
@@ -24,16 +23,28 @@ export default function Hero() {
   );
 
   const slides = useMemo<SlideData[]>(
-    () =>
-      (activeCategoryCard?.heroSlides ?? []).map((slide, idx) => ({
+    () => {
+      const activeIndex = HOME_CARDS.findIndex(
+        (card) => card.category === activeCategoryCard?.category,
+      );
+      const safeActiveIndex = activeIndex >= 0 ? activeIndex : 0;
+
+      return (activeCategoryCard?.heroSlides ?? []).map((slide, idx) => ({
         title: slide.title || `${activeCategoryCard?.title ?? 'Category'} ${idx + 1}`,
         description:
           slide.description ||
           activeCategoryCard?.heroDescription ||
           'Premium custom packaging solutions tailored to your category with reliable production quality, flexible finishes, and fast turnaround.',
         ctaText: slide.ctaText || activeCategoryCard?.heroCtaText || 'Get a Free Quote',
-        productImage: slide.productImage || activeCategoryCard?.image || '/assets/images/categories/rigid_box.jpeg',
-      })),
+        // Ensure each slide can still get a different background image
+        // even when slide.productImage is not explicitly provided.
+        productImage:
+          slide.productImage ||
+          HOME_CARDS[(safeActiveIndex + idx) % HOME_CARDS.length]?.image ||
+          activeCategoryCard?.image ||
+          '/hero/slide1-bg.jpg',
+      }));
+    },
     [activeCategoryCard],
   );
 
@@ -58,16 +69,15 @@ export default function Hero() {
         <div className="absolute inset-0 rounded-[var(--radius-hero)] overflow-hidden">
           {/* ── Swiper carousel ── */}
           <Swiper
-            modules={[Autoplay, EffectFade]}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
+            modules={[Autoplay]}
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,
             }}
             loop
-            speed={800}
+            speed={1100}
             initialSlide={0}
+            resistanceRatio={0.85}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}

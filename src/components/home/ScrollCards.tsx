@@ -173,7 +173,7 @@ export default function ScrollCards() {
     const check = () => {
       const w = window.innerWidth;
       setViewportWidth(w);
-      setIsMobile(w < 640);
+      setIsMobile(w < 1024);
     };
     check();
     window.addEventListener("resize", check);
@@ -188,6 +188,7 @@ export default function ScrollCards() {
 
   /* Scroll tracking */
   const onScroll = useCallback(() => {
+    if (isMobile) return;
     cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(() => {
       const vh = window.innerHeight;
@@ -215,16 +216,20 @@ export default function ScrollCards() {
         setProgress(0.35 + fp * 0.65);
       }
     });
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
+    if (isMobile) {
+      setProgress(0);
+      return;
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [onScroll]);
+  }, [isMobile, onScroll]);
 
   /* ── Derived phase values ── */
   const p = progress;
@@ -304,7 +309,8 @@ const heroFan = useMemo(
   const exitT = easeOut(sub(p, 0.78, 1.0));
   const exitRotate = lerp(0, 24, exitT);
   const exitScale = lerp(1, 0.3, exitT);
-  const exitOpacity = lerp(1, 0, exitT);
+  // Slow down fade progression so cards stay visible longer.
+  const exitOpacity = lerp(1, 0, Math.pow(exitT, 2));
   const exitLift = lerp(0, -140, exitT);
 
   /* ── Should cards be visible? ── */
@@ -326,6 +332,24 @@ const heroFan = useMemo(
     });
   }, []);
 
+  // Mobile-only behavior: show category carousel in the same hero overlay area.
+  if (isMobile) {
+    return (
+      <div
+        className="absolute inset-x-0 top-0 h-screen z-20 pointer-events-none"
+        style={{
+          opacity: entered ? 1 : 0,
+          transform: "none",
+          transition: "none",
+        }}
+      >
+        <div className="absolute left-1/2 top-[36%] w-full max-w-[520px] -translate-x-1/2 -translate-y-1/2 px-3 pointer-events-auto">
+          <CategoryFocusCarousel  />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
     <button
@@ -338,26 +362,11 @@ const heroFan = useMemo(
         pointerEvents: visible && !isMobile ? "auto" : "none",
       }}
     >
-      See all categories
+      See all Product Categories
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M5 12h14M13 5l7 7-7 7" />
       </svg>
     </button>
-
-    {/* ── Mobile slider (appears after drag completes) ── */}
-    {/* {isMobile && <MobileCardSlider show={beyondFlower} />} */}
-    {isMobile && (
-      <div
-        style={{
-          opacity: beyondFlower ? 1 : 0,
-          transform: beyondFlower ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
-          pointerEvents: beyondFlower ? "auto" : "none",
-        }}
-      >
-        <CategoryFocusCarousel />
-      </div>
-    )}
 
     <div
       className="fixed inset-0 z-20 pointer-events-none"

@@ -5,11 +5,10 @@ import ProductSlider, { type Item as ProductItem } from '@/components/common/Pro
 import IndustryPackagingSlider, { type IndustryItem } from '@/components/common/IndustryPackagingSlider';
 import WhyChooseUs, { type FeatureCard } from '@/components/common/WhyChooseUs';
 import SetTheTrends, { type TrendVideo } from '@/components/common/SetTheTrends';
-import StudioShowcase from '@/components/common/StudioShowcase';
-import Footer from '@/components/common/Footer';
 import Hero from '@/components/hero/Hero';
 import PromoCardsSlider from '@/components/promo/PromoCarsSlider';
 import AdvanceStudioShowCase from '@/components/common/AdvanceStudioShowCase';
+import Footer from '@/components/home/Footer';
 
 export default function SalePage() {
   const industries: IndustryItem[] = [

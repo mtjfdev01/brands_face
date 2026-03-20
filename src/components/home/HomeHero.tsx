@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 
 const ANIMATION_DELAY = 1500;
@@ -39,7 +40,7 @@ export default function HomeHero() {
             >
               <span className="inline-flex items-center gap-2 text-emerald-400 text-xs sm:text-sm font-medium tracking-wider uppercase">
                 <span className="w-8 h-px bg-emerald-400" />
-                Premium Packaging
+                FREE PACKAGING AUDIT
               </span>
             </div>
 
@@ -55,17 +56,30 @@ export default function HomeHero() {
               Brands Face
             </h1>
 
+            <h2
+              className="mt-3 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white tracking-wide text-white"
+              style={{
+                opacity: animate ? 1 : 0,
+                transform: animate ? "translateY(0)" : "translateY(24px)",
+                transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 430}ms`,
+              }}
+            >
+              Re-Engineering Brand Perception Through Packaging
+            </h2>
+
             {/* Description */}
             <p
-              className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-300 leading-relaxed max-w-lg"
+              className="mt-4 sm:mt-6 text-base sm:text-lg text-white leading-relaxed max-w-xxl"
               style={{
                 opacity: animate ? 1 : 0,
                 transform: animate ? "translateY(0)" : "translateY(25px)",
                 transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 500}ms`,
               }}
             >
-              Premium custom packaging solutions designed to elevate your brand.
-              From concept to doorstep.
+              {/* Premium custom packaging solutions designed to elevate your brand.
+              From concept to doorstep. */}
+
+We conduct a comprehensive packaging audit to identify gaps in structure, materials, printing finishes, and visual impact. Based on these insights, we design and manufacture packaging solutions that elevate brand perception and market presence.
             </p>
 
             {/* CTA buttons */}
@@ -77,16 +91,22 @@ export default function HomeHero() {
                 transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 650}ms`,
               }}
             >
-              <button className="inline-flex items-center gap-2 bg-white text-[#1a3a2a] font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-gray-100 hover:scale-[1.03] active:scale-[0.98] transition-all shadow-lg shadow-black/20">
+              <Link
+                href="/audit"
+                className="inline-flex items-center gap-2 bg-white text-[#1a3a2a] font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-gray-100 hover:scale-[1.03] active:scale-[0.98] transition-all shadow-lg shadow-black/20"
+              >
                 Get Started
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-              </button>
+              </Link>
 
-              <button className="inline-flex items-center gap-2 text-white/80 hover:text-white font-medium text-sm sm:text-base px-5 sm:px-6 py-3 sm:py-4 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all">
+              <Link
+                href="/catalog"
+                className="inline-flex items-center gap-2 text-white/80 hover:text-white font-medium text-sm sm:text-base px-5 sm:px-6 py-3 sm:py-4 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+              >
                 View Catalog
-              </button>
+              </Link>
             </div>
 
             {/* Stats row */}

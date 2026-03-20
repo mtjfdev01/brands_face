@@ -6,10 +6,10 @@ import Link from "next/link";
 import { HOME_CARDS } from "@/data/homeCards";
 
 const MENU_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  // { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Contact", href: "/quote" },
+  // { label: "Contact", href: "/quote" },
 ];
 
 export default function HomeHeroNavbar() {
@@ -55,7 +55,7 @@ export default function HomeHeroNavbar() {
                 className="inline-flex items-center gap-1 text-sm lg:text-[15px] text-white/85 hover:text-white font-medium transition-colors"
                 aria-expanded={categoriesOpen}
               >
-                Categories
+                Product Categories
                 <svg
                   className={`h-4 w-4 transition-transform ${categoriesOpen ? "rotate-180" : ""}`}
                   viewBox="0 0 20 20"
@@ -97,7 +97,7 @@ export default function HomeHeroNavbar() {
               href="/studio"
               className="inline-flex items-center justify-center rounded-full bg-[#1dd1a1] px-4 lg:px-5 py-2.5 text-[#0f2f22] text-sm font-bold hover:bg-[#37dfb2] transition-all shadow-[0_6px_24px_rgba(29,209,161,0.35)]"
             >
-              Create Mockup
+              Create 3D Mockup
             </Link>
           </div>
 
