@@ -62,6 +62,18 @@ const HERO_FAN = [
 const ENTRY_DELAY = 1500; // matches curtain
 const CORE_CARDS_COUNT = 4;
 
+/**
+ * Manual vertical tweak for the fixed card stack (desktop scroll animation).
+ * `anchorTop` is in % of viewport height from the top — increase to move the stack down, decrease to move up.
+ */
+const ANCHOR_TOP_DESKTOP_OFFSET_PCT = 5;
+
+/** Same idea when mobile uses the scroll-driven card path (if enabled). */
+const ANCHOR_TOP_MOBILE_OFFSET_PCT = 0;
+
+/** Extra distance below the card stack for "See all Product Categories" (px, positive = lower on screen). */
+const CATEGORIES_BUTTON_TOP_OFFSET_PX = 28;
+
 /* ── Mobile card slider ── */
 function MobileCardSlider({ show }: { show: boolean }) {
   const [current, setCurrent] = useState(0);
@@ -283,7 +295,10 @@ const heroFan = useMemo(
   const phaseHeroFan = mobileHeroRestore ? heroFan : heroFan;
   const anchorLeft = isMobile ? 50 : lerp(22.5, 50, dragProgress);
   const flowerLiftT = easeOut(sub(p, 0.50, 0.88)); // heading out -> flower open
-  const anchorTop = (isMobile ? lerp(36, 52, dragProgress) : lerp(45, 65, dragProgress)) - lerp(0, 14, flowerLiftT);
+  const anchorTop =
+    (isMobile ? lerp(36, 52, dragProgress) : lerp(45, 65, dragProgress)) -
+    lerp(0, 14, flowerLiftT) +
+    (isMobile ? ANCHOR_TOP_MOBILE_OFFSET_PCT : ANCHOR_TOP_DESKTOP_OFFSET_PCT);
 
   /* Card size: responsive per breakpoint */
   const heroWForPhase = mobileHeroRestore ? cfg.heroW : cfg.heroW;
@@ -312,7 +327,7 @@ const heroFan = useMemo(
   // Slow down fade progression so cards stay visible longer.
   const exitOpacity = lerp(1, 0, Math.pow(exitT, 2));
   const exitLift = lerp(0, -140, exitT);
-  const desktopCategoriesBtnTop = `calc(${anchorTop}% + ${Math.round(cardH * 0.62)}px)`;
+  const desktopCategoriesBtnTop = `calc(${anchorTop}% + ${Math.round(cardH * 0.62) + CATEGORIES_BUTTON_TOP_OFFSET_PX}px)`;
 
   /* ── Should cards be visible? ── */
   const beyondFlower = isMobile ? sliderRevealed : p >= 1;
@@ -361,7 +376,7 @@ const heroFan = useMemo(
         opacity: visible && !isMobile ? 1 : 0,
         left: `${anchorLeft}%`,
         top: desktopCategoriesBtnTop,
-        transform: visible && !isMobile ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(10px)",
+        transform: visible && !isMobile ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(20px)",
         pointerEvents: visible && !isMobile ? "auto" : "none",
       }}
     >
