@@ -57,9 +57,9 @@ export default function CategoryFocusCarousel() {
           {/* Left card */}
           <Link
             href={`/category/${prevCard.category}`}
-            className="absolute left-[4%] top-[52%] z-10 block w-[32%] max-w-[210px] -translate-y-1/2 -rotate-[22deg] transition-transform duration-500 hover:scale-[1.03] sm:left-[6%] sm:top-1/2 sm:w-[28%] sm:max-w-[260px]"
+            className="absolute left-[4%] top-[52%] z-10 block w-[37%] max-w-[210px] -translate-y-1/2 -rotate-[22deg] transition-transform duration-500 hover:scale-[1.03] sm:left-[6%] sm:top-1/2 sm:w-[33%] sm:max-w-[260px]"
           >
-            <article className="relative aspect-[3/4] overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
+            <article className="relative aspect-[3/4.6] overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
               <div
                 className="flex h-full w-[300%]"
                 style={{
@@ -81,8 +81,8 @@ export default function CategoryFocusCarousel() {
           </Link>
 
           {/* Center card (zoomed) */}
-          <div className="absolute left-1/2 top-[43%] z-20 block w-[52%] max-w-[300px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 hover:scale-[1.03] sm:top-[46%] sm:w-[40%] sm:max-w-[380px]">
-            <article className="relative aspect-[3/4] overflow-hidden rounded-2xl border-4 border-white shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
+          <div className="absolute left-1/2 top-[43%] z-20 block w-[57%] max-w-[300px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 hover:scale-[1.03] sm:top-[46%] sm:w-[45%] sm:max-w-[380px]">
+            <article className="relative aspect-[3/4.6] overflow-hidden rounded-2xl border-4 border-white shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
               <div
                 className="flex h-full w-[300%]"
                 style={{
@@ -106,9 +106,9 @@ export default function CategoryFocusCarousel() {
           {/* Right card */}
           <Link
             href={`/category/${nextCard.category}`}
-            className="absolute right-[4%] top-[52%] z-10 block w-[32%] max-w-[210px] -translate-y-1/2 rotate-[22deg] transition-transform duration-500 hover:scale-[1.03] sm:right-[6%] sm:top-1/2 sm:w-[28%] sm:max-w-[260px]"
+            className="absolute right-[4%] top-[52%] z-10 block w-[37%] max-w-[210px] -translate-y-1/2 rotate-[22deg] transition-transform duration-500 hover:scale-[1.03] sm:right-[6%] sm:top-1/2 sm:w-[33%] sm:max-w-[260px]"
           >
-            <article className="relative aspect-[3/4] overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
+            <article className="relative aspect-[3/4.6] overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
               <div
                 className="flex h-full w-[300%]"
                 style={{

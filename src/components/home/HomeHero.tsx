@@ -15,7 +15,7 @@ export default function HomeHero() {
   }, []);
 
   return (
-    <section className="relative w-full h-[112svh] md:h-screen overflow-hidden bg-[#1a3a2a]">
+    <section className="relative w-full min-h-[100svh] md:h-screen overflow-hidden bg-[#1a3a2a]">
       <HomeHeroNavbar />
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -23,12 +23,13 @@ export default function HomeHero() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-800/20 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative flex flex-col lg:flex-row w-full h-full items-center">
+      <div className="relative flex flex-col lg:flex-row w-full min-h-[100svh] md:h-full items-start lg:items-center pt-20 sm:pt-24 lg:pt-24">
         {/* ── Left: empty space where ScrollCards renders the fixed cards ── */}
-        <div className="relative w-full lg:w-[45%] h-[48%] sm:h-[55%] lg:h-full" />
+        <div className="relative w-full lg:w-[45%] h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] lg:h-full" />
 
         {/* ── Right: text content (55%) ── */}
-        <div className="w-full lg:w-[55%] h-[52%] sm:h-[45%] lg:h-full flex items-center px-6 sm:px-8 lg:px-16 pb-8 sm:pb-0">
+        {/* <div className="w-full lg:w-[55%] h-[52%] sm:h-[45%] lg:h-full flex items-center px-6 sm:px-8 lg:px-16 pb-8 sm:pb-0"> */}
+        <div className="w-full lg:w-[55%] h-[70svh] max-[760px]:h-[74svh] max-[700px]:h-[78svh] min-[700px]:h-[62svh] sm:h-[40%] lg:h-full flex items-center px-6 sm:px-8 lg:px-16 pb-8 sm:pb-0">
           <div className="max-w-2xl">
             {/* Eyebrow */}
             <div

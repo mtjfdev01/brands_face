@@ -11,8 +11,8 @@ const TESTIMONIALS = [
     role: "Marketing Director, Luxe Cosmetics",
     stars: 5,
     quote: "The packaging completely transformed how customers perceive our brand. Sales jumped 40% after the rebrand.",
-    thumbnail: "/testimonials/thumb-1.jpg",
-    video: "/testimonials/video-1.mp4",
+    thumbnail: "/assets/testimonials/thumbnail_1.png",
+    video: "/assets/testimonials/video_1.mp4",
     color: "#2d6a4f",
   },
   {
@@ -21,8 +21,8 @@ const TESTIMONIALS = [
     role: "Founder, Organic Roots",
     stars: 5,
     quote: "Better than expected! They understood our vision and delivered packaging that tells our sustainability story.",
-    thumbnail: "/testimonials/thumb-2.jpg",
-    video: "/testimonials/video-2.mp4",
+    thumbnail: "/assets/testimonials/thumbnail_2.png",
+    video: "/assets/testimonials/video_2.mp4",
     color: "#1a5632",
   },
   {
@@ -31,8 +31,8 @@ const TESTIMONIALS = [
     role: "CEO, FreshBrew Co.",
     stars: 5,
     quote: "Unlock your brand's potential with packaging that actually converts. Our unboxing videos went viral overnight.",
-    thumbnail: "/testimonials/thumb-3.jpg",
-    video: "/testimonials/video-3.mp4",
+    thumbnail: "/assets/testimonials/thumbnail_3.png",
+    video: "/assets/testimonials/video_3.mp4",
     color: "#264653",
   },
   {
@@ -41,8 +41,8 @@ const TESTIMONIALS = [
     role: "Product Lead, NovaTech",
     stars: 5,
     quote: "From concept to delivery, the team nailed every detail. Our customers can't stop talking about the experience.",
-    thumbnail: "/testimonials/thumb-4.jpg",
-    video: "/testimonials/video-4.mp4",
+    thumbnail: "/assets/testimonials/thumbnail_4.png",
+    video: "/assets/testimonials/video_4.mp4",
     color: "#1b4332",
   },
   {
@@ -51,8 +51,8 @@ const TESTIMONIALS = [
     role: "Brand Strategist, Bloom & Co",
     stars: 5,
     quote: "This team doesn't just design boxes — they engineer brand moments. Absolutely world-class quality.",
-    thumbnail: "/testimonials/thumb-5.jpg",
-    video: "/testimonials/video-5.mp4",
+    thumbnail: "/assets/testimonials/thumbnail_5.png",
+    video: "/assets/testimonials/video_5.mp4",
     color: "#2b2d42",
   },
   {
@@ -61,8 +61,8 @@ const TESTIMONIALS = [
     role: "Co-Founder, SnackHive",
     stars: 5,
     quote: "We tried three agencies before finding Brands Face. Night and day difference — these guys get it.",
-    thumbnail: "/testimonials/thumb-6.jpg",
-    video: "/testimonials/video-6.mp4",
+    thumbnail: "/assets/testimonials/thumbnail_6.png",
+    video: "/assets/testimonials/video_6.mp4",
     color: "#3a5a40",
   },
 ];
@@ -78,6 +78,7 @@ export default function TestimonialsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const total = TESTIMONIALS.length;
+  const isVideoFile = (src: string) => /\.(mp4|webm|ogg|mov)$/i.test(src);
 
   const startAuto = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -171,7 +172,7 @@ export default function TestimonialsSection() {
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white uppercase italic leading-[0.95] tracking-tight drop-shadow-xl">
             Better Than
             <br />
-            Advertise<span className="text-[#4ade80]">.</span>
+            Just Packaging<span className="text-[#4ade80]">.</span>
           </h2>
         </div>
 
@@ -199,7 +200,6 @@ export default function TestimonialsSection() {
                 const gap = 342;
                 const tx = offset * gap;
                 const sc = isActive ? 1 : 0.88;
-                const op = isActive ? 1 : dist === 1 ? 0.7 : 0.4;
 
                 return (
                   <div
@@ -208,7 +208,6 @@ export default function TestimonialsSection() {
                     style={{
                       width: "clamp(270px, 28vw, 340px)",
                       transform: `translateX(${tx}px) scale(${sc})`,
-                      opacity: op,
                       zIndex: isActive ? 20 : 10 - dist,
                     }}
                     onClick={() => { if (isActive) setPopup(idx); else goTo(idx); }}
@@ -216,15 +215,25 @@ export default function TestimonialsSection() {
                     {/* Video thumbnail */}
                     <div className="relative aspect-video rounded-xl overflow-hidden mb-3 group">
                       <div className="absolute inset-0" style={{ backgroundColor: t.color }} />
-                      <Image
-                        src={t.thumbnail}
-                        alt={t.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="360px"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                      {isVideoFile(t.thumbnail) ? (
+                        <video
+                          src={t.thumbnail}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      ) : (
+                        <Image
+                          src={t.thumbnail}
+                          alt={t.name}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="360px"
+                          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                        />
+                      )}
                       {/* Play button */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? "bg-white/90 scale-100 shadow-lg shadow-black/30" : "bg-white/50 scale-75"} group-hover:scale-110`}>
@@ -305,7 +314,7 @@ export default function TestimonialsSection() {
           onClick={() => setPopup(null)}
         >
           <div
-            className="relative w-[90vw] max-w-[900px] aspect-video rounded-2xl overflow-hidden shadow-2xl"
+            className="relative flex min-h-0 w-[90vw] max-w-[900px] max-h-[85vh] items-center justify-center overflow-hidden rounded-2xl bg-black shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -318,30 +327,42 @@ export default function TestimonialsSection() {
               </svg>
             </button>
 
-            {/* Video player */}
-            <video
-              src={TESTIMONIALS[popup].video}
-              className="w-full h-full object-cover bg-black"
-              autoPlay
-              controls
-              playsInline
-              onError={(e) => {
-                const el = e.target as HTMLVideoElement;
-                el.style.display = "none";
-                const parent = el.parentElement;
-                if (parent && !parent.querySelector(".fallback-msg")) {
-                  const msg = document.createElement("div");
-                  msg.className = "fallback-msg absolute inset-0 flex flex-col items-center justify-center text-white bg-black";
-                  msg.innerHTML = `
-                    <svg class="w-16 h-16 mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-                    </svg>
-                    <p class="text-sm opacity-60">Video coming soon</p>
-                  `;
-                  parent.appendChild(msg);
-                }
-              }}
-            />
+            {/* Media player */}
+            {isVideoFile(TESTIMONIALS[popup].video) ? (
+              <video
+                src={TESTIMONIALS[popup].video}
+                className="block max-h-[85vh] w-full max-w-full object-contain bg-black"
+                autoPlay
+                controls
+                playsInline
+                onError={(e) => {
+                  const el = e.target as HTMLVideoElement;
+                  el.style.display = "none";
+                  const parent = el.parentElement;
+                  if (parent && !parent.querySelector(".fallback-msg")) {
+                    const msg = document.createElement("div");
+                    msg.className = "fallback-msg absolute inset-0 flex flex-col items-center justify-center text-white bg-black";
+                    msg.innerHTML = `
+                      <svg class="w-16 h-16 mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+                      </svg>
+                      <p class="text-sm opacity-60">Video coming soon</p>
+                    `;
+                    parent.appendChild(msg);
+                  }
+                }}
+              />
+            ) : (
+              <div className="relative aspect-video w-full max-h-[85vh] max-w-[900px]">
+                <Image
+                  src={TESTIMONIALS[popup].video}
+                  alt={TESTIMONIALS[popup].name}
+                  fill
+                  className="object-contain bg-black"
+                  sizes="900px"
+                />
+              </div>
+            )}
           </div>
         </div>
       )}

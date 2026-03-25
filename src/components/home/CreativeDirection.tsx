@@ -2,16 +2,15 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const CARDS = [
-  { image: "/assets/images/1.png", color: "#c4a265" },
-  { image: "/assets/images/2.png", color: "#8b6f47" },
-  { image: "/assets/images/3.png", color: "#5a7a5a" },
-  { image: "/assets/images/4.png", color: "#a0522d" },
-  { image: "/assets/images/5.png", color: "#d4a0a0" },
-  { image: "/assets/images/6.png", color: "#c87941" },
-  { image: "/assets/images/7.png", color: "#6b8e9b" },
-  { image: "/assets/images/8.png", color: "#9b8ec4" },
+  { image: "/assets/images/creative-direction/img_1.png", color: "#c4a265" },
+  { image: "/assets/images/creative-direction/img_2.png", color: "#8b6f47" },
+  { image: "/assets/images/creative-direction/img_3.png", color: "#5a7a5a" },
+  { image: "/assets/images/creative-direction/img_4.png", color: "#a0522d" },
+  { image: "/assets/images/creative-direction/img_5.png", color: "#d4a0a0" },
+  { image: "/assets/images/creative-direction/img_6.png", color: "#c87941" },
 ];
 
 const ENTER_MS = 900;
@@ -19,8 +18,8 @@ const HOLD_MS = 700;
 const EXIT_MS = 800;
 const CYCLE_MS = ENTER_MS + HOLD_MS + EXIT_MS;
 
-const CARD_W = 180;
-const CARD_H = 255;
+const CARD_W = 240;
+const CARD_H = 340;
 const PAD = 24;
 
 interface AnimCard {
@@ -195,18 +194,15 @@ export default function CreativeDirection() {
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
         {group.map((ac, i) => (
           <div key={`${cycle}-${i}`} className="absolute" style={cardStyle(ac)}>
-            <div className="relative w-[130px] h-[185px] sm:w-[160px] sm:h-[225px] lg:w-[180px] lg:h-[255px] rounded-2xl overflow-hidden shadow-2xl">
-              <div className="absolute inset-0" style={{ backgroundColor: ac.card.color }} />
+            <div className="relative w-[160px] h-[226px] sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]">
               <Image
                 src={ac.card.image}
                 alt=""
                 fill
-                className="object-cover"
+                className="object-contain opacity-75"
                 sizes="180px"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10 pointer-events-none" />
             </div>
           </div>
         ))}
@@ -230,33 +226,37 @@ export default function CreativeDirection() {
           <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
           </svg>
-          Brand + growth alignment
+          Packaging + Perception Alignment
         </div>
 
         <h2 className="max-w-3xl text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#1a1a1a] uppercase leading-[1.1] tracking-tight">
-          Conversion-led{" "}
+          Strategic Packaging{" "}
           <span className="relative inline">
-            <span className="relative z-10 text-[#1a1a1a]">Creative Direction</span>
+            <span className="relative z-10 text-[#1a1a1a]">That Builds Stronger Brands</span>
             <span className="absolute left-0 bottom-[0.05em] w-full h-[0.3em] bg-[#f5c518]/70 -z-0 rounded-sm" />
-          </span>{" "}
-          to make sure you go viral as well as grow your brand
+          </span>
         </h2>
 
         <p className="mt-4 sm:mt-5 max-w-xl text-sm sm:text-base text-[#1a1a1a]/55 leading-relaxed">
-          We blend data-driven strategy with bold creative to deliver packaging
-          that doesn&apos;t just look good — it performs.
+          We audit what your packaging is communicating, identify the gaps, and redesign it to elevate perception, strengthen shelf presence, and support real business growth.
         </p>
 
         <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3">
-          <button className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-[#333] hover:scale-[1.03] active:scale-[0.98] transition-all shadow-lg">
-            Start a Project
+          <Link
+            href="/audit"
+            className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-[#333] hover:scale-[1.03] active:scale-[0.98] transition-all shadow-lg"
+          >
+            Start Your Audit
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-          </button>
-          <button className="inline-flex items-center gap-2 text-[#1a1a1a]/60 hover:text-[#1a1a1a] font-medium text-xs sm:text-sm px-5 py-3 rounded-full border border-[#1a1a1a]/12 hover:border-[#1a1a1a]/25 transition-all">
-            See Our Work
-          </button>
+          </Link>
+          <Link
+            href="/case-studies"
+            className="inline-flex items-center gap-2 text-[#1a1a1a]/80 hover:text-[#1a1a1a] font-medium text-xs sm:text-sm px-5 py-3 rounded-full border border-[#1a1a1a]/35 bg-white/50 hover:border-[#1a1a1a]/55 hover:bg-white/75 transition-all"
+          >
+            View Our Work
+          </Link>
         </div>
       </div>
     </section>

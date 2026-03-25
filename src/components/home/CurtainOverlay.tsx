@@ -13,6 +13,10 @@ type Props = {
   slideDuration?: number;
 };
 
+// Runtime-only global flag: survives client-side rerenders/navigation,
+// resets on full page refresh.
+let hasShownCurtainOverlayInSession = false;
+
 export default function CurtainOverlay({
   desktopSrc,
   mobileSrc,
@@ -20,8 +24,16 @@ export default function CurtainOverlay({
   holdDuration = 1000,
   slideDuration = 800,
 }: Props) {
-  const [phase, setPhase] = useState<"hold" | "sliding" | "done">("hold");
+  const [phase, setPhase] = useState<"hold" | "sliding" | "done">(() =>
+    hasShownCurtainOverlayInSession ? "done" : "hold",
+  );
   const touchStartY = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (phase === "hold" && !hasShownCurtainOverlayInSession) {
+      hasShownCurtainOverlayInSession = true;
+    }
+  }, [phase]);
 
   useEffect(() => {
     if (phase === "done") return;

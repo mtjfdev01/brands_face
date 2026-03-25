@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Grid, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -9,8 +9,18 @@ import { useBoxStore } from "@/store/useBoxStore";
 import PresentationBar from "../PresentationBar";
 
 function TransparentPreviewCanvas() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const update = () => setIsTouchDevice(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
   return (
-    <div className="w-full h-full min-h-[400px] rounded-xl overflow-hidden">
+    <div className="w-full h-full min-h-[400px] rounded-xl overflow-hidden touch-pan-y">
       <Canvas
         shadows
         gl={{
@@ -65,7 +75,7 @@ function TransparentPreviewCanvas() {
         <OrbitControls
           makeDefault
           enablePan
-          enableZoom
+          enableZoom={!isTouchDevice}
           enableRotate
           minDistance={1.5}
           maxDistance={8}

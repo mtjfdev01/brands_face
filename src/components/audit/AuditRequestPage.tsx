@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import AccordionSection from "@/components/quote/AccordionSection";
 import OptionCard from "@/components/quote/OptionCard";
@@ -64,6 +64,8 @@ export default function AuditRequestPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState("");
+  /** 1 = Company only … 5 = all sections visible */
+  const [unlockedStep, setUnlockedStep] = useState(1);
 
   const totalSizeMb = useMemo(
     () => (attachments.reduce((sum, file) => sum + file.size, 0) / (1024 * 1024)).toFixed(2),
@@ -106,6 +108,44 @@ export default function AuditRequestPage() {
   const removeAttachment = (index: number) => {
     setAttachments((prev) => prev.filter((_, i) => i !== index));
   };
+
+  useEffect(() => {
+    if (companyName.trim() && country && productCategory) {
+      setUnlockedStep((s) => Math.max(s, 2));
+    }
+  }, [companyName, country, productCategory]);
+
+  useEffect(() => {
+    if (fullName.trim() && email.trim()) {
+      setUnlockedStep((s) => Math.max(s, 3));
+    }
+  }, [fullName, email]);
+
+  const businessContextFilled = Boolean(
+    brandStage || monthlyOrderVolume.trim() || currentPackagingType.trim(),
+  );
+
+  useEffect(() => {
+    if (unlockedStep < 3) return;
+    if (businessContextFilled) {
+      setUnlockedStep((s) => Math.max(s, 4));
+    }
+  }, [unlockedStep, businessContextFilled, brandStage, monthlyOrderVolume, currentPackagingType]);
+
+  const goalsSectionFilled = Boolean(
+    primaryGoal.trim() ||
+      challenges.size > 0 ||
+      timeline ||
+      budgetRange ||
+      notes.trim(),
+  );
+
+  useEffect(() => {
+    if (unlockedStep < 4) return;
+    if (goalsSectionFilled) {
+      setUnlockedStep((s) => Math.max(s, 5));
+    }
+  }, [unlockedStep, goalsSectionFilled, primaryGoal, challenges, timeline, budgetRange, notes]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -210,11 +250,12 @@ export default function AuditRequestPage() {
           <div className="w-full">
             <h2 className="mb-3 text-2xl font-bold text-[#103a2a] md:text-3xl">Audit Intake Form</h2>
             <p className="mb-8 text-sm text-[#103a2a]/70">
-              Fill in as much as you can. More context means a sharper audit output.
+              Fill in as much as you can. Each section unlocks after you complete the previous one. More context means a sharper audit output.
             </p>
 
             <form onSubmit={handleSubmit}>
-              <AccordionSection title="Company details" required>
+              {unlockedStep >= 1 ? (
+              <AccordionSection title="Company details" required defaultOpen>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <input
@@ -259,8 +300,10 @@ export default function AuditRequestPage() {
                   </div>
                 </div>
               </AccordionSection>
+              ) : null}
 
-              <AccordionSection title="Contact details" required>
+              {unlockedStep >= 2 ? (
+              <AccordionSection title="Contact details" required defaultOpen>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <input
@@ -289,8 +332,10 @@ export default function AuditRequestPage() {
                   />
                 </div>
               </AccordionSection>
+              ) : null}
 
-              <AccordionSection title="Business context">
+              {unlockedStep >= 3 ? (
+              <AccordionSection title="Business context" defaultOpen>
                 <div className="space-y-5">
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {BRAND_STAGES.map((item) => (
@@ -318,10 +363,23 @@ export default function AuditRequestPage() {
                       className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-base text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                     />
                   </div>
+                  {unlockedStep < 4 ? (
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setUnlockedStep((s) => Math.max(s, 4))}
+                        className="text-sm font-semibold text-[#103a2a] underline decoration-[#103a2a]/40 underline-offset-2 transition-colors hover:text-[#0d2a1f]"
+                      >
+                        Continue without business context
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               </AccordionSection>
+              ) : null}
 
-              <AccordionSection title="Audit goals and challenges">
+              {unlockedStep >= 4 ? (
+              <AccordionSection title="Audit goals and challenges" defaultOpen>
                 <div className="space-y-5">
                   <textarea
                     value={primaryGoal}
@@ -369,10 +427,23 @@ export default function AuditRequestPage() {
                     rows={4}
                     className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-base text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
                   />
+                  {unlockedStep < 5 ? (
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setUnlockedStep((s) => Math.max(s, 5))}
+                        className="text-sm font-semibold text-[#103a2a] underline decoration-[#103a2a]/40 underline-offset-2 transition-colors hover:text-[#0d2a1f]"
+                      >
+                        Continue to attachments
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               </AccordionSection>
+              ) : null}
 
-              <AccordionSection title="Attachments (current packaging images/PDFs)">
+              {unlockedStep >= 5 ? (
+              <AccordionSection title="Attachments (current packaging images/PDFs)" defaultOpen>
                 <div className="space-y-4">
                   <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-[#103a2a]/25 bg-white px-5 py-8 text-center transition-colors hover:border-[#103a2a]/45">
                     <input
@@ -411,6 +482,7 @@ export default function AuditRequestPage() {
                   ) : null}
                 </div>
               </AccordionSection>
+              ) : null}
 
               <div className="py-8">
                 {submitError ? <p className="mb-3 text-sm font-medium text-red-600">{submitError}</p> : null}

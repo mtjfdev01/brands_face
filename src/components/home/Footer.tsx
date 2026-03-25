@@ -3,16 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 
 const COMPANY = [
-  { label: "Our expertise", href: "#" },
-  { label: "Pricing", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Contact us", href: "#" },
+  { label: "About us", href: "/about" },
+  { label: "Services", href: "/sale" },
+  { label: "Case studies", href: "/case-studies" },
+  { label: "Contact us", href: "/quote" },
 ];
 
 const SOCIAL = [
-  { label: "Instagram", href: "#" },
-  { label: "X", href: "#" },
-  { label: "LinkedIn", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/brands.face?igsh=OWRuZnpxdmt0YmJn" },
+  { label: "TikTok", href: "https://www.tiktok.com/@brandsface?_r=1&_t=ZS-94Z4BX3eAku" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/brands-face/" },
 ];
 
 export default function Footer() {
@@ -38,8 +38,8 @@ export default function Footer() {
           {/* Left — tagline + newsletter */}
           <div>
             <h3 className="text-[#1a1a1a] text-lg sm:text-xl font-semibold leading-snug mb-6">
-              Made for Businessmen.<br />Built for Storytellers.
-            </h3>
+            Built for Brands.<br />Engineered for Growth.
+                        </h3>
             <p className="text-[#1a1a1a]/50 text-xs mb-3">Newsletter</p>
             <div className="flex items-center gap-2">
               <input

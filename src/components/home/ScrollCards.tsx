@@ -312,6 +312,7 @@ const heroFan = useMemo(
   // Slow down fade progression so cards stay visible longer.
   const exitOpacity = lerp(1, 0, Math.pow(exitT, 2));
   const exitLift = lerp(0, -140, exitT);
+  const desktopCategoriesBtnTop = `calc(${anchorTop}% + ${Math.round(cardH * 0.62)}px)`;
 
   /* ── Should cards be visible? ── */
   const beyondFlower = isMobile ? sliderRevealed : p >= 1;
@@ -343,7 +344,7 @@ const heroFan = useMemo(
           transition: "none",
         }}
       >
-        <div className="absolute left-1/2 top-[36%] w-full max-w-[520px] -translate-x-1/2 -translate-y-1/2 px-3 pointer-events-auto">
+        <div className="absolute left-1/2 top-[42%] max-[420px]:top-[44%] w-full max-w-[520px] -translate-x-1/2 -translate-y-1/2 px-3 pointer-events-auto">
           <CategoryFocusCarousel  />
         </div>
       </div>
@@ -355,9 +356,11 @@ const heroFan = useMemo(
     <button
       type="button"
       onClick={() => setShowAllCategories(true)}
-      className="fixed bottom-6 left-1/2 z-40 inline-flex -translate-x-1/2 items-center gap-2 rounded-full border border-[#103a2a]/20 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#103a2a] backdrop-blur transition hover:border-[#103a2a]/45 hover:bg-white sm:text-sm"
+      className="fixed z-40 inline-flex items-center gap-2 rounded-full border border-[#103a2a]/20 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#103a2a] backdrop-blur transition hover:border-[#103a2a]/45 hover:bg-white sm:text-sm"
       style={{
         opacity: visible && !isMobile ? 1 : 0,
+        left: `${anchorLeft}%`,
+        top: desktopCategoriesBtnTop,
         transform: visible && !isMobile ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(10px)",
         pointerEvents: visible && !isMobile ? "auto" : "none",
       }}

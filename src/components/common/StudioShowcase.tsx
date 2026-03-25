@@ -9,7 +9,7 @@ const FEATURES = [
   "Upload artwork & textures instantly",
   "Choose materials, finishes & colors",
   "Export high-quality renders in one click",
-  "Free to use — no account needed",
+  // "Free to use — no account needed",
 ];
 
 export default function StudioShowcase() {

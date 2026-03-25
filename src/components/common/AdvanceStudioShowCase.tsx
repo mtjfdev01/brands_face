@@ -8,7 +8,7 @@ const FEATURES = [
   "Upload artwork & textures instantly",
   "Choose materials, finishes & colors",
   "Export high-quality renders in one click",
-  "Free to use — no account needed",
+  // "Free to use — no account needed",
 ];
 
 export default function AdvanceStudioShowCase() {
@@ -24,7 +24,7 @@ export default function AdvanceStudioShowCase() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(480px,56%)] gap-10 lg:gap-12 items-center">
           <AnimateOnScroll animation="slide-left" className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/70 tracking-[0.16em] uppercase mb-4">
               <span className="w-8 h-px bg-[#57d7aa]" />
@@ -55,21 +55,23 @@ export default function AdvanceStudioShowCase() {
                 Open studio preview
               </button>
             </div>
+
+            <AnimateOnScroll animation="slide-right" stagger as="ul" className="space-y-3 pt-8">
+              {FEATURES.map((feature) => (
+                <li key={feature} className="flex items-start gap-3">
+                  <span className="mt-1.5 w-2 h-2 rounded-full bg-[#57d7aa] shadow-[0_0_12px_#57d7aa] shrink-0" />
+                  <span className="text-white/90 text-base md:text-lg font-medium">{feature}</span>
+                </li>
+              ))}
+            </AnimateOnScroll>
           </AnimateOnScroll>
 
-          <AnimateOnScroll animation="slide-right" stagger as="ul" className="space-y-3 pt-1">
-            {FEATURES.map((feature) => (
-              <li key={feature} className="flex items-start gap-3">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-[#57d7aa] shadow-[0_0_12px_#57d7aa] shrink-0" />
-                <span className="text-white/90 text-base md:text-lg font-medium">{feature}</span>
-              </li>
-            ))}
+          <AnimateOnScroll animation="scale-in" delay={180} className="w-full">
+            <div className="rounded-2xl border border-white/20 p-3 bg-white/[0.03]">
+              <StudioCanvasPreview />
+            </div>
           </AnimateOnScroll>
         </div>
-
-        <AnimateOnScroll animation="scale-in" delay={180}>
-          <StudioCanvasPreview />
-        </AnimateOnScroll>
       </div>
     </section>
   );
