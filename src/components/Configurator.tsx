@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import HomeHeroNavbar from '@/components/nav/HomeHeroNavbar';
 import ControlsPanel from './ControlsPanel';
 import UploadTexture from './UploadTexture';
 import PreviewExport from './PreviewExport';
@@ -21,43 +22,13 @@ const BoxCanvas = dynamic(() => import('./BoxCanvas'), {
 export default function Configurator() {
   return (
     <div className="min-h-screen bg-[#13131f] text-white">
-      {/* Header */}
-      <header className="border-b border-white/5 bg-panel/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                />
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-lg font-bold tracking-tight">Brands Face</h1>
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest">
-                3D Box Configurator
-              </p>
-            </div>
-          </div>
-          <span className="hidden sm:inline-block text-xs text-gray-600 bg-surface px-3 py-1 rounded-full">
-            v2.0
-          </span>
-        </div>
-      </header>
+      <HomeHeroNavbar variant="layout" />
 
       {/* Main Layout */}
       <main className="max-w-[1600px] mx-auto p-4 sm:p-6">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-4 sm:gap-6">
           {/* Left Panel: Controls */}
-          <aside className="lg:order-1 order-2 bg-panel rounded-xl p-5 border border-white/5 h-fit lg:sticky lg:top-20 overflow-y-auto lg:max-h-[calc(100vh-6rem)]">
+          <aside className="lg:order-1 order-2 bg-panel rounded-xl p-5 border border-white/5 h-fit lg:sticky lg:top-28 overflow-y-auto lg:max-h-[calc(100vh-8rem)]">
             <div className="space-y-6">
               <ControlsPanel />
               <div className="border-t border-white/5 pt-4">
@@ -95,7 +66,7 @@ export default function Configurator() {
           </div>
 
           {/* Right Panel: Export */}
-          <aside className="lg:order-3 order-3 bg-panel rounded-xl p-5 border border-white/5 h-fit lg:sticky lg:top-20">
+          <aside className="lg:order-3 order-3 bg-panel rounded-xl p-5 border border-white/5 h-fit lg:sticky lg:top-28">
             <PreviewExport />
           </aside>
         </div>

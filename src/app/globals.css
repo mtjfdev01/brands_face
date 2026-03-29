@@ -229,8 +229,35 @@
 .anim-stagger > *:nth-child(7) { animation-delay: 480ms; }
 .anim-stagger > *:nth-child(8) { animation-delay: 560ms; }
 
+/* Category sale tabs: staggered card entrance */
+@keyframes category-slider-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-slider-card-in {
+  animation: category-slider-card-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Category info tabs: slides hug image width — avoids huge gaps with small thumbnails */
+.info-gallery-swiper .swiper-slide {
+  width: auto !important;
+}
+
 /* ── Respect prefers-reduced-motion ── */
 @media (prefers-reduced-motion: reduce) {
+  .category-slider-card-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
   .anim-ready {
     opacity: 1;
   }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import AccordionSection from "./AccordionSection";
 import OptionCard from "./OptionCard";
 
@@ -161,30 +161,7 @@ export default function GetQuotePage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      {/* ── Top navbar ── */}
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#103a2a]/90 backdrop-blur-sm">
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl font-bold text-white tracking-tight"
-          >
-            Brands Face
-          </Link>
-          <nav className="hidden md:flex items-center gap-6 text-base text-emerald-100/75">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
-            <span className="text-emerald-100/35">/</span>
-            <span className="text-white font-medium">Get a Quote</span>
-          </nav>
-          <Link
-            href="#"
-            className="text-base font-medium text-emerald-100/80 hover:text-white transition-colors"
-          >
-            Need help?
-          </Link>
-        </div>
-      </header>
+      <HomeHeroNavbar variant="layout" />
 
       {/* ── Banner ── */}
       <section className="bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-12 md:py-16">

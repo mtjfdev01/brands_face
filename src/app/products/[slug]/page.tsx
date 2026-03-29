@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import ProductDetailPage from "@/components/product/ProductDetailPage";
 import type { ProductData } from "@/components/product/ProductInfo";
+import { ART_CARD_PRODUCTS } from "@/data/artCardProducts";
+import { CORRUGATED_PRODUCTS } from "@/data/corrugatedProducts";
+import { KRAFT_PRODUCTS } from "@/data/kraftProducts";
+import { POUCH_PRODUCTS } from "@/data/pouchProducts";
+import { CARRY_BAG_PRODUCTS } from "@/data/carryBagProducts";
+import { RIGID_PRODUCTS } from "@/data/rigidProducts";
 
 /* ── Sample product database (replace with CMS/API later) ── */
 const PRODUCTS: Record<string, ProductData> = {
@@ -109,6 +115,12 @@ const PRODUCTS: Record<string, ProductData> = {
     details:
       "Our Custom Rigid Boxes are the gold standard in packaging. Built with thick 2mm greyboard wrapped in premium art paper, they provide an unmatched tactile and visual experience.\n\nChoose from magnetic closure, lift-off lid, or hinged designs. Add soft-touch lamination for a velvety feel, or go bold with gold/silver foil stamping and embossed logos.\n\nIdeal for luxury cosmetics, jewelry, electronics, premium spirits, and gift packaging where presentation matters as much as the product inside.",
   },
+  ...RIGID_PRODUCTS,
+  ...ART_CARD_PRODUCTS,
+  ...CORRUGATED_PRODUCTS,
+  ...KRAFT_PRODUCTS,
+  ...POUCH_PRODUCTS,
+  ...CARRY_BAG_PRODUCTS,
 };
 
 /* ── Fallback product for unknown slugs ── */

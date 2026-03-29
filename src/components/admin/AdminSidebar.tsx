@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 const ITEMS = [
   { label: "Dashboard", href: "/admin", disabled: true },
   { label: "Quotes", href: "/admin/quotes" },
+  { label: "Product orders", href: "/admin/product-orders" },
 ];
 
 export default function AdminSidebar() {

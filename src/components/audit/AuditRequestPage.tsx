@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import AccordionSection from "@/components/quote/AccordionSection";
 import OptionCard from "@/components/quote/OptionCard";
 
@@ -200,18 +200,7 @@ export default function AuditRequestPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      <header className="sticky top-0 z-40 border-b border-white/15 bg-[#103a2a]/90 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
-          <Link href="/" className="text-xl font-bold tracking-tight text-white">
-            Brands Face
-          </Link>
-          <nav className="hidden items-center gap-6 text-base text-emerald-100/75 md:flex">
-            <Link href="/" className="transition-colors hover:text-white">Home</Link>
-            <span className="text-emerald-100/35">/</span>
-            <span className="font-medium text-white">Packaging Audit Request</span>
-          </nav>
-        </div>
-      </header>
+      <HomeHeroNavbar variant="layout" />
 
       <section className="relative overflow-hidden bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-14 md:py-20">
         <div className="pointer-events-none absolute inset-0">

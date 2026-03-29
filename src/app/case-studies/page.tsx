@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
+import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
+import { defaultCategoryHubPath } from "@/lib/routes";
 
 const CASE_STUDIES = [
   {
@@ -80,36 +82,15 @@ export default function CaseStudiesPage() {
 
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
-      <section className="relative overflow-hidden bg-[#103a2a] pb-24 pt-20 sm:pt-24">
+      <section className="relative overflow-hidden bg-[#103a2a] pb-24">
+        <HomeHeroNavbar />
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-20 left-1/4 h-[320px] w-[320px] rounded-full bg-emerald-800/25 blur-[100px]" />
           <div className="absolute -bottom-24 right-1/4 h-[360px] w-[360px] rounded-full bg-emerald-700/20 blur-[120px]" />
         </div>
 
-        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-4 backdrop-blur-xl sm:p-5 ">
-            <div className="flex items-center justify-between gap-3">
-              <Link href="/" className="text-lg font-black tracking-tight text-white sm:text-xl">
-                Brands Face
-              </Link>
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/sale"
-                  className="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white/90 transition hover:bg-white/10 sm:text-sm"
-                >
-                  Solutions
-                </Link>
-                <Link
-                  href="/quote"
-                  className="rounded-full bg-[#1dd1a1] px-4 py-2 text-xs font-bold text-[#0f2f22] transition hover:bg-[#37dfb2] sm:text-sm"
-                >
-                  Get Free Audit
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-16 max-w-4xl">
+        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32">
+          <div className="max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">Case Studies</p>
             <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Packaging Strategies That
@@ -216,7 +197,7 @@ export default function CaseStudiesPage() {
                 Request Free Audit
               </Link>
               <Link
-                href="/sale"
+                href={defaultCategoryHubPath()}
                 className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
               >
                 Explore Packaging Services

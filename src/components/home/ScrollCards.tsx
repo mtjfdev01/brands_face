@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo, type KeyboardEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { HOME_CARDS } from "@/data/homeCards";
+import { categoryHubPath } from "@/lib/routes";
 import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 import AllCategoriesOverlay from "@/components/home/AllCategoriesOverlay";
 
@@ -121,15 +123,19 @@ function MobileCardSlider({ show }: { show: boolean }) {
           >
             {CARDS.map((card) => (
               <div key={card.title} className="w-full flex-shrink-0">
-                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl">
+                <Link
+                  href={categoryHubPath(card.category)}
+                  className="relative block w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#1a3a2a] touch-manipulation"
+                  aria-label={`${card.title} — view category`}
+                >
                   <div className="absolute inset-0" style={{ backgroundColor: card.color }} />
-                  <Image src={card.image} alt={card.title} fill className="object-cover" sizes="300px" />
+                  <Image src={card.image} alt="" fill className="object-cover" sizes="300px" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-white text-sm font-semibold drop-shadow-lg">{card.title}</p>
                     <p className="text-white/60 text-xs mt-0.5">{card.category}</p>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -493,7 +499,7 @@ const heroFan = useMemo(
       }`}
       onClick={() => {
         if (inCircleLinkPhase) {
-          router.push(`/category/${sourceCard.category}`);
+          router.push(categoryHubPath(sourceCard.category));
           return;
         }
 
@@ -501,6 +507,19 @@ const heroFan = useMemo(
           scrollToOpenedFlower();
         }
       }}
+      {...(inCircleLinkPhase
+        ? {
+            role: "link" as const,
+            tabIndex: 0,
+            onKeyDown: (e: KeyboardEvent) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                router.push(categoryHubPath(sourceCard.category));
+              }
+            },
+            "aria-label": `Open ${sourceCard.title} — category page`,
+          }
+        : {})}
       onMouseEnter={() => {
         if (flowerOpened) setHoveredCardIndex(idx);
       }}

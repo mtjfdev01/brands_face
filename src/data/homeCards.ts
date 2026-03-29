@@ -1,9 +1,13 @@
+/**
+ * Home / hero carousel cards. `category` is the canonical slug for URLs:
+ * `/category/[category]` (see `src/data/categoryPages.ts` for banners + product teasers).
+ */
 export interface HomeCard {
   title: string;
   category: string;
   image: string;
   color: string;
-  heroDescription: string;
+  heroDescription: string; 
   heroCtaText: string;
   heroSlides: Array<{
     title: string;
@@ -84,8 +88,8 @@ export const HOME_CARDS: HomeCard[] = [
     ],
   },
   {
-    title: "Gift Boxes",
-    category: "gift_boxes",
+    title: "Carry Bags",
+    category: "carry_bags",
     image: "/assets/images/categories/gift_box.jpeg",
     color: "#a0522d",
     heroDescription:

@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: 'Brands Face | Custom Packaging Design Studio',
   description:
     'Design custom packaging boxes in 3D. Choose from 12 box types, materials, finishes, and upload artwork for real-time preview.',
+  icons: {
+    icon: '/assets/images/logos/logo_x.png',
+    shortcut: '/assets/images/logos/logo_x.png',
+    apple: '/assets/images/logos/logo_x.png',
+  },
 };
 
 export default function RootLayout({

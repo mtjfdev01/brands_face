@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
+import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 
 const VALUES = [
   {
@@ -45,36 +46,15 @@ const JOURNEY = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
-      <section className="relative overflow-hidden bg-[#103a2a] px-4 pb-20 pt-20 sm:px-6 sm:pt-24 lg:px-8">
+      <section className="relative overflow-hidden bg-[#103a2a] px-4 pb-20 sm:px-6 lg:px-8">
+        <HomeHeroNavbar />
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-emerald-800/25 blur-[120px]" />
           <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-cyan-800/20 blur-[120px]" />
         </div>
 
-        <div className="relative mx-auto max-w-[1240px]">
-          <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-4 backdrop-blur-xl sm:p-5">
-            <div className="flex items-center justify-between gap-3">
-              <Link href="/" className="text-lg font-black tracking-tight text-white sm:text-xl">
-                Brands Face
-              </Link>
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/case-studies"
-                  className="rounded-full border border-white/25 px-4 py-2 text-xs font-semibold text-white/90 transition hover:bg-white/10 sm:text-sm"
-                >
-                  Case Studies
-                </Link>
-                <Link
-                  href="/quote"
-                  className="rounded-full bg-[#1dd1a1] px-4 py-2 text-xs font-bold text-[#0f2f22] transition hover:bg-[#37dfb2] sm:text-sm"
-                >
-                  Get Free Audit
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-14 max-w-4xl">
+        <div className="relative mx-auto max-w-[1240px] pt-28 sm:pt-32">
+          <div className="max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">About Brands Face</p>
             <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               We Build Packaging That

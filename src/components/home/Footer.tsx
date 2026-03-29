@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { defaultCategoryHubPath } from "@/lib/routes";
 
 const COMPANY = [
   { label: "About us", href: "/about" },
-  { label: "Services", href: "/sale" },
+  { label: "Services", href: defaultCategoryHubPath() },
   { label: "Case studies", href: "/case-studies" },
   { label: "Contact us", href: "/quote" },
 ];

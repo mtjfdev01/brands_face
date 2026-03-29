@@ -10,12 +10,20 @@ import 'swiper/css';
 
 import HomeHeroNavbar from '@/components/nav/HomeHeroNavbar';
 import HeroSlide, { type SlideData } from '@/components/hero/HeroSlide';
+import { getCategoryPageConfig } from '@/data/categoryPages';
 import { HOME_CARDS } from '@/data/homeCards';
 
-export default function Hero() {
+type HeroProps = {
+  /** When set (e.g. from `/category/[category]`), overrides `?category=` for the active card. */
+  categorySlug?: string | null;
+};
+
+export default function Hero({ categorySlug: categorySlugProp }: HeroProps) {
   const searchParams = useSearchParams();
   const swiperRef = useRef<SwiperType | null>(null);
-  const selectedCategory = (searchParams.get('category') || '').toLowerCase();
+  const fromQuery = (searchParams.get('category') || '').toLowerCase();
+  const fromProp = (categorySlugProp || '').toLowerCase();
+  const selectedCategory = fromProp || fromQuery;
 
   const activeCategoryCard = useMemo(
     () => HOME_CARDS.find((card) => card.category === selectedCategory) ?? HOME_CARDS[0],
@@ -28,6 +36,10 @@ export default function Hero() {
         (card) => card.category === activeCategoryCard?.category,
       );
       const safeActiveIndex = activeIndex >= 0 ? activeIndex : 0;
+      const pageCfg = activeCategoryCard
+        ? getCategoryPageConfig(activeCategoryCard.category)
+        : undefined;
+      const banners = pageCfg?.bannerImages?.filter(Boolean) ?? [];
 
       return (activeCategoryCard?.heroSlides ?? []).map((slide, idx) => ({
         title: slide.title || `${activeCategoryCard?.title ?? 'Category'} ${idx + 1}`,
@@ -36,10 +48,9 @@ export default function Hero() {
           activeCategoryCard?.heroDescription ||
           'Premium custom packaging solutions tailored to your category with reliable production quality, flexible finishes, and fast turnaround.',
         ctaText: slide.ctaText || activeCategoryCard?.heroCtaText || 'Get a Free Quote',
-        // Ensure each slide can still get a different background image
-        // even when slide.productImage is not explicitly provided.
         productImage:
           slide.productImage ||
+          (banners.length > 0 ? banners[idx % banners.length] : undefined) ||
           HOME_CARDS[(safeActiveIndex + idx) % HOME_CARDS.length]?.image ||
           activeCategoryCard?.image ||
           '/hero/slide1-bg.jpg',
