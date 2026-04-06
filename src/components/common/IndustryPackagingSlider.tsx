@@ -54,12 +54,13 @@ export default function IndustryPackagingSlider({ title, items, itemsKey }: Prop
                 >
                   <Link href={item.href} className="group block h-full pb-1">
                     <div className="relative overflow-hidden rounded-2xl bg-gray-100">
-                      <div className="relative aspect-[4/3] w-full">
+                      {/* Square frame + contain so mismatched aspect ratios don't crop */}
+                      <div className="relative aspect-square w-full bg-white">
                         <Image
                           src={item.imageSrc}
                           alt={item.title}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>

@@ -122,7 +122,16 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
   const card = HOME_CARDS.find((c) => c.category === canonical);
   const config = canonical ? getCategoryPageConfig(canonical) : undefined;
 
-  const defaultTabId = config?.tabs?.[0]?.id ?? CATEGORY_TAB_ALL_ID;
+  const defaultTabId = useMemo(() => {
+    const tabs = config?.tabs ?? [];
+    if (tabs.length === 0) return CATEGORY_TAB_ALL_ID;
+    // Prefer "core_products" when a category provides it.
+    const core = tabs.find((t) => t.id === "core_products")?.id;
+    if (core) return core;
+    // Otherwise prefer the first non-"all" tab so users land on real content.
+    const firstNonAll = tabs.find((t) => t.id !== CATEGORY_TAB_ALL_ID)?.id;
+    return firstNonAll ?? tabs[0]?.id ?? CATEGORY_TAB_ALL_ID;
+  }, [config?.tabs]);
   const [activeTabId, setActiveTabId] = useState(defaultTabId);
   const [displayTabId, setDisplayTabId] = useState(defaultTabId);
   const [panelVisible, setPanelVisible] = useState(true);
@@ -131,11 +140,11 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
   const hasProductTabs = Boolean(config?.tabs && config.tabs.length > 0);
 
   useEffect(() => {
-    const initial = config?.tabs?.[0]?.id ?? CATEGORY_TAB_ALL_ID;
+    const initial = defaultTabId;
     setActiveTabId(initial);
     setDisplayTabId(initial);
     setPanelVisible(true);
-  }, [canonical, config?.tabs]);
+  }, [canonical, defaultTabId]);
 
   useEffect(() => {
     if (!hasProductTabs) return;

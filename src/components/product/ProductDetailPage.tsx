@@ -49,49 +49,6 @@ export default function ProductDetailPage({ product }: Props) {
           </div>
         </div>
       </main>
-
-      {/* Fixed bar — dark green band + mint CTA (navbar / catalog pattern) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#103a2a] shadow-[0_-8px_32px_rgba(16,58,42,0.28)]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <div className="hidden sm:block">
-            <p className="text-xs text-white/60">Delivery</p>
-            <p className="text-sm font-medium text-white">{product.deliveryEstimate}</p>
-          </div>
-
-          <div className="hidden text-right sm:block">
-            <p className="text-xs text-white/60">
-              net / {footerTier.qty} pieces
-            </p>
-            <p className="text-xl font-bold text-white">
-              ${footerTier.total.toFixed(2)}
-            </p>
-          </div>
-
-          <div className="sm:hidden">
-            <p className="text-lg font-bold text-white">
-              ${footerTier.total.toFixed(2)}
-            </p>
-            <p className="text-xs text-white/60">{footerTier.qty} pieces</p>
-          </div>
-
-          <div className="flex shrink-0 flex-col items-end gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-            <button
-              type="button"
-              onClick={handleFooterPrimary}
-              className="rounded-full bg-[#1dd1a1] px-6 py-3 text-sm font-bold text-[#0f2f22] shadow-[0_6px_24px_rgba(29,209,161,0.35)] transition-all hover:bg-[#37dfb2] active:scale-[0.98] sm:px-8 sm:py-3.5"
-            >
-              Place order
-            </button>
-            <button
-              type="button"
-              onClick={() => window.open("/studio", "_blank", "noopener,noreferrer")}
-              className="text-xs font-semibold text-white/70 underline-offset-2 transition-colors hover:text-white hover:underline"
-            >
-              3D mockup
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

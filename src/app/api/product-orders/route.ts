@@ -69,10 +69,10 @@ export async function POST(request: Request) {
     }
 
     if (requestType === "standard_order") {
-      if (!Number.isFinite(pricePerPiece) || pricePerPiece < 0) {
+      if (pricePerPiece === null || !Number.isFinite(pricePerPiece) || pricePerPiece < 0) {
         return NextResponse.json({ message: "Invalid price data for this order." }, { status: 400 });
       }
-      if (!Number.isFinite(lineTotal) || lineTotal < 0) {
+      if (lineTotal === null || !Number.isFinite(lineTotal) || lineTotal < 0) {
         return NextResponse.json({ message: "Invalid total for this order." }, { status: 400 });
       }
     } else {
