@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Footer from "@/components/home/Footer";
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import ProductGallery from "./ProductGallery";
 import ProductInfo, { type ProductData, type QuantityOption } from "./ProductInfo";
@@ -49,6 +50,8 @@ export default function ProductDetailPage({ product }: Props) {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

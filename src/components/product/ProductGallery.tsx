@@ -29,14 +29,15 @@ export default function ProductGallery({ images, alt }: Props) {
 
       {/* Thumbnail strip */}
       {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-2">
+        <div className="flex flex-wrap justify-center gap-2">
           {images.map((src, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => setActiveIdx(idx)}
-              className={`relative aspect-square w-full rounded-lg overflow-hidden border-2 transition-all ${
+              className={`relative aspect-square h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition-all sm:h-[4.5rem] sm:w-[4.5rem] ${
                 idx === activeIdx
-                  ? " shadow-md"
+                  ? "border-[#103a2a] opacity-100 shadow-md"
                   : "border-transparent opacity-60 hover:opacity-100"
               }`}
             >

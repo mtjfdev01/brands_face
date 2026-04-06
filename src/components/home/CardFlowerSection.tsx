@@ -95,12 +95,13 @@ export default function CardFlowerSection() {
           style={{ opacity: sideLabelsOpacity }}
         >
           <p className="text-[10px] uppercase tracking-widest text-gray-400">We have</p>
-          <p className="text-sm font-semibold text-[#1a3a2a] mt-0.5">Millions Impacted</p>
+          <p className="text-sm font-semibold text-[#1a3a2a] mt-0.5 md:scroll-mt-28">Millions Impacted</p>
         </div>
+        
 
         {/* ── Heading ── */}
         <div
-          className="absolute inset-x-0 top-[8%] sm:top-[10%] text-center px-6 z-10 pointer-events-none"
+          className="absolute inset-x-0 top-[8%] sm:top-[10%] text-center px-6 z-10 pointer-events-none md:scroll-mt-28"
           style={{
             opacity: headingOpacity,
             transform: `translateY(${headingY}px)`,

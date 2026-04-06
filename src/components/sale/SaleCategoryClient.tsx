@@ -74,7 +74,7 @@ const whyFeatures: FeatureCard[] = [
     icon: "audit",
     title: "Free Packaging Audit",
     description:
-      "We evaluate your current packaging and uncover hidden gaps that may be affecting your brand perception, customer trust, and sales performance.",
+      "We evaluate your packaging to uncover gaps affecting brand perception, customer trust, and sales.",
   },
   {
     id: "why-2",
@@ -88,14 +88,13 @@ const whyFeatures: FeatureCard[] = [
     icon: "design",
     title: "Design That Converts",
     description:
-      "We design packaging that attracts attention, builds trust, and influences buying decisions through smart use of color, layout, and branding.",
-  },
+    "We design packaging that grabs attention, builds trust, and drives buying decisions through smart branding.",  },
   {
     id: "why-4",
     icon: "unboxing",
     title: "Premium Unboxing Experience",
     description:
-      "We craft packaging experiences that customers remember, increasing repeat purchases and organic word-of-mouth marketing.",
+    "We craft memorable packaging experiences that boost repeat purchases and word-of-mouth."
   },
   {
     id: "why-5",
@@ -109,8 +108,7 @@ const whyFeatures: FeatureCard[] = [
     icon: "modern",
     title: "Built for Modern Brands",
     description:
-      "Whether you sell online or in retail, our packaging is optimized for durability, presentation, and customer experience.",
-  },
+"We craft memorable packaging experiences that boost repeat purchases and word-of-mouth."  },
 ];
 
 type Props = {
