@@ -162,10 +162,10 @@ export default function ProductInfo({
         </div>
       )}
 
-      <DealBanner deals={product.deals} />
+      {/* <DealBanner deals={product.deals} /> */}
 
       <div id="pdp-quantity" className="scroll-mt-28">
-        <h3 className={`mb-2 text-sm font-semibold ${text}`}>Order</h3>
+        {/* <h3 className={`mb-2 text-sm font-semibold ${text}`}>Order</h3> */}
         <ProductLeadForms
           ref={leadFormsRef as ForwardedRef<ProductLeadFormsHandle>}
           showActions
@@ -192,7 +192,7 @@ export default function ProductInfo({
         </p>
       </div>
 
-      <div>
+      {/* <div>
         <h3 className={`mb-2 text-sm font-semibold ${text}`}>Size (external)</h3>
         <div className="relative">
           <button
@@ -281,7 +281,7 @@ export default function ProductInfo({
             </div>
           )}
         </div>
-      )}
+      )} */}
 
       {/* {product.details && (
         <div>

@@ -186,3 +186,32 @@ export function teasersToIndustryItems(teasers: CategoryProductTeaser[]) {
     href: `/products/${p.slug}`,
   }));
 }
+
+/** PDP “related” strip: every teaser in the same `CATEGORY_PAGE_CONFIG` block (all tabs), excluding the current slug. */
+export type RelatedCategoryProduct = {
+  slug: string;
+  title: string;
+  imageSrc: string;
+};
+
+export function getRelatedProductsInCategory(currentSlug: string): RelatedCategoryProduct[] {
+  const key = currentSlug.trim();
+  if (!key) return [];
+
+  const cfg = CATEGORY_PAGE_CONFIG.find((c) => c.products.some((p) => p.slug === key));
+  if (!cfg) return [];
+
+  const seen = new Set<string>();
+  const out: RelatedCategoryProduct[] = [];
+  for (const p of cfg.products) {
+    if (p.slug === key) continue;
+    if (seen.has(p.slug)) continue;
+    seen.add(p.slug);
+    out.push({
+      slug: p.slug,
+      title: p.title,
+      imageSrc: encodePublicPath(p.cardImage),
+    });
+  }
+  return out;
+}

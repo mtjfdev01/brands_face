@@ -42,14 +42,17 @@ export default function Footer() {
             Built for Brands.<br />Engineered for Growth.
                         </h3>
             <p className="text-[#1a1a1a]/50 text-xs mb-3">Newsletter</p>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:flex-wrap">
               <input
                 type="email"
                 placeholder="Enter your email"
                 aria-label="Email for newsletter"
-                className="flex-1 h-10 px-4 rounded-full bg-white border border-[#1a1a1a]/10 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 outline-none focus:border-[#1a1a1a]/30 transition-colors"
+                className="h-10 min-w-0 w-full flex-1 px-4 rounded-full bg-white border border-[#1a1a1a]/10 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 outline-none focus:border-[#1a1a1a]/30 transition-colors"
               />
-              <button className="h-10 px-5 rounded-full bg-[#f5c518] text-[#1a1a1a] text-sm font-semibold hover:bg-[#e6b800] active:scale-[0.97] transition-all">
+              <button
+                type="button"
+                className="h-10 w-full shrink-0 rounded-full bg-[#f5c518] px-5 text-sm font-semibold text-[#1a1a1a] transition-all hover:bg-[#e6b800] active:scale-[0.97] sm:w-auto"
+              >
                 Subscribe
               </button>
             </div>

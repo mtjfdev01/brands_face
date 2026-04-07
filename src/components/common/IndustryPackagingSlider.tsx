@@ -24,9 +24,9 @@ type Props = {
 /* ── Main component ── */
 export default function IndustryPackagingSlider({ title, items, itemsKey }: Props) {
   return (
-    <section className="w-full py-12 md:py-16 md:pt-0 ">
+    <section className="w-full py-12 md:py-16 md:pt-0">
       <AnimateOnScroll animation="blur-in">
-        <h2 className="mb-10 text-center text-3xl font-bold tracking-tight md:text-4xl">
+        <h2 className="mb-8 text-center text-3xl font-bold tracking-tight md:mb-10 md:text-4xl">
           {title}
         </h2>
       </AnimateOnScroll>
@@ -40,7 +40,7 @@ export default function IndustryPackagingSlider({ title, items, itemsKey }: Prop
           ) : (
             <div
               key={itemsKey ?? "industry-grid"}
-              className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8"
+              className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12"
             >
               {items.map((item, index) => (
                 <div
@@ -53,14 +53,14 @@ export default function IndustryPackagingSlider({ title, items, itemsKey }: Prop
                   }
                 >
                   <Link href={item.href} className="group block h-full pb-1">
-                    <div className="relative overflow-hidden rounded-2xl bg-gray-100">
+                    <div className="relative overflow-hidden rounded-xl bg-gray-100 sm:rounded-2xl">
                       <div className="relative aspect-square w-full">
                         <Image
                           src={item.imageSrc}
                           alt={item.title}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          sizes="(max-width: 1024px) 45vw, 25vw"
                         />
                       </div>
 
@@ -71,8 +71,8 @@ export default function IndustryPackagingSlider({ title, items, itemsKey }: Prop
                       )}
                     </div>
 
-                    <div className="mt-3 flex items-center justify-center gap-2">
-                      <h3 className="text-center text-base font-semibold text-gray-900 transition-colors group-hover:text-[var(--color-nav-active)] md:text-lg">
+                    <div className="mt-2 flex items-center justify-center gap-1 sm:mt-3 sm:gap-2">
+                      <h3 className="text-center text-[11px] font-semibold leading-snug text-gray-900 transition-colors group-hover:text-[var(--color-nav-active)] min-[380px]:text-xs sm:text-base md:text-lg">
                         {item.title}
                       </h3>
                       <span className="text-gray-400 transition-transform duration-300 group-hover:translate-x-1">

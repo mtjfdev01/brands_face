@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import ProductDetailPage from "@/components/product/ProductDetailPage";
 import type { ProductData } from "@/components/product/ProductInfo";
-import { ART_CARD_PRODUCTS } from "@/data/artCardProducts";
-import { CORRUGATED_PRODUCTS } from "@/data/corrugatedProducts";
-import { KRAFT_PRODUCTS } from "@/data/kraftProducts";
-import { POUCH_PRODUCTS } from "@/data/pouchProducts";
-import { CARRY_BAG_PRODUCTS } from "@/data/carryBagProducts";
-import { RIGID_PRODUCTS } from "@/data/rigidProducts";
-import { getProductFromCategoryConfig } from "@/data/categoryPages";
+import { getProductFromCategoryConfig, getRelatedProductsInCategory } from "@/data/categoryPages";
 
 
 /* ── Fallback product for unknown slugs ── */
@@ -63,5 +57,7 @@ export default async function ProductPage({
     getProductFromCategoryConfig(slug) ??
     { ...FALLBACK_PRODUCT, slug };
 
-  return <ProductDetailPage product={product} />;
+  const relatedProducts = getRelatedProductsInCategory(slug);
+
+  return <ProductDetailPage product={product} relatedProducts={relatedProducts} />;
 }

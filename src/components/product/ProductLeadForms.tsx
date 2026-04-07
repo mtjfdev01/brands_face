@@ -59,7 +59,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
   ref,
 ) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [orderPanelOpen, setOrderPanelOpen] = useState(false);
+  const [orderPanelOpen, setOrderPanelOpen] = useState(true);
 
   const [orderQty, setOrderQty] = useState(String(selectedQuantity.qty));
 
@@ -292,7 +292,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
           </Collapsible>
         </div>
       </Collapsible>
-      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+      {/* <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <button
               type="button"
               onClick={toggleOrderPanel}
@@ -305,7 +305,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
               Place order request
               <span className="ml-1 text-[11px] font-semibold opacity-80">{orderPanelOpen ? " ▲" : " ▼"}</span>
             </button>
-          </div>
+          </div> */}
     </div>
   );
 });

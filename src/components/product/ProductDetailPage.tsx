@@ -3,19 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/home/Footer";
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
+import type { RelatedCategoryProduct } from "@/data/categoryPages";
 import ProductGallery from "./ProductGallery";
 import ProductInfo, { type ProductData, type QuantityOption } from "./ProductInfo";
 import type { ProductLeadFormsHandle } from "./ProductLeadForms";
+import RelatedProductsCarousel from "./RelatedProductsCarousel";
 
 type Props = {
   product: ProductData;
+  relatedProducts?: RelatedCategoryProduct[];
 };
 
 /**
  * PDP shell: sticky gallery + scrollable ProductInfo + fixed CTA bar.
  * Visual tokens align with catalog / home (forest #103a2a, mint CTA #1dd1a1).
  */
-export default function ProductDetailPage({ product }: Props) {
+export default function ProductDetailPage({ product, relatedProducts = [] }: Props) {
   const leadFormsRef = useRef<ProductLeadFormsHandle | null>(null);
   const [footerTier, setFooterTier] = useState<QuantityOption>(() => product.quantities[0]);
 
@@ -49,6 +52,8 @@ export default function ProductDetailPage({ product }: Props) {
             />
           </div>
         </div>
+
+        <RelatedProductsCarousel items={relatedProducts} />
       </main>
 
       <Footer />
