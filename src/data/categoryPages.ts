@@ -32,6 +32,12 @@ export type CategoryTab = {
   label: string;
 };
 
+/** FAQ entry for category hubs and PDPs (sourced from `categoryPageConfig.ts`). */
+export type CategoryFaqItem = {
+  question: string;
+  answer: string;
+};
+
 export type CategoryProductTeaser = {
   slug: string;
   cardImage: string;
@@ -47,6 +53,8 @@ export type CategoryProductTeaser = {
    * Intentionally omits `quantities` + `deliveryEstimate` for now; we provide safe defaults at runtime.
    */
   pdp?: Omit<ProductData, "slug" | "images" | "quantities" | "deliveryEstimate">;
+  /** Product-specific FAQs on `/products/[slug]` (merged with category FAQs). */
+  faqs?: CategoryFaqItem[];
 };
 
 export type CategoryPageConfig = {
@@ -56,6 +64,8 @@ export type CategoryPageConfig = {
   /** If set, category page shows a pill tab bar; products filter by `tabId`. Omit for legacy single-list behavior. */
   tabs?: CategoryTab[];
   products: CategoryProductTeaser[];
+  /** Category hub FAQs on `/category/[category]`. */
+  faqs?: CategoryFaqItem[];
 };
 
 /** PDP gallery for rigid products: category teaser `cardImage` + `detailImages`. */
@@ -214,4 +224,55 @@ export function getRelatedProductsInCategory(currentSlug: string): RelatedCatego
     });
   }
   return out;
+}
+
+const GENERIC_PDP_FAQS: CategoryFaqItem[] = [
+  {
+    question: "What is the typical minimum order quantity?",
+    answer:
+      "MOQs depend on structure, materials, and finish. Each product lists a starting quantity; we can often support pilots or phased rollouts — send a quote for your SKU.",
+  },
+  {
+    question: "How long do production and shipping take?",
+    answer:
+      "Lead times vary by tooling, proofs, and fulfilment lane. Your product page shows a typical range; we confirm dates after artwork approval and deposit.",
+  },
+  {
+    question: "Can I get a sample before the full order?",
+    answer:
+      "Yes. We can provide structural blanks, print proofs, or finish swatches where applicable so you can approve fit, colour, and feel before production.",
+  },
+];
+
+/** Category hub: FAQs attached to the resolved category config (`categoryPageConfig`). */
+export function getCategoryHubFaqs(categorySlug: string): CategoryFaqItem[] {
+  const cfg = getCategoryPageConfig(categorySlug);
+  return cfg?.faqs?.length ? cfg.faqs : [];
+}
+
+/** PDP: product FAQs first, then category FAQs; de-duplicated by question text. Unknown slugs get generic FAQs. */
+export function getMergedFaqsForProductDetail(slug: string): CategoryFaqItem[] {
+  const key = slug.trim();
+  if (!key) return [...GENERIC_PDP_FAQS];
+
+  for (const c of CATEGORY_PAGE_CONFIG) {
+    const p = c.products.find((x) => x.slug === key);
+    if (!p) continue;
+
+    const productFaqs = p.faqs ?? [];
+    const categoryFaqs = c.faqs ?? [];
+    const seen = new Set<string>();
+    const out: CategoryFaqItem[] = [];
+
+    for (const item of [...productFaqs, ...categoryFaqs]) {
+      const qk = item.question.trim().toLowerCase();
+      if (seen.has(qk)) continue;
+      seen.add(qk);
+      out.push(item);
+    }
+
+    return out.length > 0 ? out : [...GENERIC_PDP_FAQS];
+  }
+
+  return [...GENERIC_PDP_FAQS];
 }

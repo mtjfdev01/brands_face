@@ -8,7 +8,7 @@
  *
  * and remove the inline `const CATEGORY_PAGE_CONFIG = [ ... ]` block there.
  */
-import type { CategoryPageConfig } from "./categoryPages";
+import type { CategoryFaqItem, CategoryPageConfig } from "./categoryPages";
 import type { ProductData } from "@/components/product/ProductInfo";
 import { ART_CARD_PRODUCTS } from "@/data/artCardProducts";
 import { CORRUGATED_PRODUCTS } from "@/data/corrugatedProducts";
@@ -21,7 +21,7 @@ function pdpFromProduct(p: ProductData | undefined) {
   return { title, description, badges, deals, sizes, features, details };
 }
 
-export const CATEGORY_PAGE_CONFIG: CategoryPageConfig[] = [
+const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     {
       category: "art_card",
       cardImage: "/assets/images/categories/art_card.jpeg",
@@ -5611,3 +5611,158 @@ export const CATEGORY_PAGE_CONFIG: CategoryPageConfig[] = [
     },
 
   ];
+
+/** Shared product-level FAQs (applied to every teaser unless `faqs` is set on that product). */
+const PRODUCT_FAQ_STANDARD: CategoryFaqItem[] = [
+  {
+    question: "What is the typical minimum order quantity?",
+    answer:
+      "MOQs depend on board, print, and finishing. Your product card reflects a common starting quantity; we can often adjust for samples, pilots, or split shipments — ask for a quote.",
+  },
+  {
+    question: "How long does production take?",
+    answer:
+      "Timing varies by proof cycles, tooling, and lane. A typical range is shown on the product; we lock dates after artwork approval and deposit.",
+  },
+  {
+    question: "Can I customise size, print, and finish?",
+    answer:
+      "Yes. Share dimensions, artwork, and the unboxing story you want — we align structure, materials, and finishes (foil, emboss, soft-touch, etc.) to your brand.",
+  },
+];
+
+/** Category hub FAQs — merged onto each block by `category` key when the raw entry has no `faqs`. */
+const CATEGORY_FAQ_DEFAULTS: Record<string, CategoryFaqItem[]> = {
+  art_card: [
+    {
+      question: "What is an art card folding carton?",
+      answer:
+        "Art card cartons are paperboard boxes — tuck ends, lock bottoms, sleeves, and more — ideal for retail, subscriptions, and light-to-medium weight products.",
+    },
+    {
+      question: "Do you match brand colours and proofs?",
+      answer:
+        "We work from your brand guidelines, supply chain proofs, and dielines so colour, registration, and scores match what you expect on shelf and in the mail stream.",
+    },
+    {
+      question: "Are sustainable stocks available?",
+      answer:
+        "Yes. We can specify recycled content, FSC-aligned papers, and finishes that suit your sustainability story — tell us your targets and region.",
+    },
+  ],
+  rigid_boxes: [
+    {
+      question: "What makes rigid boxes different from folding cartons?",
+      answer:
+        "Rigid boxes use thicker wrapped board for a premium feel — magnetic closures, drawers, lift-off lids, and inserts are common for luxury and gift programmes.",
+    },
+    {
+      question: "Can you engineer inserts for my product?",
+      answer:
+        "We design foam, paper, and fabric inserts to cradle your SKU, control movement, and elevate unboxing — share product CAD or samples when you quote.",
+    },
+    {
+      question: "What lead times should I plan for?",
+      answer:
+        "Rigid runs usually need more time for wrapping, tooling, and QC. Your product page lists a typical window; rush options may be available by lane.",
+    },
+  ],
+  corrugated_boxes: [
+    {
+      question: "Which flute and board grades do you offer?",
+      answer:
+        "We match E/B/C flutes and kraft or white liners to stacking strength, print, and cost — e-commerce shippers, retail trays, and heavy-duty formats.",
+    },
+    {
+      question: "Can corrugated be printed inside and out?",
+      answer:
+        "Yes — flexo and litho options depending on run length and artwork. We help you pick the best print method for your brand and budget.",
+    },
+    {
+      question: "Do you design for parcel and fulfilment?",
+      answer:
+        "We optimise dimensions for DIM weight, void fill, and damage rates so your shipper survives the last mile.",
+    },
+  ],
+  custom_pouches: [
+    {
+      question: "Which barrier films do you support?",
+      answer:
+        "We specify films for moisture, oxygen, and shelf life goals — matte, gloss, metallised, and recyclable options where the application allows.",
+    },
+    {
+      question: "Can pouches include zippers, valves, or spouts?",
+      answer:
+        "Yes. Tell us your fill process, retail requirements, and consumer use case — we’ll recommend workable features and seal zones.",
+    },
+    {
+      question: "What artwork formats do you need?",
+      answer:
+        "Vector dielines plus layered artwork; we provide templates and review safe zones, barcodes, and nutrition panels when applicable.",
+    },
+  ],
+  carry_bags: [
+    {
+      question: "What handle and paper options exist?",
+      answer:
+        "Twisted, flat, or ribbon handles; kraft, coated, and laminated stocks — we balance load, hand-feel, and print for retail and events.",
+    },
+    {
+      question: "Can bags match our exact brand colours?",
+      answer:
+        "We match Pantone and brand systems with print proofs so bags align with your packaging family.",
+    },
+    {
+      question: "What minimums apply to custom bags?",
+      answer:
+        "MOQs vary by size, print, and lamination. Use the product listing as a guide and request a quote for your artwork and quantity.",
+    },
+  ],
+  kraft_boxes: [
+    {
+      question: "When should I choose kraft board?",
+      answer:
+        "Kraft suits natural, artisan, and e-commerce aesthetics — great with one- or two-colour print and recyclable positioning.",
+    },
+    {
+      question: "Can kraft still look premium?",
+      answer:
+        "Yes — through structure, black or white ink, subtle foils, and uncoated textures that read authentic on shelf.",
+    },
+    {
+      question: "Do you ship flat or assembled?",
+      answer:
+        "Most mailers and cartons ship flat to save freight; we’ll confirm assembly needs for speciality formats.",
+    },
+  ],
+  labels_tags: [
+    {
+      question: "Roll or sheet labels — which do I need?",
+      answer:
+        "Rolls for applicators and high volume; sheets for short runs and hand apply. We align core size, unwind, and adhesive to your line.",
+    },
+    {
+      question: "What finishes are available?",
+      answer:
+        "Matte, gloss, soft-touch, foil, emboss, and variable data — we match durability to product surface and climate.",
+    },
+    {
+      question: "Can you match regulatory and barcode requirements?",
+      answer:
+        "We review legibility, contrast, and placement for retail and regulated categories before production.",
+    },
+  ],
+};
+
+function attachFaqDefaults(raw: CategoryPageConfig[]): CategoryPageConfig[] {
+  return raw.map((c) => ({
+    ...c,
+    faqs: c.faqs?.length ? c.faqs : CATEGORY_FAQ_DEFAULTS[c.category] ?? [],
+    products: c.products.map((p) => ({
+      ...p,
+      faqs: p.faqs?.length ? p.faqs : PRODUCT_FAQ_STANDARD,
+    })),
+  }));
+}
+
+export const CATEGORY_PAGE_CONFIG: CategoryPageConfig[] = attachFaqDefaults(_CATEGORY_PAGE_CONFIG_RAW);

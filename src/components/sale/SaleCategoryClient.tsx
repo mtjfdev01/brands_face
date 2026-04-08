@@ -14,9 +14,11 @@ import CategoryInfoTabs, {
   type CategoryInfoTabPanel,
 } from "@/components/sale/CategoryInfoTabs";
 import CategoryProductFilterTabs from "@/components/sale/CategoryProductFilterTabs";
+import FAQs from "@/components/faqs/FAQs";
 import {
   CATEGORY_TAB_ALL_ID,
   filterTeasersByTab,
+  getCategoryHubFaqs,
   getCategoryPageConfig,
   resolveCategorySlug,
   teasersToIndustryItems,
@@ -174,6 +176,8 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
     return teasersToIndustryItems(filtered);
   }, [config, displayTabId]);
 
+  const categoryFaqs = useMemo(() => (canonical ? getCategoryHubFaqs(canonical) : []), [canonical]);
+
   const categoryTitle = card?.title ?? "Packaging";
 
   return (
@@ -219,6 +223,14 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
         subheading="We don’t just create packaging — we build brand perception. From strategy to design to manufacturing, BrandsFace helps your product stand out, build trust, and convert customers at first glance."
         features={whyFeatures}
       />
+
+      {categoryFaqs.length > 0 && (
+        <FAQs
+          title="Frequently asked questions"
+          subtitle={`Answers about ${categoryTitle} — materials, ordering, and how we work with your brand.`}
+          faqs={categoryFaqs}
+        />
+      )}
 
       <Footer />
     </main>

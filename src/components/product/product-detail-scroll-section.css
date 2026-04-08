@@ -1,0 +1,33 @@
+/**
+ * Product detail scroll panel — forest / mint PDP tokens, refined scrollbar.
+ */
+.product-detail-scroll-section {
+  --pds-forest: #103a2a;
+  --pds-mint: #1dd1a1;
+  --pds-border: rgba(16, 58, 42, 0.12);
+  --pds-muted: rgba(16, 58, 42, 0.68);
+  --pds-soft: rgba(16, 58, 42, 0.5);
+}
+
+.product-detail-scroll-section__scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 209, 161, 0.55) rgba(16, 58, 42, 0.06);
+}
+
+.product-detail-scroll-section__scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.product-detail-scroll-section__scroll::-webkit-scrollbar-track {
+  background: rgba(16, 58, 42, 0.06);
+  border-radius: 999px;
+}
+
+.product-detail-scroll-section__scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(29, 209, 161, 0.75), rgba(16, 58, 42, 0.35));
+  border-radius: 999px;
+}
+
+.product-detail-scroll-section__scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(29, 209, 161, 0.95), rgba(16, 58, 42, 0.45));
+}

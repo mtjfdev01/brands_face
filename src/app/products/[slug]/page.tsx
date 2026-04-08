@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import ProductDetailPage from "@/components/product/ProductDetailPage";
 import type { ProductData } from "@/components/product/ProductInfo";
-import { getProductFromCategoryConfig, getRelatedProductsInCategory } from "@/data/categoryPages";
+import {
+  getMergedFaqsForProductDetail,
+  getProductFromCategoryConfig,
+  getRelatedProductsInCategory,
+} from "@/data/categoryPages";
 
 
 /* ── Fallback product for unknown slugs ── */
@@ -58,6 +62,9 @@ export default async function ProductPage({
     { ...FALLBACK_PRODUCT, slug };
 
   const relatedProducts = getRelatedProductsInCategory(slug);
+  const productFaqs = getMergedFaqsForProductDetail(slug);
 
-  return <ProductDetailPage product={product} relatedProducts={relatedProducts} />;
+  return (
+    <ProductDetailPage product={product} relatedProducts={relatedProducts} productFaqs={productFaqs} />
+  );
 }

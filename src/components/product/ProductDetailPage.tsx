@@ -3,22 +3,25 @@
 import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/home/Footer";
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
-import type { RelatedCategoryProduct } from "@/data/categoryPages";
+import FAQs from "@/components/faqs/FAQs";
+import type { CategoryFaqItem, RelatedCategoryProduct } from "@/data/categoryPages";
 import ProductGallery from "./ProductGallery";
 import ProductInfo, { type ProductData, type QuantityOption } from "./ProductInfo";
 import type { ProductLeadFormsHandle } from "./ProductLeadForms";
 import RelatedProductsCarousel from "./RelatedProductsCarousel";
+import ProductDetailScrollSection from "./ProductDetailScrollSection";
 
 type Props = {
   product: ProductData;
   relatedProducts?: RelatedCategoryProduct[];
+  productFaqs?: CategoryFaqItem[];
 };
 
 /**
  * PDP shell: sticky gallery + scrollable ProductInfo + fixed CTA bar.
  * Visual tokens align with catalog / home (forest #103a2a, mint CTA #1dd1a1).
  */
-export default function ProductDetailPage({ product, relatedProducts = [] }: Props) {
+export default function ProductDetailPage({ product, relatedProducts = [], productFaqs = [] }: Props) {
   const leadFormsRef = useRef<ProductLeadFormsHandle | null>(null);
   const [footerTier, setFooterTier] = useState<QuantityOption>(() => product.quantities[0]);
 
@@ -53,7 +56,19 @@ export default function ProductDetailPage({ product, relatedProducts = [] }: Pro
           </div>
         </div>
 
+        <div className="pb-4">
+          <ProductDetailScrollSection productTitle={product.title} />
+        </div>
+
         <RelatedProductsCarousel items={relatedProducts} />
+
+        {productFaqs.length > 0 && (
+          <FAQs
+            title="Frequently asked questions"
+            subtitle={`About ${product.title} — ordering, customisation, and timelines.`}
+            faqs={productFaqs}
+          />
+        )}
       </main>
 
       <Footer />
