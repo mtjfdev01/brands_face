@@ -3,6 +3,7 @@ import ProductDetailPage from "@/components/product/ProductDetailPage";
 import type { ProductData } from "@/components/product/ProductInfo";
 import {
   getMergedFaqsForProductDetail,
+  getProductDetailBlocks,
   getProductFromCategoryConfig,
   getRelatedProductsInCategory,
 } from "@/data/categoryPages";
@@ -63,8 +64,14 @@ export default async function ProductPage({
 
   const relatedProducts = getRelatedProductsInCategory(slug);
   const productFaqs = getMergedFaqsForProductDetail(slug);
+  const detailBlocks = getProductDetailBlocks(slug);
 
   return (
-    <ProductDetailPage product={product} relatedProducts={relatedProducts} productFaqs={productFaqs} />
+    <ProductDetailPage
+      product={product}
+      relatedProducts={relatedProducts}
+      productFaqs={productFaqs}
+      detailBlocks={detailBlocks}
+    />
   );
 }

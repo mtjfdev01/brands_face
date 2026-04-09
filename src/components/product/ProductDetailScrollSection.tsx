@@ -113,7 +113,7 @@ export default function ProductDetailScrollSection({
       </div>
 
       <p className="relative border-t border-[#103a2a]/8 bg-[#f8fbf9]/80 px-5 py-3 text-center text-[0.7rem] text-[#103a2a]/45 sm:px-7">
-        Placeholder editorial content — replace with SKU-specific copy when ready.
+        Final materials, finishes, and timelines are confirmed on your order and artwork approval.
       </p>
     </section>
   );

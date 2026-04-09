@@ -2,14 +2,12 @@
  * Category page configs: hero assets, tab definitions, and product teasers per category.
  *
  * Paste your `CategoryPageConfig[]` entries here (same shape as in `categoryPages.ts`).
- * When this array is the source of truth, switch `categoryPages.ts` to:
- *
- *   import { CATEGORY_PAGE_CONFIG } from "./categoryPageConfig";
- *
- * and remove the inline `const CATEGORY_PAGE_CONFIG = [ ... ]` block there.
+ * `attachCatalogDefaults` merges category + product FAQ defaults and generates per-SKU
+ * `detailBlocks` for the PDP scroll panel (override any teaser with an explicit `detailBlocks` array).
  */
 import type { CategoryFaqItem, CategoryPageConfig } from "./categoryPages";
 import type { ProductData } from "@/components/product/ProductInfo";
+import { buildProductDetailBlocksForTeaser } from "./productDetailLongDescription";
 import { ART_CARD_PRODUCTS } from "@/data/artCardProducts";
 import { CORRUGATED_PRODUCTS } from "@/data/corrugatedProducts";
 import { KRAFT_PRODUCTS } from "@/data/kraftProducts";
@@ -5754,15 +5752,25 @@ const CATEGORY_FAQ_DEFAULTS: Record<string, CategoryFaqItem[]> = {
   ],
 };
 
-function attachFaqDefaults(raw: CategoryPageConfig[]): CategoryPageConfig[] {
+function attachCatalogDefaults(raw: CategoryPageConfig[]): CategoryPageConfig[] {
   return raw.map((c) => ({
     ...c,
     faqs: c.faqs?.length ? c.faqs : CATEGORY_FAQ_DEFAULTS[c.category] ?? [],
     products: c.products.map((p) => ({
       ...p,
       faqs: p.faqs?.length ? p.faqs : PRODUCT_FAQ_STANDARD,
+      detailBlocks:
+        p.detailBlocks && p.detailBlocks.length > 0
+          ? p.detailBlocks
+          : buildProductDetailBlocksForTeaser({
+              slug: p.slug,
+              title: p.title,
+              subtitle: p.subtitle,
+              heading: p.heading,
+              category: c.category,
+            }),
     })),
   }));
 }
 
-export const CATEGORY_PAGE_CONFIG: CategoryPageConfig[] = attachFaqDefaults(_CATEGORY_PAGE_CONFIG_RAW);
+export const CATEGORY_PAGE_CONFIG: CategoryPageConfig[] = attachCatalogDefaults(_CATEGORY_PAGE_CONFIG_RAW);

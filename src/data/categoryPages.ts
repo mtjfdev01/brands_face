@@ -1,6 +1,8 @@
 import { HOME_CARDS, type HomeCard } from "@/data/homeCards";
 import { CATEGORY_PAGE_CONFIG } from "./categoryPageConfig";
 import type { ProductData } from "@/components/product/ProductInfo";
+import type { ProductDetailBlock } from "./productDetailLongDescription";
+import { DEFAULT_PRODUCT_DETAIL_BLOCKS } from "./productDetailLongDescription";
 
 export { CATEGORY_PAGE_CONFIG };
 
@@ -55,6 +57,11 @@ export type CategoryProductTeaser = {
   pdp?: Omit<ProductData, "slug" | "images" | "quantities" | "deliveryEstimate">;
   /** Product-specific FAQs on `/products/[slug]` (merged with category FAQs). */
   faqs?: CategoryFaqItem[];
+  /**
+   * Long-form PDP “Product details” scroll panel blocks. Filled automatically in
+   * `categoryPageConfig` via `attachCatalogDefaults` unless set explicitly.
+   */
+  detailBlocks?: ProductDetailBlock[];
 };
 
 export type CategoryPageConfig = {
@@ -251,6 +258,19 @@ export function getCategoryHubFaqs(categorySlug: string): CategoryFaqItem[] {
 }
 
 /** PDP: product FAQs first, then category FAQs; de-duplicated by question text. Unknown slugs get generic FAQs. */
+/** PDP scroll panel: per-product detail blocks from config (unknown slug → generic default). */
+export function getProductDetailBlocks(slug: string): ProductDetailBlock[] {
+  const key = slug.trim();
+  if (!key) return DEFAULT_PRODUCT_DETAIL_BLOCKS;
+
+  for (const c of CATEGORY_PAGE_CONFIG) {
+    const p = c.products.find((x) => x.slug === key);
+    if (p?.detailBlocks?.length) return p.detailBlocks;
+  }
+
+  return DEFAULT_PRODUCT_DETAIL_BLOCKS;
+}
+
 export function getMergedFaqsForProductDetail(slug: string): CategoryFaqItem[] {
   const key = slug.trim();
   if (!key) return [...GENERIC_PDP_FAQS];

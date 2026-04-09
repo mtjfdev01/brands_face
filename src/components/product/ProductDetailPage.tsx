@@ -5,6 +5,7 @@ import Footer from "@/components/home/Footer";
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import FAQs from "@/components/faqs/FAQs";
 import type { CategoryFaqItem, RelatedCategoryProduct } from "@/data/categoryPages";
+import type { ProductDetailBlock } from "@/data/productDetailLongDescription";
 import ProductGallery from "./ProductGallery";
 import ProductInfo, { type ProductData, type QuantityOption } from "./ProductInfo";
 import type { ProductLeadFormsHandle } from "./ProductLeadForms";
@@ -15,13 +16,19 @@ type Props = {
   product: ProductData;
   relatedProducts?: RelatedCategoryProduct[];
   productFaqs?: CategoryFaqItem[];
+  detailBlocks?: ProductDetailBlock[];
 };
 
 /**
  * PDP shell: sticky gallery + scrollable ProductInfo + fixed CTA bar.
  * Visual tokens align with catalog / home (forest #103a2a, mint CTA #1dd1a1).
  */
-export default function ProductDetailPage({ product, relatedProducts = [], productFaqs = [] }: Props) {
+export default function ProductDetailPage({
+  product,
+  relatedProducts = [],
+  productFaqs = [],
+  detailBlocks,
+}: Props) {
   const leadFormsRef = useRef<ProductLeadFormsHandle | null>(null);
   const [footerTier, setFooterTier] = useState<QuantityOption>(() => product.quantities[0]);
 
@@ -57,7 +64,7 @@ export default function ProductDetailPage({ product, relatedProducts = [], produ
         </div>
 
         <div className="pb-4">
-          <ProductDetailScrollSection productTitle={product.title} />
+          <ProductDetailScrollSection productTitle={product.title} blocks={detailBlocks} />
         </div>
 
         <RelatedProductsCarousel items={relatedProducts} />
