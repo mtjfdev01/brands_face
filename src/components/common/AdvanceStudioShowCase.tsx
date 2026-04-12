@@ -28,7 +28,7 @@ export default function AdvanceStudioShowCase() {
           <AnimateOnScroll animation="slide-left" className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-xs sm:text-sm text-white/70 tracking-[0.16em] uppercase mb-4">
               <span className="w-8 h-px bg-[#57d7aa]" />
-              Smart Packaging Studio
+              Smart Packaging Studio <small className="text-xs text-white/70"> (Coming Soon...)</small>
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.08] tracking-tight">
               Build your box in{" "}
@@ -37,7 +37,7 @@ export default function AdvanceStudioShowCase() {
               with an advanced 3D workflow
             </h2>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            {/* <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={handleOpenStudio}
                 className="group relative inline-flex items-center gap-2 bg-white text-[#123b2b] text-sm font-semibold px-7 py-3.5 rounded-full shadow-lg hover:shadow-2xl transition-all"
@@ -54,7 +54,7 @@ export default function AdvanceStudioShowCase() {
               >
                 Open studio preview
               </button>
-            </div>
+            </div> */}
 
             <AnimateOnScroll animation="slide-right" stagger as="ul" className="space-y-3 pt-8">
               {FEATURES.map((feature) => (

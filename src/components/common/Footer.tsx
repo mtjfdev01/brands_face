@@ -134,38 +134,6 @@ export default function Footer() {
                 packaging that tells your story.
               </p>
 
-              {/* Newsletter */}
-              <div className="mt-8">
-                <h4 className="text-sm font-semibold text-white mb-3">
-                  Subscribe to our newsletter
-                </h4>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setEmail("");
-                  }}
-                  className="flex gap-2"
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    required
-                    className="flex-1 min-w-0 bg-white/8 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white placeholder:text-gray-500 outline-none focus:border-[var(--color-brand-accent)] focus:ring-1 focus:ring-[var(--color-brand-accent)]/50 transition-all"
-                  />
-                  <button
-                    type="submit"
-                    className="shrink-0 bg-[var(--color-brand-accent)] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:brightness-110 transition-all"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-                <p className="mt-2 text-xs text-gray-500">
-                  Get 15% off your first order when you sign up.
-                </p>
-              </div>
-
               {/* Social links */}
               <div className="mt-6 flex items-center gap-2.5">
                 <SocialIcon href="#" label="Facebook">

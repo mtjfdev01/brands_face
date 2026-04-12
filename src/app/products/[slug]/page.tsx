@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ProductDetailPage from "@/components/product/ProductDetailPage";
 import type { ProductData } from "@/components/product/ProductInfo";
 import {
+  getCategoryProductBackContext,
   getMergedFaqsForProductDetail,
   getProductDetailBlocks,
   getProductFromCategoryConfig,
@@ -54,8 +55,10 @@ export async function generateMetadata({
 /* ── Page ── */
 export default async function ProductPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams?: Record<string, string | string[] | undefined>;
 }) {
   const { slug } = await params;
   const product =
@@ -66,12 +69,19 @@ export default async function ProductPage({
   const productFaqs = getMergedFaqsForProductDetail(slug);
   const detailBlocks = getProductDetailBlocks(slug);
 
+  const rawFromTab = searchParams?.fromTab;
+  const fromTabQuery =
+    typeof rawFromTab === "string" ? rawFromTab : Array.isArray(rawFromTab) ? rawFromTab[0] : undefined;
+  const categoryBack = getCategoryProductBackContext(slug, fromTabQuery);
+
   return (
     <ProductDetailPage
       product={product}
       relatedProducts={relatedProducts}
       productFaqs={productFaqs}
       detailBlocks={detailBlocks}
+      categoryBack={categoryBack}
+      preserveFromTabForRelated={categoryBack?.tabId}
     />
   );
 }

@@ -669,9 +669,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/premium cosmetic boxes.jpg",
           detailImages: [
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/Product information_ Applicable people_ general..jpg",
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/Sturdy specialty paper construction with a..jpg",
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/Take a peek at our cutting-edge custom mailer..jpg",
+              "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/Product info.jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/Sturdy specialty.jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/Take a peek at our.jpg",
           ],
           heading: "Use case",
           title: "Cosmetics Gift Set Rigid Boxes",
@@ -684,9 +684,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/download (5).jpg",
           detailImages: [
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/Product information_ Applicable people_ general..jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/Product information.jpg",
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/Tiktok Hit Product Women s Gift Makeup.jpg",
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/Unveil the allure of this glamorous gift box, a..jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/Unveil the allure of this glamorous gift box, a….jpg",
           ],
           heading: "Use case",
           title: "Makeup Kit Rigid Boxes",
@@ -701,7 +701,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           detailImages: [
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Jewelry Rigid Boxes/Jewelry boxes set, custom white jewellery box - Jewelry packaging sets.jpg",
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Jewelry Rigid Boxes/jewelry packaging box can print logo.jpg",
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Jewelry Rigid Boxes/Nopeampi toimitus_ Parempi palvelu.jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Jewelry Rigid Boxes/Nopeampi toimitus_ Parempi palvelu_.jpg",
           ],
           heading: "Use case",
           title: "Jewelry Rigid Boxes",
@@ -714,9 +714,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/download (5).jpg",
           detailImages: [
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/High-end premium rigid candle boxes with durable..jpg",
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/Low MOQ Customized Blue Clear Heavy Base Glass..jpg",
-            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/Order custom rigid candle boxes for elegant..jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/High-end premium rigid candle boxes with durable….jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/Low MOQ Customized Blue Clear Heavy Base Glass….jpg",
+            "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/Order custom rigid candle boxes for elegant….jpg",
           ],
           heading: "Use case",
           title: "Candle Rigid Boxes",
@@ -789,9 +789,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/Box Tray.jpg",
           detailImages: [
-            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/Custom Mini Order Black Cardboard Book Magnet Box..jpg",
+            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/Custom Mini Order Black Cardboard Book Magnet Box….jpg",
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/Rigid Boxes With Inserts _ Rigid Packaging Boxes.jpg",
-            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/????????????? ???????.jpg",
+            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/Производитель коробок.jpg",
           ],
           heading: "Premium",
           title: "Foam Insert Rigid Boxes",
@@ -806,7 +806,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           detailImages: [
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Velvet Insert Rigid Boxes/download (5).jpg",
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Velvet Insert Rigid Boxes/Emerald Velvet Wedding Invitations Box, Green Velvet Box for 5x7_ Party Invitations, Gold Foil Monogram, Keepsake, Personalized Photo Box.jpg",
-            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Velvet Insert Rigid Boxes/This premium rigid gift box is crafted from..jpg",
+            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Velvet Insert Rigid Boxes/This premium rigid gift box is crafted from….jpg",
           ],
           heading: "Premium",
           title: "Velvet Insert Rigid Boxes",
@@ -821,7 +821,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           detailImages: [
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/3 Piece Rigid Style Lift Off Lid.jpg",
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/Custom Rigid Boxes _ Premium Packaging for Luxury Products.jpg",
-            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/Justessence Perfume on Packaging of the World..jpg",
+            "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/Justessence Perfume on Packaging of the World….jpg",
           ],
           heading: "Premium",
           title: "Divider Insert Rigid Boxes",
@@ -1675,11 +1675,12 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "pouch-pillow",
           tabId: "core_products",
-          cardImage: "/assets/images/categories/Pouches/Pouches/Core Product Pages/Pillow Pouches/OFFICE Café designed by ‘FROM GRAPHIC’ Coffee break #packaging PD.jpg",
+          cardImage: "/assets/images/categories/Pouches/Pouches/Core Product Pages/Pillow Pouches/OFFICE Cafe.jpg",
           detailImages: [
                     "/assets/images/categories/Pouches/Pouches/Core Product Pages/Pillow Pouches/OIP (1).webp",
                     "/assets/images/categories/Pouches/Pouches/Core Product Pages/Pillow Pouches/OIP (2).webp",
                     "/assets/images/categories/Pouches/Pouches/Core Product Pages/Pillow Pouches/OIP.webp"
+                    
           ],
           heading: "Core",
           title: "Pillow Pouches",
@@ -2530,7 +2531,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "pouch-eco-friendly",
           tabId: "premium_variations",
-          cardImage: "/assets/images/categories/Pouches/Pouches/Premium  Variation Pages/Eco-Friendly Pouches/12_47US $ 35% OFF_50pcs Wholesale Brown Kraft Paper Packaging Ziplock Bag Doypack Reusable Sealing All-purpose Food Storage .jpg",
+          cardImage: "/assets/images/categories/Pouches/Pouches/Premium  Variation Pages/Eco-Friendly Pouches/All-purpose Food Storage.jpg",
           detailImages: [
                     "/assets/images/categories/Pouches/Pouches/Premium  Variation Pages/Eco-Friendly Pouches/Custom Logo Bag Pouch Stand Up Zipper Pouch Aluminum Foil Pouch Food Packaging Bag - Buy Bag Pouches,Aluminum Foil Pouch,Foo.jpg",
                     "/assets/images/categories/Pouches/Pouches/Premium  Variation Pages/Eco-Friendly Pouches/Custom Printed Food Packaging Kraft Paper Stand Up Pouch Bag.jpg",
@@ -2685,7 +2686,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage: "/assets/images/categories/Carry Bags/Core Product Pages/Kraft Carry Bags/75 Pack Brown Kraft Gift Bags With Handles, Natural Plain Kraft Shopping Bags___.jpg",
           detailImages: [
                     "/assets/images/categories/Carry Bags/Core Product Pages/Kraft Carry Bags/df678f01cf01ac4cd774054eec3f60a3.jpg",
-                    "/assets/images/categories/Carry Bags/Core Product Pages/Kraft Carry Bags/The Garden Social 🥂🪴__Branding package including visual identity, digital assets & printed assets___#eventbranding #nature.jpg",
+                    "/assets/images/categories/Carry Bags/Core Product Pages/Kraft Carry Bags/The Garden Socia.jpg",
                     "/assets/images/categories/Carry Bags/Core Product Pages/Kraft Carry Bags/Wine Bags Design Projects __ Photos, videos, logos, illustrations and branding.jpg"
           ],
           heading: "Core",
@@ -2774,9 +2775,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           tabId: "core_products",
           cardImage: "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/Fashion Paper bag Rope Handle (Mixed Colors_Mixed Patterns) Model Paper-bag-small-OJ-1304-1-00h-Sellzone.jpg",
           detailImages: [
-                    "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/Recent Paper bag design 🥰 __#explore #explorepage✨ #explorepage #paperbag #design #delightcreativity (1).jpg",
-                    "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/Recent Paper bag design 🥰 __#explore #explorepage✨ #explorepage #paperbag #design #delightcreativity (2).jpg",
-                    "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/Recent Paper bag design 🥰 __#explore #explorepage✨ #explorepage #paperbag #design #delightcreativity.jpg"
+                    "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/delightcreativity (1).jpg",
+                    "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/delightcreativity (2).jpg",
+                    "/assets/images/categories/Carry Bags/Core Product Pages/Rope Handle Carry Bags/delightcreativity.jpg"
           ],
           heading: "Core",
           title: "Rope Handle Carry Bags",
@@ -2907,7 +2908,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "carry-bag-twisted-handle",
           tabId: "core_products",
-          cardImage: "/assets/images/categories/Carry Bags/Core Product Pages/Twisted Handle Carry Bags/#10 Small Petite Paper Twist Handle Bag Brown 275 x 205 x 110mm 250 (Case) - Default.jpg",
+          cardImage: "/assets/images/categories/Carry Bags/Core Product Pages/Twisted Handle Carry Bags/Petite Paper Twist Handle Bag .jpg",
           detailImages: [
                     "/assets/images/categories/Carry Bags/Core Product Pages/Twisted Handle Carry Bags/250 To-Go Bags.jpg",
                     "/assets/images/categories/Carry Bags/Core Product Pages/Twisted Handle Carry Bags/Bagcraft 12_ x 9_ x 16_ Natural Kraft Paper Shopping Bag with Handles - _Meals to Go_ Printing - 200_Bundle.jpg",
@@ -3226,7 +3227,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           detailImages: [
                     "/assets/images/categories/Carry Bags/Use-Case Based Pages/Skincare Carry Bags/download (6).jpg",
                     "/assets/images/categories/Carry Bags/Use-Case Based Pages/Skincare Carry Bags/Paper bag Packaging Design Beauty Salon.jpg",
-                    "/assets/images/categories/Carry Bags/Use-Case Based Pages/Skincare Carry Bags/Recent Paper bag design 🥰 __#explore #explorepage✨ #explorepage #paperbag.jpg"
+                    "/assets/images/categories/Carry Bags/Use-Case Based Pages/Skincare Carry Bags/Recent Paper bag design.jpg"
           ],
           heading: "Use case",
           title: "Skincare Carry Bags",
@@ -4323,7 +4324,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
             "/assets/images/categories/Kraft boxes/Premium  Variation Pages/Eco-Friendly Kraft Boxes/Cajas Cubo Carton Packaging Embalaje Kraft 10x10x10 Pack X25 Kraft.jpg",
           detailImages: [
             "/assets/images/categories/Kraft boxes/Premium  Variation Pages/Eco-Friendly Kraft Boxes/Eco-Friendly Custom Kraft Box Packaging Inspiration.jpg",
-            "/assets/images/categories/Kraft boxes/Premium  Variation Pages/Eco-Friendly Kraft Boxes/Kraft Eco Boxes_#CustomPackaging #PackagingDesign #BoxDesign #CreativePackaging #UniquePackaging #EcoFriendlyPackaging #Bran.jpg",
+            "/assets/images/categories/Kraft boxes/Premium  Variation Pages/Eco-Friendly Kraft Boxes/Kraft Eco.jpg",
             "/assets/images/categories/Kraft boxes/Premium  Variation Pages/Eco-Friendly Kraft Boxes/Unbox Sustainability_ Kraft Box Packaging That Stands Out.jpg",
           ],
           heading: "Premium",
@@ -4441,9 +4442,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "labels-custom-product-labels",
           tabId: "core_products",
-          cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Custom Product Labels/⚡ Boost Your Look — 30% OFF Custom Stickers!_Great for ecommerce & packaging__Order now! #StickerPromo.jpg",
+          cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Custom Product Labels/StickerPromo.jpg",
           detailImages: [
-                    "/assets/images/categories/Labels & Tags/Core Product Pages/Custom Product Labels/🎁 Custom Stickers for Your Business – 20% OFF!_Boost your brand with custom stickers at a discounted price!_Shop today and .jpg",
+                    "/assets/images/categories/Labels & Tags/Core Product Pages/Custom Product Labels/today and.jpg",
                     "/assets/images/categories/Labels & Tags/Core Product Pages/Custom Product Labels/download (5).jpg"
           ],
           heading: "Core",
@@ -4665,10 +4666,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "labels-roll-labels",
           tabId: "core_products",
-          cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/🌟 Waterproof Vinyl Stickers for Superior Packaging! 🌟 Looking for durable and high-quality stickers_ Our custom printed, s.jpg",
+          cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/Custom Self-adhesive Metal Aluminum Sticker Embossed Bottle Logo Wine Label - Buy Embossed Metal Sticker,Aluminum Sticker La.jpg",
           detailImages: [
-                    "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/🎨 Elevate Your Look — 20% OFF Custom Stickers!_Perfect for packaging, marketing & more__Shop now! #BrandStickers.jpg",
-                    "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/Custom Self-adhesive Metal Aluminum Sticker Embossed Bottle Logo Wine Label - Buy Embossed Metal Sticker,Aluminum Sticker La.jpg",
+                    "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/BrandStickers.jpg",
+                    "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/Our custom printeds.jpg",
                     "/assets/images/categories/Labels & Tags/Core Product Pages/Roll Labels/Custom Square Roll Labels.jpg"
           ],
           heading: "Core",
@@ -4710,7 +4711,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "labels-sheet-labels",
           tabId: "core_products",
-          cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Sheet Labels/🎁 Special Sticker Sale_ 20% OFF!_Get custom stickers for your business or event at a discounted price!_Order today! #Sticke.jpg",
+          cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Sheet Labels/test_1.jpg",
           detailImages: [
                     "/assets/images/categories/Labels & Tags/Core Product Pages/Sheet Labels/MiroCaro 4_ x 6_ Shipping Labels for Thermal Printer, Fan-Fold Postage Thermal Labels, Mailing Labels for Packages (4 Stacks.jpg",
                     "/assets/images/categories/Labels & Tags/Core Product Pages/Sheet Labels/v2croft 144 PCS Minimalist Laundry Room Labels Set, Water Resistant Stickers,Water_Oil Resistant Stickers for Laundry Room, .jpg"
@@ -5249,9 +5250,9 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "labels-cosmetic-labels",
           tabId: "use_case",
-          cardImage: "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Cosmetic Labels/🎁 Custom Stickers for Your Business – 20% OFF!_Boost your brand with custom stickers at a discounted price!_Shop today and .jpg",
+          cardImage: "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Cosmetic Labels/Shop today and .jpg",
           detailImages: [
-                    "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Cosmetic Labels/🎨 Elevate Your Look — 20% OFF Custom Stickers!_Perfect for packaging, marketing & more__Shop now! #BrandStickers.jpg",
+                    "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Cosmetic Labels/BrandStickers.jpg",
                     "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Cosmetic Labels/Black & Gold Floral 4 OZ Cosmetic Bottle Label (Featuring a floral design in.jpg",
                     "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Cosmetic Labels/Neutral Sage Green 2 OZ Dropper Bottle Wrap Label.jpg"
           ],
@@ -5429,10 +5430,12 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         {
           slug: "labels-perfume-labels",
           tabId: "use_case",
-          cardImage: "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Perfume Labels/#graphic _#label _#labeldesign _#perfumebranded _#everyone _#highlighted.jpg",
+          cardImage: "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Perfume Labels/graphic label.jpg",
           detailImages: [
                     "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Perfume Labels/Luxury Perfume Bottle Labels, Perfume Label Template, Etiquette Parfum, Custom Perfume Label Design, Editable Cologne Labels.jpg",
-                    "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Perfume Labels/Screenshot 2026-04-03 104511.jpg"
+                    "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Perfume Labels/Screenshot 2026-04-03 104511.jpg",
+                    "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Perfume Labels/private label.gif"
+
           ],
           heading: "Use case",
           title: "Perfume Labels",

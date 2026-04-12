@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        'light-theme': 'var(--color-light-theme)',
         kraft: '#c4a265',
         panel: '#1e1e2e',
         surface: '#2a2a3c',

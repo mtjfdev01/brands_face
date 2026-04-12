@@ -28,7 +28,7 @@ export default function ProductDetailScrollSection({
       <div className="relative border-b border-[#103a2a]/10 bg-gradient-to-r from-[#103a2a] via-[#103a2a] to-[#0f3428] px-5 py-5 sm:px-7 sm:py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/55">Deep dive</p>
+            {/* <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/55">Deep dive</p> */}
             <h2
               id="product-detail-scroll-heading"
               className="mt-1.5 font-serif text-2xl font-semibold tracking-tight text-white sm:text-[1.65rem]"

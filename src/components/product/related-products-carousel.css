@@ -1,10 +1,10 @@
-/* Smoother coverflow repositioning (Swiper sets transform on slides) */
-.related-products-coverflow .swiper-slide {
+/* Smooth horizontal slide transitions */
+.related-products-carousel .swiper-slide {
   transition-property: transform, opacity;
   transition-duration: 0.65s;
   transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.related-products-coverflow .swiper-wrapper {
+.related-products-carousel .swiper-wrapper {
   transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
 }

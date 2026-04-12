@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import SaleCategoryClient from "@/components/sale/SaleCategoryClient";
 import { isValidCategorySlug, resolveCategorySlug } from "@/data/categoryPages";
 import { HOME_CARDS } from "@/data/homeCards";
@@ -35,5 +36,9 @@ export default async function CategoryHubPage({
     notFound();
   }
   const canonical = resolveCategorySlug(category)!;
-  return <SaleCategoryClient categorySlug={canonical} />;
+  return (
+    <Suspense fallback={null}>
+      <SaleCategoryClient categorySlug={canonical} />
+    </Suspense>
+  );
 }

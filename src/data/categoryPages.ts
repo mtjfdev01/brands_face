@@ -1,4 +1,5 @@
 import { HOME_CARDS, type HomeCard } from "@/data/homeCards";
+import { categoryHubPath } from "@/lib/routes";
 import { CATEGORY_PAGE_CONFIG } from "./categoryPageConfig";
 import type { ProductData } from "@/components/product/ProductInfo";
 import type { ProductDetailBlock } from "./productDetailLongDescription";
@@ -147,6 +148,48 @@ export function getCategoryPageConfig(categorySlug: string): CategoryPageConfig 
   return card ? configFromHomeCard(card) : undefined;
 }
 
+/** Home-card `category` segment for a catalog product slug, if defined in `CATEGORY_PAGE_CONFIG`. */
+export function getCategorySlugForProduct(productSlug: string): string | undefined {
+  const key = productSlug.trim();
+  if (!key) return undefined;
+  const cfg = CATEGORY_PAGE_CONFIG.find((c) => c.products.some((p) => p.slug === key));
+  return cfg?.category;
+}
+
+export type CategoryProductBackContext = {
+  href: string;
+  /** Tab pill label (e.g. “Premium Variations”). */
+  label: string;
+  tabId: string;
+  /** Home-card title for the category (e.g. “Rigid Boxes”) — used in PDP back copy. */
+  categoryTitle: string;
+};
+
+/**
+ * When PDP was opened with `?fromTab=…`, resolve a safe “back to category hub” link and tab label.
+ * Returns undefined if the slug or tab is not part of the same configured category.
+ */
+export function getCategoryProductBackContext(
+  productSlug: string,
+  fromTabRaw: string | undefined,
+): CategoryProductBackContext | undefined {
+  const tabId = fromTabRaw?.trim();
+  if (!tabId) return undefined;
+  const category = getCategorySlugForProduct(productSlug);
+  if (!category) return undefined;
+  const cfg = getCategoryPageConfig(category);
+  const tab = cfg?.tabs?.find((t) => t.id === tabId);
+  if (!tab) return undefined;
+  const card = HOME_CARDS.find((c) => c.category === category);
+  const categoryTitle = card?.title ?? category;
+  return {
+    href: `${categoryHubPath(category)}?tab=${encodeURIComponent(tabId)}`,
+    label: tab.label,
+    tabId,
+    categoryTitle,
+  };
+}
+
 /** Canonical slug as stored in `HOME_CARDS` (correct casing). */
 export function resolveCategorySlug(categorySlug: string): string | undefined {
   const key = categorySlug.trim().toLowerCase();
@@ -194,14 +237,140 @@ function encodePublicPath(src: string): string {
   );
 }
 
-export function teasersToIndustryItems(teasers: CategoryProductTeaser[]) {
+/** PDP URL with optional tab context so “back to category” can restore the active filter. */
+export function productDetailHref(slug: string, fromTab?: string): string {
+  const base = `/products/${slug}`;
+  if (!fromTab) return base;
+  return `${base}?fromTab=${encodeURIComponent(fromTab)}`;
+}
+
+export function teasersToIndustryItems(teasers: CategoryProductTeaser[], options?: { fromTab?: string }) {
+  const fromTab = options?.fromTab;
   return teasers.map((p, i) => ({
     id: `${p.slug}-${i}`,
     title: `${p.title}`,
     description: p.subtitle,
     imageSrc: encodePublicPath(p.cardImage),
-    href: `/products/${p.slug}`,
+    href: productDetailHref(p.slug, fromTab),
   }));
+}
+
+/** Navbar mega menu: the three product filter tabs (must match `CategoryPageConfig.tabs` ids). */
+export const NAV_MEGA_MENU_TAB_IDS = ["core_products", "use_case", "premium_variations"] as const;
+export type NavMegaMenuTabId = (typeof NAV_MEGA_MENU_TAB_IDS)[number];
+
+const NAV_MEGA_MENU_TAB_LABELS: Record<NavMegaMenuTabId, string> = {
+  core_products: "Core",
+  use_case: "Use Case Based",
+  premium_variations: "Premium Variations",
+};
+
+export type NavMegaMenuProductLink = {
+  slug: string;
+  title: string;
+  href: string;
+};
+
+export type NavMegaMenuColumn = {
+  tabId: NavMegaMenuTabId;
+  label: string;
+  categoryHrefWithTab: string;
+  /** Every product in this tab for the category (title + PDP link). */
+  products: NavMegaMenuProductLink[];
+};
+
+export type NavMegaMenuCategory = {
+  category: string;
+  title: string;
+  seeAllHref: string;
+  columns: NavMegaMenuColumn[];
+};
+
+/**
+ * Data for the desktop “Product Categories” mega menu: each home category, three columns
+ * (Core / Use case / Premium), all product titles per column.
+ */
+export function getNavMegaMenuCategories(): NavMegaMenuCategory[] {
+  return HOME_CARDS.map((card) => {
+    const cfg = getCategoryPageConfig(card.category);
+    const base = `/category/${card.category}`;
+    if (!cfg?.tabs?.length) {
+      return {
+        category: card.category,
+        title: card.title,
+        seeAllHref: base,
+        columns: [],
+      };
+    }
+    const columns: NavMegaMenuColumn[] = NAV_MEGA_MENU_TAB_IDS.map((tabId) => {
+      const products = cfg.products
+        .filter((p) => p.tabId === tabId)
+        .map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          href: productDetailHref(p.slug, tabId),
+        }));
+      return {
+        tabId,
+        label: NAV_MEGA_MENU_TAB_LABELS[tabId],
+        categoryHrefWithTab: `${base}?tab=${encodeURIComponent(tabId)}`,
+        products,
+      };
+    });
+    return {
+      category: card.category,
+      title: card.title,
+      seeAllHref: base,
+      columns,
+    };
+  });
+}
+
+/** Navbar / global search: category hub + every product teaser from resolved category config (`categoryPageConfig` + `HOME_CARDS`). */
+export type NavSearchCategoryHit = {
+  kind: "category";
+  title: string;
+  category: string;
+  href: string;
+};
+
+export type NavSearchProductHit = {
+  kind: "product";
+  title: string;
+  slug: string;
+  href: string;
+  categoryTitle: string;
+};
+
+export type NavSearchResult = NavSearchCategoryHit | NavSearchProductHit;
+
+export function getCatalogSearchIndex(): NavSearchResult[] {
+  const out: NavSearchResult[] = [];
+  const seenProductSlugs = new Set<string>();
+
+  for (const card of HOME_CARDS) {
+    const cfg = getCategoryPageConfig(card.category);
+    out.push({
+      kind: "category",
+      title: card.title,
+      category: card.category,
+      href: categoryHubPath(card.category),
+    });
+    if (!cfg?.products?.length) continue;
+    for (const p of cfg.products) {
+      if (seenProductSlugs.has(p.slug)) continue;
+      seenProductSlugs.add(p.slug);
+      const fromTab = p.tabId && p.tabId !== "all" ? p.tabId : undefined;
+      out.push({
+        kind: "product",
+        title: p.title,
+        slug: p.slug,
+        href: productDetailHref(p.slug, fromTab),
+        categoryTitle: card.title,
+      });
+    }
+  }
+  return out;
 }
 
 /** PDP “related” strip: every teaser in the same `CATEGORY_PAGE_CONFIG` block (all tabs), excluding the current slug. */

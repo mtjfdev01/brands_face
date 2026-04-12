@@ -1,11 +1,13 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Hero from "@/components/hero/Hero";
 import IndustryPackagingSlider from "@/components/common/IndustryPackagingSlider";
 import WhyChooseUs, { type FeatureCard } from "@/components/common/WhyChooseUs";
 import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
 import Footer from "@/components/home/Footer";
+import QuickQuoteHeroSection from "@/components/home/QuickQuoteHeroSection";
 import CategoryInfoTabs, {
   InfoTabIconLayers,
   InfoTabIconPuzzle,
@@ -118,6 +120,9 @@ type Props = {
 };
 
 export default function SaleCategoryClient({ categorySlug }: Props) {
+  const searchParams = useSearchParams();
+  const tabFromUrl = searchParams.get("tab");
+
   const canonical = resolveCategorySlug(categorySlug);
   const card = HOME_CARDS.find((c) => c.category === canonical);
   const config = canonical ? getCategoryPageConfig(canonical) : undefined;
@@ -140,11 +145,22 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
   const hasProductTabs = Boolean(config?.tabs && config.tabs.length > 0);
 
   useEffect(() => {
+    const tabs = config?.tabs ?? [];
+    if (
+      tabFromUrl &&
+      tabs.length > 0 &&
+      tabs.some((t) => t.id === tabFromUrl)
+    ) {
+      setActiveTabId(tabFromUrl);
+      setDisplayTabId(tabFromUrl);
+      setPanelVisible(true);
+      return;
+    }
     const initial = defaultTabId;
     setActiveTabId(initial);
     setDisplayTabId(initial);
     setPanelVisible(true);
-  }, [canonical, defaultTabId]);
+  }, [canonical, defaultTabId, config?.tabs, tabFromUrl]);
 
   useEffect(() => {
     if (!hasProductTabs) return;
@@ -173,8 +189,9 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
       return teasersToIndustryItems(config.products);
     }
     const filtered = filterTeasersByTab(config.products, config.tabs, displayTabId);
-    return teasersToIndustryItems(filtered);
-  }, [config, displayTabId]);
+    const preserveTabInProductLinks = displayTabId !== defaultTabId;
+    return teasersToIndustryItems(filtered, preserveTabInProductLinks ? { fromTab: displayTabId } : undefined);
+  }, [config, defaultTabId, displayTabId]);
 
   const categoryFaqs = useMemo(() => (canonical ? getCategoryHubFaqs(canonical) : []), [canonical]);
 
@@ -231,6 +248,14 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
           faqs={categoryFaqs}
         />
       )}
+
+      <QuickQuoteHeroSection
+        backgroundSrc="/assets/images/quick_quote.jpg"
+        formAlign="right"
+        layout="band"
+        hangOnTop
+        className="border-t border-[#103a2a]/10"
+      />
 
       <Footer />
     </main>

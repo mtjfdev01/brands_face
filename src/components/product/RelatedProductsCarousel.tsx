@@ -4,16 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import type { RelatedCategoryProduct } from "@/data/categoryPages";
+import { productDetailHref, type RelatedCategoryProduct } from "@/data/categoryPages";
 
 import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "./related-products-coverflow.css";
+import "./related-products-carousel.css";
 
 type Props = {
   items: RelatedCategoryProduct[];
+  /** Keep `?fromTab=` when browsing related products from a non-default category filter. */
+  preserveFromTab?: string;
 };
 
 function ChevronLeft({ className }: { className?: string }) {
@@ -52,7 +52,7 @@ const navBtnClass =
   "active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1dd1a1]/70 focus-visible:ring-offset-2 " +
   "disabled:pointer-events-none disabled:opacity-25 motion-reduce:transition-none";
 
-export default function RelatedProductsCarousel({ items }: Props) {
+export default function RelatedProductsCarousel({ items, preserveFromTab }: Props) {
   const swiperRef = useRef<SwiperType | null>(null);
 
   const goPrev = useCallback(() => {
@@ -99,27 +99,17 @@ export default function RelatedProductsCarousel({ items }: Props) {
           </button>
 
           <Swiper
-            className="related-products-coverflow !overflow-visible py-4 md:py-6"
-            modules={[EffectCoverflow]}
-            effect="coverflow"
+            className="related-products-carousel !overflow-visible py-4 md:py-6"
             grabCursor
             centeredSlides
+            centerInsufficientSlides
             slidesPerView="auto"
             speed={680}
             resistanceRatio={0.55}
             loop={loop}
             loopAdditionalSlides={3}
-            watchSlidesProgress
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
-            }}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 340,
-              scale: 0.68,
-              modifier: 1.05,
-              slideShadows: false,
             }}
             breakpoints={{
               0: { spaceBetween: 10 },
@@ -133,18 +123,21 @@ export default function RelatedProductsCarousel({ items }: Props) {
                 className="!flex !h-auto !w-[min(68vw,188px)] justify-center sm:!w-[208px] md:!w-[232px] lg:!w-[248px]"
               >
                 <Link
-                  href={`/products/${item.slug}`}
-                  className="block w-full overflow-hidden rounded-3xl bg-gray-100 shadow-md ring-1 ring-[#103a2a]/10 transition-[transform,box-shadow,ring-color] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:z-10 hover:scale-[1.03] hover:shadow-xl hover:ring-[#1dd1a1]/25 motion-reduce:transition-none motion-reduce:hover:scale-100"
+                  href={productDetailHref(item.slug, preserveFromTab)}
+                  className="flex w-full flex-col overflow-hidden rounded-3xl bg-gray-100 shadow-md ring-1 ring-[#103a2a]/10 transition-[transform,box-shadow,ring-color] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:z-10 hover:scale-[1.03] hover:shadow-xl hover:ring-[#1dd1a1]/25 motion-reduce:transition-none motion-reduce:hover:scale-100"
                 >
-                  <div className="relative aspect-square w-full">
+                  <div className="relative aspect-square w-full shrink-0 overflow-hidden">
                     <Image
                       src={item.imageSrc}
-                      alt={item.title}
+                      alt=""
                       fill
                       className="object-cover transition-transform duration-500 ease-out motion-reduce:transition-none"
                       sizes="(max-width: 640px) 68vw, 248px"
                     />
                   </div>
+                  <p className="line-clamp-2 min-h-[2.5rem] bg-white px-2 py-2 text-center text-[11px] font-semibold leading-snug text-[#103a2a] sm:min-h-[2.75rem] sm:text-xs md:text-sm">
+                    {item.title}
+                  </p>
                 </Link>
               </SwiperSlide>
             ))}

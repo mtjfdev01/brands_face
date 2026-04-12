@@ -31,6 +31,8 @@
   /* Page */
   --color-page-bg: #ffffff;
   --color-page-text: #1a1a1a;
+  /* Light panels (e.g. Product Categories mega menu) */
+  --color-light-theme: #f8fbf9;
 
   /* Studio (dark theme) */
   --color-studio-bg: #13131f;

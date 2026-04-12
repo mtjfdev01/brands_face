@@ -33,29 +33,14 @@ export default function Footer() {
 
   return (
     <footer className="relative w-full bg-[#f0ebe3] overflow-hidden">
-      {/* ── Top: links + newsletter ── */}
+      {/* ── Top: links ── */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
-          {/* Left — tagline + newsletter */}
+          {/* Left — tagline */}
           <div>
             <h3 className="text-[#1a1a1a] text-lg sm:text-xl font-semibold leading-snug mb-6">
             Built for Brands.<br />Engineered for Growth.
                         </h3>
-            <p className="text-[#1a1a1a]/50 text-xs mb-3">Newsletter</p>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:flex-wrap">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                aria-label="Email for newsletter"
-                className="h-10 min-w-0 w-full flex-1 px-4 rounded-full bg-white border border-[#1a1a1a]/10 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 outline-none focus:border-[#1a1a1a]/30 transition-colors"
-              />
-              <button
-                type="button"
-                className="h-10 w-full shrink-0 rounded-full bg-[#f5c518] px-5 text-sm font-semibold text-[#1a1a1a] transition-all hover:bg-[#e6b800] active:scale-[0.97] sm:w-auto"
-              >
-                Subscribe
-              </button>
-            </div>
           </div>
 
           {/* Center — Company */}
@@ -84,45 +69,48 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="mt-10 text-[10px] text-[#1a1a1a]/40">
+        {/* <p className="mt-10 text-[10px] text-[#1a1a1a]/40">
           &copy; Brands Face, all rights reserved, {new Date().getFullYear()}
-        </p>
+        </p> */}
       </div>
 
-      {/* ── Bottom: giant animated text ── */}
-      <div ref={ref} className="relative z-0 w-full overflow-hidden pb-4 sm:pb-6">
-        {/* Decorative swirl */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.06]">
-          {/* <span className="text-[40vw] font-black text-[#1a1a1a] leading-none">&amp;</span> */}
-        </div>
-
+      {/* ── Bottom: BRANDS / FACE + logo ── */}
+      <div ref={ref} className="relative z-0 w-full overflow-hidden bg-[#f0ebe3] pb-4 sm:pb-6">
+        <div
+          className="pointer-events-none absolute inset-0 z-0 bg-[url('/assets/images/logos/logo_ultra_hd.png')] bg-contain bg-center bg-no-repeat opacity-[0.42]"
+          aria-hidden
+        />
         {/* BRANDS — slides from left */}
         <div
-          className="transition-all duration-[1200ms] ease-out"
+          className="relative z-[1] transition-all duration-[1200ms] ease-out"
           style={{
             transform: visible ? "translateX(0)" : "translateX(-100%)",
             opacity: visible ? 1 : 0,
           }}
         >
-          <p className="text-[18vw] sm:text-[16vw] md:text-[14vw] font-black text-[#1a3c28] leading-[0.85] tracking-tighter pl-2 sm:pl-4 select-none">
+          <p className="text-[18vw] sm:text-[16vw] md:text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] pl-2 sm:pl-4 select-none">
             BRANDS
           </p>
         </div>
 
         {/* FACE — slides from right */}
         <div
-          className="transition-all duration-[1200ms] ease-out delay-150"
+          className="relative z-[1] transition-all duration-[1200ms] ease-out delay-150"
           style={{
             transform: visible ? "translateX(0)" : "translateX(100%)",
             opacity: visible ? 1 : 0,
           }}
         >
-          <div className="flex items-end justify-end pr-2 sm:pr-4">
-            <p className="text-[18vw] sm:text-[16vw] md:text-[14vw] font-black text-[#1a3c28] leading-[0.85] tracking-tighter select-none">
-              FACE
+          <div className="flex justify-end pr-2 sm:pr-4">
+            <p className="inline-flex items-start justify-end gap-[0.12em] text-right text-[18vw] sm:text-[16vw] md:text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] select-none">
+              <span>FACE</span>
+              <span
+                className="shrink-0 font-bold leading-none text-[4vw] text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[3.5vw] md:text-[3vw] motion-reduce:transform-none translate-y-[-0.42em]"
+                aria-hidden
+              >
+                &reg;
+              </span>
             </p>
-            {/* Registered mark */}
-            <span className="text-[4vw] sm:text-[3.5vw] md:text-[3vw] font-bold text-[#1a3c28] mb-[1vw] ml-1 select-none">&reg;</span>
           </div>
         </div>
       </div>

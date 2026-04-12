@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HOME_CARDS } from "@/data/homeCards";
+import { getNavMegaMenuCategories } from "@/data/categoryPages";
+import NavbarCatalogSearch from "@/components/nav/NavbarCatalogSearch";
 
 const MENU_ITEMS = [
   // { label: "Home", href: "/" },
@@ -24,6 +26,35 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
   const [open, setOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
   const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
+  const [hoveredMegaCategory, setHoveredMegaCategory] = useState<string | null>(null);
+  const megaCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelMegaClose = () => {
+    if (megaCloseTimerRef.current) {
+      clearTimeout(megaCloseTimerRef.current);
+      megaCloseTimerRef.current = null;
+    }
+  };
+
+  const scheduleMegaClose = () => {
+    cancelMegaClose();
+    megaCloseTimerRef.current = setTimeout(() => {
+      setCategoriesOpen(false);
+      setHoveredMegaCategory(null);
+      megaCloseTimerRef.current = null;
+    }, 220);
+  };
+
+  useEffect(() => () => cancelMegaClose(), []);
+
+  const megaMenuTopClass =
+    variant === "layout"
+      ? "top-[4rem] sm:top-[4.25rem]"
+      : "top-[5rem] sm:top-[5.5rem] lg:top-[5.75rem]";
+
+  const megaCategories = useMemo(() => getNavMegaMenuCategories(), []);
+  const activeMega =
+    megaCategories.find((c) => c.category === hoveredMegaCategory) ?? megaCategories[0];
 
   const outerClassName =
     variant === "layout"
@@ -48,14 +79,29 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             ))}
             <li
               className="relative"
-              onMouseEnter={() => setCategoriesOpen(true)}
-              onMouseLeave={() => setCategoriesOpen(false)}
+              onMouseEnter={() => {
+                cancelMegaClose();
+                setCategoriesOpen(true);
+                setHoveredMegaCategory((prev) => prev ?? megaCategories[0]?.category ?? null);
+              }}
+              onMouseLeave={scheduleMegaClose}
             >
               <button
                 type="button"
-                onClick={() => setCategoriesOpen((v) => !v)}
+                onClick={() =>
+                  setCategoriesOpen((v) => {
+                    const next = !v;
+                    if (next) {
+                      setHoveredMegaCategory((p) => p ?? megaCategories[0]?.category ?? null);
+                    } else {
+                      setHoveredMegaCategory(null);
+                    }
+                    return next;
+                  })
+                }
                 className="inline-flex items-center gap-1 text-sm lg:text-[15px] text-white/85 hover:text-white font-medium transition-colors"
                 aria-expanded={categoriesOpen}
+                aria-haspopup="true"
               >
                 Product Categories
                 <svg
@@ -70,21 +116,98 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
               </button>
 
               <div
-                className={`absolute left-0 top-full z-20 mt-0 w-[280px] rounded-xl border border-white/15 bg-[#0f3325]/95 p-2 shadow-2xl backdrop-blur-xl transition-all ${
-                  categoriesOpen
-                    ? "pointer-events-auto translate-y-0 opacity-100"
-                    : "pointer-events-none -translate-y-1 opacity-0"
-                }`}
+                className={`fixed inset-x-0 z-[100] hidden justify-center px-4 md:flex pointer-events-none ${megaMenuTopClass}`}
               >
-                {HOME_CARDS.map((card) => (
-                  <Link
-                    key={card.category}
-                    href={`/category/${card.category}`}
-                    className="block rounded-lg px-3 py-2 text-sm text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+                <div
+                  onMouseEnter={cancelMegaClose}
+                  onMouseLeave={() => {
+                    cancelMegaClose();
+                    setCategoriesOpen(false);
+                    setHoveredMegaCategory(null);
+                  }}
+                  className={`pointer-events-auto pt-2 transition-all duration-200 ease-out ${
+                    categoriesOpen
+                      ? "translate-y-0 opacity-100"
+                      : "pointer-events-none -translate-y-1 opacity-0"
+                  }`}
+                >
+                  <div
+                    className="w-[min(1100px,calc(100vw-2rem))] overflow-hidden rounded-xl border border-[#103a2a]/15 bg-light-theme shadow-[0_20px_50px_-12px_rgba(16,58,42,0.25)]"
+                    role="region"
+                    aria-label="Product categories"
                   >
-                    {card.title}
-                  </Link>
-                ))}
+                  <div className="flex gap-1 overflow-x-auto border-b border-[#103a2a]/10 px-2 py-2.5 sm:px-3">
+                    {megaCategories.map((c) => {
+                      const selected = c.category === (hoveredMegaCategory ?? megaCategories[0]?.category);
+                      return (
+                        <Link
+                          key={c.category}
+                          href={c.seeAllHref}
+                          onMouseEnter={() => setHoveredMegaCategory(c.category)}
+                          onFocus={() => setHoveredMegaCategory(c.category)}
+                          className={[
+                            "shrink-0 rounded-lg px-3 py-2 text-left text-xs font-semibold no-underline transition-colors sm:text-sm",
+                            selected
+                              ? "bg-[#103a2a] text-white shadow-sm"
+                              : "text-[#103a2a]/80 hover:bg-[#103a2a]/8 hover:text-[#103a2a]",
+                          ].join(" ")}
+                        >
+                          {c.title}
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {activeMega && activeMega.columns.length > 0 ? (
+                    <div className="grid grid-cols-1 gap-5 p-4 sm:grid-cols-3 sm:gap-4 sm:p-5">
+                      {activeMega.columns.map((col) => (
+                        <div key={col.tabId} className="flex min-w-0 flex-col">
+                          <Link
+                            href={col.categoryHrefWithTab}
+                            className="mb-2 inline-block shrink-0 text-sm font-bold text-[#103a2a] transition-colors hover:text-[#0f6b52]"
+                          >
+                            {col.label}
+                          </Link>
+                          <ul
+                            className="max-h-[min(320px,42vh)] space-y-0.5 overflow-y-auto overscroll-contain pr-1 text-[#103a2a]/90"
+                            aria-label={`${col.label} products`}
+                          >
+                            {col.products.length === 0 ? (
+                              <li className="py-1 text-xs text-[#103a2a]/50">No products in this tab yet.</li>
+                            ) : (
+                              col.products.map((p) => (
+                                <li key={p.slug}>
+                                  <Link
+                                    href={p.href}
+                                    className="block rounded-md px-1 py-1 text-left text-xs leading-snug transition-colors hover:bg-[#103a2a]/6 hover:text-[#103a2a] sm:text-[13px]"
+                                  >
+                                    {p.title}
+                                  </Link>
+                                </li>
+                              ))
+                            )}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="px-5 py-4 text-sm text-[#103a2a]/65">
+                      Browse all products in this category.
+                    </p>
+                  )}
+
+                  <div className="flex justify-end border-t border-[#103a2a]/10 px-4 py-3 sm:px-5">
+                    {activeMega && (
+                      <Link
+                        href={activeMega.seeAllHref}
+                        className="text-sm font-semibold text-[#0f6b52] transition-colors hover:text-[#103a2a]"
+                      >
+                        See all
+                      </Link>
+                    )}
+                  </div>
+                </div>
+                </div>
               </div>
             </li>
           </ul>
@@ -92,7 +215,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
           {/* Center: logo (true center of nav bar) */}
           <Link
             href="/"
-            className="absolute left-1/2 top-1/2 z-[3] flex -translate-x-1/2 -translate-y-1/2 items-center"
+            className="absolute left-1/2 top-1/2 z-[-10] flex -translate-x-1/2 -translate-y-1/2 items-center"
             aria-label="BrandsFace home"
           >
             {/* Outer h-9 = zero layout impact on bar (link is absolute); inner chip is much taller, centered, spills vertically */}
@@ -110,20 +233,21 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             </span>
           </Link>
 
-          {/* Desktop: CTAs on the right */}
+          {/* Desktop: catalog search + CTAs */}
           <div className="relative z-[2] hidden min-w-0 flex-1 items-center justify-end gap-2.5 md:flex">
+            <NavbarCatalogSearch className="mr-1 w-full max-w-[200px] lg:max-w-[240px] xl:max-w-[260px]" />
             <Link
               href="/quote"
               className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/12 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/20 lg:px-5"
             >
               Get a Quote
             </Link>
-            <Link
+            {/* <Link
               href="/studio"
               className="inline-flex items-center justify-center rounded-full bg-[#1dd1a1] px-4 py-2.5 text-sm font-bold text-[#0f2f22] shadow-[0_6px_24px_rgba(29,209,161,0.35)] transition-all hover:bg-[#37dfb2] lg:px-5"
             >
               Create 3D Mockup
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile: hamburger on the right */}
@@ -159,6 +283,16 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
           }`}
         >
           <div className="px-4 pb-4 pt-1 border-t border-white/10 bg-[#0f3325]/90">
+            <div className="mb-3 pt-2">
+              <NavbarCatalogSearch
+                tone="drawer"
+                className="w-full"
+                onNavigate={() => {
+                  setOpen(false);
+                  setMobileCategoriesOpen(false);
+                }}
+              />
+            </div>
             <ul className="grid grid-cols-2 gap-2.5">
               {MENU_ITEMS.map((item) => (
                 <li key={item.label}>
