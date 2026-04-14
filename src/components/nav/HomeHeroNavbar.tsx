@@ -212,10 +212,10 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             </li>
           </ul>
 
-          {/* Center: logo (true center of nav bar) */}
+          {/* Logo: left on mobile; visually centered in the bar from md (desktop menus occupy both sides) */}
           <Link
             href="/"
-            className="absolute left-1/2 top-1/2 z-[-10] flex -translate-x-1/2 -translate-y-1/2 items-center"
+            className="absolute left-4 top-1/2 z-[-10] flex -translate-y-1/2 translate-x-0 items-center sm:left-5 md:left-1/2 md:-translate-x-1/2"
             aria-label="BrandsFace home"
           >
             {/* Outer h-9 = zero layout impact on bar (link is absolute); inner chip is much taller, centered, spills vertically */}

@@ -23,7 +23,7 @@ export default function HomeHero() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-800/20 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative flex w-full max-lg:min-h-0 flex-col items-start pt-20 sm:pt-24 lg:min-h-[100svh] lg:flex-row lg:items-center lg:pt-24">
+      <div className="relative flex w-full max-lg:min-h-0 flex-col items-start pt-28 sm:pt-32 lg:min-h-[100svh] lg:flex-row lg:items-center lg:pt-24">
         {/* ── Left: reserves space on lg+ where ScrollCards fixed stack reads as the hero “card zone” ── */}
         <div className="relative hidden h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] w-full lg:block lg:h-full lg:w-[45%]" />
 
@@ -38,7 +38,7 @@ export default function HomeHero() {
                 transition: `all 800ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 200}ms`,
               }}
             >
-              <span className="inline-flex items-center gap-2 text-emerald-400 text-xs sm:text-sm font-medium tracking-wider uppercase">
+              <span className="inline-flex items-center gap-2 text-emerald-400 text-xs sm:text-sm font-medium tracking-wider uppercase lg:mt-3">
                 <span className="w-8 h-px bg-emerald-400" />
                 FREE PACKAGING AUDIT
               </span>

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Floating phone + WhatsApp (bottom row, inset from bottom-right so they sit beside Tawk’s widget).
+ * Floating phone + WhatsApp (bottom-left on all breakpoints; clears notches via safe-area).
  *
  * Live chat: native Tawk.to launcher via `TawkToScript` in `layout.tsx`.
  * Env: NEXT_PUBLIC_WHATSAPP_PHONE, NEXT_PUBLIC_VOICE_PHONE, NEXT_PUBLIC_TAWK_* (embed only).
@@ -47,8 +47,11 @@ const fab =
 export default function WhatsAppChatFab() {
   return (
     <div
-      className="fixed bottom-5 left-1/2 z-[10050] flex -translate-x-1/2 flex-row items-center gap-2 print:hidden sm:bottom-6 sm:gap-2.5 md:bottom-7 min-[480px]:left-auto min-[480px]:right-[7.5rem] min-[480px]:translate-x-0 md:right-[8.5rem] lg:right-[9rem]"
-      style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+      className="fixed bottom-5 left-4 z-[10050] flex flex-row items-center gap-2 print:hidden sm:bottom-6 sm:left-5 sm:gap-2.5 md:bottom-7 md:left-6 lg:left-7"
+      style={{
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+        paddingLeft: "env(safe-area-inset-left, 0px)",
+      }}
     >
       <a
         href={telHref()}
