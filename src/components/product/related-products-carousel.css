@@ -1,3 +1,10 @@
+/* Clip translated slides (centeredSlides + loop) so the track never widens the page */
+.related-products-carousel {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
 /* Smooth horizontal slide transitions */
 .related-products-carousel .swiper-slide {
   transition-property: transform, opacity;

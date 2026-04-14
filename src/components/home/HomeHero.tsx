@@ -15,7 +15,7 @@ export default function HomeHero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[100svh] md:h-screen overflow-hidden bg-[#1a3a2a]">
+    <section className="relative w-full overflow-hidden bg-[#1a3a2a] max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen">
       <HomeHeroNavbar />
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -23,13 +23,12 @@ export default function HomeHero() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-800/20 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative flex flex-col lg:flex-row w-full min-h-[100svh] md:h-full items-start lg:items-center pt-20 sm:pt-24 lg:pt-24">
-        {/* ── Left: empty space where ScrollCards renders the fixed cards ── */}
-        <div className="relative w-full lg:w-[45%] h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] lg:h-full" />
+      <div className="relative flex w-full max-lg:min-h-0 flex-col items-start pt-20 sm:pt-24 lg:min-h-[100svh] lg:flex-row lg:items-center lg:pt-24">
+        {/* ── Left: reserves space on lg+ where ScrollCards fixed stack reads as the hero “card zone” ── */}
+        <div className="relative hidden h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] w-full lg:block lg:h-full lg:w-[45%]" />
 
-        {/* ── Right: text content (55%) ── */}
-        {/* <div className="w-full lg:w-[55%] h-[52%] sm:h-[45%] lg:h-full flex items-center px-6 sm:px-8 lg:px-16 pb-8 sm:pb-0"> */}
-        <div className="w-full lg:w-[55%] h-[70svh] max-[760px]:h-[74svh] max-[700px]:h-[78svh] min-[700px]:h-[62svh] sm:h-[40%] lg:h-full flex items-center px-6 sm:px-8 lg:px-16 pb-8 sm:pb-0">
+        {/* ── Right: text content (55%) — full width below nav on mobile, no spacer row above ── */}
+        <div className="flex w-full items-center px-6 pb-10 sm:px-8 sm:pb-8 lg:h-full lg:w-[55%] lg:px-16 lg:pb-0">
           <div className="max-w-2xl">
             {/* Eyebrow */}
             <div

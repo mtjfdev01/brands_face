@@ -69,10 +69,10 @@ export default function RelatedProductsCarousel({ items, preserveFromTab }: Prop
 
   return (
     <section
-      className="border-t border-[#103a2a]/10 bg-white py-12 md:py-16"
+      className="overflow-x-hidden border-t border-[#103a2a]/10 bg-white py-12 md:py-16"
       aria-labelledby="related-products-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl min-w-0 px-4 sm:px-6">
         <h2
           id="related-products-heading"
           className="mb-8 text-center text-2xl font-bold tracking-tight text-[#103a2a] md:mb-10 md:text-3xl"
@@ -80,7 +80,7 @@ export default function RelatedProductsCarousel({ items, preserveFromTab }: Prop
           Related products you may like
         </h2>
 
-        <div className="relative px-2 sm:px-4 md:px-8">
+        <div className="relative min-w-0 px-2 sm:px-4 md:px-8">
           <button
             type="button"
             className={`${navBtnClass} left-0 sm:left-1 md:left-2`}
@@ -99,7 +99,7 @@ export default function RelatedProductsCarousel({ items, preserveFromTab }: Prop
           </button>
 
           <Swiper
-            className="related-products-carousel !overflow-visible py-4 md:py-6"
+            className="related-products-carousel py-4 md:py-6"
             grabCursor
             centeredSlides
             centerInsufficientSlides

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { HOME_CARDS } from "@/data/homeCards";
 import { categoryHubPath } from "@/lib/routes";
-import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 import AllCategoriesOverlay from "@/components/home/AllCategoriesOverlay";
 
 const CARDS = HOME_CARDS;
@@ -354,22 +353,9 @@ const heroFan = useMemo(
     });
   }, []);
 
-  // Mobile-only behavior: show category carousel in the same hero overlay area.
+  // Mobile: category carousel lives after HomeHero in page.tsx; scroll-driven cards are desktop-only.
   if (isMobile) {
-    return (
-      <div
-        className="absolute inset-x-0 top-0 h-screen z-20 pointer-events-none"
-        style={{
-          opacity: entered ? 1 : 0,
-          transform: "none",
-          transition: "none",
-        }}
-      >
-        <div className="absolute left-1/2 top-[42%] max-[420px]:top-[44%] w-full max-w-[520px] -translate-x-1/2 -translate-y-1/2 px-3 pointer-events-auto">
-          <CategoryFocusCarousel  />
-        </div>
-      </div>
-    );
+    return null;
   }
 
   return (

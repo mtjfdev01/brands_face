@@ -125,9 +125,9 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
                     setCategoriesOpen(false);
                     setHoveredMegaCategory(null);
                   }}
-                  className={`pointer-events-auto pt-2 transition-all duration-200 ease-out ${
+                  className={`pt-2 transition-all duration-200 ease-out ${
                     categoriesOpen
-                      ? "translate-y-0 opacity-100"
+                      ? "pointer-events-auto translate-y-0 opacity-100"
                       : "pointer-events-none -translate-y-1 opacity-0"
                   }`}
                 >

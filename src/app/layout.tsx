@@ -7,9 +7,9 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Brands Face | Custom Packaging Design Studio',
+  title: 'Brands Face | Packaging Re-Engineering & Manufacturing Firm',
   description:
-    'Design custom packaging boxes in 3D. Choose from 12 box types, materials, finishes, and upload artwork for real-time preview.',
+    'BrandsFace is a packaging re-engineering and manufacturing firm helping businesses transform their product packaging into a powerful branding and sales asset.',
   icons: {
     icon: '/assets/images/logos/logo_x.png',
     shortcut: '/assets/images/logos/logo_x.png',
