@@ -21,7 +21,7 @@ export default function HomePage() {
       />
       <HomeHero />
       {/* Mobile: category cards below hero copy; desktop uses scroll-driven cards in ScrollCards */}
-      <div className="border-t border-white/10 bg-[#1a3a2a] px-3 pb-12 pt-2 lg:hidden">
+      <div className="border-t border-white/10 px-3 pb-12 pt-2 lg:hidden">
         <CategoryFocusCarousel />
       </div>
       <ScrollCards />

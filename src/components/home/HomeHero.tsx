@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { BsStars } from "react-icons/bs";
+
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 
 const ANIMATION_DELAY = 1500;
@@ -39,15 +41,8 @@ export default function HomeHero() {
             }}
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-[#c3e338]/20 bg-white/5 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white/80 backdrop-blur">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#c3e338]/15 text-[#c3e338]">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-3.5 w-3.5">
-                  <path
-                    d="M12 2l1.3 5.2L18 9l-4.7 1.8L12 16l-1.3-5.2L6 9l4.7-1.8L12 2Z"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <span className="inline-flex h-5 w-5 items-center justify-center  text-[#c3e338]">
+                <BsStars className="h-3.5 w-3.5" aria-hidden />
               </span>
               Packaging Intelligence &amp; Manufacturing
             </span>
@@ -174,18 +169,30 @@ export default function HomeHero() {
 
           {/* Showcase placeholder (you will provide box images later) */}
           <div
-            className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-black/20 p-5 shadow-[0_30px_70px_-40px_rgba(182,255,43,0.55)]"
+            className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-black/20 p-3 shadow-[0_30px_70px_-40px_rgba(195,227,56,0.55)]"
             style={{
               opacity: animate ? 1 : 0,
               transform: animate ? "translateY(0)" : "translateY(18px)",
               transition: `all 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 980}ms`,
             }}
           >
-            <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#c3e338]/10 blur-3xl" />
-            <div className="absolute -left-28 -bottom-28 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl" />
+            <div className="absolute -right-24 -top-24 h-64 w-64 rounded-3xl bg-[#c3e338]/10 blur-3xl" />
+            <div className="absolute -left-28 -bottom-28 h-72 w-72 rounded-3xl bg-emerald-400/10 blur-3xl" />
 
             <div className="relative">
-              <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[12px] text-white/75 backdrop-blur">
+              <div className="relative aspect-[4/3] w-full min-h-[340px] overflow-hidden rounded-2xl border border-white/15 bg-black/20 sm:min-h-[420px]">
+                <Image
+                  src="/assets/images/hero_main.png"
+                  alt=""
+                  fill
+                  priority
+                  className="object-cover object-center"
+                  sizes="(max-width: 640px) 90vw, 560px"
+                />
+                <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(195,227,56,0.18),transparent_62%)]" />
+              </div>
+
+              <div className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[12px] text-white/75 backdrop-blur">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#c3e338]/15 text-[#c3e338]">
                   <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
                     <path d="M12 2l9 5-9 5-9-5 9-5Z" stroke="currentColor" strokeWidth="1.8" />
@@ -197,18 +204,6 @@ export default function HomeHero() {
                   <p className="font-semibold text-white/90">In-House Manufacturing. Premium Execution.</p>
                   <p className="mt-0.5 text-[11px] text-white/55">From concept to finished packaging.</p>
                 </div>
-              </div>
-
-              <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-                <Image
-                  src="/assets/images/hero_main.png"
-                  alt=""
-                  fill
-                  priority
-                  className="object-cover object-center"
-                  sizes="(max-width: 640px) 90vw, 560px"
-                />
-                <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(195,227,56,0.18),transparent_62%)]" />
               </div>
             </div>
           </div>

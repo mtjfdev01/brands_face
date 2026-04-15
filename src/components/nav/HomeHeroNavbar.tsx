@@ -256,21 +256,21 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="relative z-[2] ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/10 transition-transform active:scale-95 md:hidden"
+            className="relative z-[2] ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/50 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-md transition-transform active:scale-95 md:hidden"
           >
             <span
-              className={`absolute h-[2.5px] w-6 rounded-full bg-white transition-all duration-300 ${
-                open ? "rotate-45 translate-y-0" : "-translate-y-[7px]"
+              className={`absolute h-[2px] w-6 rounded-full bg-white/90 transition-all duration-300 ${
+                open ? "rotate-45 translate-y-0" : "-translate-y-[6.5px]"
               }`}
             />
             <span
-              className={`absolute h-[2.5px] w-6 rounded-full bg-white transition-all duration-300 ${
+              className={`absolute h-[2px] w-6 rounded-full bg-white/90 transition-all duration-300 ${
                 open ? "opacity-0 scale-x-50" : "opacity-100"
               }`}
             />
             <span
-              className={`absolute h-[2.5px] w-6 rounded-full bg-white transition-all duration-300 ${
-                open ? "-rotate-45 translate-y-0" : "translate-y-[7px]"
+              className={`absolute h-[2px] w-6 rounded-full bg-white/90 transition-all duration-300 ${
+                open ? "-rotate-45 translate-y-0" : "translate-y-[6.5px]"
               }`}
             />
           </button>
