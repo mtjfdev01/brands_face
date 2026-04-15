@@ -8,6 +8,9 @@ const TAWK_SCRIPT_ID = "tawk-embed-script";
 /** Loads the official Tawk.to widget once (default launcher + chat UI). */
 export default function TawkToScript() {
   useEffect(() => {
+    // Mobile: do not load Tawk widget at all.
+    // (We keep desktop behavior unchanged.)
+    if (window.matchMedia && !window.matchMedia("(min-width: 768px)").matches) return;
     if (document.getElementById(TAWK_SCRIPT_ID)) return;
 
     const s1 = document.createElement("script");

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 /**
  * Floating phone + WhatsApp (bottom-left on all breakpoints; clears notches via safe-area).
  *
@@ -45,6 +47,20 @@ const fab =
   "flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl active:scale-95 sm:h-14 sm:w-14";
 
 export default function WhatsAppChatFab() {
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const sync = () => setHide(Boolean(root.dataset.curtainActive));
+    sync();
+
+    const obs = new MutationObserver(sync);
+    obs.observe(root, { attributes: true, attributeFilter: ["data-curtain-active"] });
+    return () => obs.disconnect();
+  }, []);
+
+  if (hide) return null;
+
   return (
     <div
       className="fixed bottom-5 left-4 z-[10050] flex flex-row items-center gap-2 print:hidden sm:bottom-6 sm:left-5 sm:gap-2.5 md:bottom-7 md:left-6 lg:left-7"

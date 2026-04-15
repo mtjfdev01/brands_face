@@ -194,14 +194,21 @@ export default function CreativeDirection() {
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
         {group.map((ac, i) => (
           <div key={`${cycle}-${i}`} className="absolute" style={cardStyle(ac)}>
-            <div className="relative w-[160px] h-[226px] sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]">
+            <div
+              className="relative w-[160px] h-[226px] overflow-hidden rounded-2xl border border-black/10 shadow-[0_24px_70px_rgba(0,0,0,0.25)] sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]"
+              style={{
+                backgroundColor: ac.card.color,
+                backgroundImage:
+                  "radial-gradient(120% 90% at 25% 20%, rgba(255,255,255,0.30), transparent 60%)," +
+                  "radial-gradient(80% 70% at 70% 85%, rgba(0,0,0,0.25), transparent 55%)",
+              }}
+            >
               <Image
                 src={ac.card.image}
                 alt=""
                 fill
-                className="object-contain opacity-75"
+                className="object-contain opacity-85"
                 sizes="180px"
-                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
             </div>
           </div>

@@ -38,6 +38,10 @@ export default function CurtainOverlay({
   useEffect(() => {
     if (phase === "done") return;
 
+    // Mark curtain active so other floating widgets can hide.
+    const root = document.documentElement;
+    root.dataset.curtainActive = "1";
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     let holdTimer: ReturnType<typeof setTimeout> | undefined;
@@ -84,6 +88,7 @@ export default function CurtainOverlay({
     return () => {
       if (holdTimer) clearTimeout(holdTimer);
       document.body.style.overflow = previousOverflow;
+      delete root.dataset.curtainActive;
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);

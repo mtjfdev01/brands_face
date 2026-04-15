@@ -103,7 +103,7 @@ export default function NavbarCatalogSearch({ className = "", onNavigate, tone =
   const inputClass =
     tone === "nav"
       ? "w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none transition-colors focus:border-[#1dd1a1]/60 focus:ring-2 focus:ring-[#1dd1a1]/25"
-      : "w-full rounded-xl border border-white/15 bg-white/8 px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none focus:border-[#1dd1a1]/50 focus:ring-2 focus:ring-[#1dd1a1]/20";
+      : "w-full rounded-xl border border-white/15 bg-white/[0.08] px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none focus:border-[#1dd1a1]/50 focus:ring-2 focus:ring-[#1dd1a1]/20";
 
   const panelClass =
     tone === "nav"
@@ -123,7 +123,7 @@ export default function NavbarCatalogSearch({ className = "", onNavigate, tone =
   const linkProduct =
     tone === "nav"
       ? "block px-3 py-1.5 text-sm text-[#103a2a]/90 hover:bg-[#103a2a]/6"
-      : "block px-3 py-1.5 text-sm text-white/90 hover:bg-white/8";
+      : "block px-3 py-1.5 text-sm text-white/90 hover:bg-white/[0.08]";
 
   const subMuted =
     tone === "nav" ? "mt-0.5 block text-xs text-[#103a2a]/50" : "mt-0.5 block text-xs text-white/45";
