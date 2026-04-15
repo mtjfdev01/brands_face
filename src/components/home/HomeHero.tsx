@@ -29,9 +29,9 @@ export default function HomeHero() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-800/20 rounded-full blur-[100px]" />
       </div>
 
-      {/* Mobile-only hero */}
-      <div className="relative lg:hidden">
-        <div className="mx-auto max-w-xl px-6 pb-12 pt-28 sm:px-8 sm:pb-14 sm:pt-32">
+      {/* Mobile-only hero — w-full so children can align to viewport with w-[100dvw] */}
+      <div className="relative w-full min-w-0 max-w-none lg:hidden">
+        <div className="mx-auto max-w-xl px-6 pb-0 pt-28 sm:px-8 sm:pb-0 sm:pt-32">
           {/* Eyebrow pill */}
           <div
             style={{
@@ -166,45 +166,48 @@ export default function HomeHero() {
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Showcase placeholder (you will provide box images later) */}
+        {/* Frame is full width of section/main; side bands were mostly `object-contain` letterboxing — use `object-cover` below */}
+        <div
+          className="relative mt-8 w-full shadow-[0_30px_70px_-40px_rgba(87,215,170,0.55)]"
+          style={{
+            opacity: animate ? 1 : 0,
+            transition: `opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 980}ms`,
+          }}
+        >
+          <div className="relative aspect-[4/3] w-full min-h-[340px] overflow-hidden sm:min-h-[420px]">
+            <Image
+              src="/assets/images/hero_main.png"
+              alt=""
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(87,215,170,0.18),transparent_62%)]" />
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-xl px-6 pb-12 pt-0 sm:px-8 sm:pb-14">
           <div
-            className="relative mt-8 overflow-hidden  shadow-[0_30px_70px_-40px_rgba(87,215,170,0.55)]"
+            className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[12px] text-white/75 backdrop-blur"
             style={{
               opacity: animate ? 1 : 0,
               transform: animate ? "translateY(0)" : "translateY(18px)",
               transition: `all 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 980}ms`,
             }}
           >
-            {/* <div className="absolute -right-24 -top-24 h-64 w-64 rounded-3xl bg-[#57d7aa]/10 blur-3xl" />
-            <div className="absolute -left-28 -bottom-28 h-72 w-72 rounded-3xl bg-emerald-400/10 blur-3xl" /> */}
-
-            <div className="relative">
-              <div className="relative aspect-[4/3] w-full min-h-[340px] overflow-hidden  sm:min-h-[420px]">
-                <Image
-                  src="/assets/images/hero_main.png"
-                  alt=""
-                  fill
-                  priority
-                  className="object-contain object-center"
-                  sizes="(max-width: 640px) 90vw, 560px"
-                />
-                <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(87,215,170,0.18),transparent_62%)]" />
-              </div>
-
-              <div className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[12px] text-white/75 backdrop-blur">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#57d7aa]/15 text-[#57d7aa]">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
-                    <path d="M12 2l9 5-9 5-9-5 9-5Z" stroke="currentColor" strokeWidth="1.8" />
-                    <path d="M3 7v10l9 5 9-5V7" stroke="currentColor" strokeWidth="1.8" />
-                    <path d="M12 12v10" stroke="currentColor" strokeWidth="1.8" />
-                  </svg>
-                </span>
-                <div className="min-w-0">
-                  <p className="font-semibold text-white/90">In-House Manufacturing. Premium Execution.</p>
-                  <p className="mt-0.5 text-[11px] text-white/55">From concept to finished packaging.</p>
-                </div>
-              </div>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#57d7aa]/15 text-[#57d7aa]">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
+                <path d="M12 2l9 5-9 5-9-5 9-5Z" stroke="currentColor" strokeWidth="1.8" />
+                <path d="M3 7v10l9 5 9-5V7" stroke="currentColor" strokeWidth="1.8" />
+                <path d="M12 12v10" stroke="currentColor" strokeWidth="1.8" />
+              </svg>
+            </span>
+            <div className="min-w-0">
+              <p className="font-semibold text-white/90">In-House Manufacturing. Premium Execution.</p>
+              <p className="mt-0.5 text-[11px] text-white/55">From concept to finished packaging.</p>
             </div>
           </div>
         </div>
