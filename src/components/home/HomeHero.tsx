@@ -168,7 +168,7 @@ export default function HomeHero() {
           </div>
         </div>
 
-        {/* Frame is full width of section/main; side bands were mostly `object-contain` letterboxing — use `object-cover` below */}
+        {/* Let the image define its own height instead of forcing a fixed frame. */}
         <div
           className="relative mt-8 w-full shadow-[0_30px_70px_-40px_rgba(87,215,170,0.55)]"
           style={{
@@ -176,14 +176,11 @@ export default function HomeHero() {
             transition: `opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 980}ms`,
           }}
         >
-          <div className="relative aspect-[4/3] w-full min-h-[340px] overflow-hidden sm:min-h-[420px]">
-            <Image
+          <div className="relative w-full">
+            <img
               src="/assets/images/hero_main.png"
               alt=""
-              fill
-              priority
-              className="object-cover object-center"
-              sizes="100vw"
+              className="block h-auto w-full"
             />
             <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(87,215,170,0.18),transparent_62%)]" />
           </div>

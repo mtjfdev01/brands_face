@@ -21,10 +21,10 @@ type CategoryCarouselLayout = {
 };
 
 const DEFAULT_LAYOUT: CategoryCarouselLayout = {
-  stageHeight: 360,
-  centerWidth: 248,
-  sideWidth: 158,
-  gap: 10,
+  stageHeight: 420,
+  centerWidth: 250,
+  sideWidth: 178,
+  gap: 12,
 };
 
 /**
@@ -37,25 +37,28 @@ function computeCategoryCarouselLayout(containerWidth: number, viewportHeight: n
   const isSm = w >= 640;
   const isMd = w >= 768;
 
-  const maxCenterCap = isMd ? 380 : isSm ? 300 : 288;
-  const minCenter = w < 320 ? 92 : w < 360 ? 108 : w < 400 ? 120 : 148;
-  const SIDE_RATIO = 0.62;
+  const isNarrowPhone = w < 400;
+  const maxCenterCap = isMd ? 420 : isSm ? 340 : isNarrowPhone ? 352 : 320;
+  const minCenter = w < 320 ? 128 : w < 360 ? 156 : w < 400 ? 184 : 148;
+  const SIDE_RATIO = isNarrowPhone ? 0.44 : 0.62;
+  const RENDER_SIDE_RATIO = isNarrowPhone ? 0.56 : SIDE_RATIO;
+  const sideOverflowAllowance = isNarrowPhone ? 26 : 0;
 
-  // Do not let the center card tower past ~38% of viewport height (keeps nav + “see all” breathing room).
-  const maxCenterFromHeight = (vh * 0.38) / CARD_ASPECT;
+  // Allow larger cards while preserving room for controls below.
+  const maxCenterFromHeight = (vh * 0.44) / CARD_ASPECT;
   // Use most of the track width; inner wrapper already has px-3 on the page.
-  const maxCenterFromWidth = w * 0.58;
-  const gap = Math.round(Math.max(6, Math.min(14, w * 0.022)));
+  const maxCenterFromWidth = isNarrowPhone ? w * 0.78 : w * 0.66;
+  const gap = isNarrowPhone ? 2 : Math.round(Math.max(6, Math.min(14, w * 0.022)));
   // Both wings must fit: center/2 + gap + sideWidth ≤ w/2 − margin (symmetric layout from center).
-  const maxCenterFromPack = Math.max(0, (w / 2 - 12 - gap) / (0.5 + SIDE_RATIO));
+  const maxCenterFromPack = Math.max(0, (w / 2 - (isNarrowPhone ? 2 : 8) - gap) / (0.5 + SIDE_RATIO));
   let centerWidth = Math.min(maxCenterFromWidth, maxCenterFromHeight, maxCenterCap, maxCenterFromPack);
   centerWidth = Math.round(Math.max(minCenter, centerWidth));
 
-  // Side stacks ~62% of center — close to old 37% / 57% visual ratio.
-  let sideWidth = Math.round(Math.max(centerWidth * SIDE_RATIO, minCenter * SIDE_RATIO));
+  // Render side cards a bit larger on narrow phones without feeding that size back into center-card packing.
+  let sideWidth = Math.round(Math.max(centerWidth * RENDER_SIDE_RATIO, minCenter * RENDER_SIDE_RATIO));
   const half = centerWidth / 2;
-  if (half + gap + sideWidth > w / 2 - 4) {
-    sideWidth = Math.max(80, Math.floor(w / 2 - 4 - gap - half));
+  if (half + gap + sideWidth > w / 2 - 4 + sideOverflowAllowance) {
+    sideWidth = Math.max(80, Math.floor(w / 2 - 4 + sideOverflowAllowance - gap - half));
   }
 
   const centerH = centerWidth * CARD_ASPECT;
@@ -171,7 +174,12 @@ export default function CategoryFocusCarousel() {
 
   return (
     <div className="relative w-full">
-      <div ref={trackRef} className="mx-auto w-full max-w-[min(100%,560px)] px-1 sm:px-2">
+      <div ref={trackRef} className="mx-auto w-full max-w-[min(100%,640px)] px-1 sm:px-2">
+        <div className="mt-6 mb-5 text-center">
+          <h2 className="text-lg font-black tracking-[0.08em] text-[#103a2a] sm:text-xl">
+            Product Categories
+          </h2>
+        </div>
         <div className="relative z-0 isolate w-full overflow-visible" style={{ height: stageHeight }}>
           {/* Left card */}
           <Link
