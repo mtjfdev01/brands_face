@@ -55,7 +55,7 @@ const CARDS = [
       "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/Justessence Perfume on Packaging of the World….jpg",
     color: "#9a6b6b",
   },
-]; 
+];
 
 const ENTER_MS = 900;
 const HOLD_MS = 700;
@@ -160,14 +160,15 @@ export default function CreativeDirection() {
   }, []);
 
   const advance = useCallback(() => {
-    if (typeof window !== "undefined" && window.matchMedia(MOBILE_MQ).matches) return;
     const { w, h } = sizeRef.current;
     const { group: g, nextIdx } = buildGroup(idxRef.current, w, h);
     idxRef.current = nextIdx;
     setGroup(g);
   }, []);
 
-  useEffect(() => { advance(); }, [cycle, advance]);
+  useEffect(() => {
+    advance();
+  }, [cycle, advance]);
 
   useEffect(() => {
     setPhase("enter");
@@ -236,7 +237,7 @@ export default function CreativeDirection() {
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden bg-[#f0ebe3]" style={{ minHeight: "100vh" }}>
       {/* ── Animated card group ── */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
         {group.map((ac, i) => (
           <div key={`${cycle}-${i}`} className="absolute" style={cardStyle(ac)}>
             <div
