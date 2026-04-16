@@ -176,11 +176,11 @@ export default function CategoryFocusCarousel() {
     <div className="relative w-full">
       <div ref={trackRef} className="mx-auto w-full max-w-[min(100%,640px)] px-1 sm:px-2">
         <div className="mt-6 mb-5 text-center">
-          <h2 className="text-lg font-black tracking-[0.08em] text-[#103a2a] sm:text-xl">
+          <h2 className="text-2xl font-black tracking-[0.08em] text-[#103a2a] sm:text-xl">
             Product Categories
           </h2>
         </div>
-        <div className="relative z-0 isolate w-full overflow-visible" style={{ height: stageHeight }}>
+        <div className="relative z-0 isolate w-full overflow-hidden" style={{ height: stageHeight }}>
           {/* Left card */}
           <Link
             href={`/category/${prevCard.category}`}

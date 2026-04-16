@@ -5,13 +5,57 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CARDS = [
-  { image: "/assets/images/creative-direction/img_1.png", color: "#c4a265" },
-  { image: "/assets/images/creative-direction/img_2.png", color: "#8b6f47" },
-  { image: "/assets/images/creative-direction/img_3.png", color: "#5a7a5a" },
-  { image: "/assets/images/creative-direction/img_4.png", color: "#a0522d" },
-  { image: "/assets/images/creative-direction/img_5.png", color: "#d4a0a0" },
-  { image: "/assets/images/creative-direction/img_6.png", color: "#c87941" },
-];
+  {
+    image:
+      "/assets/images/categories/Pouches/Pouches/Core Product Pages/Stand Up Pouches/download (5).jpg",
+    color: "#c4a265",
+  },
+  {
+    image:
+      "/assets/images/categories/Pouches/Pouches/Premium  Variation Pages/Printed Pouches/All Products.jpg",
+    color: "#8b6f47",
+  },
+  {
+    image:
+      "/assets/images/categories/Pouches/Pouches/Use-Case Based Pages/Cosmetic Pouches/Free Cosmetic Refill Pouch Mockups PSD.jpg",
+    color: "#5a7a5a",
+  },
+  {
+    image:
+      "/assets/images/categories/Pouches/Pouches/Core Product Pages/Flat Pouches/BeautyPro Masks.jpg",
+    color: "#a0522d",
+  },
+  {
+    image:
+      "/assets/images/categories/Pouches/Pouches/Core Product Pages/Spout Pouches/SearchSystem™.jpg",
+    color: "#d4a0a0",
+  },
+  {
+    image:
+      "/assets/images/categories/Corrugated Boxes/Core Product Pages/Corrugated Partition Box/core_products_second.jpg",
+    color: "#c87941",
+  },
+  {
+    image:
+      "/assets/images/categories/Corrugated Boxes/Core Product Pages/One Piece Folder Corrugated Box/core_products_first.jpg",
+    color: "#7a6a4a",
+  },
+  {
+    image:
+      "/assets/images/categories/Corrugated Boxes/Premium  Variation Pages/Custom Printed Corrugated Boxes/premium_variations_first.jpg",
+    color: "#4a6b5a",
+  },
+  {
+    image:
+      "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/Custom Rigid Boxes _ Premium Packaging for Luxury Products.jpg",
+    color: "#8b5a3c",
+  },
+  {
+    image:
+      "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/Justessence Perfume on Packaging of the World….jpg",
+    color: "#9a6b6b",
+  },
+]; 
 
 const ENTER_MS = 900;
 const HOLD_MS = 700;
@@ -116,6 +160,7 @@ export default function CreativeDirection() {
   }, []);
 
   const advance = useCallback(() => {
+    if (typeof window !== "undefined" && window.matchMedia(MOBILE_MQ).matches) return;
     const { w, h } = sizeRef.current;
     const { group: g, nextIdx } = buildGroup(idxRef.current, w, h);
     idxRef.current = nextIdx;
@@ -177,7 +222,7 @@ export default function CreativeDirection() {
     if (phase === "enter" || phase === "hold") {
       return {
         transform: `translate(${ac.holdX}px, ${ac.holdY}px) scale(1) rotate(${ac.holdRot}deg)`,
-        opacity: 1,
+        opacity: 0.75,
         transition: enterT,
       };
     }
@@ -195,7 +240,7 @@ export default function CreativeDirection() {
         {group.map((ac, i) => (
           <div key={`${cycle}-${i}`} className="absolute" style={cardStyle(ac)}>
             <div
-              className="relative w-[160px] h-[226px] overflow-hidden rounded-2xl border border-black/10 shadow-[0_24px_70px_rgba(0,0,0,0.25)] sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]"
+              className="relative w-[160px] h-[226px] overflow-hidden rounded-2xl border border-black/10 opacity-90 shadow-[0_24px_70px_rgba(0,0,0,0.25)] sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]"
               style={{
                 backgroundColor: ac.card.color,
                 backgroundImage:
@@ -207,7 +252,7 @@ export default function CreativeDirection() {
                 src={ac.card.image}
                 alt=""
                 fill
-                className="object-contain opacity-85"
+                className="object-contain"
                 sizes="180px"
               />
             </div>
