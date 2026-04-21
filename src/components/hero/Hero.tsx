@@ -65,10 +65,10 @@ export default function Hero({ categorySlug: categorySlugProp }: HeroProps) {
   }, [selectedCategory]);
 
   return (
-    <section className="w-full px-3 sm:px-4 lg:px-5 pt-3 sm:pt-4 pb-12 md:pb-16">
+    <section className="w-full px-3 sm:px-4 lg:px-5 pb-12 md:pb-16 pt-0">
       {/* ── Hero container with rounded corners ── */}
       <div
-        className="relative w-full rounded-[var(--radius-hero)] bg-[#1a3a2a]"
+        className="relative w-full rounded-[var(--radius-hero)] bg-transparent"
         style={{ height: '95vh', minHeight: '520px', maxHeight: '860px' }}
         onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
         onMouseLeave={() => swiperRef.current?.autoplay?.start()}
@@ -92,10 +92,10 @@ export default function Hero({ categorySlug: categorySlugProp }: HeroProps) {
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
-            className="w-full h-full"
+            className="h-full min-h-0 w-full [&_.swiper-wrapper]:h-full"
           >
             {slides.map((slide, idx) => (
-              <SwiperSlide key={idx} className="w-full h-full">
+              <SwiperSlide key={idx} className="!flex h-full w-full shrink-0 !items-stretch">
                 <HeroSlide slide={slide} />
               </SwiperSlide>
             ))}

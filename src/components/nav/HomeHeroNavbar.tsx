@@ -136,7 +136,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
                     role="region"
                     aria-label="Product categories"
                   >
-                  <div className="flex gap-1 overflow-x-auto border-b border-[#103a2a]/10 px-2 py-2.5 sm:px-3">
+                  <div className="flex justify-evenly gap-1 overflow-x-auto border-b border-[#103a2a]/10 px-2 py-2.5 sm:px-3">
                     {megaCategories.map((c) => {
                       const selected = c.category === (hoveredMegaCategory ?? megaCategories[0]?.category);
                       return (
@@ -159,36 +159,56 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
                   </div>
 
                   {activeMega && activeMega.columns.length > 0 ? (
-                    <div className="grid grid-cols-1 gap-5 p-4 sm:grid-cols-3 sm:gap-4 sm:p-5">
-                      {activeMega.columns.map((col) => (
-                        <div key={col.tabId} className="flex min-w-0 flex-col">
-                          <Link
-                            href={col.categoryHrefWithTab}
-                            className="mb-2 inline-block shrink-0 text-sm font-bold text-[#103a2a] transition-colors hover:text-[#0f6b52]"
+                    <div className="flex flex-col items-stretch gap-4 p-4 md:flex-row md:items-start md:gap-5 md:p-5">
+                      <div className="flex min-w-0 flex-1 flex-col gap-4 md:flex-row md:flex-wrap md:content-start md:justify-start md:gap-x-8 md:gap-y-4">
+                        {activeMega.columns.map((col) => (
+                          <div
+                            key={col.tabId}
+                            className="flex min-w-0 w-full flex-col md:w-[11.5rem] lg:w-[12.5rem]"
                           >
-                            {col.label}
-                          </Link>
-                          <ul
-                            className="max-h-[min(320px,42vh)] space-y-0.5 overflow-y-auto overscroll-contain pr-1 text-[#103a2a]/90"
-                            aria-label={`${col.label} products`}
-                          >
-                            {col.products.length === 0 ? (
-                              <li className="py-1 text-xs text-[#103a2a]/50">No products in this tab yet.</li>
-                            ) : (
-                              col.products.map((p) => (
-                                <li key={p.slug}>
-                                  <Link
-                                    href={p.href}
-                                    className="block rounded-md px-1 py-1 text-left text-xs leading-snug transition-colors hover:bg-[#103a2a]/6 hover:text-[#103a2a] sm:text-[13px]"
-                                  >
-                                    {p.title}
-                                  </Link>
-                                </li>
-                              ))
-                            )}
-                          </ul>
-                        </div>
-                      ))}
+                            <Link
+                              href={col.categoryHrefWithTab}
+                              className="mb-2 inline-block shrink-0 text-sm font-bold text-[#103a2a] transition-colors hover:text-[#0f6b52]"
+                            >
+                              {col.label}
+                            </Link>
+                            <ul
+                              className="max-h-[min(320px,42vh)] space-y-0.5 overflow-y-auto overscroll-contain pr-1 text-[#103a2a]/90"
+                              aria-label={`${col.label} products`}
+                            >
+                              {col.products.length === 0 ? (
+                                <li className="py-1 text-xs text-[#103a2a]/50">No products in this tab yet.</li>
+                              ) : (
+                                col.products.map((p) => (
+                                  <li key={p.slug}>
+                                    <Link
+                                      href={p.href}
+                                      className="block rounded-md px-1 py-1 text-left text-xs leading-snug transition-colors hover:bg-[#103a2a]/6 hover:text-[#103a2a] md:text-[13px]"
+                                    >
+                                      {p.title}
+                                    </Link>
+                                  </li>
+                                ))
+                              )}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      {activeMega.megaMenuImage ? (
+                        <Link
+                          href={activeMega.seeAllHref}
+                          aria-label={`Browse ${activeMega.title}`}
+                          className="relative mx-auto aspect-[4/5] w-full max-w-[220px] shrink-0 overflow-hidden rounded-xl border border-[#103a2a]/10 bg-[#103a2a]/5 shadow-sm ring-[#103a2a]/0 transition-[box-shadow,opacity] hover:opacity-95 hover:ring-2 hover:ring-[#103a2a]/15 md:mx-0 md:h-[min(320px,42vh)] md:max-h-[min(320px,42vh)] md:w-[200px] md:max-w-[200px] lg:w-[220px] lg:max-w-[220px]"
+                        >
+                          <Image
+                            src={activeMega.megaMenuImage}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="220px"
+                          />
+                        </Link>
+                      ) : null}
                     </div>
                   ) : (
                     <p className="px-5 py-4 text-sm text-[#103a2a]/65">
@@ -213,12 +233,11 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
           </ul>
 
           {/* Logo: left on mobile; visually centered in the bar from md (desktop menus occupy both sides) */}
-          <Link
-            href="/"
-            className="absolute left-4 top-1/2 z-[-10] flex -translate-y-1/2 translate-x-0 items-center sm:left-5 md:left-1/2 md:-translate-x-1/2"
-            aria-label="BrandsFace home"
+          <div
+            className="pointer-events-none absolute left-4 top-1/2 z-[-10] flex -translate-y-1/2 translate-x-0 items-center sm:left-5 md:left-1/2 md:-translate-x-1/2"
+            aria-hidden
           >
-            {/* Outer h-9 = zero layout impact on bar (link is absolute); inner chip is much taller, centered, spills vertically */}
+            {/* Outer h-9 = zero layout impact on bar (logo is absolute); inner chip is much taller, centered, spills vertically */}
             <span className="relative h-9 w-[156px] shrink-0 overflow-visible sm:w-[182px] md:w-[210px]">
               <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl bg-white/92 shadow-sm sm:h-[112px] md:h-[132px]">
                 <Image
@@ -231,7 +250,13 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
                 />
               </span>
             </span>
-          </Link>
+          </div>
+          {/* Invisible home control: bar-height only so transparent image padding / vertical spill does not drive hit area */}
+          <Link
+            href="/"
+            aria-label="BrandsFace home"
+            className="absolute left-4 top-1/2 z-[3] h-9 w-[156px] -translate-y-1/2 translate-x-0 sm:left-5 sm:w-[182px] md:left-1/2 md:w-[210px] md:-translate-x-1/2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+          />
 
           {/* Desktop: catalog search + CTAs */}
           <div className="relative z-[2] hidden min-w-0 flex-1 items-center justify-end gap-2.5 md:flex">

@@ -1,13 +1,25 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { defaultCategoryHubPath } from "@/lib/routes";
+import { SITE_ADDRESS_LINES, SITE_NTN, SITE_PAYMENT_NOTE } from "@/data/siteContact";
 
 const COMPANY = [
   { label: "About us", href: "/about" },
   { label: "Services", href: defaultCategoryHubPath() },
   { label: "Case studies", href: "/case-studies" },
   { label: "Contact us", href: "/quote" },
+];
+
+const LEGAL_AND_SUPPORT = [
+  { label: "Support", href: "/support" },
+  { label: "Privacy policy", href: "/privacy-policy" },
+  { label: "Terms & conditions", href: "/terms-and-conditions" },
+  { label: "Refund policy", href: "/refund-policy" },
+  { label: "Shipping policy", href: "/shipping-policy" },
+  { label: "Whistleblowing policy", href: "/whistleblowing-policy" },
 ];
 
 const SOCIAL = [
@@ -19,12 +31,18 @@ const SOCIAL = [
 export default function Footer() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const year = new Date().getFullYear();
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); io.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
       { threshold: 0.15 },
     );
     io.observe(el);
@@ -32,46 +50,81 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="relative w-full bg-[#f0ebe3] overflow-hidden">
+    <footer className="relative w-full overflow-hidden bg-[#f0ebe3]">
       {/* ── Top: links ── */}
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6 pb-10 pt-16 sm:px-10 sm:pt-20">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Left — tagline */}
-          <div>
-            <h3 className="text-[#1a1a1a] text-lg sm:text-xl font-semibold leading-snug mb-6">
-            Built for Brands.<br />Engineered for Growth.
-                        </h3>
+          <div className="lg:col-span-3">
+            <h3 className="mb-4 text-lg font-semibold leading-snug text-[#1a1a1a] sm:text-xl">
+              Built for Brands.
+              <br />
+              Engineered for Growth.
+            </h3>
+            <div className="relative mt-2 aspect-square w-full max-w-[168px] sm:max-w-[188px]">
+              <Image
+                src="/assets/images/sustainable.webp"
+                alt="Sustainable packaging"
+                fill
+                className="object-contain object-left"
+                sizes="188px"
+              />
+            </div>
           </div>
 
-          {/* Center — Company */}
-          <div className="md:pl-12">
-            <p className="text-[#1a1a1a]/50 text-xs mb-4">Company</p>
+          {/* Company */}
+          <div className="sm:pl-0 lg:col-span-3 lg:pl-4">
+            <p className="mb-4 text-xs text-[#1a1a1a]/50">Company</p>
             <ul className="space-y-2.5">
               {COMPANY.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-[#1a1a1a] text-sm hover:text-[#1a1a1a]/70 transition-colors">{l.label}</a>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-[#1a1a1a] transition-colors hover:text-[#1a1a1a]/70"
+                  >
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Right — Social */}
-          <div className="md:pl-6">
-            <p className="text-[#1a1a1a]/50 text-xs mb-4">Social</p>
+          {/* Legal & support */}
+          <div className="sm:pl-0 lg:col-span-3 lg:pl-2">
+            <p className="mb-4 text-xs text-[#1a1a1a]/50">Legal & support</p>
+            <ul className="space-y-2.5">
+              {LEGAL_AND_SUPPORT.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-[#1a1a1a] transition-colors hover:text-[#1a1a1a]/70"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Social */}
+          <div className="sm:pl-0 lg:col-span-3 lg:pl-2">
+            <p className="mb-4 text-xs text-[#1a1a1a]/50">Social</p>
             <ul className="space-y-2.5">
               {SOCIAL.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-[#1a1a1a] text-sm hover:text-[#1a1a1a]/70 transition-colors">{l.label}</a>
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#1a1a1a] transition-colors hover:text-[#1a1a1a]/70"
+                  >
+                    {l.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-
-        {/* Copyright */}
-        {/* <p className="mt-10 text-[10px] text-[#1a1a1a]/40">
-          &copy; Brands Face, all rights reserved, {new Date().getFullYear()}
-        </p> */}
       </div>
 
       {/* ── Bottom: BRANDS / FACE + logo ── */}
@@ -88,7 +141,7 @@ export default function Footer() {
             opacity: visible ? 1 : 0,
           }}
         >
-          <p className="text-[18vw] sm:text-[16vw] md:text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] pl-2 sm:pl-4 select-none">
+          <p className="select-none pl-2 text-[18vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:pl-4 sm:text-[16vw] md:text-[14vw]">
             BRANDS
           </p>
         </div>
@@ -102,16 +155,35 @@ export default function Footer() {
           }}
         >
           <div className="flex justify-end pr-2 sm:pr-4">
-            <p className="inline-flex items-start justify-end gap-[0.12em] text-right text-[18vw] sm:text-[16vw] md:text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] select-none">
+            <p className="inline-flex items-start justify-end gap-[0.12em] text-right text-[18vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[16vw] md:text-[14vw]">
               <span>FACE</span>
               <span
-                className="shrink-0 font-bold leading-none text-[4vw] text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[3.5vw] md:text-[3vw] motion-reduce:transform-none translate-y-[-0.42em]"
+                className="shrink-0 translate-y-[-0.42em] text-[4vw] font-bold leading-none text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] motion-reduce:transform-none sm:text-[3.5vw] md:text-[3vw]"
                 aria-hidden
               >
                 &reg;
               </span>
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Rights, address & payment — after BRANDS / FACE */}
+      <div className="relative z-10 mx-auto max-w-[1280px] border-t border-[#1a1a1a]/10 bg-[#f0ebe3] px-6 pb-6 sm:px-10">
+        {/* <p className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1a1a]/45">Address</p> */}
+        {/* <address className="not-italic">
+          <ul className="space-y-0.5 text-sm leading-relaxed text-[#1a1a1a]/70">
+            {SITE_ADDRESS_LINES.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </address> */}
+        <div className=" flex flex-col gap-3 border-t border-[#1a1a1a]/8 pt-8 text-xs leading-relaxed text-[#1a1a1a]/55 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-2">
+          <span>&copy; {year} Brands Face. All rights reserved.</span>
+          <span className="text-[#1a1a1a]/60">
+            {SITE_NTN.label}: <span className="font-medium text-[#1a1a1a]/75">I636441</span>
+          </span>
+          <span className="max-w-md sm:text-right">{SITE_PAYMENT_NOTE}</span>
         </div>
       </div>
     </footer>

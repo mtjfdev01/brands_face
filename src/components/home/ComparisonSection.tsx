@@ -17,11 +17,11 @@ type Phase = "before" | "in" | "after";
 type PanelDirection = "left" | "center" | "right";
 
 const BENEFITS: Benefit[] = [
-  { label: "Strategy before execution", us: true, them: false, bg: "/assets/images/comparison/limora_beofre.jpeg", product: "/assets/images/comparison/limora_beofre.jpeg", caseStudyPath: "/product-study_case/strategy-before-execution" },
-  { label: "Real testing & optimization", us: true, them: false, bg: "/assets/images/17.jpg", product: "/assets/images/8.png", caseStudyPath: "/product-study_case/testing-optimization" },
-  { label: "Conversion-focused content", us: true, them: false, bg: "/assets/images/compare_2.png", product: "/assets/images/compare_2.png", caseStudyPath: "/product-study_case/conversion-focused-content" },
-  { label: "Clear ROI tracking & reporting", us: true, them: true, bg: "/assets/images/16.png", product: "/assets/images/13.png", caseStudyPath: "/product-study_case/roi-tracking-reporting" },
-  { label: "Transparent reporting", us: true, them: false, bg: "/assets/images/12.png", product: "/assets/images/5.png", caseStudyPath: "/product-study_case/transparent-reporting" },
+  { label: "Sand + Fog", us: true, them: false, bg: "/assets/images/comparison/sand+fog_before.jpeg", product: "/assets/images/comparison/sand+fog_after.jpeg", caseStudyPath: "/product-study_case/transparent-reporting" },
+  { label: "Limora", us: true, them: false, bg: "/assets/images/comparison/limora_beofre.jpeg", product: "/assets/images/comparison/limora_after.jpeg", caseStudyPath: "/product-study_case/strategy-before-execution" },
+  { label: "Clean Reserve", us: true, them: false, bg: "/assets/images/comparison/clean_reserve_b.webp", product: "/assets/images/comparison/clean_reserve_a.jpeg", caseStudyPath: "/product-study_case/testing-optimization" },
+  { label: "Neo Lunix", us: true, them: false, bg: "/assets/images/comparison/neo_lunix_b.jpeg", product: "/assets/images/comparison/neo_lunix_a.jpeg", caseStudyPath: "/product-study_case/conversion-focused-content" },
+  { label: "Soshe", us: true, them: true, bg: "/assets/images/comparison/soshe_b.jpeg", product: "/assets/images/comparison/soshe_a.jpeg", caseStudyPath: "/product-study_case/roi-tracking-reporting" },
 ];
 
 function getPieceAnimationStyle(phase: Phase, direction: PanelDirection): CSSProperties {

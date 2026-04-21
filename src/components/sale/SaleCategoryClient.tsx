@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Hero from "@/components/hero/Hero";
 import IndustryPackagingSlider from "@/components/common/IndustryPackagingSlider";
 import WhyChooseUs, { type FeatureCard } from "@/components/common/WhyChooseUs";
-import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
+// import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
 import Footer from "@/components/home/Footer";
 import QuickQuoteHeroSection from "@/components/home/QuickQuoteHeroSection";
 import CategoryInfoTabs, {
@@ -199,7 +199,7 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
 
   return (
     <main className="min-h-screen bg-[var(--color-page-bg)]">
-      <Suspense fallback={<div className="w-full px-3 sm:px-4 lg:px-5 pt-3 sm:pt-4 pb-12 md:pb-16" />}>
+      <Suspense fallback={<div className="w-full px-3 sm:px-4 lg:px-5 pb-12 md:pb-16 pt-0" />}>
         <Hero categorySlug={canonical} />
       </Suspense>
 

@@ -430,8 +430,8 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
       cardImage: "/assets/images/categories/rigid_box.jpeg",
       bannerImages: [
         "/assets/images/categories/rigid_box.jpeg",
-        "/products/rigid-1.jpg",
-        "/products/rigid-2.jpg",
+        "/assets/images/categories/rigid_box.jpeg",
+        "/assets/images/categories/rigid_box.jpeg",
       ],
       tabs: [
         { id: "all", label: "All" },

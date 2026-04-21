@@ -1,14 +1,16 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
+import { HiEye, HiEyeSlash } from "react-icons/hi2";
 
 export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -123,15 +125,31 @@ export default function AdminLoginPage() {
                       Forgot password?
                     </button>
                   </div>
-                  <input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    required
-                    className="h-12 w-full rounded-xl border border-gray-200 px-4 text-sm outline-none transition-all focus:border-[#1a3a2a] focus:ring-4 focus:ring-emerald-100"
-                  />
+                  <div className="relative">
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                      autoComplete="current-password"
+                      className="h-12 w-full rounded-xl border border-gray-200 py-3 pl-4 pr-12 text-sm outline-none transition-all focus:border-[#1a3a2a] focus:ring-4 focus:ring-emerald-100"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-gray-500 transition hover:text-[#103a2a] focus-visible:text-[#103a2a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#103a2a]/30 rounded-r-xl"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                      aria-pressed={showPassword}
+                    >
+                      {showPassword ? (
+                        <HiEyeSlash className="h-5 w-5" aria-hidden />
+                      ) : (
+                        <HiEye className="h-5 w-5" aria-hidden />
+                      )}
+                    </button>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-between">

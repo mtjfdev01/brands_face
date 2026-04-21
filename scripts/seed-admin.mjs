@@ -13,16 +13,13 @@ dotenv.config({ path: path.join(projectRoot, ".env.local") });
 dotenv.config({ path: path.join(projectRoot, ".env") });
 dotenv.config({ path: path.join(projectRoot, "src", "components", ".env") });
 
-const databaseUrl = process.env.DATABASE_URL;
+/** Same DB as `src/lib/postgres.ts` — keep in sync if you change host. */
+const databaseUrl =
+  "postgresql://postgres:ImKqbcEqHARjoOvCmXidXuzfqlrcpjXN@crossover.proxy.rlwy.net:49268/railway";
 const sslOverride = process.env.DATABASE_SSL;
 const email = (process.env.ADMIN_SEED_EMAIL || "admin@brandscafe.com").trim().toLowerCase();
 const password = process.env.ADMIN_SEED_PASSWORD;
 const name = (process.env.ADMIN_SEED_NAME || "Admin User").trim();
-
-if (!databaseUrl) {
-  console.error("Missing DATABASE_URL");
-  process.exit(1);
-}
 
 if (!password || password.length < 6) {
   console.error("Missing ADMIN_SEED_PASSWORD (min 6 chars)");

@@ -283,6 +283,8 @@ export type NavMegaMenuCategory = {
   category: string;
   title: string;
   seeAllHref: string;
+  /** Category visual for navbar mega menu (home card image). */
+  megaMenuImage?: string;
   columns: NavMegaMenuColumn[];
 };
 
@@ -299,6 +301,7 @@ export function getNavMegaMenuCategories(): NavMegaMenuCategory[] {
         category: card.category,
         title: card.title,
         seeAllHref: base,
+        megaMenuImage: encodePublicPath(card.image),
         columns: [],
       };
     }
@@ -321,6 +324,7 @@ export function getNavMegaMenuCategories(): NavMegaMenuCategory[] {
       category: card.category,
       title: card.title,
       seeAllHref: base,
+      megaMenuImage: encodePublicPath(card.image),
       columns,
     };
   });
