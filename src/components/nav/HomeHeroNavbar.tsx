@@ -58,12 +58,12 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
 
   const outerClassName =
     variant === "layout"
-      ? "sticky top-0 z-50 w-full border-b border-white/10 bg-[#103a2a]/95 px-4 py-3 backdrop-blur-xl sm:px-6 lg:px-8"
+      ? "sticky top-0 z-50 w-full border-b border-white/10 bg-[#103a2a] px-4 py-3 sm:px-6 lg:px-8"
       : "absolute inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6 sm:pt-5 lg:px-8";
 
   return (
     <div className={outerClassName}>
-      <nav className="mx-auto max-w-[1280px] overflow-visible rounded-2xl border border-white/15 bg-[#103a2a]/70 backdrop-blur-xl shadow-[0_12px_50px_rgba(0,0,0,0.28)]">
+      <nav className="relative z-0 mx-auto max-w-[1280px] overflow-visible rounded-2xl border border-white/15 bg-[#103a2a] shadow-[0_12px_50px_rgba(0,0,0,0.28)]">
         <div className="relative flex items-center gap-3 overflow-visible px-4 sm:px-5 lg:px-6 py-3.5">
           {/* Desktop: menu on the left */}
           <ul className="relative z-[2] hidden min-w-0 flex-1 flex-wrap items-center justify-start gap-x-6 gap-y-2 lg:gap-x-8 md:flex">
@@ -238,7 +238,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             aria-hidden
           >
             {/* Outer h-9 = zero layout impact on bar (logo is absolute); inner chip is much taller, centered, spills vertically */}
-            <span className="relative h-9 w-[156px] shrink-0 overflow-visible sm:w-[182px] md:w-[210px]">
+            <span className="relative h-9 w-[156px] shrink-0 overflow-hidden sm:w-[182px] md:w-[210px]">
               <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl bg-white/92 shadow-sm sm:h-[112px] md:h-[132px]">
                 <Image
                   src="/assets/images/logos/logo.png"
@@ -307,7 +307,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             open ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="px-4 pb-4 pt-1 border-t border-white/10 bg-[#0f3325]/90">
+          <div className="px-4 pb-4 pt-1 border-t border-white/10 bg-[#103a2a]">
             <div className="mb-3 pt-2">
               <NavbarCatalogSearch
                 tone="drawer"
