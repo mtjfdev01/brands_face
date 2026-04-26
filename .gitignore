@@ -22,6 +22,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Next.js only reads env from project root — ignore mistaken copies under src/
+src/**/.env
+
 # vercel
 .vercel
 

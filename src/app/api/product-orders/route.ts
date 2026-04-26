@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 import { dbQuery } from "@/lib/postgres";
+import { upsertCustomerFromLead } from "@/lib/customerSchema";
+import {
+  fetchPayfastAccessPayload,
+  getPayfastBrandingFromRequest,
+  isCheckoutPhoneOk,
+  isPayfastConfigured,
+  markOrderPaymentPendingCheckout,
+  persistProductOrderGatewayError,
+} from "@/lib/payfastServer";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
+import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
 
 type Body = {
   requestType?: string;
@@ -75,10 +85,25 @@ export async function POST(request: Request) {
       if (lineTotal === null || !Number.isFinite(lineTotal) || lineTotal < 0) {
         return NextResponse.json({ message: "Invalid total for this order." }, { status: 400 });
       }
+      if (isPayfastConfigured() && lineTotal > 0) {
+        if (!isCheckoutPhoneOk(phone)) {
+          return NextResponse.json(
+            { message: "A valid phone number is required for secure checkout." },
+            { status: 400 },
+          );
+        }
+      }
     } else {
       pricePerPiece = null;
       lineTotal = null;
     }
+
+    const customerId = await upsertCustomerFromLead({
+      email,
+      fullName,
+      phone,
+      company,
+    });
 
     const inserted = await dbQuery<{ id: number }>(
       `INSERT INTO product_orders (
@@ -95,9 +120,10 @@ export async function POST(request: Request) {
         email,
         phone,
         company,
-        customer_notes
+        customer_notes,
+        customer_id
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
       RETURNING id`,
       [
         requestType,
@@ -114,16 +140,56 @@ export async function POST(request: Request) {
         phone,
         company,
         customerNotes,
+        customerId,
       ],
     );
 
+    const orderId = inserted.rows[0]?.id ?? null;
+    if (!orderId) {
+      return NextResponse.json({ message: "Unable to create order." }, { status: 500 });
+    }
+
+    let payfast: Record<string, unknown> | undefined;
+    let branding: PayfastCheckoutBranding | undefined;
+
+    if (
+      requestType === "standard_order" &&
+      isPayfastConfigured() &&
+      lineTotal !== null &&
+      lineTotal > 0 &&
+      phone
+    ) {
+      branding = getPayfastBrandingFromRequest(request);
+      try {
+        payfast = await fetchPayfastAccessPayload(String(orderId), lineTotal);
+        await markOrderPaymentPendingCheckout(orderId);
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : "PayFast token failed";
+        await persistProductOrderGatewayError(orderId, msg);
+        return NextResponse.json(
+          {
+            message:
+              "Your order was saved, but we could not start the payment page. Our team will contact you with a payment link.",
+            id: orderId,
+            checkoutError: true,
+          },
+          { status: 201 },
+        );
+      }
+    }
+
+    const baseMessage =
+      requestType === "custom_quote"
+        ? "Quote request received. Our sales team will contact you shortly."
+        : payfast
+          ? "Redirecting to secure checkout…"
+          : "Order request submitted. We will confirm details with you soon.";
+
     return NextResponse.json(
       {
-        message:
-          requestType === "custom_quote"
-            ? "Quote request received. Our sales team will contact you shortly."
-            : "Order request submitted. We will confirm details with you soon.",
-        id: inserted.rows[0]?.id ?? null,
+        message: baseMessage,
+        id: orderId,
+        ...(payfast && branding ? { payfast, branding } : {}),
       },
       { status: 201 },
     );

@@ -7,6 +7,7 @@ const ITEMS = [
   { label: "Dashboard", href: "/admin", disabled: true },
   { label: "Quotes", href: "/admin/quotes" },
   { label: "Product orders", href: "/admin/product-orders" },
+  { label: "New order", href: "/admin/product-orders/new" },
 ];
 
 export default function AdminSidebar() {

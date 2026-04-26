@@ -247,6 +247,28 @@
   animation: category-slider-card-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Home hero category flower: steady sweep like a watch second hand (60s / turn) */
+@keyframes home-flower-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.home-flower-orbit {
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+  will-change: transform;
+  /* Duration set from JS (--home-flower-orbit-duration); default 60s @ 1× */
+  animation: home-flower-orbit var(--home-flower-orbit-duration, 60s) steps(60, end) infinite;
+}
+
+/* Prevent "dragging" ghost images / text selection inside the hero flower */
+.home-flower-orbit,
+.home-flower-orbit * {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 /* Category info tabs: slides hug image width — avoids huge gaps with small thumbnails */
 .info-gallery-swiper .swiper-slide {
   width: auto !important;
@@ -254,6 +276,11 @@
 
 /* ── Respect prefers-reduced-motion ── */
 @media (prefers-reduced-motion: reduce) {
+  .home-flower-orbit {
+    animation: none;
+    transform: none;
+  }
+
   .category-slider-card-in {
     animation: none;
     opacity: 1;

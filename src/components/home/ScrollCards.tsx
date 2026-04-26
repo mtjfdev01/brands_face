@@ -4,9 +4,9 @@ import { useEffect, useRef, useState, useCallback, useMemo, type KeyboardEvent }
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { TbCarFan } from "react-icons/tb";
 import { HOME_CARDS } from "@/data/homeCards";
 import { categoryHubPath } from "@/lib/routes";
-import AllCategoriesOverlay from "@/components/home/AllCategoriesOverlay";
 
 const CARDS = HOME_CARDS;
 
@@ -28,52 +28,33 @@ function getResponsiveConfig(width: number) {
   const w = width;
 
   if (w < 640)
-    return { rx: 48, ry: 50, heroW: 200, heroH: 310, dragW: 92, dragH: 138, flowerW: 100, flowerH: 149 };
+    return { rx: 50, ry: 52, heroW: 200, heroH: 310, dragW: 92, dragH: 138, flowerW: 108, flowerH: 160 };
   if (w < 1024)
-    return { rx: 70, ry: 55, heroW: 180, heroH: 280, dragW: 145, dragH: 220, flowerW: 188, flowerH: 276 };
+    return { rx: 74, ry: 57, heroW: 180, heroH: 280, dragW: 145, dragH: 220, flowerW: 204, flowerH: 298 };
 
-  return { rx: 85 * 1.2, ry: 60 * 1.08, heroW: 220, heroH: 351, dragW: 174, dragH: 261, flowerW: 264, flowerH: 378 };
+  /* lg+: flower in HomeHero’s left column */
+  return { rx: 76, ry: 46, heroW: 200, heroH: 320, dragW: 150, dragH: 225, flowerW: 214, flowerH: 322 };
 }
 
 
 
 /* ──────────────────────────────────────────────────
-   HERO-PHASE card positions
-   Cards sit in the LEFT-CENTER of the hero (45% width area)
-   Positions as % offsets from that anchor point
-   ────────────────────────────────────────────────── */
-const HERO_FAN = [
-  { rotate: -15, x: -30, y: -2, scale: 0.86, delay: 0 },
-  { rotate: -7, x: -14, y: -1, scale: 0.92, delay: 100 },
-  { rotate: 2, x: 2, y: 0, scale: 0.98, delay: 200 },
-  { rotate: 10, x: 16, y: 2, scale: 1.04, delay: 300 },
-];
-
-/* ──────────────────────────────────────────────────
-   SCROLL PHASES (normalized to total scroll journey):
-
-   HERO PHASE  (0.00 → 0.20)  Cards in hero left-center, fanned
-   DRAG PHASE  (0.20 → 0.35)  Cards drag from hero-left → viewport-center, shrink
-   HOLD PHASE  (0.35 → 0.50)  Heading visible, cards folded center
-   SPREAD      (0.50 → 0.65)  Heading exits, more cards appear, fan widens
-   BLOOM       (0.65 → 0.88)  All cards bloom to flower, logo appears
-   HOLD FLOWER (0.88 → 1.00)  Hold final state
+   Desktop: full flower + center logo from first paint after entry (no hero
+   fan, drag, or bloom). Scroll progress only drives exit at end of journey.
    ────────────────────────────────────────────────── */
 
 const ENTRY_DELAY = 1500; // matches curtain
-const CORE_CARDS_COUNT = 4;
 
-/**
- * Manual vertical tweak for the fixed card stack (desktop scroll animation).
- * `anchorTop` is in % of viewport height from the top — increase to move the stack down, decrease to move up.
- */
-const ANCHOR_TOP_DESKTOP_OFFSET_PCT = 5;
+/** Visual scale for each orbit slot (exactly +3.5% vs 0.72). */
+const FLOWER_SLOT_SCALE = 0.72 * 1.035;
 
-/** Same idea when mobile uses the scroll-driven card path (if enabled). */
-const ANCHOR_TOP_MOBILE_OFFSET_PCT = 0;
+/** Orbit animation: 1× = 60s per turn; `--home-flower-orbit-duration` is read in globals.css. */
+const ORBIT_BASE_DURATION_SEC = 60;
+const ORBIT_SPEED_LEVELS = [0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 12, 15, 20] as const;
 
-/** Extra distance below the card stack for "See all Product Categories" (px, positive = lower on screen). */
-const CATEGORIES_BUTTON_TOP_OFFSET_PX = 28;
+function orbitSpeedLabel(m: number) {
+  return `${m}x`;
+}
 
 /* ── Mobile card slider ── */
 function MobileCardSlider({ show }: { show: boolean }) {
@@ -183,8 +164,16 @@ export default function ScrollCards() {
   const [sliderRevealed, setSliderRevealed] = useState(false);
   const [mobileSeenSlider, setMobileSeenSlider] = useState(false);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
-  const [showAllCategories, setShowAllCategories] = useState(false);
-  const rafRef = useRef(0);
+  const [orbitSpeedIdx, setOrbitSpeedIdx] = useState(2); // 1×
+
+  useEffect(() => {
+    const mult = ORBIT_SPEED_LEVELS[orbitSpeedIdx];
+    const seconds = ORBIT_BASE_DURATION_SEC / mult;
+    document.documentElement.style.setProperty("--home-flower-orbit-duration", `${seconds}s`);
+    return () => {
+      document.documentElement.style.removeProperty("--home-flower-orbit-duration");
+    };
+  }, [orbitSpeedIdx]);
 
   useEffect(() => {
     const check = () => {
@@ -203,58 +192,12 @@ export default function ScrollCards() {
     return () => clearTimeout(t);
   }, []);
 
-  /* Scroll tracking */
-  const onScroll = useCallback(() => {
-    if (isMobile) return;
-    cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      const vh = window.innerHeight;
-      const scrollY = window.scrollY;
-      const heroFraction = clamp(scrollY / vh); // 0→1 as hero scrolls away
-
-      const flowerEl = document.getElementById("card-flower-section");
-      if (!flowerEl) {
-        /* Only hero on screen — use hero progress */
-        setProgress(clamp(scrollY / vh, 0, 0.2));
-        return;
-      }
-
-      const flowerRect = flowerEl.getBoundingClientRect();
-      const flowerScrollable = flowerEl.offsetHeight - vh;
-
-      /* Hero takes ~0 to 0.35 of total progress */
-      /* Flower takes ~0.35 to 1.0 of total progress */
-      if (heroFraction < 1) {
-        /* Still in hero area: map 0→1 scroll to 0→0.35 progress */
-        setProgress(heroFraction * 0.35);
-      } else {
-        /* In flower section: map flower scroll to 0.35→1.0 */
-        const fp = flowerScrollable > 0 ? clamp(-flowerRect.top / flowerScrollable) : 0;
-        setProgress(0.35 + fp * 0.65);
-      }
-    });
+  useEffect(() => {
+    // Scroll functionality disabled: keep progress fixed.
+    setProgress(0);
   }, [isMobile]);
 
-  useEffect(() => {
-    if (isMobile) {
-      setProgress(0);
-      return;
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafRef.current);
-    };
-  }, [isMobile, onScroll]);
-
-  /* ── Derived phase values ── */
   const p = progress;
-  const dragT = easeOut(sub(p, 0.20, 0.35));   // hero → center
-  const foldedT = sub(p, 0.35, 0.50);           // hold in center
-  const circleT = easeOut(sub(p, 0.50, 0.88));  // clockwise circle completion
-  const flowerT = easeOut(sub(p, 0.65, 0.88));  // center logo timing only
-  const centerLogoT = easeOut(sub(p, 0.75, 0.92));
 
 /* ✅ Responsive config (must be BEFORE return) */
 const cfg = useMemo(
@@ -275,45 +218,14 @@ const FLOWER = useMemo(() => {
       rotate: angleDeg - 90,
       x: Math.cos(angle) * FLOWER_RX,
       y: Math.sin(angle) * FLOWER_RY,
-      scale: 0.68,
+      scale: FLOWER_SLOT_SCALE,
     };
   });
 }, [FLOWER_RX, FLOWER_RY]);
 
-const heroFan = useMemo(
-  () =>
-    isMobile
-      ? HERO_FAN.map((h) => ({
-          ...h,
-          rotate: h.rotate * 0.8,
-          x: h.x * 0.62,
-          y: h.y * 0.7,
-          scale: h.scale * 0.78,
-        }))
-      : HERO_FAN,
-  [isMobile],
-);
-
-  /* ── Anchor: cards drag diagonally — down AND rightward ── */
-  const mobileHeroRestore = isMobile && mobileSeenSlider && !sliderRevealed && p <= 0.30;
-  const dragProgress = mobileHeroRestore ? 0 : dragT;
-  const phaseHeroFan = mobileHeroRestore ? heroFan : heroFan;
-  const anchorLeft = isMobile ? 50 : lerp(22.5, 50, dragProgress);
-  const flowerLiftT = easeOut(sub(p, 0.50, 0.88)); // heading out -> flower open
-  const anchorTop =
-    (isMobile ? lerp(36, 52, dragProgress) : lerp(45, 65, dragProgress)) -
-    lerp(0, 14, flowerLiftT) +
-    (isMobile ? ANCHOR_TOP_MOBILE_OFFSET_PCT : ANCHOR_TOP_DESKTOP_OFFSET_PCT);
-
-  /* Card size: responsive per breakpoint */
-  const heroWForPhase = mobileHeroRestore ? cfg.heroW : cfg.heroW;
-  const heroHForPhase = mobileHeroRestore ? cfg.heroH : cfg.heroH;
-  // Mobile only: keep hero size for first 10% of hero scroll, then downsize.
-  const mobileHeroProgress = clamp(p / 0.35);
-  const sizeDragT = isMobile ? sub(mobileHeroProgress, 0.10, 1.0) : dragProgress;
-  const flowerCompleteBoost = isMobile ? 1 : lerp(1, 1.14, easeOut(sub(p, 0.88, 1.0)));
-  const cardW = lerp(lerp(heroWForPhase, cfg.dragW, sizeDragT), cfg.flowerW, flowerT) * flowerCompleteBoost;
-  const cardH = lerp(lerp(heroHForPhase, cfg.dragH, sizeDragT), cfg.flowerH, flowerT) * flowerCompleteBoost;
+  const flowerCompleteBoost = isMobile ? 1 : lerp(1, 1.06, easeOut(sub(p, 0.88, 1.0)));
+  const cardW = cfg.flowerW * flowerCompleteBoost;
+  const cardH = cfg.flowerH * flowerCompleteBoost;
 
   /* ── Mobile handoff with hysteresis: reveal slider down, restore cards up ── */
   useEffect(() => {
@@ -327,31 +239,14 @@ const heroFan = useMemo(
 
   /* ── Exit animation: slower, stretched to section end ── */
   const exitT = easeOut(sub(p, 0.78, 1.0));
-  const exitRotate = lerp(0, 24, exitT);
-  const exitScale = lerp(1, 0.3, exitT);
   // Slow down fade progression so cards stay visible longer.
   const exitOpacity = lerp(1, 0, Math.pow(exitT, 2));
-  const exitLift = lerp(0, -140, exitT);
-  const desktopCategoriesBtnTop = `calc(${anchorTop}% + ${Math.round(cardH * 0.62) + CATEGORIES_BUTTON_TOP_OFFSET_PX}px)`;
 
   /* ── Should cards be visible? ── */
   const beyondFlower = isMobile ? sliderRevealed : p >= 1;
   const visible = entered && !beyondFlower;
-  const inCircleLinkPhase = p >= 0.65 && visible;
-  const flowerOpened = inCircleLinkPhase && !isMobile;
-  const scrollToOpenedFlower = useCallback(() => {
-    const flowerEl = document.getElementById("card-flower-section");
-    if (!flowerEl) return;
-
-    // Jump to the bloom part (not just section start) for both desktop and mobile.
-    const flowerScrollable = Math.max(0, flowerEl.offsetHeight - window.innerHeight);
-    const targetY = flowerEl.offsetTop + flowerScrollable * 0.55;
-
-    window.scrollTo({
-      top: targetY,
-      behavior: "smooth",
-    });
-  }, []);
+  const inCircleLinkPhase = visible && !isMobile;
+  const flowerOpened = inCircleLinkPhase;
 
   // Mobile: category carousel lives after HomeHero in page.tsx; scroll-driven cards are desktop-only.
   if (isMobile) {
@@ -359,138 +254,92 @@ const heroFan = useMemo(
   }
 
   return (
-    <>
-    <button
-      type="button"
-      onClick={() => setShowAllCategories(true)}
-      className="fixed z-40 inline-flex items-center gap-2 rounded-full border border-[#103a2a]/20 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#103a2a] backdrop-blur transition hover:border-[#103a2a]/45 hover:bg-white sm:text-sm"
-      style={{
-        opacity: visible && !isMobile ? 1 : 0,
-        left: `${anchorLeft}%`,
-        top: desktopCategoriesBtnTop,
-        transform: visible && !isMobile ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(20px)",
-        pointerEvents: visible && !isMobile ? "auto" : "none",
-      }}
-    >
-      See all Product Categories
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 12h14M13 5l7 7-7 7" />
-      </svg>
-    </button>
-
     <div
-      className="fixed inset-0 z-20 pointer-events-none"
+      className="relative z-10 w-full max-w-[min(100%,560px)] shrink-0 overflow-visible pointer-events-none"
       style={{
         opacity: visible ? exitOpacity : 0,
-        transform: `translateY(${exitLift}px) rotate(${exitRotate}deg) scale(${exitScale})`,
-        transformOrigin: `${anchorLeft}% ${anchorTop}%`,
+        transform: "none",
         transition: visible ? "none" : "opacity 0.3s ease",
       }}
     >
-      {/* Card container anchored to moving center point */}
-      <div
-        className="absolute"
-        style={{
-          left: `${anchorLeft}%`,
-          top: `${anchorTop}%`,
-          transform: "translate(-50%, -50%)",
-          width: "min(90vw, 700px)",
-          height: "min(70vh, 500px)",
-        }}
-      >
+      <div className="relative mx-auto aspect-[560/430] w-full overflow-visible">
+        {/* Top-right of flower frame only (not viewport / HomeHero chrome) */}
+        <div
+          className="pointer-events-auto absolute right-0 -top-20 z-[100] flex items-center gap-0.5 rounded-full border border-[#1a3a2a]/18 bg-white/95 px-1.5 py-1 shadow-md backdrop-blur-sm"
+          role="group"
+          aria-label="Flower rotation speed"
+        >
+          <div className="flex flex-col items-center justify-center gap-0 pr-0.5 leading-none">
+            <TbCarFan className="h-4 w-4 shrink-0 text-[#1a3a2a]" aria-hidden />
+            <span className="text-center text-[10px] font-bold tabular-nums leading-none text-[#1a3a2a]">
+              {orbitSpeedLabel(ORBIT_SPEED_LEVELS[orbitSpeedIdx])}
+            </span>
+          </div>
+          <div className="flex flex-col border-l border-[#1a3a2a]/15 pl-0.5">
+            <button
+              type="button"
+              className="rounded p-0.5 text-[#1a3a2a] transition hover:bg-[#1a3a2a]/10 disabled:pointer-events-none disabled:opacity-35"
+              aria-label="Faster rotation"
+              disabled={orbitSpeedIdx >= ORBIT_SPEED_LEVELS.length - 1}
+              onClick={() => setOrbitSpeedIdx((i) => Math.min(i + 1, ORBIT_SPEED_LEVELS.length - 1))}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M18 15l-6-6-6 6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="rounded p-0.5 text-[#1a3a2a] transition hover:bg-[#1a3a2a]/10 disabled:pointer-events-none disabled:opacity-35"
+              aria-label="Slower rotation"
+              disabled={orbitSpeedIdx <= 0}
+              onClick={() => setOrbitSpeedIdx((i) => Math.max(i - 1, 0))}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
+        {/* Ring rotates continuously; duration from --home-flower-orbit-duration */}
+        <div
+          className="home-flower-orbit relative h-full w-full select-none"
+          style={{
+            animationPlayState: entered && visible ? "running" : "paused",
+          }}
+        >
 
 {CARDS.map((card, idx) => {
-  const isCoreCard = idx < CORE_CARDS_COUNT;
-  // Use all unique cards in the flower (no repeated visuals).
   const sourceCard = card;
-
-  let rotate = 0,
-    x = 0,
-    y = 0,
-    scale = 0.85,
-    opacity = 0;
-
   const flowerSlot = FLOWER[idx];
+  const rotate = flowerSlot.rotate;
+  const x = flowerSlot.x;
+  const y = flowerSlot.y;
+  const scale = flowerSlot.scale;
+  const opacity = entered ? 1 : 0;
 
-  if (circleT > 0) {
-    // Clockwise completion: cards fill the circle sequentially by index.
-    const base = isCoreCard ? phaseHeroFan[idx] : phaseHeroFan[idx % CORE_CARDS_COUNT];
-    const start = isCoreCard
-      ? { rotate: base.rotate, x: base.x, y: base.y, scale: base.scale }
-      : {
-          rotate: base.rotate * 0.9,
-          x: base.x * 0.9,
-          y: base.y * 0.9 + 2,
-          scale: base.scale * 0.95,
-        };
-    // Simple follow sequence: front-most card moves first, others follow.
-    const followOrder = [3, 0, 1, 2, ...Array.from({ length: Math.max(0, CARDS.length - CORE_CARDS_COUNT) }, (_, i) => i + CORE_CARDS_COUNT)];
-    const seq = followOrder.indexOf(idx);
-    const delay = seq * 0.07;
-    const t = easeOut(clamp((circleT - delay) / (1 - delay)));
-    rotate = lerp(start.rotate, flowerSlot.rotate, t);
-    x = lerp(start.x, flowerSlot.x, t);
-    y = lerp(start.y, flowerSlot.y, t);
-    scale = lerp(start.scale, flowerSlot.scale, t);
-    opacity = isCoreCard ? 1 : t;
-  } else if (dragProgress > 0 || foldedT > 0) {
-    /**
-     * DRAG + HOLD (hero → folded center):
-     * Keep your original behavior.
-     */
-    if (isCoreCard) {
-      const hf = phaseHeroFan[idx];
-      const ff = heroFan[idx];
-      rotate = lerp(hf.rotate, ff.rotate, dragProgress);
-      x = lerp(hf.x, ff.x, dragProgress);
-      y = lerp(hf.y, ff.y, dragProgress);
-      scale = lerp(hf.scale, ff.scale, dragProgress);
-      opacity = 1;
-    } else {
-      opacity = 0;
-    }
-  } else {
-    /**
-     * HERO entry: keep original behavior.
-     */
-    if (isCoreCard) {
-      const hf = phaseHeroFan[idx];
-      const entryT = entered ? 1 : 0;
-      // Start tightly packed, then spread to the current hero fan layout.
-      rotate = lerp(hf.rotate * 0.25, hf.rotate, entryT);
-      x = lerp(hf.x * 0.22, hf.x, entryT);
-      y = lerp(hf.y * 0.35, hf.y, entryT);
-      scale = lerp(hf.scale * 0.98, hf.scale, entryT);
-      opacity = entryT;
-    }
-  }
-
-  // Hero arrangement: explicit stack order to keep fan clean like reference.
-  const heroZOrder = [10, 20, 30, 40]; // back -> front (idx 3 is front-most)
-  const inHeroLikePhase = isCoreCard && p < 0.50;
-  const cardIsInteractive = inHeroLikePhase || inCircleLinkPhase;
+  const cardIsInteractive = inCircleLinkPhase;
   const isHoveredInFlower = flowerOpened && hoveredCardIndex === idx;
-  const renderScale = isHoveredInFlower ? scale * 1.3 : scale;
+  const renderScale = isHoveredInFlower ? scale * 1.28 : scale;
 
-  // Other phases: depth by y for stable layering.
   const depthByY = Math.round((y + 100) * 2);
-  const zIndex = isHoveredInFlower ? 999 : (inHeroLikePhase ? heroZOrder[idx] : 300 + depthByY + idx);
+  const zIndex = isHoveredInFlower ? 999 : 300 + depthByY + idx;
 
   return (
     <div
       key={`${sourceCard.title}-${idx}`}
-      className={`absolute left-1/2 top-1/2 origin-center ${
+      draggable={false}
+      // onDragStart={(e) => e.preventDefault()}
+      onMouseDown={(e) => {
+        // Prevent browser "drag image" / selection drag on desktop.
+        e.preventDefault();
+      }}
+      className={`absolute left-1/2 top-1/2 origin-center select-none ${
         cardIsInteractive ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
       }`}
       onClick={() => {
         if (inCircleLinkPhase) {
           router.push(categoryHubPath(sourceCard.category));
-          return;
-        }
-
-        if (inHeroLikePhase) {
-          scrollToOpenedFlower();
         }
       }}
       {...(inCircleLinkPhase
@@ -519,22 +368,20 @@ const heroFan = useMemo(
         zIndex,
         transform: `translate(-50%, -50%) translate(${x}%, ${y}%) rotate(${rotate}deg) scale(${renderScale})`,
         willChange: "transform, opacity",
-        transition:
-          flowerOpened
-            ? "transform 220ms ease, opacity 220ms ease"
-            : entered && p < 0.01 && isCoreCard
-            ? `transform 1.8s cubic-bezier(0.16,1,0.3,1) ${phaseHeroFan[idx].delay}ms, opacity 0.9s ease ${phaseHeroFan[idx].delay}ms`
-            : "none",
+        transition: flowerOpened
+          ? "transform 220ms ease, opacity 0.55s ease"
+          : "opacity 0.55s ease",
       }}
     >
-      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl border-[5px] border-white">
+      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl border-[3px] border-white">
         <div className="absolute inset-0" style={{ backgroundColor: sourceCard.color }} />
         <Image
           src={sourceCard.image}
           alt={sourceCard.title}
           fill
-          className="object-cover"
-          sizes="200px"
+          draggable={false}
+          className="pointer-events-none object-cover"
+          sizes="(min-width: 1024px) 240px, 200px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-3">
@@ -549,29 +396,33 @@ const heroFan = useMemo(
   );
 })}
 
-        {/* ── Center logo (flower phase) ── */}
+        </div>
+
+        {/* ── Center hub (outside rotating ring so label stays upright) ── */}
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 text-center"
+          className="pointer-events-none absolute left-1/2 top-1/2 z-30 max-w-[10rem] text-center sm:max-w-[11rem]"
           style={{
-            opacity: centerLogoT,
-            transform: `translate(-50%, -50%) scale(${lerp(0.7, 1, centerLogoT)})`,
+            opacity: entered ? 1 : 0,
+            transform: `translate(-50%, -50%) scale(${entered ? 1 : 0.92})`,
+            transition: "opacity 0.55s ease, transform 0.55s ease",
           }}
         >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-[#1a3a2a] flex items-center justify-center shadow-2xl mb-3">
-            <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
+          <div className="relative mx-auto mb-2 h-12 w-12 shrink-0 overflow-hidden rounded-full shadow-2xl sm:h-14 sm:w-14">
+            <Image
+              src="/assets/images/logos/logo_x.png"
+              alt=""
+              fill
+              className="object-contain p-1.5 sm:p-2"
+              sizes="56px"
+            />
           </div>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#1a3a2a] uppercase leading-none tracking-tight">
+          {/* <h3 className="text-lg font-black uppercase leading-tight tracking-tight text-[#1a3a2a] sm:text-xl md:text-2xl">
             Endless
             <br />
             Possibilities
-          </h3>
+          </h3> */}
         </div>
       </div>
     </div>
-
-    <AllCategoriesOverlay open={showAllCategories} onClose={() => setShowAllCategories(false)} />
-    </>
   );
 }

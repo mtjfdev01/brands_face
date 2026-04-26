@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { dbQuery } from "@/lib/postgres";
+import { upsertCustomerFromLead } from "@/lib/customerSchema";
 import { ensureQuoteSchema } from "@/lib/quoteSchema";
 
 type CreateQuoteBody = {
@@ -55,6 +56,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Please provide a valid quantity." }, { status: 400 });
     }
 
+    const customerId = await upsertCustomerFromLead({
+      email,
+      fullName,
+      phone,
+      company,
+    });
+
     const inserted = await dbQuery<{ id: number }>(
       `INSERT INTO quote_requests (
         full_name,
@@ -70,10 +78,11 @@ export async function POST(request: Request) {
         finish,
         extra_finishes,
         unboxing,
-        quantity
+        quantity,
+        customer_id
       )
       VALUES (
-        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10::text[], $11, $12::text[], $13, $14
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10::text[], $11, $12::text[], $13, $14, $15
       )
       RETURNING id`,
       [
@@ -91,6 +100,7 @@ export async function POST(request: Request) {
         extraFinishes,
         unboxing,
         quantity,
+        customerId,
       ],
     );
 

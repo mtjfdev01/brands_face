@@ -10,6 +10,10 @@ import {
   type ReactNode,
 } from "react";
 import type { ProductSize, QuantityOption } from "./ProductInfo";
+import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
+import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
+
+const PAYFAST_CHECKOUT_HINT = process.env.NEXT_PUBLIC_PAYFAST_CHECKOUT === "1";
 
 export type ProductLeadFormsHandle = {
   /** Scrolls the order block into view and opens the standard “place order” form. */
@@ -94,17 +98,24 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
     setOrderPanelOpen((prev) => !prev);
   };
 
+  type OrderPostResponse = {
+    message?: string;
+    payfast?: Record<string, unknown>;
+    branding?: PayfastCheckoutBranding;
+    checkoutError?: boolean;
+  };
+
   const postOrder = async (payload: Record<string, unknown>) => {
     const res = await fetch("/api/product-orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    const data = (await res.json()) as { message?: string };
+    const data = (await res.json()) as OrderPostResponse;
     if (!res.ok) {
       throw new Error(data.message ?? "Request failed");
     }
-    return data.message ?? "Submitted.";
+    return data;
   };
 
   const parsedQty = parseInt(orderQty, 10);
@@ -128,7 +139,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
     }
     try {
       setSubmitting(true);
-      await postOrder({
+      const data = await postOrder({
         requestType: "standard_order",
         ctaSource: "place_order",
         productSlug,
@@ -144,9 +155,31 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
         company: stdCompany.trim() || null,
         customerNotes: stdNotes.trim() || null,
       });
+
+      if (data.checkoutError) {
+        setMessage({
+          type: "ok",
+          text:
+            data.message ??
+            "Your order was saved. We could not open the payment page — our team will send you a payment link.",
+        });
+        setOrderPanelOpen(false);
+        return;
+      }
+
+      if (data.payfast && data.branding) {
+        submitBrandsfacePayfastCheckout(data.payfast, {
+          customerPhone: stdPhone.trim(),
+          customerEmail: stdEmail.trim().toLowerCase(),
+        }, data.branding);
+        return;
+      }
+
       setMessage({
         type: "ok",
-        text: "Order request received — our team will contact you to confirm and finalize.",
+        text:
+          data.message ??
+          "Order request received — our team will contact you to confirm and finalize.",
       });
       setStdFullName("");
       setStdEmail("");
@@ -243,7 +276,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
                 </div>
                 <div>
                   <label htmlFor="std-phone" className={`mb-1 block text-xs font-medium ${textSoft}`}>
-                    Phone
+                    Phone{PAYFAST_CHECKOUT_HINT ? " *" : ""}
                   </label>
                   <input
                     id="std-phone"

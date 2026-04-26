@@ -14,21 +14,22 @@ function useIsMobile() {
 }
 
 /* ── Math helpers ── */
-function clamp01(v: number) { return Math.max(0, Math.min(1, v)); }
-function lerp(a: number, b: number, t: number) { return a + (b - a) * clamp01(t); }
-function sub(p: number, s: number, e: number) { return clamp01((p - s) / (e - s)); }
-function easeOut(t: number) { return 1 - Math.pow(1 - t, 3); }
+function clamp01(v: number) {
+  return Math.max(0, Math.min(1, v));
+}
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * clamp01(t);
+}
+function sub(p: number, s: number, e: number) {
+  return clamp01((p - s) / (e - s));
+}
+function easeOut(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
 
 /*
-  This section provides the BACKGROUND, HEADING, and SIDE LABELS
-  for the flower scroll area. The actual cards are rendered by
-  <ScrollCards /> as a fixed overlay across the entire page.
-
-  Scroll phases (within this section's 350vh):
-    0.00 - 0.12  Heading fades in
-    0.12 - 0.40  Heading holds
-    0.40 - 0.60  Heading slides up & fades out
-    0.60 - 1.00  Flower area (cards + logo driven by ScrollCards)
+  Background, heading, and side labels for the flower scroll area.
+  The flower cards and rotation speed UI live in <ScrollCards /> (HomeHero).
 */
 
 export default function CardFlowerSection() {
@@ -60,12 +61,11 @@ export default function CardFlowerSection() {
 
   /* Heading animation */
   const headingIn = easeOut(sub(p, 0.0, 0.12));
-  const headingOut = easeOut(sub(p, 0.40, 0.60));
+  const headingOut = easeOut(sub(p, 0.4, 0.6));
   const headingOpacity = headingIn * (1 - headingOut);
   const headingY = lerp(60, 0, headingIn) + lerp(0, -80, headingOut);
 
   const sideLabelsOpacity = headingIn * (1 - easeOut(sub(p, 0.45, 0.65)));
-  // Keep the flower journey shorter so users don't need long drag/scroll.
   const shrinkT = easeOut(sub(p, 0.82, 1.0));
   const sectionVh = lerp(165, 130, shrinkT);
 
@@ -80,34 +80,30 @@ export default function CardFlowerSection() {
       className="relative bg-[#f5f0ea]"
       style={{ height: `${sectionVh}vh` }}
     >
-      {/* Sticky viewport */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        {/* ── Side labels ── */}
+      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
         <div
-          className="absolute left-6 sm:left-10 top-1/2 -translate-y-1/2 hidden md:block"
+          className="absolute left-6 top-1/2 hidden -translate-y-1/2 sm:left-10 md:block"
           style={{ opacity: sideLabelsOpacity }}
         >
           <p className="text-[10px] uppercase tracking-widest text-gray-400">Indigo</p>
-          <p className="text-sm font-semibold text-[#1a3a2a] mt-0.5">Social Strategy</p>
+          <p className="mt-0.5 text-sm font-semibold text-[#1a3a2a]">Social Strategy</p>
         </div>
         <div
-          className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 text-right hidden md:block"
+          className="absolute right-6 top-1/2 hidden -translate-y-1/2 text-right sm:right-10 md:block"
           style={{ opacity: sideLabelsOpacity }}
         >
           <p className="text-[10px] uppercase tracking-widest text-gray-400">We have</p>
-          <p className="text-sm font-semibold text-[#1a3a2a] mt-0.5 md:scroll-mt-28">Millions Impacted</p>
+          <p className="mt-0.5 text-sm font-semibold text-[#1a3a2a] md:scroll-mt-28">Millions Impacted</p>
         </div>
-        
 
-        {/* ── Heading ── */}
         <div
-          className="absolute inset-x-0 top-[8%] sm:top-[10%] text-center px-6 z-10 pointer-events-none md:scroll-mt-28"
+          className="pointer-events-none absolute inset-x-0 top-[8%] z-10 px-6 text-center sm:top-[10%] md:scroll-mt-28"
           style={{
             opacity: headingOpacity,
             transform: `translateY(${headingY}px)`,
           }}
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#1a3a2a] leading-[1.05] tracking-tight uppercase">
+          <h2 className="text-4xl font-black uppercase leading-[1.05] tracking-tight text-[#1a3a2a] sm:text-5xl md:text-6xl lg:text-7xl">
             Packaging That
             <br />
             <span className="text-[var(--color-brand-accent,#c8102e)]">Makes Impact</span> Every
@@ -116,9 +112,8 @@ export default function CardFlowerSection() {
           </h2>
         </div>
 
-        {/* Ground shadow (fades as cards spread) */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[12%] w-[40%] h-6 bg-black/[0.06] rounded-[50%] blur-xl pointer-events-none"
+          className="pointer-events-none absolute bottom-[12%] left-1/2 h-7 w-[44%] -translate-x-1/2 rounded-[50%] bg-black/[0.06] blur-xl"
           style={{ opacity: lerp(0.5, 0, easeOut(sub(p, 0.55, 0.75))) }}
         />
       </div>

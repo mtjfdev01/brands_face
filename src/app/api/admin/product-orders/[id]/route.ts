@@ -9,6 +9,7 @@ import { isProductOrderStatus } from "@/lib/productOrderStatus";
 type PatchBody = {
   status?: string;
   adminNotes?: string | null;
+  phone?: string | null;
 };
 
 export async function PATCH(request: Request, { params }: { params: { id: string } }) {
@@ -27,8 +28,9 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     const body = (await request.json()) as PatchBody;
     const hasStatus = typeof body.status !== "undefined";
     const hasNotes = typeof body.adminNotes !== "undefined";
+    const hasPhone = typeof body.phone !== "undefined";
 
-    if (!hasStatus && !hasNotes) {
+    if (!hasStatus && !hasNotes && !hasPhone) {
       return NextResponse.json({ message: "Nothing to update." }, { status: 400 });
     }
 
@@ -49,6 +51,12 @@ export async function PATCH(request: Request, { params }: { params: { id: string
       const notes = body.adminNotes === null ? null : String(body.adminNotes).trim() || null;
       updates.push(`admin_notes = $${idx++}`);
       values.push(notes);
+    }
+
+    if (hasPhone) {
+      const p = body.phone === null ? null : String(body.phone).trim() || null;
+      updates.push(`phone = $${idx++}`);
+      values.push(p);
     }
 
     updates.push("updated_at = NOW()");

@@ -6,6 +6,8 @@ import Image from "next/image";
 import { BsStars } from "react-icons/bs";
 
 import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
+import CardFlowerSection from "@/components/home/CardFlowerSection";
+import ScrollCards from "@/components/home/ScrollCards";
 
 const ANIMATION_DELAY = 1500;
 
@@ -18,8 +20,9 @@ export default function HomeHero() {
   }, []);
 
   return (
+    <>
     <section
-      className="relative w-full overflow-hidden bg-black max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen bg-cover bg-no-repeat bg-center"
+      className="relative w-full overflow-hidden bg-black max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen lg:overflow-visible bg-cover bg-no-repeat bg-center"
       style={{ backgroundImage: "url(/assets/images/hero_bg.png)" }}
     >
       <HomeHeroNavbar />
@@ -180,7 +183,8 @@ export default function HomeHero() {
             <img
               src="/assets/images/hero_main.png"
               alt=""
-              className="block h-auto w-full"
+              draggable={false}
+              className="block h-auto w-full select-none"
             />
             <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(87,215,170,0.18),transparent_62%)]" />
           </div>
@@ -212,8 +216,10 @@ export default function HomeHero() {
 
       {/* Desktop hero (existing layout) */}
       <div className="relative hidden w-full max-lg:min-h-0 flex-col items-start pt-28 sm:pt-32 lg:flex lg:min-h-[100svh] lg:flex-row lg:items-center lg:pt-24">
-        {/* ── Left: reserves space on lg+ where ScrollCards fixed stack reads as the hero “card zone” ── */}
-        <div className="relative hidden h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] w-full lg:block lg:h-full lg:w-[45%]" />
+        {/* ── Left: category flower (ScrollCards) lives in normal flow inside the hero column ── */}
+        <div className="relative z-10 hidden h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] w-full overflow-visible lg:flex lg:h-full lg:min-h-0 lg:w-[45%] lg:items-center lg:justify-center lg:px-2">
+          <ScrollCards />
+        </div>
 
         {/* ── Right: text content (55%) ── */}
         <div className="flex w-full items-center px-6 pb-10 sm:px-8 sm:pb-8 lg:h-full lg:w-[55%] lg:px-16 lg:pb-0">
@@ -319,5 +325,7 @@ export default function HomeHero() {
         </div>
       </div>
     </section>
+    {/* <CardFlowerSection /> */}
+    </>
   );
 }

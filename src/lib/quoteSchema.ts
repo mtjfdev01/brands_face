@@ -32,5 +32,7 @@ export async function ensureQuoteSchema() {
   await dbQuery(`CREATE INDEX IF NOT EXISTS quote_requests_status_idx ON quote_requests (status);`);
   await dbQuery(`CREATE INDEX IF NOT EXISTS quote_requests_created_at_idx ON quote_requests (created_at DESC);`);
 
+  await dbQuery(`ALTER TABLE quote_requests ADD COLUMN IF NOT EXISTS customer_id BIGINT;`);
+
   ensured = true;
 }

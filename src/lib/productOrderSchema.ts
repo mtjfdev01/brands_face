@@ -6,6 +6,35 @@ let ensured = false;
 const STATUS_SQL_LIST = PRODUCT_ORDER_STATUSES.map((s) => `'${s}'`).join(", ");
 
 /** Re-apply CHECK constraint so older DBs pick up new status values (e.g. `responded`). */
+async function migrateProductOrderPaymentColumns() {
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS customer_id BIGINT;`);
+  await dbQuery(
+    `ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS payment_status TEXT NOT NULL DEFAULT 'unpaid';`,
+  );
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS gateway_error TEXT;`);
+  await dbQuery(
+    `ALTER TABLE product_orders DROP CONSTRAINT IF EXISTS product_orders_payment_status_check;`,
+  );
+  await dbQuery(`
+    ALTER TABLE product_orders
+    ADD CONSTRAINT product_orders_payment_status_check
+    CHECK (payment_status IN ('unpaid', 'pending_checkout', 'paid', 'failed', 'refunded'));
+  `);
+}
+
+async function migrateProductOrderCtaAndInvoice() {
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS invoice_public_key TEXT;`);
+  await dbQuery(
+    `CREATE UNIQUE INDEX IF NOT EXISTS product_orders_invoice_public_key_uidx ON product_orders (invoice_public_key) WHERE invoice_public_key IS NOT NULL;`,
+  );
+  await dbQuery(`ALTER TABLE product_orders DROP CONSTRAINT IF EXISTS product_orders_cta_source_check;`);
+  await dbQuery(`
+    ALTER TABLE product_orders
+    ADD CONSTRAINT product_orders_cta_source_check
+    CHECK (cta_source IN ('place_order', 'add_to_cart', 'custom_quote', 'admin'));
+  `);
+}
+
 async function migrateProductOrderStatusConstraint() {
   await dbQuery(
     `UPDATE product_orders SET status = 'responded' WHERE status = 'contacted' OR status = 'in_review';`,
@@ -25,7 +54,7 @@ export async function ensureProductOrderSchema() {
     CREATE TABLE IF NOT EXISTS product_orders (
       id BIGSERIAL PRIMARY KEY,
       request_type TEXT NOT NULL CHECK (request_type IN ('custom_quote', 'standard_order')),
-      cta_source TEXT NOT NULL DEFAULT 'place_order' CHECK (cta_source IN ('place_order', 'add_to_cart', 'custom_quote')),
+      cta_source TEXT NOT NULL DEFAULT 'place_order' CHECK (cta_source IN ('place_order', 'add_to_cart', 'custom_quote', 'admin')),
       status TEXT NOT NULL DEFAULT 'pending',
       product_slug TEXT NOT NULL,
       product_title TEXT NOT NULL,
@@ -46,6 +75,8 @@ export async function ensureProductOrderSchema() {
   `);
 
   await migrateProductOrderStatusConstraint();
+  await migrateProductOrderPaymentColumns();
+  await migrateProductOrderCtaAndInvoice();
 
   await dbQuery(
     `CREATE INDEX IF NOT EXISTS product_orders_status_idx ON product_orders (status);`,
