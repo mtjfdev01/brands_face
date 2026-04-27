@@ -1,0 +1,5 @@
+/* Continuous marquee feel while freeMode is enabled */
+.category-row-carousel.swiper-free-mode .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
