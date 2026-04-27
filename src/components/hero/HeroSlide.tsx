@@ -45,11 +45,11 @@ export default function HeroSlide({ slide }: HeroSlideProps) {
               {slide.description}
             </p>
 
-            <div className="mt-6 sm:mt-8">
+            {/* <div className="mt-6 sm:mt-8">
               <Button variant="primary" size="lg" pill>
                 {slide.ctaText}
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
