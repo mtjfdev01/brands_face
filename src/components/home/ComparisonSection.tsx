@@ -24,8 +24,13 @@ const BENEFITS: Benefit[] = [
   { label: "Soshe", us: true, them: true, bg: "/assets/images/comparison/soshe_b.jpeg", product: "/assets/images/comparison/soshe_a.jpeg", caseStudyPath: "/product-study_case/roi-tracking-reporting" },
 ];
 
-function getPieceAnimationStyle(phase: Phase, direction: PanelDirection): CSSProperties {
-  if (typeof window !== "undefined" && window.innerWidth < 1024) {
+function getPieceAnimationStyle(
+  phase: Phase,
+  direction: PanelDirection,
+  isMobile: boolean,
+): CSSProperties {
+  // Avoid reading `window` during render (causes hydration style mismatches).
+  if (isMobile) {
     return {
       opacity: 1,
       transform: "none",
@@ -78,6 +83,7 @@ function ComparisonImagePanel({
   label,
   direction,
   caption,
+  isMobile,
 }: {
   phase: Phase;
   current: number;
@@ -85,11 +91,12 @@ function ComparisonImagePanel({
   label: string;
   direction: PanelDirection;
   caption: string;
+  isMobile: boolean;
 }) {
   return (
     <div
       className="relative w-full min-h-[340px] sm:min-h-[400px] lg:min-h-[520px] rounded-[24px] overflow-hidden border border-white/10 bg-[#143425] shadow-[0_18px_50px_rgba(9,22,16,0.45)]"
-      style={getPieceAnimationStyle(phase, direction)}
+      style={getPieceAnimationStyle(phase, direction, isMobile)}
     >
       {BENEFITS.map((b, idx) => (
         <div
@@ -133,15 +140,17 @@ function ComparisonTablePanel({
   phase,
   current,
   goTo,
+  isMobile,
 }: {
   phase: Phase;
   current: number;
   goTo: (i: number) => void;
+  isMobile: boolean;
 }) {
   return (
     <div
       className="w-full flex flex-col justify-center px-6 sm:px-10 lg:px-8 py-10 lg:py-12 rounded-[24px] border border-white/10 bg-[#1a3a2a] shadow-[0_18px_50px_rgba(9,22,16,0.45)]"
-      style={getPieceAnimationStyle(phase, "left")}
+      style={getPieceAnimationStyle(phase, "left", isMobile)}
     >
       <p className="text-emerald-400 text-sm sm:text-base font-medium tracking-wide uppercase">
         WHY TRANSFORMATION MATTERS
@@ -293,7 +302,7 @@ export default function ComparisonSection() {
       >
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-5">
           <div className="w-full lg:w-[38%]">
-            <ComparisonTablePanel phase={phase} current={current} goTo={goTo} />
+            <ComparisonTablePanel phase={phase} current={current} goTo={goTo} isMobile={isMobile} />
           </div>
 
           <div className="w-full lg:w-[62%] grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-3">
@@ -304,6 +313,7 @@ export default function ComparisonSection() {
               label="Before"
               direction="center"
               caption="Lower shelf impact and weaker visual authority."
+              isMobile={isMobile}
             />
             <ComparisonImagePanel
               phase={phase}
@@ -312,6 +322,7 @@ export default function ComparisonSection() {
               label="After"
               direction="right"
               caption="Premium perception that supports stronger conversion."
+              isMobile={isMobile}
             />
           </div>
         </div>

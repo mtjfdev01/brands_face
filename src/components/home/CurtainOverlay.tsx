@@ -21,7 +21,7 @@ export default function CurtainOverlay({
   desktopSrc,
   mobileSrc,
   alt = "Brands Face",
-  holdDuration = 1000,
+  holdDuration = 800,
   slideDuration = 800,
 }: Props) {
   const [phase, setPhase] = useState<"hold" | "sliding" | "done">(() =>
@@ -102,13 +102,13 @@ export default function CurtainOverlay({
     return () => clearTimeout(doneTimer);
   }, [phase, slideDuration]);
 
-  const imgSrc = mobileSrc ?? desktopSrc;
-
   if (phase === "done") return null;
+
+  const mobileBannerSrc = mobileSrc ?? desktopSrc;
 
   return (
     <div
-      className="fixed inset-0 z-50"
+      className="fixed inset-0 z-50 overflow-hidden"
       style={{
         transform: phase === "sliding" ? "translateY(-100%)" : "translateY(0)",
         transition: phase === "sliding"
@@ -116,24 +116,29 @@ export default function CurtainOverlay({
           : "none",
       }}
     >
-      {/* Desktop */}
-      <Image
-        src={desktopSrc}
-        alt={alt}
-        fill
-        priority
-        className="object-cover hidden md:block"
-        sizes="(min-width: 768px) 100vw, 0px"
-      />
-      {/* Mobile */}
-      <Image
-        src={imgSrc}
-        alt={alt}
-        fill
-        priority
-        className="object-cover md:hidden"
-        sizes="(max-width: 767px) 100vw, 0px"
-      />
+      {/* Hide whole layer (not only the inner img) so Next/Image wrappers cannot leak the wrong art. */}
+      <div className="absolute inset-0 hidden md:block">
+        <Image
+          src={desktopSrc}
+          alt={alt}
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </div>
+      <div className="absolute inset-0 md:hidden flex items-start justify-start">
+        <Image
+          src={mobileBannerSrc}
+          alt={alt}
+          width={1080}
+          height={1920}
+          priority
+          className="object-contain object-center"
+          style={{ maxWidth: "100vw", width: "100vw", height: "auto" }}
+          sizes="100vw"
+        />
+      </div>
     </div>
   );
 }

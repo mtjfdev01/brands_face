@@ -54,9 +54,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <AllProductsRowCarousel query={productQuery} />
         </div>
       </section>
+          <AllProductsRowCarousel query={productQuery} />
       <ProcessProcedureSection />
       <AdvanceStudioShowCase />
       <ComparisonSection />

@@ -9,14 +9,32 @@ import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import CardFlowerSection from "@/components/home/CardFlowerSection";
 import ScrollCards from "@/components/home/ScrollCards";
 
-const ANIMATION_DELAY = 1500;
+const STAGGER_BASE_DELAY_MS = 0;
 
 export default function HomeHero() {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setAnimate(true), ANIMATION_DELAY);
-    return () => clearTimeout(timer);
+    const root = document.documentElement;
+
+    // Start reveals as soon as the curtain overlay is gone.
+    if (!root.dataset.curtainActive) {
+      setAnimate(true);
+      return;
+    }
+
+    const start = () => setAnimate(true);
+
+    const mo = new MutationObserver(() => {
+      if (!root.dataset.curtainActive) {
+        mo.disconnect();
+        start();
+      }
+    });
+
+    mo.observe(root, { attributes: true, attributeFilter: ["data-curtain-active"] });
+
+    return () => mo.disconnect();
   }, []);
 
   return (
@@ -36,13 +54,7 @@ export default function HomeHero() {
       <div className="relative w-full min-w-0 max-w-none lg:hidden">
         <div className="mx-auto max-w-xl px-6 pb-0 pt-28 sm:px-8 sm:pb-0 sm:pt-32">
           {/* Eyebrow pill */}
-          <div
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(18px)",
-              transition: `all 900ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 160}ms`,
-            }}
-          >
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#57d7aa]/20 bg-white/5 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white/80 backdrop-blur">
               <span className="inline-flex h-5 w-5 items-center justify-center text-[#57d7aa]">
                 <BsStars className="h-3.5 w-3.5" aria-hidden />
@@ -54,11 +66,6 @@ export default function HomeHero() {
           {/* Headline */}
           <h4
             className="mt-6 text-[40px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-5xl"
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(26px)",
-              transition: `all 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 320}ms`,
-            }}
           >
             Re-Engineering{" "}
             <span className="text-[#57d7aa]">Brand Perception</span>
@@ -69,11 +76,6 @@ export default function HomeHero() {
           {/* Subline */}
           <p
             className="mt-4 text-sm font-medium text-white/70"
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(22px)",
-              transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 420}ms`,
-            }}
           >
             We <span className="font-semibold text-white/90">Audit</span>. We{" "}
             <span className="font-semibold text-white/90">Design</span>. We{" "}
@@ -83,11 +85,6 @@ export default function HomeHero() {
           {/* Description */}
           <p
             className="mt-3 max-w-[34rem] text-[13px] leading-relaxed text-white/55 sm:text-[14px]"
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(18px)",
-              transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 520}ms`,
-            }}
           >
             Uncover what&apos;s hurting your sales, then bring it to life with packaging that builds trust and drives growth.
           </p>
@@ -95,11 +92,6 @@ export default function HomeHero() {
           {/* CTAs */}
           <div
             className="mt-6 grid grid-cols-1 gap-3"
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(16px)",
-              transition: `all 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 660}ms`,
-            }}
           >
             <Link
               href="/audit"
@@ -130,11 +122,6 @@ export default function HomeHero() {
           {/* Stats */}
           <div
             className="mt-7 grid grid-cols-3 gap-3"
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(14px)",
-              transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 820}ms`,
-            }}
           >
             {[
               { value: "250+", label: "Brands Audited", icon: "cube" as const },
@@ -174,10 +161,6 @@ export default function HomeHero() {
         {/* Let the image define its own height instead of forcing a fixed frame. */}
         <div
           className="relative mt-8 w-full shadow-[0_30px_70px_-40px_rgba(87,215,170,0.55)]"
-          style={{
-            opacity: animate ? 1 : 0,
-            transition: `opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 980}ms`,
-          }}
         >
           <div className="relative w-full">
             <img
@@ -193,11 +176,6 @@ export default function HomeHero() {
         <div className="mx-auto max-w-xl px-6 pb-12 pt-0 sm:px-8 sm:pb-14">
           <div
             className="mt-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[12px] text-white/75 backdrop-blur"
-            style={{
-              opacity: animate ? 1 : 0,
-              transform: animate ? "translateY(0)" : "translateY(18px)",
-              transition: `all 1100ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 980}ms`,
-            }}
           >
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#57d7aa]/15 text-[#57d7aa]">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
@@ -225,13 +203,7 @@ export default function HomeHero() {
         <div className="flex w-full items-center px-6 pb-10 sm:px-8 sm:pb-8 lg:h-full lg:w-[55%] lg:px-16 lg:pb-0">
           <div className="max-w-2xl">
             {/* Eyebrow */}
-            <div
-              style={{
-                opacity: animate ? 1 : 0,
-                transform: animate ? "translateY(0)" : "translateY(20px)",
-                transition: `all 800ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 200}ms`,
-              }}
-            >
+            <div>
               <span className="inline-flex items-center gap-2 text-emerald-400 text-xs sm:text-sm font-medium tracking-wider uppercase lg:mt-3">
                 <span className="w-8 h-px bg-emerald-400" />
                 FREE PACKAGING AUDIT
@@ -241,22 +213,12 @@ export default function HomeHero() {
             {/* Heading */}
             <h1
               className="mt-4 sm:mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.08]"
-              style={{
-                opacity: animate ? 1 : 0,
-                transform: animate ? "translateY(0)" : "translateY(30px)",
-                transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 350}ms`,
-              }}
             >
               Brands Face
             </h1>
 
             <h2
               className="mt-3 text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white tracking-wide text-white"
-              style={{
-                opacity: animate ? 1 : 0,
-                transform: animate ? "translateY(0)" : "translateY(24px)",
-                transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 430}ms`,
-              }}
             >
               Re-Engineering Brand Perception Through Packaging
             </h2>
@@ -264,11 +226,6 @@ export default function HomeHero() {
             {/* Description */}
             <p
               className="mt-4 sm:mt-6 text-base sm:text-lg text-white leading-relaxed max-w-xxl"
-              style={{
-                opacity: animate ? 1 : 0,
-                transform: animate ? "translateY(0)" : "translateY(25px)",
-                transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 500}ms`,
-              }}
             >
               We conduct a comprehensive packaging audit to identify gaps in structure, materials, printing finishes, and visual impact.
               Based on these insights, we design and manufacture packaging solutions that elevate brand perception and market presence.
@@ -277,11 +234,6 @@ export default function HomeHero() {
             {/* CTA buttons */}
             <div
               className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
-              style={{
-                opacity: animate ? 1 : 0,
-                transform: animate ? "translateY(0)" : "translateY(20px)",
-                transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 650}ms`,
-              }}
             >
               <Link
                 href="/audit"
@@ -304,11 +256,6 @@ export default function HomeHero() {
             {/* Stats row */}
             <div
               className="mt-8 sm:mt-12 flex items-center gap-6 sm:gap-10"
-              style={{
-                opacity: animate ? 1 : 0,
-                transform: animate ? "translateY(0)" : "translateY(15px)",
-                transition: `all 1000ms cubic-bezier(0.16, 1, 0.3, 1) ${ANIMATION_DELAY + 800}ms`,
-              }}
             >
               {[
                 { value: "12+", label: "Box Types" },

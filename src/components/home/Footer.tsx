@@ -141,7 +141,7 @@ export default function Footer() {
             opacity: visible ? 1 : 0,
           }}
         >
-          <p className="select-none pl-2 text-[18vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:pl-4 sm:text-[16vw] md:text-[14vw]">
+          <p className="select-none pl-2 text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:pl-4 sm:text-[12.5vw] md:text-[11vw]">
             BRANDS
           </p>
         </div>
@@ -155,10 +155,10 @@ export default function Footer() {
           }}
         >
           <div className="flex justify-end pr-2 sm:pr-4">
-            <p className="inline-flex items-start justify-end gap-[0.12em] text-right text-[18vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[16vw] md:text-[14vw]">
+            <p className="inline-flex items-start justify-end gap-[0.12em] text-right text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[12.5vw] md:text-[11vw]">
               <span>FACE</span>
               <span
-                className="shrink-0 translate-y-[-0.42em] text-[4vw] font-bold leading-none text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] motion-reduce:transform-none sm:text-[3.5vw] md:text-[3vw]"
+                className="shrink-0 translate-y-[-0.42em] text-[2.7vw] font-bold leading-none text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] motion-reduce:transform-none sm:text-[2.35vw] md:text-[2.1vw]"
                 aria-hidden
               >
                 &reg;
