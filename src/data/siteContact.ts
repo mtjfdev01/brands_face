@@ -3,9 +3,11 @@
  */
 export const SITE_ADDRESS_LINES = [
   "Brands Face",
-  "Business address line 1",
-  "City, Postal code, Country",
+  "Karachi, Pakistan",
 ] as const;
+
+export const SITE_CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@brandsface.com";
 
 /** Shown on policy pages and footer “last updated” where used. */
 export const LEGAL_DOCS_LAST_UPDATED = "19 April 2026";

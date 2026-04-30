@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { defaultCategoryHubPath } from "@/lib/routes";
-import { SITE_ADDRESS_LINES, SITE_NTN, SITE_PAYMENT_NOTE } from "@/data/siteContact";
+import { SITE_ADDRESS_LINES, SITE_CONTACT_EMAIL, SITE_NTN, SITE_PAYMENT_NOTE } from "@/data/siteContact";
 
 const COMPANY = [
   { label: "About us", href: "/about" },
@@ -32,6 +32,9 @@ export default function Footer() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const year = new Date().getFullYear();
+  const phones = ["+92 300 0337680", "+1 (603) 825-0565"] as const;
+  const telHref = (raw: string) => `tel:+${raw.replace(/\D/g, "")}`;
+  const mailHref = (raw?: string) => (raw ? `mailto:${raw}` : undefined);
 
   useEffect(() => {
     const el = ref.current;
@@ -133,29 +136,29 @@ export default function Footer() {
           className="pointer-events-none absolute inset-0 z-0 bg-[url('/assets/images/logos/logo_ultra_hd.png')] bg-contain bg-center bg-no-repeat opacity-[0.42]"
           aria-hidden
         />
-        {/* BRANDS — slides from left */}
-        <div
-          className="relative z-[1] transition-all duration-[1200ms] ease-out"
-          style={{
-            transform: visible ? "translateX(0)" : "translateX(-100%)",
-            opacity: visible ? 1 : 0,
-          }}
-        >
-          <p className="select-none pl-2 text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:pl-4 sm:text-[12.5vw] md:text-[11vw]">
-            BRANDS
-          </p>
-        </div>
+        <div className="relative z-[1] flex items-end justify-center gap-[6vw] px-2 sm:px-4">
+          {/* BRANDS — slides from left */}
+          <div
+            className="transition-all duration-[1200ms] ease-out"
+            style={{
+              transform: visible ? "translateX(0)" : "translateX(-160%)",
+              opacity: visible ? 1 : 0,
+            }}
+          >
+            <p className="select-none text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[12.5vw] md:text-[11vw]">
+              BRANDS
+            </p>
+          </div>
 
-        {/* FACE — slides from right */}
-        <div
-          className="relative z-[1] transition-all duration-[1200ms] ease-out delay-150"
-          style={{
-            transform: visible ? "translateX(0)" : "translateX(100%)",
-            opacity: visible ? 1 : 0,
-          }}
-        >
-          <div className="flex justify-end pr-2 sm:pr-4">
-            <p className="inline-flex items-start justify-end gap-[0.12em] text-right text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[12.5vw] md:text-[11vw]">
+          {/* FACE — slides from right */}
+          <div
+            className="transition-all duration-[1200ms] ease-out delay-150"
+            style={{
+              transform: visible ? "translateX(0)" : "translateX(160%)",
+              opacity: visible ? 1 : 0,
+            }}
+          >
+            <p className="inline-flex items-start justify-end gap-[0.12em] text-[14vw] font-black leading-[0.85] tracking-tighter text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] sm:text-[12.5vw] md:text-[11vw]">
               <span>FACE</span>
               <span
                 className="shrink-0 translate-y-[-0.42em] text-[2.7vw] font-bold leading-none text-[#1a3c28] [text-shadow:0_1px_0_rgba(240,235,227,0.9)] motion-reduce:transform-none sm:text-[2.35vw] md:text-[2.1vw]"
@@ -170,15 +173,42 @@ export default function Footer() {
 
       {/* Rights, address & payment — after BRANDS / FACE */}
       <div className="relative z-10 mx-auto max-w-[1280px] border-t border-[#1a1a1a]/10 bg-[#f0ebe3] px-6 pb-6 sm:px-10">
-        {/* <p className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1a1a]/45">Address</p> */}
-        {/* <address className="not-italic">
-          <ul className="space-y-0.5 text-sm leading-relaxed text-[#1a1a1a]/70">
-            {SITE_ADDRESS_LINES.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        </address> */}
-        <div className=" flex flex-col gap-3 border-t border-[#1a1a1a]/8 pt-8 text-xs leading-relaxed text-[#1a1a1a]/55 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-2">
+        <div className="grid gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1a1a]/45">
+              Address
+            </p>
+            <address className="not-italic">
+              <ul className="space-y-0.5 text-sm leading-relaxed text-[#1a1a1a]/70">
+                {SITE_ADDRESS_LINES.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </address>
+          </div>
+
+          <div className="lg:col-span-6 lg:text-right">
+            <p className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1a1a]/45">
+              Contact
+            </p>
+            <ul className="space-y-1 text-sm leading-relaxed text-[#1a1a1a]/70">
+              {phones.map((p) => (
+                <li key={p}>
+                  <a className="hover:text-[#1a1a1a]/85" href={telHref(p)}>
+                    {p}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a className="hover:text-[#1a1a1a]/85" href={mailHref(SITE_CONTACT_EMAIL)}>
+                  {SITE_CONTACT_EMAIL}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-[#1a1a1a]/8 pt-6 text-xs leading-relaxed text-[#1a1a1a]/55 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-2">
           <span>&copy; {year} Brands Face. All rights reserved.</span>
           <span className="text-[#1a1a1a]/60">
             {SITE_NTN.label}: <span className="font-medium text-[#1a1a1a]/75">I636441</span>
