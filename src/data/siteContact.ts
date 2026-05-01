@@ -13,6 +13,8 @@ export const SITE_CONTACT_EMAIL =
 export const LEGAL_DOCS_LAST_UPDATED = "19 April 2026";
 
 /** National Tax Number (Pakistan) or equivalent — replace `value` when confirmed. */
-export const SITE_NTN = { label: "NTN", value: "—" } as const;
+export const SITE_NTN = { label: "NTN", value: "1636441" } as const;
 
 export const SITE_PAYMENT_NOTE = "We accept all major credit cards.";
+
+export const SITE_FOOTER_TAGLINE = "Packaging that cares. Brands that grow.";

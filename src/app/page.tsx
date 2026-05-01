@@ -4,7 +4,7 @@ import { useState } from "react";
 import CurtainOverlay from "@/components/home/CurtainOverlay";
 import HomeHero from "@/components/home/HomeHero";
 import ComparisonSection from "@/components/home/ComparisonSection";
-import ProcessProcedureSection from "@/components/home/ProcessProcedureSection";
+import HowItWorks from "@/components/home/HowItWorks";
 import CreativeDirection from "@/components/home/CreativeDirection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Footer from "@/components/home/Footer";
@@ -57,7 +57,7 @@ export default function HomePage() {
         </div>
       </section>
           <AllProductsRowCarousel query={productQuery} />
-      <ProcessProcedureSection />
+      <HowItWorks />
       <AdvanceStudioShowCase />
       <ComparisonSection />
       <CreativeDirection />

@@ -235,7 +235,10 @@ export default function CreativeDirection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden bg-[#f0ebe3]" style={{ minHeight: "100vh" }}>
+    <section
+      ref={sectionRef}
+      className="relative w-full overflow-hidden bg-[#f0ebe3] min-h-[min(65svh,680px)] sm:min-h-[min(60svh,640px)]"
+    >
       {/* ── Animated card group ── */}
       <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
         {group.map((ac, i) => (
@@ -263,7 +266,7 @@ export default function CreativeDirection() {
 
       {/* ── Central text content ── */}
       <div
-        className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 text-center"
+        className="relative z-20 flex flex-col items-center px-6 pt-12 pb-16 text-center sm:pt-14 sm:pb-20 md:pt-16 md:pb-24"
         style={{
           opacity: contentPhase === "in" ? 1 : 0,
           transform:

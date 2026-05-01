@@ -238,14 +238,14 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             aria-hidden
           >
             {/* Outer h-9 = zero layout impact on bar (logo is absolute); inner chip is much taller, centered, spills vertically */}
-            <span className="relative h-9 w-[156px] shrink-0 overflow-hidden sm:w-[182px] md:w-[210px]">
-              <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl bg-white/92 shadow-sm sm:h-[112px] md:h-[132px]">
+            <span className="relative h-9 w-[138px] shrink-0 overflow-hidden sm:w-[164px] md:w-[186px]">
+              <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl border border-white/15 bg-[rgb(18_59_43)] shadow-sm sm:h-[112px] md:h-[132px]">
                 <Image
                   src="/assets/images/logos/logo.png"
                   alt=""
                   fill
                   className="object-contain object-center p-1"
-                  sizes="(max-width: 640px) 156px, (max-width: 768px) 182px, 210px"
+                  sizes="(max-width: 640px) 138px, (max-width: 768px) 164px, 186px"
                   priority
                 />
               </span>
@@ -255,7 +255,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
           <Link
             href="/"
             aria-label="BrandsFace home"
-            className="absolute left-4 top-1/2 z-[3] h-9 w-[156px] -translate-y-1/2 translate-x-0 sm:left-5 sm:w-[182px] md:left-1/2 md:w-[210px] md:-translate-x-1/2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+            className="absolute left-4 top-1/2 z-[3] h-9 w-[138px] -translate-y-1/2 translate-x-0 sm:left-5 sm:w-[164px] md:left-1/2 md:w-[186px] md:-translate-x-1/2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
           />
 
           {/* Desktop: catalog search + CTAs */}
