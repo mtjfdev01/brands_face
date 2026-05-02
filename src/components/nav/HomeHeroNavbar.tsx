@@ -238,13 +238,13 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             aria-hidden
           >
             {/* Outer h-9 = zero layout impact on bar (logo is absolute); inner chip is much taller, centered, spills vertically */}
-            <span className="relative h-9 w-[138px] shrink-0 overflow-hidden sm:w-[164px] md:w-[186px]">
-              <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl border border-white/15 bg-[rgb(18_59_43)] shadow-sm sm:h-[112px] md:h-[132px]">
+            <span className="relative h-9 w-[138px] shrink-0 overflow-hidden sm:w-[164px] md:w-[186px] [&_img]:border-0 [&_img]:outline-none [&_span]:border-0">
+              <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl border-0 bg-[rgb(18_59_43)] shadow-sm ring-0 outline-none sm:h-[112px] md:h-[132px]">
                 <Image
                   src="/assets/images/logos/logo.png"
                   alt=""
                   fill
-                  className="object-contain object-center p-1"
+                  className="border-0 object-contain object-center p-1 outline-none ring-0"
                   sizes="(max-width: 640px) 138px, (max-width: 768px) 164px, 186px"
                   priority
                 />

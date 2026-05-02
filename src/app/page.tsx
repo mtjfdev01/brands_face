@@ -4,6 +4,7 @@ import { useState } from "react";
 import CurtainOverlay from "@/components/home/CurtainOverlay";
 import HomeHero from "@/components/home/HomeHero";
 import ComparisonSection from "@/components/home/ComparisonSection";
+import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 import HowItWorks from "@/components/home/HowItWorks";
 import CreativeDirection from "@/components/home/CreativeDirection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
@@ -21,6 +22,9 @@ export default function HomePage() {
         mobileSrc="/hero/hero mobile banner.png"
       />
       <HomeHero />
+      <div className="md:hidden">
+        <CategoryFocusCarousel />
+      </div>
       <section className="relative z-10 w-full bg-white px-3 py-10">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-6 text-center text-2xl font-semibold text-[#103a2a]">
@@ -59,7 +63,9 @@ export default function HomePage() {
           <AllProductsRowCarousel query={productQuery} />
       <HowItWorks />
       <AdvanceStudioShowCase />
-      <ComparisonSection />
+      <div className="hidden md:block">
+        <ComparisonSection />
+      </div>
       <CreativeDirection />
       <TestimonialsSection />
       <Footer />

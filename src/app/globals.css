@@ -51,6 +51,13 @@
 }
 
 @layer base {
+  /* Neutralize Tailwind Preflight default border color (#e5e7eb) — use explicit border-* utilities where needed */
+  *,
+  *::before,
+  *::after {
+    border-color: transparent;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;

@@ -12,7 +12,7 @@ import {
 } from "@/data/siteContact";
 
 /** Replace with `/assets/images/footer-cta-box.png` (or your asset path) when the hero box render is ready. */
-const FOOTER_CTA_BOX_SRC = "/assets/images/cta_box.webp"; 
+const FOOTER_CTA_BOX_SRC = "/assets/images/cta_box.png"; 
 
 const FOREST = "#062118";
 const SAGE = "#6B8E6B";
@@ -73,6 +73,14 @@ function ChevronRight({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
       <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChevronDown({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -189,17 +197,87 @@ function ColumnTitle({ children }: { children: ReactNode }) {
   );
 }
 
+function FooterLinkList({ items }: { items: { label: string; href: string }[] }) {
+  return (
+    <ul className="space-y-0.5">
+      {items.map((l) => (
+        <li key={l.href} className="min-w-0">
+          <Link
+            href={l.href}
+            className="group flex min-w-0 items-center justify-between gap-3 border-b border-[#062118]/08 py-2.5 text-sm transition-colors hover:text-[#062118]"
+            style={{ color: `${FOREST}cc` }}
+          >
+            <span className="min-w-0 break-words">{l.label}</span>
+            <ChevronRight className="h-4 w-4 shrink-0 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-70" />
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Three columns — mobile only (Company 3+2; Legal & support inside mobile accordion). */
+function FooterLinkGridCols3({ items }: { items: { label: string; href: string }[] }) {
+  return (
+    <ul className="grid grid-cols-3 gap-x-2 gap-y-0.5 sm:gap-x-3">
+      {items.map((l) => (
+        <li key={l.href} className="min-w-0">
+          <Link
+            href={l.href}
+            className="group flex min-h-[2.625rem] items-center justify-between gap-1 border-b border-[#062118]/08 py-2 text-left text-xs leading-snug transition-colors hover:text-[#062118] sm:min-h-0 sm:py-2.5 sm:text-sm"
+            style={{ color: `${FOREST}cc` }}
+          >
+            <span className="min-w-0 break-words">{l.label}</span>
+            <ChevronRight className="h-3 w-3 shrink-0 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-70 sm:h-4 sm:w-4" />
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Mobile-only collapsible block (e.g. Legal & support). Desktop uses static columns. */
+function FooterMobileAccordion({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <details className="group min-w-0 border-b border-[#062118]/10">
+      <summary className="flex cursor-pointer list-none items-start justify-between gap-3 py-3 transition-opacity duration-200 hover:opacity-90 [&::-webkit-details-marker]:hidden">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2" style={{ color: FOREST }}>
+            <LeafIcon className="h-4 w-4 shrink-0 opacity-80" />
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">{title}</h3>
+          </div>
+          <div className="mt-2.5 h-px w-11 sm:w-12" style={{ backgroundColor: SAGE }} />
+        </div>
+        <span
+          className="mt-0.5 shrink-0 opacity-50 transition-transform duration-300 ease-out motion-reduce:transition-none group-open:rotate-180"
+          style={{ color: FOREST }}
+        >
+          <ChevronDown className="h-5 w-5" />
+        </span>
+      </summary>
+      <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none group-open:grid-rows-[1fr]">
+        <div className="min-h-0 overflow-hidden">
+          <div className="border-t border-[#062118]/08 pb-3 pt-2">{children}</div>
+        </div>
+      </div>
+    </details>
+  );
+}
+
 export default function Footer() {
   const year = new Date().getFullYear();
   const addressSingleLine = SITE_ADDRESS_LINES.join(", ");
 
   return (
     <footer className="relative w-full overflow-hidden">
-      {/* ── CTA: separate banner strip (not same surface as footer) ── */}
-      <div className="relative z-10 w-full border-b border-[#062118]/10  px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
+      {/* ── CTA banner (same surface color as main footer) ── */}
+      <div
+        className="relative z-10 w-full border-b border-[#062118]/10 px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-8"
+        style={{ backgroundColor: CREAM }}
+      >
         <div className="mx-auto max-w-[1240px]">
           <div
-            className="relative overflow-hidden rounded-[22px] border border-white/80 bg-white px-4 py-5 shadow-[0_8px_40px_rgba(6,33,24,0.12),0_2px_8px_rgba(6,33,24,0.06)] ring-1 ring-[#062118]/[0.07] sm:px-6 sm:py-6 lg:px-8 lg:py-7"
+            className="relative overflow-hidden rounded-[22px] border border-white/80 bg-white shadow-[0_8px_40px_rgba(6,33,24,0.12),0_2px_8px_rgba(6,33,24,0.06)] ring-1 ring-[#062118]/[0.07] "
           >
           <div
             className="pointer-events-none absolute -right-4 top-0 h-full w-[45%] max-w-[220px] text-[#6B8E6B]/25 sm:right-0 sm:max-w-[280px]"
@@ -208,7 +286,10 @@ export default function Footer() {
             <LeafDecoration className="h-full w-full" />
           </div>
 
-          <div className="relative z-[1] grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-6 lg:items-center">
+          <div
+            className="relative z-[1] grid grid-cols-1 items-center gap-6 rounded-[18px] px-2 py-3 sm:gap-6 sm:px-5 sm:py-6 lg:grid-cols-12 lg:gap-6 lg:items-center lg:px-5 lg:py-3"
+            style={{ backgroundColor: CREAM }}
+          >
             <div className="flex justify-center lg:col-span-3 lg:justify-start">
               <div className="relative aspect-square w-full max-w-[160px] sm:max-w-[190px] lg:max-w-[200px]">
                 <Image
@@ -272,165 +353,173 @@ export default function Footer() {
 
       {/* ── Main footer columns ── */}
       <div className="relative z-10 w-full" style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto max-w-[1280px] px-4 pb-12 pt-12 sm:px-6 lg:px-10 lg:pt-14">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-[#062118]/12">
+        <div className="mx-auto max-w-[1280px] px-2 pb-8 pt-8 sm:px-6 lg:px-4 lg:pt-8">
+        <div className="grid min-w-0 grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-[#062118]/12">
           {/* Brand */}
-          <div className="lg:col-span-3 lg:pr-8 xl:pr-10">
-            <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left">
-              <div className="relative mb-4 h-[88px] w-[88px] shrink-0 sm:mb-0 sm:mr-4">
+          <div className="lg:col-span-3 lg:pr-5 xl:pr-7">
+            <div className="flex w-full flex-col items-center gap-4">
+              <div className="relative mx-auto h-[128px] w-[128px] shrink-0 sm:h-[140px] sm:w-[140px]">
                 <Image
                   src="/assets/images/sustainable.png"
                   alt="Brands Face"
                   fill
-                  className="object-contain"
-                  sizes="88px"
+                  className="object-contain object-center"
+                  sizes="140px"
                 />
               </div>
-              <div className="min-w-0 flex-1">
-                <div className="relative mx-auto h-10 w-[min(100%,176px)] overflow-hidden rounded-xl border border-white/15 bg-[rgb(18_59_43)] shadow-sm sm:mx-0 sm:h-11 sm:w-[186px]">
-                  <Image
-                    src="/assets/images/logos/logo.png"
-                    alt="Brands Face"
-                    fill
-                    className="object-contain object-center p-1.5 sm:object-left sm:pl-2"
-                    sizes="(max-width: 640px) 176px, 186px"
-                  />
-                </div>
-                <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: SAGE }}>
-                  Sustainable packaging solutions
-                </p>
+              <div className="relative h-11 w-[min(100%,200px)] shrink-0 overflow-hidden rounded-xl border border-white/15 bg-[rgb(18_59_43)] shadow-sm sm:h-12 sm:w-[220px] lg:w-[228px]">
+                <Image
+                  src="/assets/images/logos/logo.png"
+                  alt="Brands Face"
+                  fill
+                  className="object-contain object-center px-2 py-1"
+                  sizes="(max-width: 640px) 200px, (max-width: 1024px) 220px, 228px"
+                />
               </div>
             </div>
-            <p className="mt-5 text-sm leading-relaxed" style={{ color: `${FOREST}99` }}>
+            {/* <p
+              className="mt-5 text-center text-sm leading-relaxed lg:text-left"
+              style={{ color: `${FOREST}99` }}
+            >
               We design and manufacture custom packaging that elevates perception, strengthens shelf presence, and
               reflects your commitment to a healthier planet.
-            </p>
-            <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3">
-              <li className="flex items-center gap-2 text-xs font-medium sm:text-sm" style={{ color: FOREST }}>
-                <LeafIcon className="h-4 w-4 shrink-0 text-[#6B8E6B] opacity-80" />
-                Sustainable materials
+            </p> */}
+            <ul className="mt-6 flex w-full flex-row items-center justify-between gap-2 sm:gap-3">
+              {/* <li className="flex min-w-0 flex-1 basis-0 items-center gap-2 sm:gap-2.5" style={{ color: FOREST }}>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
+                  <LeafIcon className="h-4 w-4" aria-hidden />
+                </span>
+                <span className="flex min-w-0 flex-col text-[11px] font-semibold leading-tight sm:text-xs">
+                  <span>Sustainable</span>
+                  <span>Materials</span>
+                </span>
+              </li> */}
+              <li className="flex min-w-0 flex-1 basis-0 items-center gap-2 sm:gap-2.5" style={{ color: FOREST }}>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
+                    <path d="M12 2 4 6v12l8 4 8-4V6l-8-4Z" strokeLinejoin="round" />
+                    <path d="m4 6 8 4 8-4M12 10v12" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <span className="flex min-w-0 flex-col text-[11px] font-semibold leading-tight sm:text-xs">
+                  <span>Custom Solutions</span>
+                </span>
               </li>
-              <li className="flex items-center gap-2 text-xs font-medium sm:text-sm" style={{ color: FOREST }}>
-                <svg className="h-4 w-4 shrink-0 text-[#6B8E6B]" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <path
-                    d="M12 2l2.4 7.4H22l-6 4.6 2.3 7L12 16.9 5.7 21l2.3-7-6-4.6h7.6L12 2Z"
-                    stroke="currentColor"
-                    strokeWidth="1.3"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Custom solutions
-              </li>
-              <li className="flex items-center gap-2 text-xs font-medium sm:text-sm" style={{ color: FOREST }}>
-                <svg className="h-4 w-4 shrink-0 text-[#6B8E6B]" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.3" />
-                  <path d="M3 12h18M12 3a15 15 0 0 1 0 18" stroke="currentColor" strokeWidth="1.3" />
-                </svg>
-                Better for the planet
+              <li className="flex min-w-0 flex-1 basis-0 items-center gap-2 sm:gap-2.5" style={{ color: FOREST }}>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M3 12h18M12 3a15 15 0 0 1 0 18" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <span className="flex min-w-0 flex-col text-[11px] font-semibold leading-tight sm:text-xs">
+                  <span>Better for</span>
+                  <span>The Planet</span>
+                </span>
               </li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company — 3-col grid on mobile; list on desktop */}
+          <div className="lg:col-span-2 lg:px-5 xl:px-7">
+            <div className="lg:hidden">
+              <ColumnTitle>Company</ColumnTitle>
+              <FooterLinkGridCols3 items={COMPANY} />
+            </div>
+            <div className="hidden lg:block">
+              <ColumnTitle>Company</ColumnTitle>
+              <FooterLinkList items={COMPANY} />
+            </div>
+          </div>
+
+          {/* Legal & support — mobile: one accordion; desktop: static column */}
           <div className="lg:col-span-3 lg:px-8 xl:px-10">
-            <ColumnTitle>Company</ColumnTitle>
-            <ul className="space-y-0.5">
-              {COMPANY.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="group flex items-center justify-between gap-3 border-b border-[#062118]/08 py-2.5 text-sm transition-colors hover:text-[#062118]"
-                    style={{ color: `${FOREST}cc` }}
-                  >
-                    <span>{l.label}</span>
-                    <ChevronRight className="h-4 w-4 shrink-0 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-70" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="lg:hidden">
+              <FooterMobileAccordion title="Legal &amp; support">
+                <FooterLinkGridCols3 items={LEGAL_AND_SUPPORT} />
+              </FooterMobileAccordion>
+            </div>
+            <div className="hidden lg:block">
+              <ColumnTitle>Legal &amp; support</ColumnTitle>
+              <FooterLinkList items={LEGAL_AND_SUPPORT} />
+            </div>
           </div>
 
-          {/* Legal */}
-          <div className="lg:col-span-3 lg:px-8 xl:px-10">
-            <ColumnTitle>Legal &amp; support</ColumnTitle>
-            <ul className="space-y-0.5">
-              {LEGAL_AND_SUPPORT.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="group flex items-center justify-between gap-3 border-b border-[#062118]/08 py-2.5 text-sm transition-colors hover:text-[#062118]"
-                    style={{ color: `${FOREST}cc` }}
-                  >
-                    <span>{l.label}</span>
-                    <ChevronRight className="h-4 w-4 shrink-0 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-70" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Social & contact — two columns + address card */}
+          <div className="min-w-0 lg:col-span-4 lg:pl-6 xl:pl-8">
+            <div className="mb-5 inline-flex min-w-0 max-w-full flex-col">
+              <div className="flex items-center gap-2" style={{ color: FOREST }}>
+                <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">
+                  Social &amp; contact
+                </h3>
+                <LeafIcon className="h-4 w-4 shrink-0 opacity-80 text-[#6B8E6B]" aria-hidden />
+              </div>
+              <div className="mt-2.5 h-px w-full" style={{ backgroundColor: SAGE }} />
+            </div>
 
-          {/* Social & contact */}
-          <div className="lg:col-span-3 lg:pl-8 xl:pl-10">
-            <ColumnTitle>Social &amp; contact</ColumnTitle>
-            <ul className="space-y-2">
-              {SOCIAL.map(({ label, href, icon: Icon }) => (
-                <li key={label}>
+            <div className="grid min-w-0 grid-cols-2 divide-x divide-[#062118]/12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-start">
+              <ul className="min-w-0 space-y-4 pr-3 sm:space-y-4 sm:pr-4 md:pr-3 lg:pr-4">
+                {SOCIAL.map(({ label, href, icon: Icon }) => (
+                  <li key={label} className="min-w-0">
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-w-0 items-center gap-2.5 text-sm font-medium transition-colors hover:opacity-80 sm:gap-3"
+                      style={{ color: FOREST }}
+                    >
+                      <Icon className="h-5 w-5 shrink-0 text-[#6B8E6B]" />
+                      <span className="min-w-0 break-words leading-snug">{label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <ul className="min-w-0 space-y-4 pl-3 sm:space-y-4 sm:pl-4 md:pl-4 lg:pl-5">
+                {phones.map((p) => (
+                  <li key={p} className="min-w-0">
+                    <a
+                      href={telHref(p)}
+                      className="flex min-w-0 items-center gap-2.5 text-sm font-medium transition-opacity hover:opacity-80 sm:gap-3"
+                      style={{ color: FOREST }}
+                    >
+                      <PhoneIcon className="h-5 w-5 shrink-0 text-[#6B8E6B]" />
+                      <span className="min-w-0 break-words leading-snug [overflow-wrap:anywhere]">{p}</span>
+                    </a>
+                  </li>
+                ))}
+                <li className="min-w-0">
                   <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-sm transition-colors hover:opacity-80"
+                    href={`mailto:${SITE_CONTACT_EMAIL}`}
+                    className="flex min-w-0 items-center gap-2.5 text-sm font-medium transition-opacity hover:opacity-80 sm:gap-3"
                     style={{ color: FOREST }}
                   >
-                    <Icon className="h-5 w-5 shrink-0 text-[#6B8E6B] opacity-80" />
-                    {label}
+                    <MailIcon className="h-5 w-5 shrink-0 text-[#6B8E6B]" />
+                    <span className="min-w-0 break-all leading-snug sm:break-words sm:[overflow-wrap:anywhere]">
+                      {SITE_CONTACT_EMAIL}
+                    </span>
                   </a>
                 </li>
-              ))}
-            </ul>
-
-            <ul className="mt-6 space-y-3">
-              {phones.map((p) => (
-                <li key={p}>
-                  <a
-                    href={telHref(p)}
-                    className="flex items-center gap-3 text-sm transition-opacity hover:opacity-80"
-                    style={{ color: FOREST }}
-                  >
-                    <PhoneIcon className="h-5 w-5 shrink-0 text-[#6B8E6B]" />
-                    {p}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={`mailto:${SITE_CONTACT_EMAIL}`}
-                  className="flex items-center gap-3 text-sm transition-opacity hover:opacity-80"
-                  style={{ color: FOREST }}
-                >
-                  <MailIcon className="h-5 w-5 shrink-0 text-[#6B8E6B]" />
-                  {SITE_CONTACT_EMAIL}
-                </a>
-              </li>
-            </ul>
+              </ul>
+            </div>
 
             <div
               className="relative mt-6 overflow-hidden rounded-2xl border p-4 sm:p-5"
               style={{
-                backgroundColor: CREAM,
-                borderColor: `${FOREST}18`,
+                backgroundColor: "#ede8df",
+                borderColor: `${FOREST}14`,
               }}
             >
               <div
-                className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 text-[#6B8E6B]/15"
+                className="pointer-events-none absolute -bottom-4 -right-2 h-28 w-28 text-[#6B8E6B]/20 sm:h-32 sm:w-32"
                 aria-hidden
               >
-                <LeafIcon className="h-full w-full" />
+                <LeafDecoration className="h-full w-full" />
               </div>
               <div className="relative flex gap-3">
                 <MapPinIcon className="mt-0.5 h-5 w-5 shrink-0 text-[#6B8E6B]" />
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.12em]" style={{ color: `${FOREST}88` }}>
+                <div className="min-w-0 pr-16 sm:pr-20">
+                  <p className="text-sm font-bold" style={{ color: FOREST }}>
                     Address
                   </p>
                   <p className="mt-1 text-sm leading-snug" style={{ color: `${FOREST}cc` }}>
@@ -444,7 +533,7 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div
-          className="mt-14 flex flex-col items-center gap-4 border-t pt-8 text-center text-xs sm:flex-row sm:justify-between sm:gap-6 sm:text-left"
+          className="mt-8 flex flex-col items-center gap-4 border-t pt-4 text-center text-xs sm:flex-row sm:justify-between sm:gap-6 sm:text-left"
           style={{ borderColor: `${FOREST}18`, color: `${FOREST}99` }}
         >
           <span className="inline-flex items-center justify-center gap-2 sm:justify-start">

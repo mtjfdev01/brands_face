@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type Step = {
   n: number;
@@ -26,16 +26,20 @@ function StepConnector() {
   );
 }
 
-function IconRing({ children }: { children: ReactNode }) {
+function IconRing({ children, compact }: { children: ReactNode; compact?: boolean }) {
+  const size = compact
+    ? "h-[4.25rem] w-[4.25rem] [&_svg]:h-7 [&_svg]:w-7 sm:h-[4.75rem] sm:w-[4.75rem] sm:[&_svg]:h-8 sm:[&_svg]:w-8"
+    : "h-[5.25rem] w-[5.25rem] sm:h-[5.75rem] sm:w-[5.75rem] [&_svg]:h-9 [&_svg]:w-9 sm:[&_svg]:h-10 sm:[&_svg]:w-10";
+
   return (
     <div
-      className="relative z-[1] mx-auto flex h-[5.25rem] w-[5.25rem] items-center justify-center rounded-full border-2 border-[#c9a227]/90 bg-gradient-to-b from-[#1f3d2e] to-[#0f2118] shadow-[0_0_28px_rgba(201,162,39,0.22)] sm:h-[5.75rem] sm:w-[5.75rem]"
+      className={`relative z-[1] mx-auto flex items-center justify-center rounded-full border-2 border-[#c9a227]/90 bg-gradient-to-b from-[#1f3d2e] to-[#0f2118] shadow-[0_0_28px_rgba(201,162,39,0.22)] ${size}`}
       style={{
         boxShadow:
           "0 0 28px rgba(201, 162, 39, 0.35), inset 0 1px 0 rgba(255,255,255,0.06)",
       }}
     >
-      <div className="text-[#c9a227] [&_svg]:h-9 [&_svg]:w-9 sm:[&_svg]:h-10 sm:[&_svg]:w-10">{children}</div>
+      <div className="text-[#c9a227]">{children}</div>
     </div>
   );
 }
@@ -183,22 +187,29 @@ export default function HowItWorks() {
           </p>
         </header>
 
-        {/* Mobile / tablet: stacked cards */}
-        <div className="mt-14 space-y-12 md:hidden">
-          {STEPS.map((step) => (
-            <div key={step.n} className="relative flex flex-col text-center">
-              <div className="relative mx-auto mb-5 w-[5.75rem]">
+        {/* Mobile: 2 columns, no visible descriptions, staggered entrance */}
+        <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:mt-12 sm:gap-x-4 sm:gap-y-10 md:hidden">
+          {STEPS.map((step, i) => (
+            <div
+              key={step.n}
+              className="motion-safe:animate-hiw-step-in motion-reduce:animate-none motion-reduce:opacity-100 relative flex min-w-0 flex-col text-center"
+              style={{ animationDelay: `${i * 70}ms` } satisfies CSSProperties}
+            >
+              <div
+                className="motion-safe:animate-hiw-icon-pop motion-reduce:animate-none relative mx-auto mb-3 w-[4.5rem] sm:mb-4 sm:w-[5rem]"
+                style={{ animationDelay: `${i * 70 + 40}ms` } satisfies CSSProperties}
+              >
                 <span
-                  className="pointer-events-none absolute -left-1 -top-6 select-none text-[4.5rem] font-black leading-none tracking-tight text-transparent"
+                  className="pointer-events-none absolute -left-0.5 -top-5 select-none text-[3.25rem] font-black leading-none tracking-tight text-transparent sm:-top-5 sm:text-[3.75rem]"
                   style={{ WebkitTextStroke: "1px rgba(255,255,255,0.12)" }}
                   aria-hidden
                 >
                   {step.n}
                 </span>
-                <IconRing>{step.icon}</IconRing>
+                <IconRing compact>{step.icon}</IconRing>
               </div>
-              <h3 className="text-base font-bold text-white">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/75">{step.description}</p>
+              <h3 className="text-[0.8125rem] font-bold leading-snug text-white sm:text-sm">{step.title}</h3>
+              <p className="sr-only">{step.description}</p>
             </div>
           ))}
         </div>
