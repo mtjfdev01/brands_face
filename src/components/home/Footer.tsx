@@ -187,7 +187,7 @@ const SOCIAL: { label: string; href: string; icon: ComponentType<{ className?: s
 
 function ColumnTitle({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-5">
+    <div className="mb-3">
       <div className="flex items-center gap-2" style={{ color: FOREST }}>
         <LeafIcon className="h-4 w-4 shrink-0 opacity-80" />
         <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">{children}</h3>
@@ -354,10 +354,10 @@ export default function Footer() {
       {/* ── Main footer columns ── */}
       <div className="relative z-10 w-full" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-[1280px] px-2 pb-8 pt-8 sm:px-6 lg:px-4 lg:pt-8">
-        <div className="grid min-w-0 grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-[#062118]/12">
+        <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-[#062118]/12">
           {/* Brand */}
           <div className="lg:col-span-3 lg:pr-5 xl:pr-7">
-            <div className="flex w-full flex-col items-center gap-4">
+            <div className="flex w-full flex-col items-center gap-0 sm:gap-4">
               <div className="relative mx-auto h-[128px] w-[128px] shrink-0 sm:h-[140px] sm:w-[140px]">
                 <Image
                   src="/assets/images/sustainable.png"
@@ -447,7 +447,7 @@ export default function Footer() {
 
           {/* Social & contact — two columns + address card */}
           <div className="min-w-0 lg:col-span-4 lg:pl-6 xl:pl-8">
-            <div className="mb-5 inline-flex min-w-0 max-w-full flex-col">
+            <div className="mb-3 inline-flex min-w-0 max-w-full flex-col">
               <div className="flex items-center gap-2" style={{ color: FOREST }}>
                 <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">
                   Social &amp; contact

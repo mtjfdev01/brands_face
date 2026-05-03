@@ -20,7 +20,7 @@ function TransparentPreviewCanvas() {
   }, []);
 
   return (
-    <div className="w-full h-full min-h-[400px] rounded-xl overflow-hidden touch-pan-y">
+    <div className="w-full h-full min-h-0 lg:min-h-[320px] rounded-xl overflow-hidden touch-pan-y">
       <Canvas
         shadows
         gl={{
@@ -129,7 +129,7 @@ export default function StudioCanvasPreview() {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="aspect-[16/9] relative">
+      <div className="relative aspect-[2/1] lg:aspect-[16/9]">
         <TransparentPreviewCanvas />
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 text-[10px] text-gray-500 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full pointer-events-none">
           <svg

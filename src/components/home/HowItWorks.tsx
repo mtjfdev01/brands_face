@@ -16,11 +16,11 @@ function StepConnector() {
       aria-hidden
     >
       <div className="relative flex h-px w-full items-center">
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#c9a227]/80 to-[#c9a227]/80" />
-        <div className="mx-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#c9a227]/70 bg-[#0f2118] text-xs font-semibold text-[#c9a227] shadow-[0_0_16px_rgba(201,162,39,0.25)]">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#57d7aa]/80 to-[#57d7aa]/80" />
+        <div className="mx-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#57d7aa]/70 bg-[#0f2118] text-xs font-semibold text-[#57d7aa] shadow-[0_0_16px_rgba(87,215,170,0.25)]">
           &gt;
         </div>
-        <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#c9a227]/80 to-[#c9a227]/80" />
+        <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#57d7aa]/80 to-[#57d7aa]/80" />
       </div>
     </div>
   );
@@ -33,13 +33,13 @@ function IconRing({ children, compact }: { children: ReactNode; compact?: boolea
 
   return (
     <div
-      className={`relative z-[1] mx-auto flex items-center justify-center rounded-full border-2 border-[#c9a227]/90 bg-gradient-to-b from-[#1f3d2e] to-[#0f2118] shadow-[0_0_28px_rgba(201,162,39,0.22)] ${size}`}
+      className={`relative z-[1] mx-auto flex items-center justify-center rounded-full border-2 border-[#57d7aa]/90 bg-gradient-to-b from-[#1f3d2e] to-[#0f2118] shadow-[0_0_28px_rgba(87,215,170,0.22)] ${size}`}
       style={{
         boxShadow:
-          "0 0 28px rgba(201, 162, 39, 0.35), inset 0 1px 0 rgba(255,255,255,0.06)",
+          "0 0 28px rgba(87, 215, 170, 0.35), inset 0 1px 0 rgba(255,255,255,0.06)",
       }}
     >
-      <div className="text-[#c9a227]">{children}</div>
+      <div className="text-[#57d7aa]">{children}</div>
     </div>
   );
 }
@@ -161,24 +161,24 @@ export default function HowItWorks() {
       aria-labelledby="how-it-works-heading"
     >
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(201,162,39,0.08),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(87,215,170,0.08),transparent_55%)]"
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <header className="mx-auto max-w-3xl text-center">
           <div className="mb-6 flex items-center justify-center gap-3 sm:gap-4">
-            <div className="h-px flex-1 max-w-[120px] bg-gradient-to-r from-transparent to-[#c9a227]/70 sm:max-w-[160px]" />
-            <p className="shrink-0 text-[0.7rem] font-semibold tracking-[0.2em] text-[#c9a227] sm:text-xs">
+            <div className="h-px flex-1 max-w-[120px] bg-gradient-to-r from-transparent to-[#57d7aa]/70 sm:max-w-[160px]" />
+            <p className="shrink-0 text-[0.7rem] font-semibold tracking-[0.2em] text-[#57d7aa] sm:text-xs">
               HOW IT WORKS
             </p>
-            <div className="h-px flex-1 max-w-[120px] bg-gradient-to-l from-transparent to-[#c9a227]/70 sm:max-w-[160px]" />
+            <div className="h-px flex-1 max-w-[120px] bg-gradient-to-l from-transparent to-[#57d7aa]/70 sm:max-w-[160px]" />
           </div>
           <h2
             id="how-it-works-heading"
             className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-tight"
           >
             Simple Process.{" "}
-            <span className="bg-gradient-to-r from-[#e8c547] via-[#c9a227] to-[#a8860f] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#8ef0d8] via-[#57d7aa] to-[#3a9f80] bg-clip-text text-transparent">
               Premium Results.
             </span>
           </h2>

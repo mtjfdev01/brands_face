@@ -110,7 +110,8 @@ function pickUnique<T>(arr: T[], count: number): T[] {
 }
 
 function buildGroup(startIdx: number, vw: number, vh: number): { group: AnimCard[]; nextIdx: number } {
-  const count = Math.random() > 0.5 ? 3 : 2;
+  const isMobile = vw < 768;
+  const count = isMobile ? 1 : Math.random() > 0.5 ? 3 : 2;
   const group: AnimCard[] = [];
   const zones = pickUnique(getHoldZones(vw, vh), count);
 
@@ -243,15 +244,7 @@ export default function CreativeDirection() {
       <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
         {group.map((ac, i) => (
           <div key={`${cycle}-${i}`} className="absolute" style={cardStyle(ac)}>
-            <div
-              className="relative w-[160px] h-[226px] overflow-hidden rounded-2xl border border-black/10 opacity-90 shadow-[0_24px_70px_rgba(0,0,0,0.25)] sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]"
-              style={{
-                backgroundColor: ac.card.color,
-                backgroundImage:
-                  "radial-gradient(120% 90% at 25% 20%, rgba(255,255,255,0.30), transparent 60%)," +
-                  "radial-gradient(80% 70% at 70% 85%, rgba(0,0,0,0.25), transparent 55%)",
-              }}
-            >
+            <div className="relative w-[160px] h-[226px] overflow-hidden rounded-2xl opacity-90 sm:w-[200px] sm:h-[283px] lg:w-[240px] lg:h-[340px]">
               <Image
                 src={ac.card.image}
                 alt=""

@@ -67,7 +67,7 @@ export default function AdvanceStudioShowCase() {
           </AnimateOnScroll>
 
           <AnimateOnScroll animation="scale-in" delay={180} className="w-full">
-            <div className="rounded-2xl border border-white/20 p-3 bg-white/[0.03]">
+            <div className="rounded-2xl border border-white/20 p-2 sm:p-3 bg-white/[0.03]">
               <StudioCanvasPreview />
             </div>
           </AnimateOnScroll>
