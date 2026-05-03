@@ -87,6 +87,9 @@ export default function CategoryFocusCarousel() {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [layout, setLayout] = useState<CategoryCarouselLayout>(DEFAULT_LAYOUT);
   const trackRef = useRef<HTMLDivElement | null>(null);
+  /** After a swipe, block link clicks briefly so navigation doesn’t fire. */
+  const suppressNavUntilRef = useRef(0);
+  const swipeRef = useRef<{ x: number; y: number; pointerId: number } | null>(null);
 
   const total = HOME_CARDS.length;
   const SLIDE_MS = 320;
@@ -139,6 +142,68 @@ export default function CategoryFocusCarousel() {
     }, SLIDE_MS);
   }, [isSliding, total, SLIDE_MS]);
 
+  const SWIPE_THRESHOLD_PX = 48;
+
+  const onSwipePointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (total <= 1 || isSliding) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      swipeRef.current = { x: e.clientX, y: e.clientY, pointerId: e.pointerId };
+      try {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      } catch {
+        /* setPointerCapture can throw if not supported */
+      }
+    },
+    [isSliding, total],
+  );
+
+  const finishSwipe = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>, clientX: number, clientY: number) => {
+      const s = swipeRef.current;
+      swipeRef.current = null;
+      if (!s || s.pointerId !== e.pointerId) return;
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {
+        /* ignore */
+      }
+      const dx = clientX - s.x;
+      const dy = clientY - s.y;
+      if (Math.abs(dx) < SWIPE_THRESHOLD_PX || Math.abs(dx) < Math.abs(dy)) return;
+      suppressNavUntilRef.current = Date.now() + 450;
+      if (dx < 0) handleShift("next");
+      else handleShift("prev");
+    },
+    [handleShift],
+  );
+
+  const onSwipePointerUp = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      finishSwipe(e, e.clientX, e.clientY);
+    },
+    [finishSwipe],
+  );
+
+  const onSwipePointerCancel = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const s = swipeRef.current;
+    if (s?.pointerId === e.pointerId) {
+      swipeRef.current = null;
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {
+        /* ignore */
+      }
+    }
+  }, []);
+
+  const onStageClickCapture = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (Date.now() < suppressNavUntilRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, []);
+
   useEffect(() => {
     if (total <= 1) return;
     const timer = setInterval(() => {
@@ -180,7 +245,14 @@ export default function CategoryFocusCarousel() {
             Product Categories
           </h2>
         </div>
-        <div className="relative z-0 isolate w-full overflow-hidden" style={{ height: stageHeight }}>
+        <div
+          className="relative z-0 isolate w-full touch-pan-y overflow-hidden"
+          style={{ height: stageHeight }}
+          onPointerDown={onSwipePointerDown}
+          onPointerUp={onSwipePointerUp}
+          onPointerCancel={onSwipePointerCancel}
+          onClickCapture={onStageClickCapture}
+        >
           {/* Left card */}
           <Link
             href={`/category/${prevCard.category}`}
