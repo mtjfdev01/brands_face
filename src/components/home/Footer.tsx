@@ -525,12 +525,12 @@ export default function Footer() {
                 <MapPinIcon className="h-5 w-5 shrink-0 text-[#6B8E6B] sm:mt-0.5" />
                 <div className="min-w-0 flex-1 pr-16 sm:pr-20">
                   {/* Mobile: label + address on one line; scroll if needed */}
-                  <p className="flex min-w-0 items-baseline gap-2 text-sm leading-snug sm:hidden">
+                  <p className="flex w-full min-w-0 items-baseline gap-2 text-sm leading-snug sm:hidden">
                     <span className="shrink-0 font-bold" style={{ color: FOREST }}>
                       Address
                     </span>
                     <span
-                      className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap [scrollbar-width:thin]"
+                      className="max-w-full min-w-0 flex-1 basis-0 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:thin]"
                       style={{ color: `${FOREST}cc` }}
                     >
                       {addressSingleLine}
@@ -553,7 +553,7 @@ export default function Footer() {
         {/* ── Bottom bar ── */}
         {/* Mobile: single light strip — copyright | rule | NTN (tagline stays desktop-only) */}
         <div
-          className="mt-8 -mx-2 flex flex-nowrap items-center justify-center gap-x-2 overflow-x-auto px-3 py-3 text-center text-[10px] leading-snug sm:hidden"
+          className="mt-4 -mx-2 flex flex-nowrap items-center justify-center gap-x-2 overflow-x-auto px-3 py-3 text-center text-[10px] leading-snug sm:hidden"
           style={{
             backgroundColor: FOOTER_MOBILE_BAR_BG,
             borderTop: `1px solid ${FOOTER_MOBILE_BAR_RULE}`,
