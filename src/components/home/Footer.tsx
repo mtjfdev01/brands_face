@@ -18,6 +18,12 @@ const FOREST = "#062118";
 const SAGE = "#6B8E6B";
 const CREAM = "#FAF9F6";
 
+/** Mobile bottom bar (minimal strip — matches light cream + muted green icons) */
+const FOOTER_MOBILE_BAR_BG = "#FDFCF8";
+const FOOTER_MOBILE_BAR_ICON = "#4A5D4E";
+const FOOTER_MOBILE_BAR_TEXT = "#4B4B4B";
+const FOOTER_MOBILE_BAR_RULE = "#D1D1D1";
+
 const COMPANY = [
   { label: "About us", href: "/about" },
   { label: "Services", href: defaultCategoryHubPath() },
@@ -423,7 +429,6 @@ export default function Footer() {
           {/* Company — 3-col grid on mobile; list on desktop */}
           <div className="lg:col-span-2 lg:px-5 xl:px-7">
             <div className="lg:hidden">
-              <ColumnTitle>Company</ColumnTitle>
               <FooterLinkGridCols3 items={COMPANY} />
             </div>
             <div className="hidden lg:block">
@@ -447,7 +452,7 @@ export default function Footer() {
 
           {/* Social & contact — two columns + address card */}
           <div className="min-w-0 lg:col-span-4 lg:pl-6 xl:pl-8">
-            <div className="mb-3 inline-flex min-w-0 max-w-full flex-col">
+            <div className="mb-3 hidden min-w-0 max-w-full flex-col lg:inline-flex">
               <div className="flex items-center gap-2" style={{ color: FOREST }}>
                 <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">
                   Social &amp; contact
@@ -516,15 +521,29 @@ export default function Footer() {
               >
                 <LeafDecoration className="h-full w-full" />
               </div>
-              <div className="relative flex gap-3">
-                <MapPinIcon className="mt-0.5 h-5 w-5 shrink-0 text-[#6B8E6B]" />
-                <div className="min-w-0 pr-16 sm:pr-20">
-                  <p className="text-sm font-bold" style={{ color: FOREST }}>
-                    Address
+              <div className="relative flex items-center gap-3 sm:items-start">
+                <MapPinIcon className="h-5 w-5 shrink-0 text-[#6B8E6B] sm:mt-0.5" />
+                <div className="min-w-0 flex-1 pr-16 sm:pr-20">
+                  {/* Mobile: label + address on one line; scroll if needed */}
+                  <p className="flex min-w-0 items-baseline gap-2 text-sm leading-snug sm:hidden">
+                    <span className="shrink-0 font-bold" style={{ color: FOREST }}>
+                      Address
+                    </span>
+                    <span
+                      className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap [scrollbar-width:thin]"
+                      style={{ color: `${FOREST}cc` }}
+                    >
+                      {addressSingleLine}
+                    </span>
                   </p>
-                  <p className="mt-1 text-sm leading-snug" style={{ color: `${FOREST}cc` }}>
-                    {addressSingleLine}
-                  </p>
+                  <div className="hidden sm:block">
+                    <p className="text-sm font-bold" style={{ color: FOREST }}>
+                      Address
+                    </p>
+                    <p className="mt-1 text-sm leading-snug" style={{ color: `${FOREST}cc` }}>
+                      {addressSingleLine}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -532,8 +551,43 @@ export default function Footer() {
         </div>
 
         {/* ── Bottom bar ── */}
+        {/* Mobile: single light strip — copyright | rule | NTN (tagline stays desktop-only) */}
         <div
-          className="mt-8 flex flex-col items-center gap-4 border-t pt-4 text-center text-xs sm:flex-row sm:justify-between sm:gap-6 sm:text-left"
+          className="mt-8 -mx-2 flex flex-nowrap items-center justify-center gap-x-2 overflow-x-auto px-3 py-3 text-center text-[10px] leading-snug sm:hidden"
+          style={{
+            backgroundColor: FOOTER_MOBILE_BAR_BG,
+            borderTop: `1px solid ${FOOTER_MOBILE_BAR_RULE}`,
+            color: FOOTER_MOBILE_BAR_TEXT,
+          }}
+        >
+          <span className="inline-flex min-w-0 max-w-full shrink items-center justify-center gap-1.5">
+            <span className="shrink-0" style={{ color: FOOTER_MOBILE_BAR_ICON }}>
+              <LeafIcon className="h-3.5 w-3.5" />
+            </span>
+            <span className="min-w-0 whitespace-nowrap">
+              &copy; {year} Brands Face. All rights reserved.
+            </span>
+          </span>
+          <span
+            className="inline-block h-3 w-px shrink-0 self-center"
+            style={{ backgroundColor: FOOTER_MOBILE_BAR_RULE }}
+            aria-hidden
+          />
+          <span className="inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap">
+            <span className="shrink-0" style={{ color: FOOTER_MOBILE_BAR_ICON }}>
+              <DocumentIcon className="h-3.5 w-3.5" />
+            </span>
+            <span>
+              {SITE_NTN.label}:{" "}
+              <span className="font-semibold tabular-nums" style={{ color: FOOTER_MOBILE_BAR_TEXT }}>
+                {SITE_NTN.value}
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div
+          className="mt-8 hidden flex-col items-center gap-4 border-t pt-4 text-center text-xs sm:flex sm:flex-row sm:justify-between sm:gap-6 sm:text-left"
           style={{ borderColor: `${FOREST}18`, color: `${FOREST}99` }}
         >
           <span className="inline-flex items-center justify-center gap-2 sm:justify-start">

@@ -41,6 +41,21 @@
   --color-studio-accent: #7c5cfc;
   --color-studio-accent-light: #9d85fd;
 
+  /* How It Works (dark mint) */
+  --color-hiw-bg-1: #173626;
+  --color-hiw-bg-2: #132d20;
+  --color-hiw-bg-3: #0f2118;
+  --color-hiw-ring-top: #1f3d2e;
+  --color-hiw-accent: #57d7aa;
+  --color-hiw-accent-strong: #8ef0d8;
+  --color-hiw-accent-deep: #3a9f80;
+  --color-hiw-white-stroke-12: rgba(255, 255, 255, 0.12);
+  --color-hiw-white-inset-06: rgba(255, 255, 255, 0.06);
+  --color-hiw-accent-glow-22: rgba(87, 215, 170, 0.22);
+  --color-hiw-accent-glow-25: rgba(87, 215, 170, 0.25);
+  --color-hiw-accent-glow-35: rgba(87, 215, 170, 0.35);
+  --color-hiw-accent-glow-08: rgba(87, 215, 170, 0.08);
+
   /* Radii */
   --radius-hero: 28px;
   --radius-pill: 9999px;
