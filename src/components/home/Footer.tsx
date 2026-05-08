@@ -428,7 +428,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-3 lg:pr-5 xl:pr-7">
             <div className="flex w-full flex-col items-center gap-0 sm:gap-4">
-              <div className="relative mx-auto h-[128px] w-[128px] shrink-0 sm:h-[140px] sm:w-[140px]">
+              <div className="relative mx-auto mb-2 h-[128px] w-[128px] shrink-0 sm:h-[140px] sm:w-[140px]">
                 <Image
                   src="/assets/images/sustainable.png"
                   alt="Brands Face"
@@ -455,17 +455,8 @@ export default function Footer() {
               reflects your commitment to a healthier planet.
             </p> */}
             <ul className="mt-6 flex w-full flex-row items-center justify-between gap-2 sm:gap-3">
-              {/* <li className="flex min-w-0 flex-1 basis-0 items-center gap-2 sm:gap-2.5" style={{ color: FOREST }}>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
-                  <LeafIcon className="h-4 w-4" aria-hidden />
-                </span>
-                <span className="flex min-w-0 flex-col text-[11px] font-semibold leading-tight sm:text-xs">
-                  <span>Sustainable</span>
-                  <span>Materials</span>
-                </span>
-              </li> */}
               <li
-                className="flex min-w-0 flex-[2_1_0%] items-center gap-2 sm:flex-1 sm:basis-0 sm:gap-2.5"
+                className="flex min-w-0 flex-[2_1_0%] items-center  sm:flex-1 sm:basis-0"
                 style={{ color: FOREST }}
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
@@ -479,7 +470,7 @@ export default function Footer() {
                 </span>
               </li>
               <li
-                className="flex min-w-0 flex-[3_1_0%] items-center gap-2 sm:flex-1 sm:basis-0 sm:gap-2.5"
+                className="flex min-w-0 flex-[3_1_0%] items-center sm:flex-1 sm:basis-0"
                 style={{ color: FOREST }}
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
@@ -532,8 +523,8 @@ export default function Footer() {
               <div className="mt-2.5 h-px w-full" style={{ backgroundColor: SAGE }} />
             </div>
 
-            <div className="grid min-w-0 grid-cols-2 divide-x divide-[#062118]/12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-start">
-              <ul className="min-w-0 space-y-4 pr-3 sm:space-y-4 sm:pr-4 md:pr-3 lg:pr-4">
+            <div className="grid min-w-0 grid-cols-[minmax(0,4fr)_minmax(0,6fr)] divide-x divide-[#062118]/12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-start">
+              <ul className="min-w-0 space-y-4 pr-3 sm:space-y-4 sm:pr-4 md:pr-3 lg:pr-4 [box-shadow:1px_0_0_rgba(6,33,24,0.14)]">
                 {SOCIAL.map(({ label, href, icon: Icon }) => (
                   <li key={label} className="min-w-0">
                     <a
