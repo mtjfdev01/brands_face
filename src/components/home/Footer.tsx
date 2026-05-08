@@ -29,7 +29,7 @@ const COMPANY = [
   { label: "Services", href: defaultCategoryHubPath() },
   { label: "Case studies", href: "/case-studies" },
   { label: "Our process", href: "/#how-it-works" },
-  { label: "Contact us", href: "/quote" },
+  { label: "Get Quote", href: "/quote" },
 ];
 
 const LEGAL_AND_SUPPORT = [
@@ -198,7 +198,7 @@ function ColumnTitle({ children }: { children: ReactNode }) {
         <LeafIcon className="h-4 w-4 shrink-0 opacity-80" />
         <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">{children}</h3>
       </div>
-      <div className="mt-2.5 h-px w-11 sm:w-12" style={{ backgroundColor: SAGE }} />
+      <div className="mt-2.5 hidden h-px w-11 sm:block sm:w-12" style={{ backgroundColor: SAGE }} />
     </div>
   );
 }
@@ -242,6 +242,70 @@ function FooterLinkGridCols3({ items }: { items: { label: string; href: string }
   );
 }
 
+/** Mobile-only: render links in a single horizontal row separated by pipes. */
+function FooterLinkRowWithPipes({ items }: { items: { label: string; href: string }[] }) {
+  return (
+    <div className="flex min-w-0 items-center justify-center overflow-x-auto py-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:thin]">
+      <ul className="flex min-w-max flex-nowrap items-center">
+        {items.map((l, idx) => (
+          <li key={l.href} className="flex shrink-0 items-center">
+            {idx > 0 ? (
+              <span className="px-2 opacity-40" style={{ color: FOREST }} aria-hidden>
+                |
+              </span>
+            ) : null}
+            <Link
+              href={l.href}
+              className="whitespace-nowrap py-2 text-[11px] font-medium leading-none transition-colors hover:text-[#062118] sm:text-xs"
+              style={{ color: `${FOREST}cc` }}
+            >
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * Mobile-only: 2 rows × 3 columns with pipe separators.
+ * Column ratio: 30% / 30% / 40% (approx via 3fr/3fr/4fr).
+ */
+function FooterLinkTwoRowsPipes303040({ items }: { items: { label: string; href: string }[] }) {
+  const row1 = items.slice(0, 3);
+  const row2 = items.slice(3, 6);
+
+  const Row = ({ row }: { row: { label: string; href: string }[] }) => (
+    <div className="grid min-w-0 grid-cols-[3fr_auto_3fr_auto_4fr] items-center">
+      {row.map((l, idx) => (
+        <div key={l.href} className="contents">
+          {idx > 0 ? (
+            <span className="px-2 text-center opacity-40" style={{ color: FOREST }} aria-hidden>
+              |
+            </span>
+          ) : null}
+          <Link
+            href={l.href}
+            className="block min-w-0 truncate py-2 text-center text-[11px] font-medium leading-none transition-colors hover:text-[#062118]"
+            style={{ color: `${FOREST}cc` }}
+            title={l.label}
+          >
+            {l.label}
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="space-y-1">
+      <Row row={row1} />
+      <Row row={row2} />
+    </div>
+  );
+}
+
 /** Mobile-only collapsible block (e.g. Legal & support). Desktop uses static columns. */
 function FooterMobileAccordion({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -252,7 +316,7 @@ function FooterMobileAccordion({ title, children }: { title: string; children: R
             <LeafIcon className="h-4 w-4 shrink-0 opacity-80" />
             <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">{title}</h3>
           </div>
-          <div className="mt-2.5 h-px w-11 sm:w-12" style={{ backgroundColor: SAGE }} />
+          {/* <div className="mt-2.5 h-px w-11 sm:w-12" style={{ backgroundColor: SAGE }} /> */}
         </div>
         <span
           className="mt-0.5 shrink-0 opacity-50 transition-transform duration-300 ease-out motion-reduce:transition-none group-open:rotate-180"
@@ -359,7 +423,7 @@ export default function Footer() {
 
       {/* ── Main footer columns ── */}
       <div className="relative z-10 w-full" style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto max-w-[1280px] px-2 pb-8 pt-8 sm:px-6 lg:px-4 lg:pt-8">
+        <div className="mx-auto max-w-[1280px] px-2 pb-2 sm:px-6 lg:px-4 lg:pt-8 sm:pb-0">
         <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-[#062118]/12">
           {/* Brand */}
           <div className="lg:col-span-3 lg:pr-5 xl:pr-7">
@@ -400,7 +464,10 @@ export default function Footer() {
                   <span>Materials</span>
                 </span>
               </li> */}
-              <li className="flex min-w-0 flex-1 basis-0 items-center gap-2 sm:gap-2.5" style={{ color: FOREST }}>
+              <li
+                className="flex min-w-0 flex-[2_1_0%] items-center gap-2 sm:flex-1 sm:basis-0 sm:gap-2.5"
+                style={{ color: FOREST }}
+              >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
                     <path d="M12 2 4 6v12l8 4 8-4V6l-8-4Z" strokeLinejoin="round" />
@@ -411,7 +478,10 @@ export default function Footer() {
                   <span>Custom Solutions</span>
                 </span>
               </li>
-              <li className="flex min-w-0 flex-1 basis-0 items-center gap-2 sm:gap-2.5" style={{ color: FOREST }}>
+              <li
+                className="flex min-w-0 flex-[3_1_0%] items-center gap-2 sm:flex-1 sm:basis-0 sm:gap-2.5"
+                style={{ color: FOREST }}
+              >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[#2d5a3d]">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
                     <circle cx="12" cy="12" r="9" />
@@ -419,8 +489,8 @@ export default function Footer() {
                   </svg>
                 </span>
                 <span className="flex min-w-0 flex-col text-[11px] font-semibold leading-tight sm:text-xs">
-                  <span>Better for</span>
-                  <span>The Planet</span>
+                  <span>Better for
+                  The Planet</span>
                 </span>
               </li>
             </ul>
@@ -429,7 +499,7 @@ export default function Footer() {
           {/* Company — 3-col grid on mobile; list on desktop */}
           <div className="lg:col-span-2 lg:px-5 xl:px-7">
             <div className="lg:hidden">
-              <FooterLinkGridCols3 items={COMPANY} />
+              <FooterLinkRowWithPipes items={COMPANY} />
             </div>
             <div className="hidden lg:block">
               <ColumnTitle>Company</ColumnTitle>
@@ -441,7 +511,7 @@ export default function Footer() {
           <div className="lg:col-span-3 lg:px-8 xl:px-10">
             <div className="lg:hidden">
               <FooterMobileAccordion title="Legal &amp; support">
-                <FooterLinkGridCols3 items={LEGAL_AND_SUPPORT} />
+                <FooterLinkTwoRowsPipes303040 items={LEGAL_AND_SUPPORT} />
               </FooterMobileAccordion>
             </div>
             <div className="hidden lg:block">
@@ -523,7 +593,7 @@ export default function Footer() {
               </div>
               <div className="relative flex items-center gap-3 sm:items-start">
                 <MapPinIcon className="h-5 w-5 shrink-0 text-[#6B8E6B] sm:mt-0.5" />
-                <div className="min-w-0 flex-1 pr-16 sm:pr-20">
+                <div className="min-w-0 flex-1 sm:pr-20">
                   {/* Mobile: label + address on one line; scroll if needed */}
                   <p className="flex w-full min-w-0 items-baseline gap-2 text-sm leading-snug sm:hidden">
                     <span className="shrink-0 font-bold" style={{ color: FOREST }}>
@@ -587,7 +657,7 @@ export default function Footer() {
         </div>
 
         <div
-          className="mt-8 hidden flex-col items-center gap-4 border-t pt-4 text-center text-xs sm:flex sm:flex-row sm:justify-between sm:gap-6 sm:text-left"
+          className="mt-8 hidden flex-col items-center gap-4 border-t pt-4 text-center text-xs sm:flex sm:flex-row sm:justify-between sm:gap-6 sm:text-left md:pb-2"
           style={{ borderColor: `${FOREST}18`, color: `${FOREST}99` }}
         >
           <span className="inline-flex items-center justify-center gap-2 sm:justify-start">
