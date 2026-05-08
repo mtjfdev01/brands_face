@@ -375,7 +375,7 @@ export default function Footer() {
 
             <div className="text-center lg:col-span-6 lg:text-left">
               <h2
-                className="font-serif text-xl font-bold leading-snug tracking-tight sm:text-2xl lg:text-[1.65rem] lg:leading-snug"
+                className="-mt-4 font-serif text-xl font-bold leading-snug tracking-tight sm:mt-0 sm:text-2xl lg:text-[1.65rem] lg:leading-snug"
                 style={{ color: FOREST }}
               >
                 Ready to build packaging that{" "}
@@ -390,7 +390,7 @@ export default function Footer() {
                 your brand?
               </h2>
               <p
-                className="mt-2.5 max-w-xl text-sm leading-relaxed sm:text-[0.9375rem] lg:mx-0 lg:max-w-none"
+                className="mt-2.5 hidden max-w-xl text-sm leading-relaxed sm:block sm:text-[0.9375rem] lg:mx-0 lg:max-w-none"
                 style={{ color: `${FOREST}99` }}
               >
                 Sustainable. Custom. Impactful. Let&apos;s create packaging that speaks for your brand and cares for the
