@@ -12,7 +12,7 @@ import {
 } from "@/data/siteContact";
 
 /** Replace with `/assets/images/footer-cta-box.png` (or your asset path) when the hero box render is ready. */
-const FOOTER_CTA_BOX_SRC = "/assets/images/cta_box.png"; 
+const FOOTER_CTA_BOX_SRC = "/assets/images/cta_box.webp"; 
 
 const FOREST = "#062118";
 const SAGE = "#6B8E6B";
@@ -343,7 +343,7 @@ export default function Footer() {
       {/* ── CTA banner (same surface color as main footer) ── */}
       <div
         className="relative z-10 w-full border-b border-[#062118]/10 px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-8"
-        style={{ backgroundColor: CREAM }}
+        style={{ backgroundColor: "#F9F6EE" }}
       >
         <div className="mx-auto max-w-[1240px]">
           <div
@@ -358,7 +358,7 @@ export default function Footer() {
 
           <div
             className="relative z-[1] grid grid-cols-1 items-center gap-6 rounded-[18px] px-2 py-3 sm:gap-6 sm:px-5 sm:py-6 lg:grid-cols-12 lg:gap-6 lg:items-center lg:px-5 lg:py-3"
-            style={{ backgroundColor: CREAM }}
+            style={{ backgroundColor: "#FBF8F3" }}
           >
             <div className="flex justify-center lg:col-span-3 lg:justify-start">
               <div className="relative aspect-square w-full max-w-[160px] sm:max-w-[190px] lg:max-w-[200px]">
