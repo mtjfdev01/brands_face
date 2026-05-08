@@ -245,18 +245,18 @@ function FooterLinkGridCols3({ items }: { items: { label: string; href: string }
 /** Mobile-only: render links in a single horizontal row separated by pipes. */
 function FooterLinkRowWithPipes({ items }: { items: { label: string; href: string }[] }) {
   return (
-    <div className="flex min-w-0 items-center justify-center overflow-x-auto py-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:thin]">
-      <ul className="flex min-w-max flex-nowrap items-center">
+    <div className="flex min-w-0 items-center justify-center py-1">
+      <ul className="flex min-w-0 flex-wrap items-center justify-center">
         {items.map((l, idx) => (
-          <li key={l.href} className="flex shrink-0 items-center">
+          <li key={l.href} className="flex items-center">
             {idx > 0 ? (
-              <span className="px-2 opacity-40" style={{ color: FOREST }} aria-hidden>
+              <span className="px-1.5 opacity-40" style={{ color: FOREST }} aria-hidden>
                 |
               </span>
             ) : null}
             <Link
               href={l.href}
-              className="whitespace-nowrap py-2 text-[11px] font-medium leading-none transition-colors hover:text-[#062118] sm:text-xs"
+              className="whitespace-nowrap py-1.5 text-[10px] font-medium leading-none transition-colors hover:text-[#062118] sm:py-2 sm:text-xs"
               style={{ color: `${FOREST}cc` }}
             >
               {l.label}
