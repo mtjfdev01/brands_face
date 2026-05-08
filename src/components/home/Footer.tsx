@@ -530,7 +530,7 @@ export default function Footer() {
                       Address
                     </span>
                     <span
-                      className="max-w-full min-w-0 flex-1 basis-0 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:thin]"
+                      className="w-full min-w-0 flex-1 basis-0 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:thin]"
                       style={{ color: `${FOREST}cc` }}
                     >
                       {addressSingleLine}
