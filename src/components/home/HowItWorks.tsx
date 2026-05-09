@@ -200,8 +200,7 @@ export default function HowItWorks() {
                 style={{ animationDelay: `${i * 70 + 40}ms` } satisfies CSSProperties}
               >
                 <span
-                  className="pointer-events-none absolute -left-0.5 -top-3 select-none text-[2.25rem] font-black leading-none tracking-tight text-transparent sm:-top-3 sm:text-[2.75rem]"
-                  style={{ WebkitTextStroke: "1px rgba(255,255,255,0.12)" }}
+                  className="pointer-events-none absolute -left-1 -top-1 z-[3] select-none text-[1.25rem] font-black leading-none tracking-tight text-[#8ef0d8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] sm:-left-1.5 sm:-top-1.5 sm:text-[1.5rem]"
                   aria-hidden
                 >
                   {step.n}

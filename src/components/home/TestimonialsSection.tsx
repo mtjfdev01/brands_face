@@ -138,9 +138,8 @@ export default function TestimonialsSection() {
     <>
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden sm:min-h-screen"
         style={{
-          minHeight: "100vh",
           opacity: phase === "before" ? 0 : 1,
           transform:
             phase === "in"
@@ -177,8 +176,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* ── Slider ── */}
-        <div className="relative z-10 mt-auto flex flex-col items-center justify-end pb-10 sm:pb-14 lg:pb-16"
-          style={{ minHeight: "calc(100vh - 220px)" }}>
+        <div className="relative z-10 mt-6 flex flex-col items-center justify-end pb-6 sm:mt-auto sm:min-h-[calc(100vh-220px)] sm:pb-14 lg:pb-16">
 
           {/* Cards track */}
           <div
@@ -187,7 +185,7 @@ export default function TestimonialsSection() {
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >
-            <div className="relative flex items-center justify-center" style={{ height: 420 }}>
+            <div className="relative flex h-[330px] items-center justify-center sm:h-[420px]">
               {TESTIMONIALS.map((t, idx) => {
                 let offset = idx - active;
                 if (offset > total / 2) offset -= total;
