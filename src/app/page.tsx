@@ -6,6 +6,7 @@ import HomeHero from "@/components/home/HomeHero";
 import ComparisonSection from "@/components/home/ComparisonSection";
 import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 import HowItWorks from "@/components/home/HowItWorks";
+import NewHowItWorks from "@/components/home/NewHowItWorks";
 import CreativeDirection from "@/components/home/CreativeDirection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Footer from "@/components/home/Footer";
@@ -61,7 +62,10 @@ export default function HomePage() {
         </div>
       </section>
           <AllProductsRowCarousel query={productQuery} />
-      <HowItWorks />
+      <NewHowItWorks />
+      <div className="hidden md:block">
+        <HowItWorks />
+      </div>
       <AdvanceStudioShowCase />
       <div className="hidden md:block">
         <ComparisonSection />
