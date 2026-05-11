@@ -415,7 +415,7 @@ const FLOWER = useMemo(() => {
               className="object-contain p-1.5 sm:p-2"
               sizes="56px"
             />
-            <div className="text-white"> 123</div> 
+            {/* <div className="text-white"> 123</div>  */}
           </div>
           {/* <h3 className="text-lg font-black uppercase leading-tight tracking-tight text-[#1a3a2a] sm:text-xl md:text-2xl">
             Endless

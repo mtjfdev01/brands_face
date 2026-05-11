@@ -1,10 +1,16 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import TawkToScript from '@/components/TawkToScript';
 import WhatsAppChatFab from '@/components/WhatsAppChatFab';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700', '800', '900'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${playfair.variable}`}>
         {children}
         <TawkToScript />
         <WhatsAppChatFab />

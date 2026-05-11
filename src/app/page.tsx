@@ -4,6 +4,7 @@ import { useState } from "react";
 import CurtainOverlay from "@/components/home/CurtainOverlay";
 import HomeHero from "@/components/home/HomeHero";
 import ComparisonSection from "@/components/home/ComparisonSection";
+import MobileComparison from "@/components/home/MobileComparison";
 import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 import HowItWorks from "@/components/home/HowItWorks";
 import NewHowItWorks from "@/components/home/NewHowItWorks";
@@ -67,6 +68,7 @@ export default function HomePage() {
         <HowItWorks />
       </div>
       <AdvanceStudioShowCase />
+      <MobileComparison />
       <div className="hidden md:block">
         <ComparisonSection />
       </div>
