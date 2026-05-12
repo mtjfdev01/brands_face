@@ -143,7 +143,7 @@ function InfoGalleryCarousel({ slides, navId }: { slides: React.ReactNode[]; nav
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="mt-3 flex justify-end gap-2">
+      <div className="mt-3 flex justify-center gap-2">
         <GalleryNavArrow direction="prev" className={prev} />
         <GalleryNavArrow direction="next" className={next} />
       </div>
@@ -187,7 +187,7 @@ export default function CategoryInfoTabs({
               id={`${baseId}-tab-${tab.id}`}
               onClick={() => onTabChange(tab.id)}
               className={[
-                "flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-[11px] font-semibold uppercase tracking-[0.06em] transition-colors duration-200 sm:px-4 sm:text-xs",
+                "flex min-h-[48px] basis-1/2 grow items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-[11px] font-semibold uppercase tracking-[0.06em] transition-colors duration-200 sm:basis-0 sm:flex-1 sm:px-4 sm:text-xs",
                 selected
                   ? "bg-[#722f37] text-white shadow-sm"
                   : "bg-transparent text-gray-500 hover:bg-white/60 hover:text-gray-700",

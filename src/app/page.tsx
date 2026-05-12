@@ -13,6 +13,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Footer from "@/components/home/Footer";
 import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
 import AllProductsRowCarousel from "@/components/home/AllProductsRowCarousel";
+import PackagingInfoTabs from "@/components/sale/PackagingInfoTabs";
 
 export default function HomePage() {
   const [productQuery, setProductQuery] = useState("");
@@ -63,6 +64,7 @@ export default function HomePage() {
         </div>
       </section>
           <AllProductsRowCarousel query={productQuery} />
+      <PackagingInfoTabs className="mb-12 mt-12 md:mt-20" />
       <NewHowItWorks />
       <div className="hidden md:block">
         <HowItWorks />

@@ -8,13 +8,7 @@ import WhyChooseUs, { type FeatureCard } from "@/components/common/WhyChooseUs";
 // import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
 import Footer from "@/components/home/Footer";
 import QuickQuoteHeroSection from "@/components/home/QuickQuoteHeroSection";
-import CategoryInfoTabs, {
-  InfoTabIconLayers,
-  InfoTabIconPuzzle,
-  InfoTabIconShipping,
-  InfoTabIconWeight,
-  type CategoryInfoTabPanel,
-} from "@/components/sale/CategoryInfoTabs";
+import PackagingInfoTabs from "@/components/sale/PackagingInfoTabs";
 import CategoryProductFilterTabs from "@/components/sale/CategoryProductFilterTabs";
 import FAQs from "@/components/faqs/FAQs";
 import {
@@ -26,51 +20,6 @@ import {
   teasersToIndustryItems,
 } from "@/data/categoryPages";
 import { HOME_CARDS } from "@/data/homeCards";
-
-/** Info section below product grid — tab ids: materials | addons | paper | shipping */
-const CATEGORY_INFO_TABS = [
-  { id: "materials", label: "Materials", icon: <InfoTabIconLayers /> },
-  { id: "addons", label: "Add-ons & finishing", icon: <InfoTabIconPuzzle /> },
-  { id: "paper", label: "Paper weight", icon: <InfoTabIconWeight /> },
-  { id: "shipping", label: "Shipping", icon: <InfoTabIconShipping /> },
-] as const;
-
-/** One slide per item — shown in the right column carousel */
-function galleryPlaceholderSlides(count = 4) {
-  return Array.from({ length: count }, (_, i) => (
-    <div
-      className="flex h-[88px] w-[88px] shrink-0 flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 text-[10px] font-medium text-gray-400 sm:h-[100px] sm:w-[100px] sm:text-xs"
-      key={i}
-    >
-      Image {i + 1}
-    </div>
-  ));
-}
-
-const CATEGORY_INFO_PANELS: Record<string, CategoryInfoTabPanel> = {
-  materials: {
-    paragraph: (
-      <p>
-        Discover our range of high-quality packaging materials designed to tailor your packaging order to
-        perfection. From sturdy cardboard boxes to eco-friendly options, we have the ideal materials for your
-        unique needs. Elevate your brand and protect your products with our customizable packaging solutions.
-      </p>
-    ),
-    gallerySlides: galleryPlaceholderSlides(4),
-  },
-  addons: {
-    paragraph: <p>Add finishing and add-on copy will go here.</p>,
-    gallerySlides: galleryPlaceholderSlides(4),
-  },
-  paper: {
-    paragraph: <p>Paper weight and stock guidance will go here.</p>,
-    gallerySlides: galleryPlaceholderSlides(4),
-  },
-  shipping: {
-    paragraph: <p>Shipping options and timelines will go here.</p>,
-    gallerySlides: galleryPlaceholderSlides(4),
-  },
-};
 
 const whyFeatures: FeatureCard[] = [
   {
@@ -140,7 +89,6 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
   const [activeTabId, setActiveTabId] = useState(defaultTabId);
   const [displayTabId, setDisplayTabId] = useState(defaultTabId);
   const [panelVisible, setPanelVisible] = useState(true);
-  const [infoTabId, setInfoTabId] = useState<string>("materials");
 
   const hasProductTabs = Boolean(config?.tabs && config.tabs.length > 0);
 
@@ -227,14 +175,7 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
       )}
 
       {/* <AdvanceStudioShowCase /> */}
-      <CategoryInfoTabs
-        tabs={[...CATEGORY_INFO_TABS]}
-        panels={CATEGORY_INFO_PANELS}
-        activeTabId={infoTabId}
-        onTabChange={setInfoTabId}
-        className="mb-12 mt-4 md:mt-6"
-        ariaLabel="Packaging options and information"
-      />
+      <PackagingInfoTabs />
       <WhyChooseUs
         heading="Why Choose BrandsFace?"
         subheading="We don’t just create packaging — we build brand perception. From strategy to design to manufacturing, BrandsFace helps your product stand out, build trust, and convert customers at first glance."
