@@ -260,17 +260,17 @@ export default function MobileComparison() {
 
           {/* +xx% Perceived Value badge */}
           <div
-            className="absolute bottom-4 right-4 z-10 rounded-2xl px-3.5 py-2 text-center backdrop-blur-sm"
+            className="absolute bottom-1.5 right-1.5 z-10 rounded-lg px-2 py-1 text-center backdrop-blur-sm"
             style={{
               backgroundColor: "rgba(13, 58, 38, 0.82)",
-              border: "1.4px solid rgba(214, 232, 75, 0.85)",
-              boxShadow: "0 0 14px rgba(214, 232, 75, 0.45), 0 6px 14px rgba(0, 0, 0, 0.35)",
+              border: "1px solid rgba(214, 232, 75, 0.85)",
+              boxShadow: "0 0 8px rgba(214, 232, 75, 0.35), 0 3px 8px rgba(0, 0, 0, 0.3)",
             }}
           >
-            <p className="text-[20px] font-black leading-none text-[#f5e85b]">
+            <p className="text-[14px] font-black leading-none text-[#f5e85b]">
               {slide.uplift}
             </p>
-            <p className="mt-1 text-[9px] font-bold leading-none text-white/90">
+            <p className="mt-0.5 text-[7px] font-bold leading-none text-white/90">
               Perceived Value
             </p>
           </div>
