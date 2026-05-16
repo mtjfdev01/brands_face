@@ -30,15 +30,15 @@ function buildMediaSlides(
   return items.map((item, i) => (
     <figure
       key={`${item.src}-${i}`}
-      className="flex w-[120px] shrink-0 flex-col items-center gap-2 sm:w-[140px]"
+      className="flex w-[132px] shrink-0 flex-col items-center gap-2 sm:w-[140px]"
     >
-      <div className="relative h-[120px] w-[120px] overflow-hidden rounded-xl bg-gray-50 sm:h-[140px] sm:w-[140px]">
+      <div className="relative h-[132px] w-full overflow-hidden rounded-xl bg-gray-50 sm:h-[140px] sm:w-[140px]">
         <Image
           src={item.src}
           alt={item.label}
           fill
           className={objectFit === "contain" ? "object-contain p-3" : "object-cover"}
-          sizes="(max-width: 640px) 120px, 140px"
+          sizes="(max-width: 640px) 132px, 140px"
         />
       </div>
       {showLabel && (

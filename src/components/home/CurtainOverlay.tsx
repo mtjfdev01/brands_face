@@ -16,7 +16,7 @@ type Props = {
 // Once per full page load / tab session; skipped on client navigations back to home.
 let hasShownCurtainOverlayInSession = false;
 
-const DEFAULT_HOLD_MS = 500;
+const DEFAULT_HOLD_MS = 1000;
 const DEFAULT_SLIDE_MS = 380;
 
 export default function CurtainOverlay({
