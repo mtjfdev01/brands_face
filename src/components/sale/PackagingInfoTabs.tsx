@@ -23,7 +23,6 @@ type MediaSlide = { src: string; label: string };
 
 type LightboxState = {
   item: MediaSlide;
-  objectFit: "cover" | "contain";
 };
 
 function MediaSlideLightbox({
@@ -33,7 +32,7 @@ function MediaSlideLightbox({
   state: LightboxState;
   onClose: () => void;
 }) {
-  const { item, objectFit } = state;
+  const { item } = state;
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -57,7 +56,7 @@ function MediaSlideLightbox({
       onClick={onClose}
     >
       <div
-        className="relative flex max-h-[85vh] w-full max-w-[min(900px,100%)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+        className="relative flex max-h-[min(72vh,520px)] w-full max-w-[min(720px,100%)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -70,14 +69,14 @@ function MediaSlideLightbox({
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <div className="relative aspect-square w-full max-h-[70vh] bg-gray-50 sm:max-h-[75vh]">
-          <Image
+        <div className="relative flex h-[min(38vh,320px)] w-full items-center justify-center bg-gray-50 px-4 py-3 sm:h-[min(42vh,360px)]">
+          {/* Native img loads full source file — sharper than upscaling the thumbnail srcset */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={item.src}
             alt={item.label}
-            fill
-            className={objectFit === "contain" ? "object-contain p-6" : "object-cover"}
-            sizes="(max-width: 900px) 90vw, 900px"
-            priority
+            className="max-h-full max-w-full object-contain"
+            decoding="async"
           />
         </div>
         <p className="border-t border-gray-100 px-5 py-3 text-center text-sm font-medium text-gray-800">
@@ -90,7 +89,7 @@ function MediaSlideLightbox({
 
 function buildMediaSlides(
   items: MediaSlide[],
-  onImageClick: (item: MediaSlide, objectFit: "cover" | "contain") => void,
+  onImageClick: (item: MediaSlide) => void,
   options?: { showLabel?: boolean; objectFit?: "cover" | "contain" },
 ) {
   const showLabel = options?.showLabel ?? true;
@@ -102,7 +101,7 @@ function buildMediaSlides(
     >
       <button
         type="button"
-        onClick={() => onImageClick(item, objectFit)}
+        onClick={() => onImageClick(item)}
         className="relative h-[132px] w-full cursor-zoom-in overflow-hidden rounded-xl bg-gray-50 transition-opacity hover:opacity-90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[#722f37]/50 sm:h-[140px] sm:w-[140px]"
         aria-label={`View ${item.label} full size`}
       >
@@ -170,8 +169,8 @@ export default function PackagingInfoTabs({
   const [activeTabId, setActiveTabId] = useState<string>("materials");
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
 
-  const openLightbox = useCallback((item: MediaSlide, objectFit: "cover" | "contain") => {
-    setLightbox({ item, objectFit });
+  const openLightbox = useCallback((item: MediaSlide) => {
+    setLightbox({ item });
   }, []);
 
   const closeLightbox = useCallback(() => setLightbox(null), []);
