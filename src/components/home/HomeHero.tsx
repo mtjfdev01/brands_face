@@ -11,7 +11,32 @@ import ScrollCards from "@/components/home/ScrollCards";
 
 const STAGGER_BASE_DELAY_MS = 0;
 
-export default function HomeHero() {
+const HERO_BG = "/assets/images/hero_bg.png";
+const HERO_MAIN = "/assets/images/hero_main.png";
+const HERO_READY_MAX_MS = 8000;
+
+function preloadImage(src: string): Promise<void> {
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve();
+    img.src = src;
+  });
+}
+
+function getHeroAssetUrls(): string[] {
+  const urls = [HERO_BG];
+  if (typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches) {
+    urls.push(HERO_MAIN);
+  }
+  return urls;
+}
+
+type HomeHeroProps = {
+  onReady?: () => void;
+};
+
+export default function HomeHero({ onReady }: HomeHeroProps) {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -37,11 +62,31 @@ export default function HomeHero() {
     return () => mo.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!onReady) return;
+
+    let cancelled = false;
+    let didNotify = false;
+    const finish = () => {
+      if (cancelled || didNotify) return;
+      didNotify = true;
+      onReady();
+    };
+
+    const maxTimer = window.setTimeout(finish, HERO_READY_MAX_MS);
+    void Promise.all(getHeroAssetUrls().map(preloadImage)).then(finish);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(maxTimer);
+    };
+  }, [onReady]);
+
   return (
     <>
     <section
       className="relative w-full overflow-hidden bg-black max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen lg:overflow-visible bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: "url(/assets/images/hero_bg.png)" }}
+      style={{ backgroundImage: `url(${HERO_BG})` }}
     >
       <HomeHeroNavbar />
       {/* Ambient glow */}
@@ -164,7 +209,7 @@ export default function HomeHero() {
         >
           <div className="relative w-full">
             <img
-              src="/assets/images/hero_main.png"
+              src={HERO_MAIN}
               alt=""
               draggable={false}
               className="block h-auto w-full select-none"
