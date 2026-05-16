@@ -15,6 +15,10 @@
   --color-brand-primary: #1a1a1a;
   --color-brand-accent: #c8102e;
   --color-brand-white: #ffffff;
+  --primary-green: rgb(18, 59, 43);
+  /* --dark-primary-green: #132f2b; */
+  --dark-primary-green: #062925;
+  --primary-cream: rgb(249, 246, 238);
 
   /* Nav */
   --color-nav-link: #2d2d2d;

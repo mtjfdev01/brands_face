@@ -11,7 +11,6 @@ import ScrollCards from "@/components/home/ScrollCards";
 
 const STAGGER_BASE_DELAY_MS = 0;
 
-const HERO_BG = "/assets/images/hero_bg.png";
 const HERO_MAIN = "/assets/images/hero_main.png";
 const HERO_READY_MAX_MS = 8000;
 
@@ -25,11 +24,10 @@ function preloadImage(src: string): Promise<void> {
 }
 
 function getHeroAssetUrls(): string[] {
-  const urls = [HERO_BG];
   if (typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches) {
-    urls.push(HERO_MAIN);
+    return [HERO_MAIN];
   }
-  return urls;
+  return [];
 }
 
 type HomeHeroProps = {
@@ -85,15 +83,9 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
   return (
     <>
     <section
-      className="relative w-full overflow-hidden bg-black max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen lg:overflow-visible bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: `url(${HERO_BG})` }}
+      className="relative w-full overflow-hidden bg-[var(--dark-primary-green)] max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen lg:overflow-visible"
     >
       <HomeHeroNavbar />
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-900/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-800/20 rounded-full blur-[100px]" />
-      </div>
 
       {/* Mobile-only hero — w-full so children can align to viewport with w-[100dvw] */}
       <div className="relative w-full min-w-0 max-w-none lg:hidden">

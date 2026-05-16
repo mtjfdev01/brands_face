@@ -17,7 +17,7 @@ export default function AdvanceStudioShowCase() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden py-16 md:py-24 bg-[#123b2b]">
+    <section className="relative w-full overflow-hidden bg-[var(--dark-primary-green)] py-16 md:py-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-[#2bc18a]/25 blur-3xl animate-pulse" />
         <div className="absolute -bottom-24 -right-10 w-80 h-80 rounded-full bg-[var(--color-brand-accent)]/20 blur-3xl animate-pulse [animation-delay:0.8s]" />

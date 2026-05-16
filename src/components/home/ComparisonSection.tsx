@@ -284,7 +284,7 @@ export default function ComparisonSection() {
       className="w-full px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-28"
     >
       <div
-        className="relative max-w-[1400px] mx-auto rounded-[34px] border border-white/10 bg-gradient-to-br from-[#173626] via-[#132d20] to-[#0f2118] p-4 sm:p-5 lg:p-6 shadow-[0_26px_70px_rgba(5,14,10,0.55)]"
+        className="relative mx-auto max-w-[1400px] rounded-[34px] border border-white/10 bg-[var(--dark-primary-green)] p-4 shadow-[0_26px_70px_rgba(5,14,10,0.55)] sm:p-5 lg:p-6"
         style={
           isMobile
             ? { opacity: 1, transform: "none", transition: "none" }

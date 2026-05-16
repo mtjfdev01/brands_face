@@ -157,7 +157,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative mt-10 w-full overflow-hidden bg-gradient-to-br from-[#173626] via-[#132d20] to-[#0f2118] py-16 sm:mt-14 sm:py-20 lg:mt-16 lg:py-28"
+      className="relative mt-10 w-full overflow-hidden bg-[var(--dark-primary-green)] py-16 sm:mt-14 sm:py-20 lg:mt-16 lg:py-28"
       aria-labelledby="how-it-works-heading"
     >
       <div
