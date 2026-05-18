@@ -4,21 +4,41 @@
 
 /* ── Design Tokens (CSS Custom Properties) ── */
 :root {
-  /* Hero & Landing */
+  /* ── Brand palette ── */
+  --primary-green: rgb(18, 59, 43);
+  --light-green: #57d7aa; /* primary CTA / accent mint */
+  --dark-primary-green: #132f2b; /* deep green — section backgrounds (hero, HIW, studio, comparison) */
+  --primary-cream: rgb(249, 246, 238);
+  --primary-btn-text: #0b1208;
+  --primary-btn-shadow: 0 14px 40px color-mix(in srgb, var(--light-green) 25%, transparent);
+  --dark-btn-text: var(--color-brand-white);
+  --dark-btn-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  --color-brand-white: #ffffff;
+  --color-brand-primary: #1a1a1a;
+  --color-brand-accent: #c8102e;
+
+  /*
+   * Site themes (use on section wrappers)
+   * 1. theme-cream  — cream bg, green text
+   * 2. theme-dark   — dark-primary-green bg, white text
+   */
+  --theme-cream-bg: var(--primary-cream);
+  --theme-cream-text: var(--primary-green);
+  --theme-cream-text-strong: var(--dark-primary-green);
+  --theme-cream-text-muted: color-mix(in srgb, var(--primary-green) 72%, transparent);
+
+  --theme-dark-bg: var(--dark-primary-green);
+  --theme-dark-text: var(--color-brand-white);
+  --theme-dark-text-muted: rgba(255, 255, 255, 0.85);
+  --theme-dark-text-subtle: rgba(255, 255, 255, 0.65);
+  --theme-dark-border: rgba(255, 255, 255, 0.12);
+
+  /* Hero & landing (legacy — prefer theme tokens for new work) */
   --color-hero-bg: #e8d5b8;
   --color-hero-bg-light: #f2e6d3;
   --color-hero-overlay: rgba(232, 213, 184, 0.3);
   --color-hero-text: #1a1a1a;
   --color-hero-desc: #3d3d3d;
-
-  /* Brand */
-  --color-brand-primary: #1a1a1a;
-  --color-brand-accent: #c8102e;
-  --color-brand-white: #ffffff;
-  --primary-green: rgb(18, 59, 43);
-  /* --dark-primary-green: #132f2b; */
-  --dark-primary-green: #062925;
-  --primary-cream: rgb(249, 246, 238);
 
   /* Nav */
   --color-nav-link: #2d2d2d;
@@ -50,7 +70,7 @@
   --color-hiw-bg-2: #132d20;
   --color-hiw-bg-3: #0f2118;
   --color-hiw-ring-top: #1f3d2e;
-  --color-hiw-accent: #57d7aa;
+  --color-hiw-accent: var(--light-green);
   --color-hiw-accent-strong: #8ef0d8;
   --color-hiw-accent-deep: #3a9f80;
   --color-hiw-white-stroke-12: rgba(255, 255, 255, 0.12);
@@ -140,9 +160,117 @@
   }
 }
 
+@layer components {
+  /* Theme 1: cream background, green content */
+  .theme-cream {
+    background-color: var(--theme-cream-bg);
+    color: var(--theme-cream-text);
+  }
+
+  .theme-cream :where(h1, h2, h3, h4, h5, h6, strong) {
+    color: var(--theme-cream-text-strong);
+  }
+
+  /* Theme 2: dark green background, white content */
+  .theme-dark,
+  .theme-dark-green {
+    background-color: var(--theme-dark-bg);
+    color: var(--theme-dark-text);
+  }
+
+  .theme-dark :where(p, li, span, label),
+  .theme-dark-green :where(p, li, span, label) {
+    color: inherit;
+  }
+
+  /* Primary CTA — light-green fill (hero audit, site-wide) */
+  .primary_btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--light-green);
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--primary-btn-text);
+    box-shadow: var(--primary-btn-shadow);
+    transition: transform 150ms ease;
+  }
+
+  .primary_btn:active {
+    transform: scale(0.99);
+  }
+
+  .primary_btn__icon {
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Secondary CTA — dark-primary-green fill, white label */
+  .dark_bg_btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: var(--dark-primary-green);
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--dark-btn-text);
+    box-shadow: var(--dark-btn-shadow);
+    transition: transform 150ms ease;
+  }
+
+  .dark_bg_btn:active {
+    transform: scale(0.99);
+  }
+
+  .dark_bg_btn__icon {
+    display: inline-flex;
+    height: 2rem;
+    width: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-theme-cream-muted {
+    color: var(--theme-cream-text-muted);
+  }
+
+  .text-theme-dark-muted {
+    color: var(--theme-dark-text-muted);
+  }
+
+  .text-theme-dark-subtle {
+    color: var(--theme-dark-text-subtle);
+  }
+
+  .bg-theme-cream {
+    background-color: var(--theme-cream-bg);
+  }
+
+  .bg-theme-dark {
+    background-color: var(--theme-dark-bg);
   }
 }
 

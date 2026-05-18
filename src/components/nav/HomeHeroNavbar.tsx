@@ -58,12 +58,12 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
 
   const outerClassName =
     variant === "layout"
-      ? "sticky top-0 z-50 w-full border-b border-white/10 bg-[#103a2a] px-4 py-3 sm:px-6 lg:px-8"
+      ? "sticky top-0 z-50 w-full border-b border-white/15 bg-white/[0.03] px-4 py-3 backdrop-blur sm:px-6 lg:px-8"
       : "absolute inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6 sm:pt-5 lg:px-8";
 
   return (
     <div className={outerClassName}>
-      <nav className="relative z-0 mx-auto max-w-[1280px] overflow-visible rounded-2xl border border-white/15 bg-[#103a2a] shadow-[0_12px_50px_rgba(0,0,0,0.28)]">
+      <nav className="relative z-0 mx-auto max-w-[1280px] overflow-visible rounded-2xl border border-white/15 bg-white/[0.03] shadow-[0_12px_50px_rgba(0,0,0,0.28)] backdrop-blur">
         <div className="relative flex items-center gap-3 overflow-visible px-4 sm:px-5 lg:px-6 py-3.5">
           {/* Desktop: menu on the left */}
           <ul className="relative z-[2] hidden min-w-0 flex-1 flex-wrap items-center justify-start gap-x-6 gap-y-2 lg:gap-x-8 md:flex">
@@ -238,14 +238,14 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             aria-hidden
           >
             {/* Outer h-9 = zero layout impact on bar (logo is absolute); inner chip is much taller, centered, spills vertically */}
-            <span className="relative h-9 w-[138px] shrink-0 overflow-hidden sm:w-[164px] md:w-[186px] [&_img]:border-0 [&_img]:outline-none [&_span]:border-0">
-              <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden rounded-xl border-0 bg-[rgb(18_59_43)] shadow-sm ring-0 outline-none sm:h-[112px] md:h-[132px]">
+            <span className="relative h-9 w-[152px] shrink-0 overflow-hidden sm:w-[180px] md:w-[205px] [&_img]:border-0 [&_img]:outline-none [&_span]:border-0">
+              <span className="absolute left-0 right-0 top-1/2 z-[1] h-[96px] w-full -translate-y-1/2 overflow-hidden border-0 ring-0 outline-none sm:h-[112px] md:h-[132px]">
                 <Image
                   src="/assets/images/logos/logo.png"
                   alt=""
                   fill
                   className="border-0 object-contain object-center p-1 outline-none ring-0"
-                  sizes="(max-width: 640px) 138px, (max-width: 768px) 164px, 186px"
+                  sizes="(max-width: 640px) 152px, (max-width: 768px) 180px, 205px"
                   priority
                 />
               </span>
@@ -255,7 +255,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
           <Link
             href="/"
             aria-label="BrandsFace home"
-            className="absolute left-4 top-1/2 z-[3] h-9 w-[138px] -translate-y-1/2 translate-x-0 sm:left-5 sm:w-[164px] md:left-1/2 md:w-[186px] md:-translate-x-1/2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+            className="absolute left-4 top-1/2 z-[3] h-9 w-[152px] -translate-y-1/2 translate-x-0 sm:left-5 sm:w-[180px] md:left-1/2 md:w-[205px] md:-translate-x-1/2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
           />
 
           {/* Desktop: catalog search + CTAs */}
@@ -263,7 +263,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             <NavbarCatalogSearch className="mr-1 w-full max-w-[200px] lg:max-w-[240px] xl:max-w-[260px]" />
             <Link
               href="/quote"
-              className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/12 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/20 lg:px-5"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white/85 backdrop-blur transition-colors hover:text-white active:scale-[0.99] lg:px-5"
             >
               Get a Quote
             </Link>
@@ -307,7 +307,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             open ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="px-4 pb-4 pt-1 border-t border-white/10 bg-[#103a2a]">
+          <div className="border-t border-white/15 bg-white/[0.03] px-4 pb-4 pt-1 backdrop-blur">
             <div className="mb-3 pt-2">
               <NavbarCatalogSearch
                 tone="drawer"
@@ -374,7 +374,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
               <Link
                 href="/quote"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center rounded-lg bg-white/12 border border-white/20 px-3 py-2.5 text-white text-sm font-semibold"
+                className="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/[0.03] px-3 py-2.5 text-sm font-semibold text-white/85 backdrop-blur transition-colors active:scale-[0.99]"
               >
                 Get a Quote
               </Link>

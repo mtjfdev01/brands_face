@@ -18,11 +18,6 @@ export default function AdvanceStudioShowCase() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[var(--dark-primary-green)] py-16 md:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-[#2bc18a]/25 blur-3xl animate-pulse" />
-        <div className="absolute -bottom-24 -right-10 w-80 h-80 rounded-full bg-[var(--color-brand-accent)]/20 blur-3xl animate-pulse [animation-delay:0.8s]" />
-      </div>
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(480px,56%)] gap-10 lg:gap-12 items-center">
           <AnimateOnScroll animation="slide-left" className="max-w-2xl">

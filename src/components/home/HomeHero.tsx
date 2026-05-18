@@ -130,12 +130,9 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
           <div
             className="mt-6 grid grid-cols-1 gap-3"
           >
-            <Link
-              href="/audit"
-              className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#57d7aa] px-5 py-3.5 text-sm font-bold text-[#0b1208] shadow-[0_14px_40px_rgba(87,215,170,0.25)] transition-transform active:scale-[0.99]"
-            >
+            <Link href="/audit" className="primary_btn w-full">
               Get Free Packaging Audit
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-black/10">
+              <span className="primary_btn__icon">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
                   <path
                     d="M7 17L17 7M10 7h7v7"

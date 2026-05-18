@@ -394,15 +394,20 @@ export default function CategoryFocusCarousel() {
           <button
             type="button"
             onClick={() => setShowAllCategories(true)}
-            className="group inline-flex items-center gap-2 text-sm font-semibold tracking-[0.08em] text-[#103a2a] transition hover:text-[#0b5d44]"
+            className="dark_bg_btn"
           >
-            <span className="relative">
-              See all Product Categories
-              <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-100 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-transform duration-300 group-hover:scale-x-110" />
+            See all Product Categories
+            <span className="dark_bg_btn__icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
+                <path
+                  d="M5 12h14M13 5l7 7-7 7"
+                  stroke="currentColor"
+                  strokeWidth="2.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 5l7 7-7 7" />
-            </svg>
           </button>
         </div>
       </div>

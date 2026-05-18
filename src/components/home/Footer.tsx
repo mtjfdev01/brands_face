@@ -14,15 +14,17 @@ import {
 /** Replace with `/assets/images/footer-cta-box.png` (or your asset path) when the hero box render is ready. */
 const FOOTER_CTA_BOX_SRC = "/assets/images/cta_box.webp"; 
 
+/** CTA card (light inset on dark footer) */
 const FOREST = "#062118";
 const SAGE = "#6B8E6B";
-const CREAM = "#FAF9F6";
 
-/** Mobile bottom bar (minimal strip — matches light cream + muted green icons) */
-const FOOTER_MOBILE_BAR_BG = "#FDFCF8";
-const FOOTER_MOBILE_BAR_ICON = "#4A5D4E";
-const FOOTER_MOBILE_BAR_TEXT = "#4B4B4B";
-const FOOTER_MOBILE_BAR_RULE = "#D1D1D1";
+/** Dark footer theme */
+const FOOTER_BG = "var(--dark-primary-green)";
+const FOOTER_TEXT = "var(--theme-dark-text)";
+const FOOTER_TEXT_MUTED = "var(--theme-dark-text-muted)";
+const FOOTER_TEXT_SUBTLE = "var(--theme-dark-text-subtle)";
+const FOOTER_BORDER = "var(--theme-dark-border)";
+const FOOTER_ACCENT = "var(--light-green)";
 
 const COMPANY = [
   { label: "About us", href: "/about" },
@@ -195,12 +197,12 @@ function ColumnTitle({ children }: { children: ReactNode }) {
   return (
     <div className="mb-3">
       <div className="flex items-center gap-2">
-        <LeafIcon className="h-4 w-4 shrink-0 text-[var(--primary-green)] opacity-80" />
-        <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs" style={{ color: FOREST }}>
+        <LeafIcon className="h-4 w-4 shrink-0 text-light-green opacity-90" />
+        <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] text-white sm:text-xs">
           {children}
         </h3>
       </div>
-      <div className="mt-2.5 hidden h-px w-11 sm:block sm:w-12" style={{ backgroundColor: SAGE }} />
+      <div className="mt-2.5 hidden h-px w-11 bg-white/25 sm:block sm:w-12" />
     </div>
   );
 }
@@ -212,11 +214,10 @@ function FooterLinkList({ items }: { items: { label: string; href: string }[] })
         <li key={l.href} className="min-w-0">
           <Link
             href={l.href}
-            className="group flex min-w-0 items-center justify-between gap-3 border-b border-[#062118]/08 py-2.5 text-sm transition-colors hover:text-[#062118]"
-            style={{ color: `${FOREST}cc` }}
+            className="group flex min-w-0 items-center justify-between gap-3 border-b border-white/10 py-2.5 text-sm text-white/85 transition-colors hover:text-white"
           >
             <span className="min-w-0 break-words">{l.label}</span>
-            <ChevronRight className="h-4 w-4 shrink-0 text-[var(--primary-green)] opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-70" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-light-green opacity-50 transition group-hover:translate-x-0.5 group-hover:opacity-80" />
           </Link>
         </li>
       ))}
@@ -232,11 +233,10 @@ function FooterLinkGridCols3({ items }: { items: { label: string; href: string }
         <li key={l.href} className="min-w-0">
           <Link
             href={l.href}
-            className="group flex min-h-[2.625rem] items-center justify-between gap-1 border-b border-[#062118]/08 py-2 text-left text-xs leading-snug transition-colors hover:text-[#062118] sm:min-h-0 sm:py-2.5 sm:text-sm"
-            style={{ color: `${FOREST}cc` }}
+            className="group flex min-h-[2.625rem] items-center justify-between gap-1 border-b border-white/10 py-2 text-left text-xs leading-snug text-white/85 transition-colors hover:text-white sm:min-h-0 sm:py-2.5 sm:text-sm"
           >
             <span className="min-w-0 break-words">{l.label}</span>
-            <ChevronRight className="h-3 w-3 shrink-0 text-[var(--primary-green)] opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-70 sm:h-4 sm:w-4" />
+            <ChevronRight className="h-3 w-3 shrink-0 text-light-green opacity-50 transition group-hover:translate-x-0.5 group-hover:opacity-80 sm:h-4 sm:w-4" />
           </Link>
         </li>
       ))}
@@ -252,13 +252,13 @@ function FooterLinkRowWithPipes({ items }: { items: { label: string; href: strin
         {items.map((l, idx) => (
           <li key={l.href} className="flex items-center">
             {idx > 0 ? (
-              <span className="px-1.5 text-[var(--primary-green)] opacity-40" aria-hidden>
+              <span className="px-1.5 text-light-green" aria-hidden>
                 |
               </span>
             ) : null}
             <Link
               href={l.href}
-              className="whitespace-nowrap py-1.5 text-[10px] font-medium leading-none text-[var(--primary-green)] transition-colors hover:text-[var(--primary-green)] hover:opacity-80 sm:py-2 sm:text-xs"
+              className="whitespace-nowrap py-1.5 text-[10px] font-medium leading-none text-white/85 transition-colors hover:text-white sm:py-2 sm:text-xs"
             >
               {l.label}
             </Link>
@@ -282,14 +282,13 @@ function FooterLinkTwoRowsPipes303040({ items }: { items: { label: string; href:
       {row.map((l, idx) => (
         <div key={l.href} className="contents">
           {idx > 0 ? (
-            <span className="px-2 text-center opacity-40" style={{ color: FOREST }} aria-hidden>
+            <span className="px-2 text-center text-white/40" aria-hidden>
               |
             </span>
           ) : null}
           <Link
             href={l.href}
-            className="block min-w-0 truncate py-2 text-center text-[11px] font-medium leading-none transition-colors hover:text-[#062118]"
-            style={{ color: `${FOREST}cc` }}
+            className="block min-w-0 truncate py-2 text-center text-[11px] font-medium leading-none text-white/85 transition-colors hover:text-white"
             title={l.label}
           >
             {l.label}
@@ -310,24 +309,24 @@ function FooterLinkTwoRowsPipes303040({ items }: { items: { label: string; href:
 /** Mobile-only collapsible block (e.g. Legal & support). Desktop uses static columns. */
 function FooterMobileAccordion({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <details className="group min-w-0 border-b border-[#062118]/10">
+    <details className="group min-w-0 border-b border-white/10">
       <summary className="flex cursor-pointer list-none items-start justify-between gap-3 py-3 transition-opacity duration-200 hover:opacity-90 [&::-webkit-details-marker]:hidden">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <LeafIcon className="h-4 w-4 shrink-0 text-[var(--primary-green)] opacity-80" />
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs" style={{ color: FOREST }}>
+            <LeafIcon className="h-4 w-4 shrink-0 text-light-green opacity-90" />
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] text-white sm:text-xs">
               {title}
             </h3>
           </div>
           {/* <div className="mt-2.5 h-px w-11 sm:w-12" style={{ backgroundColor: SAGE }} /> */}
         </div>
-        <span className="mt-0.5 shrink-0 text-[var(--primary-green)] opacity-50 transition-transform duration-300 ease-out motion-reduce:transition-none group-open:rotate-180">
+        <span className="mt-0.5 shrink-0 text-light-green transition-transform duration-300 ease-out motion-reduce:transition-none group-open:rotate-180">
           <ChevronDown className="h-5 w-5" />
         </span>
       </summary>
       <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none group-open:grid-rows-[1fr]">
         <div className="min-h-0 overflow-hidden">
-          <div className="border-t border-[#062118]/08 pb-3 pt-2">{children}</div>
+          <div className="border-t border-white/10 pb-3 pt-2">{children}</div>
         </div>
       </div>
     </details>
@@ -342,15 +341,14 @@ export default function Footer() {
     <footer className="relative w-full overflow-hidden">
       {/* ── CTA banner (same surface color as main footer) ── */}
       <div
-        className="relative z-10 w-full border-b border-[#062118]/10 px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-8"
-        style={{ backgroundColor: "#F9F6EE" }}
+        className="relative z-10 w-full border-b border-white/10 bg-[var(--dark-primary-green)] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-8"
       >
         <div className="mx-auto max-w-[1240px]">
           <div
             className="relative overflow-hidden rounded-[22px] border border-white/80 bg-white shadow-[0_8px_40px_rgba(6,33,24,0.12),0_2px_8px_rgba(6,33,24,0.06)] ring-1 ring-[#062118]/[0.07] "
           >
           <div
-            className="pointer-events-none absolute -right-4 top-0 h-full w-[45%] max-w-[220px] text-[var(--primary-green)]/25 sm:right-0 sm:max-w-[280px]"
+            className="pointer-events-none absolute -right-4 top-0 h-full w-[45%] max-w-[220px] text-light-green/20 sm:right-0 sm:max-w-[280px]"
             aria-hidden
           >
             <LeafDecoration className="h-full w-full" />
@@ -383,7 +381,7 @@ export default function Footer() {
                   gr
                   <span className="relative inline-block">
                     o
-                    <LeafIcon className="absolute -top-3 left-1/2 h-3.5 w-3.5 -translate-x-1/2 text-[var(--primary-green)]" />
+                    <LeafIcon className="absolute -top-3 left-1/2 h-3.5 w-3.5 -translate-x-1/2 text-light-green" />
                   </span>
                   ws
                 </span>{" "}
@@ -422,27 +420,27 @@ export default function Footer() {
       </div>
 
       {/* ── Main footer columns ── */}
-      <div className="relative z-10 w-full" style={{ backgroundColor: CREAM }}>
+      <div className="relative z-10 w-full bg-[var(--dark-primary-green)] text-white">
         <div className="mx-auto max-w-[1280px] px-2 pb-2 sm:px-6 lg:px-4 lg:pt-8 sm:pb-0">
-        <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-[#062118]/12">
+        <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-0 lg:divide-x lg:divide-white/12">
           {/* Brand */}
           <div className="lg:col-span-3 lg:pr-5 xl:pr-7">
             <div className="flex w-full flex-col items-center gap-0 sm:gap-4">
               <div className="relative mx-auto mb-2 h-[128px] w-[128px] shrink-0 sm:h-[140px] sm:w-[140px]">
                 <Image
-                  src="/assets/images/sustainable.png"
+                  src="/assets/images/sustainable.webp"
                   alt="Brands Face"
                   fill
                   className="object-contain object-center"
                   sizes="140px"
                 />
               </div>
-              <div className="relative h-11 w-[min(100%,200px)] shrink-0 overflow-hidden rounded-xl border border-white/15 bg-[var(--primary-green)] shadow-sm sm:h-12 sm:w-[220px] lg:w-[228px]">
+              <div className="relative h-11 w-[min(100%,200px)] shrink-0 sm:h-12 sm:w-[220px] lg:w-[228px]">
                 <Image
                   src="/assets/images/logos/logo.png"
                   alt="Brands Face"
                   fill
-                  className="object-contain object-center px-2 py-1"
+                  className="object-contain object-center"
                   sizes="(max-width: 640px) 200px, (max-width: 1024px) 220px, 228px"
                 />
               </div>
@@ -455,11 +453,8 @@ export default function Footer() {
               reflects your commitment to a healthier planet.
             </p> */}
             <ul className="mt-6 flex w-full flex-row items-center justify-between gap-2 sm:gap-3">
-              <li
-                className="flex min-w-0 flex-[2_1_0%] items-center  sm:flex-1 sm:basis-0"
-                style={{ color: FOREST }}
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[var(--primary-green)]">
+              <li className="flex min-w-0 flex-[2_1_0%] items-center text-white sm:flex-1 sm:basis-0">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-light-green/15 text-light-green">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
                     <path d="M12 2 4 6v12l8 4 8-4V6l-8-4Z" strokeLinejoin="round" />
                     <path d="m4 6 8 4 8-4M12 10v12" strokeLinecap="round" />
@@ -469,11 +464,8 @@ export default function Footer() {
                   <span>Custom Solutions</span>
                 </span>
               </li>
-              <li
-                className="flex min-w-0 flex-[3_1_0%] items-center sm:flex-1 sm:basis-0"
-                style={{ color: FOREST }}
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6B8E6B]/22 text-[var(--primary-green)]">
+              <li className="flex min-w-0 flex-[3_1_0%] items-center text-white sm:flex-1 sm:basis-0">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-light-green/15 text-light-green">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
                     <circle cx="12" cy="12" r="9" />
                     <path d="M3 12h18M12 3a15 15 0 0 1 0 18" strokeLinecap="round" />
@@ -514,27 +506,26 @@ export default function Footer() {
           {/* Social & contact — two columns + address card */}
           <div className="min-w-0 lg:col-span-4 lg:pl-6 xl:pl-8">
             <div className="mb-3 hidden min-w-0 max-w-full flex-col lg:inline-flex">
-              <div className="flex items-center gap-2" style={{ color: FOREST }}>
+              <div className="flex items-center gap-2 text-white">
                 <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] sm:text-xs">
                   Social &amp; contact
                 </h3>
-                <LeafIcon className="h-4 w-4 shrink-0 opacity-80 text-[var(--primary-green)]" aria-hidden />
+                <LeafIcon className="h-4 w-4 shrink-0 text-light-green opacity-90" aria-hidden />
               </div>
-              <div className="mt-2.5 h-px w-full" style={{ backgroundColor: SAGE }} />
+              <div className="mt-2.5 h-px w-full bg-white/25" />
             </div>
 
-            <div className="grid min-w-0 grid-cols-[minmax(0,4fr)_minmax(0,6fr)] divide-x divide-[#062118]/12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-start">
-              <ul className="min-w-0 space-y-4 pr-3 sm:space-y-4 sm:pr-4 md:pr-3 lg:pr-4 [box-shadow:1px_0_0_rgba(6,33,24,0.14)]">
+            <div className="grid min-w-0 grid-cols-[minmax(0,4fr)_minmax(0,6fr)] divide-x divide-white/12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-start">
+              <ul className="min-w-0 space-y-4 pr-3 sm:space-y-4 sm:pr-4 md:pr-3 lg:pr-4 [box-shadow:1px_0_0_rgba(255,255,255,0.14)]">
                 {SOCIAL.map(({ label, href, icon: Icon }) => (
                   <li key={label} className="min-w-0">
                     <a
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex min-w-0 items-center gap-2.5 text-sm font-medium transition-colors hover:opacity-80 sm:gap-3"
-                      style={{ color: FOREST }}
+                      className="flex min-w-0 items-center gap-2.5 text-sm font-medium text-white/90 transition-colors hover:text-white sm:gap-3"
                     >
-                      <Icon className="h-5 w-5 shrink-0 text-[var(--primary-green)]" />
+                      <Icon className="h-5 w-5 shrink-0 text-light-green" />
                       <span className="min-w-0 break-words leading-snug">{label}</span>
                     </a>
                   </li>
@@ -546,10 +537,9 @@ export default function Footer() {
                   <li key={p} className="min-w-0">
                     <a
                       href={telHref(p)}
-                      className="flex min-w-0 items-center gap-2.5 text-sm font-medium transition-opacity hover:opacity-80 sm:gap-3"
-                      style={{ color: FOREST }}
+                      className="flex min-w-0 items-center gap-2.5 text-sm font-medium text-white/90 transition-opacity hover:text-white sm:gap-3"
                     >
-                      <PhoneIcon className="h-5 w-5 shrink-0 text-[var(--primary-green)]" />
+                      <PhoneIcon className="h-5 w-5 shrink-0 text-light-green" />
                       <span className="min-w-0 break-words leading-snug [overflow-wrap:anywhere]">{p}</span>
                     </a>
                   </li>
@@ -557,10 +547,9 @@ export default function Footer() {
                 <li className="min-w-0">
                   <a
                     href={`mailto:${SITE_CONTACT_EMAIL}`}
-                    className="flex min-w-0 items-center gap-2.5 text-sm font-medium transition-opacity hover:opacity-80 sm:gap-3"
-                    style={{ color: FOREST }}
+                    className="flex min-w-0 items-center gap-2.5 text-sm font-medium text-white/90 transition-opacity hover:text-white sm:gap-3"
                   >
-                    <MailIcon className="h-5 w-5 shrink-0 text-[var(--primary-green)]" />
+                    <MailIcon className="h-5 w-5 shrink-0 text-light-green" />
                     <span className="min-w-0 break-all leading-snug sm:break-words sm:[overflow-wrap:anywhere]">
                       {SITE_CONTACT_EMAIL}
                     </span>
@@ -569,39 +558,30 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div
-              className="relative mt-6 overflow-hidden rounded-2xl border p-4 sm:p-5"
-              style={{
-                backgroundColor: "#ede8df",
-                borderColor: `${FOREST}14`,
-              }}
-            >
+            <div className="relative mt-6 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.08] p-4 sm:p-5">
               <div
-                className="pointer-events-none absolute -bottom-4 -right-2 h-28 w-28 text-[var(--primary-green)]/20 sm:h-32 sm:w-32"
+                className="pointer-events-none absolute -bottom-4 -right-2 h-28 w-28 text-light-green/25 sm:h-32 sm:w-32"
                 aria-hidden
               >
                 <LeafDecoration className="h-full w-full" />
               </div>
               <div className="relative flex items-center gap-3 sm:items-start">
-                <MapPinIcon className="h-5 w-5 shrink-0 text-[var(--primary-green)] sm:mt-0.5" />
+                <MapPinIcon className="h-5 w-5 shrink-0 text-light-green sm:mt-0.5" />
                 <div className="min-w-0 flex-1 sm:pr-20">
                   {/* Mobile: label + address on one line; scroll if needed */}
                   <p className="flex w-full min-w-0 items-baseline gap-2 text-sm leading-snug sm:hidden">
-                    <span className="shrink-0 font-bold" style={{ color: FOREST }}>
+                    <span className="shrink-0 font-bold text-white">
                       Address
                     </span>
-                    <span
-                      className="w-full min-w-0 flex-1 basis-0 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:thin]"
-                      style={{ color: `${FOREST}cc` }}
-                    >
+                    <span className="w-full min-w-0 flex-1 basis-0 overflow-x-auto overflow-y-hidden whitespace-nowrap text-white/85 [scrollbar-width:thin]">
                       {addressSingleLine}
                     </span>
                   </p>
                   <div className="hidden sm:block">
-                    <p className="text-sm font-bold" style={{ color: FOREST }}>
+                    <p className="text-sm font-bold text-white">
                       Address
                     </p>
-                    <p className="mt-1 text-sm leading-snug" style={{ color: `${FOREST}cc` }}>
+                    <p className="mt-1 text-sm leading-snug text-white/85">
                       {addressSingleLine}
                     </p>
                   </div>
@@ -613,54 +593,39 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         {/* Mobile: single light strip — copyright | rule | NTN (tagline stays desktop-only) */}
-        <div
-          className="mt-4 -mx-2 flex flex-nowrap items-center justify-center gap-x-2 overflow-x-auto px-3 py-3 text-center text-[10px] leading-snug sm:hidden"
-          style={{
-            backgroundColor: FOOTER_MOBILE_BAR_BG,
-            borderTop: `1px solid ${FOOTER_MOBILE_BAR_RULE}`,
-            color: FOOTER_MOBILE_BAR_TEXT,
-          }}
-        >
+        <div className="mt-4 -mx-2 flex flex-nowrap items-center justify-center gap-x-2 overflow-x-auto border-t border-white/12 px-3 py-3 text-center text-[10px] leading-snug text-white/85 sm:hidden">
           <span className="inline-flex min-w-0 max-w-full shrink items-center justify-center gap-1.5">
-            <span className="shrink-0 text-[var(--primary-green)]">
-              <LeafIcon className="h-3.5 w-3.5" />
-            </span>
+            <LeafIcon className="h-3.5 w-3.5 shrink-0 text-light-green" aria-hidden />
             <span className="min-w-0 whitespace-nowrap">
               &copy; {year} Brands Face. All rights reserved.
             </span>
           </span>
           <span
-            className="inline-block h-3 w-px shrink-0 self-center"
-            style={{ backgroundColor: FOOTER_MOBILE_BAR_RULE }}
+            className="inline-block h-3 w-px shrink-0 self-center bg-white/20"
             aria-hidden
           />
           <span className="inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap">
-            <span className="shrink-0 text-[var(--primary-green)]">
-              <DocumentIcon className="h-3.5 w-3.5" />
-            </span>
+            <DocumentIcon className="h-3.5 w-3.5 shrink-0 text-light-green" aria-hidden />
             <span>
               {SITE_NTN.label}:{" "}
-              <span className="font-semibold tabular-nums" style={{ color: FOOTER_MOBILE_BAR_TEXT }}>
+              <span className="font-semibold tabular-nums text-white">
                 {SITE_NTN.value}
               </span>
             </span>
           </span>
         </div>
 
-        <div
-          className="mt-8 hidden flex-col items-center gap-4 border-t pt-4 text-center text-xs sm:flex sm:flex-row sm:justify-between sm:gap-6 sm:text-left md:pb-2"
-          style={{ borderColor: `${FOREST}18`, color: `${FOREST}99` }}
-        >
+        <div className="mt-8 hidden flex-col items-center gap-4 border-t border-white/12 pt-4 text-center text-xs text-white/65 sm:flex sm:flex-row sm:justify-between sm:gap-6 sm:text-left md:pb-2">
           <span className="inline-flex items-center justify-center gap-2 sm:justify-start">
-            <LeafIcon className="h-4 w-4 shrink-0 text-[var(--primary-green)] opacity-70" />
+            <LeafIcon className="h-4 w-4 shrink-0 text-light-green opacity-70" />
             &copy; {year} Brands Face. All rights reserved.
           </span>
           <span className="inline-flex items-center justify-center gap-2">
-            <DocumentIcon className="h-4 w-4 shrink-0 text-[var(--primary-green)] opacity-70" />
-            {SITE_NTN.label}: <span className="font-semibold" style={{ color: FOREST }}>{SITE_NTN.value}</span>
+            <DocumentIcon className="h-4 w-4 shrink-0 text-light-green opacity-70" />
+            {SITE_NTN.label}: <span className="font-semibold text-white">{SITE_NTN.value}</span>
           </span>
           <span className="inline-flex items-center justify-center gap-2 sm:text-right">
-            <LeafIcon className="h-4 w-4 shrink-0 text-[var(--primary-green)] opacity-70" />
+            <LeafIcon className="h-4 w-4 shrink-0 text-light-green opacity-70" />
             {SITE_FOOTER_TAGLINE}
           </span>
         </div>

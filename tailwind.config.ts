@@ -24,6 +24,7 @@ const config: Config = {
         'hiw-icon-pop': 'hiw-icon-pop 0.65s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
       colors: {
+        'light-green': 'var(--light-green)',
         'light-theme': 'var(--color-light-theme)',
         kraft: '#c4a265',
         panel: '#1e1e2e',
