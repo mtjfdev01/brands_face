@@ -238,7 +238,7 @@ export default function CreativeDirection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full items-center justify-center overflow-hidden bg-[#f0ebe3] min-h-[min(52svh,520px)] sm:min-h-[min(60svh,640px)]"
+      className="relative flex w-full min-h-[min(52svh,520px)] items-center justify-center overflow-hidden bg-[var(--dark-primary-green)] sm:min-h-[min(60svh,640px)]"
     >
       {/* ── Animated card group ── */}
       <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
@@ -271,40 +271,42 @@ export default function CreativeDirection() {
           transition: "transform 1.7s cubic-bezier(0.16,1,0.3,1), opacity 1.3s ease",
         }}
       >
-        <div className="inline-flex items-center gap-2 bg-[#f5c518] text-[#1a1a1a] text-[10px] sm:text-xs font-semibold px-3 py-1 rounded-full mb-4 shadow-lg">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-light-green/25 bg-light-green/10 px-3 py-1 text-[10px] font-semibold text-light-green shadow-lg sm:text-xs">
           <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
           </svg>
           Packaging + Perception Alignment
         </div>
 
-        <h2 className="max-w-3xl text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#1a1a1a] uppercase leading-[1.1] tracking-tight">
+        <h2 className="max-w-3xl text-xl font-black uppercase leading-[1.1] tracking-tight text-light-green sm:text-2xl md:text-3xl lg:text-4xl">
           Strategic Packaging{" "}
           <span className="relative inline">
-            <span className="relative z-10 text-[#1a1a1a]">That Builds Stronger Brands</span>
-            <span className="absolute left-0 bottom-[0.05em] w-full h-[0.3em] bg-[#f5c518]/70 -z-0 rounded-sm" />
+            <span className="relative z-10">That Builds Stronger Brands</span>
+            <span className="absolute -z-0 bottom-[0.05em] left-0 h-[0.3em] w-full rounded-sm bg-light-green/35" />
           </span>
         </h2>
 
-        <p className="mt-4 sm:mt-5 max-w-xl text-sm sm:text-base text-[#1a1a1a]/55 leading-relaxed">
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-white sm:mt-5 sm:text-base">
           We audit what your packaging is communicating, identify the gaps, and redesign it to elevate perception, strengthen shelf presence, and support real business growth.
         </p>
 
         <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Link
-            href="/audit"
-            className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-full hover:bg-[#333] hover:scale-[1.03] active:scale-[0.98] transition-all shadow-lg"
-          >
+          <Link href="/audit" className="primary_btn">
             Start Your Audit
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+            <span className="primary_btn__icon">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
           </Link>
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-2 text-[#1a1a1a]/80 hover:text-[#1a1a1a] font-medium text-xs sm:text-sm px-5 py-3 rounded-full border border-[#1a1a1a]/35 bg-white/50 hover:border-[#1a1a1a]/55 hover:bg-white/75 transition-all"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur transition-colors hover:border-white/35 hover:bg-white/15 active:scale-[0.99] sm:px-6"
           >
             View Our Work
+            <svg className="h-3.5 w-3.5 shrink-0 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
           </Link>
         </div>
       </div>

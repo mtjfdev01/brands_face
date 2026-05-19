@@ -59,11 +59,11 @@ export default function HomeBelowHero({ productQuery, onProductQueryChange }: Pr
         </div>
       </section>
       <AllProductsRowCarousel query={productQuery} />
-      <PackagingInfoTabs className="mb-12 mt-12 md:mt-20" />
       <NewHowItWorks />
       <div className="hidden md:block">
         <HowItWorks />
       </div>
+      <PackagingInfoTabs className="mb-12 mt-12 md:mt-20" />
       <AdvanceStudioShowCase />
       <MobileComparison />
       <div className="hidden md:block">

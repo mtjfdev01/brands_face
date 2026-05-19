@@ -189,7 +189,7 @@ export default function CategoryInfoTabs({
               className={[
                 "flex min-h-[48px] basis-1/2 grow items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-[11px] font-semibold uppercase tracking-[0.06em] transition-colors duration-200 sm:basis-0 sm:flex-1 sm:px-4 sm:text-xs",
                 selected
-                  ? "bg-[#722f37] text-white shadow-sm"
+                  ? "bg-[var(--dark-primary-green)] text-white shadow-sm"
                   : "bg-transparent text-gray-500 hover:bg-white/60 hover:text-gray-700",
               ].join(" ")}
             >

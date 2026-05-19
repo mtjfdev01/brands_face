@@ -138,45 +138,30 @@ export default function TestimonialsSection() {
     <>
       <section
         ref={sectionRef}
-        className="relative w-full overflow-hidden sm:min-h-screen"
+        className="relative w-full overflow-hidden bg-white py-14 sm:py-16 lg:py-20"
         style={{
           opacity: phase === "before" ? 0 : 1,
           transform:
             phase === "in"
-              ? "translateY(0px) scale(1)"
+              ? "translateY(0px)"
               : phase === "before"
-                ? "translateY(120px) scale(0.94)"
-                : "translateY(-90px) scale(0.86)",
-          filter: phase === "in" ? "blur(0px)" : "blur(2px)",
-          transition: "transform 1.05s cubic-bezier(0.16,1,0.3,1), opacity 0.85s ease, filter 0.85s ease",
-          willChange: "transform, opacity, filter",
+                ? "translateY(48px)"
+                : "translateY(-32px)",
+          transition: "transform 1.05s cubic-bezier(0.16,1,0.3,1), opacity 0.85s ease",
+          willChange: "transform, opacity",
         }}
       >
-        {/* ── Background image ── */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/testimonials/bg.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
-        </div>
+        <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-black uppercase italic leading-[0.95] tracking-tight text-[var(--dark-primary-green)] sm:text-4xl md:text-5xl lg:text-6xl">
+              Better Than
+              <br />
+              Just Packaging<span className="text-light-green">.</span>
+            </h2>
+          </div>
 
-        {/* ── Heading ── */}
-        <div className="relative z-10 pt-16 sm:pt-20 lg:pt-24 text-center px-4">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white uppercase italic leading-[0.95] tracking-tight drop-shadow-xl">
-            Better Than
-            <br />
-            Just Packaging<span className="text-[#4ade80]">.</span>
-          </h2>
-        </div>
-
-        {/* ── Slider ── */}
-        <div className="relative z-10 mt-6 flex flex-col items-center justify-end pb-6 sm:mt-auto sm:min-h-[calc(100vh-220px)] sm:pb-14 lg:pb-16">
+          <div className="mt-8 rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:mt-10 sm:p-8 md:p-10">
+        <div className="relative flex flex-col items-center">
 
           {/* Cards track */}
           <div
@@ -202,7 +187,7 @@ export default function TestimonialsSection() {
                 return (
                   <div
                     key={t.id}
-                    className="absolute transition-all duration-500 ease-out cursor-pointer"
+                    className={`absolute cursor-pointer transition-all duration-500 ease-out ${isActive ? "ring-2 ring-[var(--dark-primary-green)] ring-offset-2 ring-offset-white rounded-xl" : ""}`}
                     style={{
                       width: "clamp(270px, 28vw, 340px)",
                       transform: `translateX(${tx}px) scale(${sc})`,
@@ -211,7 +196,7 @@ export default function TestimonialsSection() {
                     onClick={() => { if (isActive) setPopup(idx); else goTo(idx); }}
                   >
                     {/* Video thumbnail */}
-                    <div className="relative aspect-video rounded-xl overflow-hidden mb-3 group">
+                    <div className="relative mb-3 aspect-video overflow-hidden rounded-lg border border-gray-200 group">
                       <div className="absolute inset-0" style={{ backgroundColor: t.color }} />
                       {isVideoFile(t.thumbnail) ? (
                         <video
@@ -234,8 +219,10 @@ export default function TestimonialsSection() {
                       )}
                       {/* Play button */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? "bg-white/90 scale-100 shadow-lg shadow-black/30" : "bg-white/50 scale-75"} group-hover:scale-110`}>
-                          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#1a1a1a] ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                        <div
+                          className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 sm:h-14 sm:w-14 ${isActive ? "scale-100 bg-[var(--dark-primary-green)] text-white shadow-md" : "scale-75 bg-gray-200 text-gray-600"} group-hover:scale-110`}
+                        >
+                          <svg className="ml-0.5 h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z" />
                           </svg>
                         </div>
@@ -243,7 +230,7 @@ export default function TestimonialsSection() {
                     </div>
 
                     {/* Card body */}
-                    <div className="backdrop-blur-xl bg-white/10 border border-white/15 rounded-xl p-4 sm:p-5">
+                    <div className="rounded-xl border border-gray-200 bg-[#f9fafb] p-4 sm:p-5">
                       {/* Stars */}
                       <div className="flex gap-0.5 mb-2">
                         {Array.from({ length: t.stars }).map((_, s) => (
@@ -252,16 +239,16 @@ export default function TestimonialsSection() {
                           </svg>
                         ))}
                       </div>
-                      <p className="text-white/90 text-sm sm:text-base font-medium leading-snug line-clamp-2 mb-3">
+                      <p className="mb-3 line-clamp-2 text-sm font-medium leading-snug text-gray-600 sm:text-base">
                         &ldquo;{t.quote}&rdquo;
                       </p>
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-bold uppercase">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--dark-primary-green)] text-xs font-bold uppercase text-white">
                           {t.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="text-white text-xs sm:text-sm font-semibold leading-tight">{t.name}</p>
-                          <p className="text-white/50 text-[10px] sm:text-xs leading-tight">{t.role}</p>
+                          <p className="text-xs font-semibold leading-tight text-[#103a2a] sm:text-sm">{t.name}</p>
+                          <p className="text-[10px] leading-tight text-gray-500 sm:text-xs">{t.role}</p>
                         </div>
                       </div>
                     </div>
@@ -275,7 +262,7 @@ export default function TestimonialsSection() {
           <div className="flex items-center gap-3 mt-6 sm:mt-8">
             <button
               onClick={() => go(-1)}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-lg shadow-green-900/40"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--dark-primary-green)] text-white shadow-sm transition-all hover:opacity-90 active:scale-95 sm:h-11 sm:w-11"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -288,19 +275,21 @@ export default function TestimonialsSection() {
                 <button
                   key={idx}
                   onClick={() => goTo(idx)}
-                  className={`rounded-full transition-all duration-300 ${idx === active ? "w-6 h-2 bg-white" : "w-2 h-2 bg-white/40 hover:bg-white/60"}`}
+                  className={`rounded-full transition-all duration-300 ${idx === active ? "h-2 w-6 bg-[var(--dark-primary-green)]" : "h-2 w-2 bg-gray-300 hover:bg-gray-400"}`}
                 />
               ))}
             </div>
 
             <button
               onClick={() => go(1)}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-lg shadow-green-900/40"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--dark-primary-green)] text-white shadow-sm transition-all hover:opacity-90 active:scale-95 sm:h-11 sm:w-11"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
+          </div>
+        </div>
           </div>
         </div>
       </section>
