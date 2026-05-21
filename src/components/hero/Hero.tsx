@@ -8,7 +8,6 @@ import { useSearchParams } from 'next/navigation';
 
 import 'swiper/css';
 
-import HomeHeroNavbar from '@/components/nav/HomeHeroNavbar';
 import HeroSlide, { type SlideData } from '@/components/hero/HeroSlide';
 import { getCategoryPageConfig } from '@/data/categoryPages';
 import { HOME_CARDS } from '@/data/homeCards';
@@ -68,14 +67,11 @@ export default function Hero({ categorySlug: categorySlugProp }: HeroProps) {
     <section className="w-full px-3 sm:px-4 lg:px-5 pb-12 md:pb-16 pt-0">
       {/* ── Hero container with rounded corners ── */}
       <div
-        className="relative w-full rounded-[var(--radius-hero)] bg-transparent"
-        style={{ height: '95vh', minHeight: '520px', maxHeight: '860px' }}
+        className="relative w-full rounded-[var(--radius-hero)] bg-[var(--dark-primary-green)]"
+        style={{ height: 'min(860px, calc(95svh - 4.5rem))', minHeight: '520px' }}
         onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
         onMouseLeave={() => swiperRef.current?.autoplay?.start()}
       >
-        {/* ── Navbar overlay ── */}
-        <HomeHeroNavbar />
-
         {/* ── Carousel clip container (keeps slides within rounded area) ── */}
         <div className="absolute inset-0 rounded-[var(--radius-hero)] overflow-hidden">
           {/* ── Swiper carousel ── */}

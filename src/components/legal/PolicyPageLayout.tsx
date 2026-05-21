@@ -1,8 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
-
 export type PolicyPageLayoutProps = {
   title: string;
   kicker?: string;
@@ -19,13 +17,12 @@ export default function PolicyPageLayout({
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
       <section className="relative overflow-hidden bg-[#103a2a] px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <HomeHeroNavbar variant="layout" />
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-emerald-800/25 blur-[100px]" />
           <div className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-cyan-800/15 blur-[110px]" />
         </div>
 
-        <div className="relative mx-auto max-w-[1240px] pt-20 sm:pt-24">
+        <div className="relative mx-auto max-w-[1240px] pt-10 sm:pt-12">
           <nav className="text-xs text-emerald-200/90">
             <Link href="/" className="transition-colors hover:text-white">
               Home

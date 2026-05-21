@@ -58,8 +58,8 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
 
   const outerClassName =
     variant === "layout"
-      ? "sticky top-0 z-50 w-full border-b border-white/15 bg-white/[0.03] px-4 py-3 backdrop-blur sm:px-6 lg:px-8"
-      : "absolute inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6 sm:pt-5 lg:px-8";
+      ? "sticky top-0 z-50 w-full border-b border-white/15 bg-[var(--dark-primary-green)] px-4 py-3 sm:px-6 lg:px-8"
+      : "absolute inset-x-0 top-0 z-40 bg-[var(--dark-primary-green)] px-4 pt-4 sm:px-6 sm:pt-5 lg:px-8";
 
   return (
     <div className={outerClassName}>

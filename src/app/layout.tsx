@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import TawkToScript from '@/components/TawkToScript';
 import WhatsAppChatFab from '@/components/WhatsAppChatFab';
+import SiteHeader from '@/components/nav/SiteHeader';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${playfair.variable}`}>
+        <SiteHeader />
         {children}
         <TawkToScript />
         <WhatsAppChatFab />

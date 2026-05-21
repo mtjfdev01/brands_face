@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/home/Footer";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import { defaultCategoryHubPath } from "@/lib/routes";
 
 type Study = {
@@ -233,13 +232,12 @@ export default async function ProductStudyCasePage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-[#f4efe7]">
       <section className="relative overflow-hidden bg-[#103a2a] pb-14 sm:pb-20">
-        <HomeHeroNavbar />
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -left-24 top-4 h-72 w-72 rounded-full bg-emerald-700/20 blur-[110px]" />
           <div className="absolute -right-12 bottom-0 h-80 w-80 rounded-full bg-emerald-500/20 blur-[130px]" />
         </div>
 
-        <div className="relative mx-auto max-w-[1260px] px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32">
+        <div className="relative mx-auto max-w-[1260px] px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">

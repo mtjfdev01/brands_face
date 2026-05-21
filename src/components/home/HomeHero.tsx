@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsStars } from "react-icons/bs";
 
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import CardFlowerSection from "@/components/home/CardFlowerSection";
 import ScrollCards from "@/components/home/ScrollCards";
 
@@ -83,13 +82,11 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
   return (
     <>
     <section
-      className="relative w-full overflow-hidden bg-[var(--dark-primary-green)] max-lg:min-h-0 lg:min-h-[100svh] lg:h-screen lg:overflow-visible"
+      className="relative w-full overflow-hidden bg-[var(--dark-primary-green)] max-lg:min-h-0 lg:min-h-[calc(100svh-4.5rem)] lg:h-[calc(100svh-4.5rem)] lg:overflow-visible"
     >
-      <HomeHeroNavbar />
-
       {/* Mobile-only hero — w-full so children can align to viewport with w-[100dvw] */}
       <div className="relative w-full min-w-0 max-w-none lg:hidden">
-        <div className="mx-auto max-w-xl px-6 pb-0 pt-28 sm:px-8 sm:pb-0 sm:pt-32">
+        <div className="mx-auto max-w-xl px-6 pb-0 pt-10 sm:px-8 sm:pb-0 sm:pt-12">
           {/* Eyebrow pill */}
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#57d7aa]/20 bg-white/5 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white/80 backdrop-blur">

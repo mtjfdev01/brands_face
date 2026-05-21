@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { HOME_CARDS } from "@/data/homeCards";
 
@@ -199,13 +198,12 @@ export default function CatalogPage() {
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
       <section className="relative overflow-hidden bg-[#103a2a] px-4 pb-20 sm:px-6 lg:px-8">
-        <HomeHeroNavbar />
         <div className="pointer-events-none absolute inset-0">
           <div className="catalog-glow absolute left-[14%] top-[-60px] h-72 w-72 rounded-full bg-emerald-400/20 blur-[120px]" />
           <div className="catalog-glow-delay absolute bottom-[-70px] right-[12%] h-80 w-80 rounded-full bg-cyan-400/18 blur-[120px]" />
         </div>
 
-        <div className="relative mx-auto max-w-[1240px] pt-28 sm:pt-32">
+        <div className="relative mx-auto max-w-[1240px] pt-10 sm:pt-12">
           <div className="max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
               Brand Packaging Solutions

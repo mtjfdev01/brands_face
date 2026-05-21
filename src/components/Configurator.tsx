@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import HomeHeroNavbar from '@/components/nav/HomeHeroNavbar';
 import ControlsPanel from './ControlsPanel';
 import UploadTexture from './UploadTexture';
 import PreviewExport from './PreviewExport';
@@ -22,8 +21,6 @@ const BoxCanvas = dynamic(() => import('./BoxCanvas'), {
 export default function Configurator() {
   return (
     <div className="min-h-screen bg-[#13131f] text-white">
-      <HomeHeroNavbar variant="layout" />
-
       {/* Main Layout */}
       <main className="max-w-[1600px] mx-auto p-4 sm:p-6">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-4 sm:gap-6">

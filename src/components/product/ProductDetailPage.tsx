@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import FAQs from "@/components/faqs/FAQs";
 import type {
   CategoryFaqItem,
@@ -65,8 +64,6 @@ export default function ProductDetailPage({
 
   return (
     <div className="min-h-screen bg-[#f8fbf9] text-[#103a2a]">
-      <HomeHeroNavbar variant="layout" />
-
       {/* Main: same max width as catalog-style pages */}
       <main className="mx-auto max-w-7xl px-4 sm:px-6">
         {categoryBack && (

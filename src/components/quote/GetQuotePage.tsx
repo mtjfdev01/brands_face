@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import AccordionSection from "./AccordionSection";
 import OptionCard from "./OptionCard";
 
@@ -161,8 +160,6 @@ export default function GetQuotePage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      <HomeHeroNavbar variant="layout" />
-
       {/* ── Banner ── */}
       <section className="bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-12 md:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">

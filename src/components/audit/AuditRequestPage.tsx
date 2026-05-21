@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
 import AccordionSection from "@/components/quote/AccordionSection";
 import OptionCard from "@/components/quote/OptionCard";
 
@@ -200,8 +199,6 @@ export default function AuditRequestPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      <HomeHeroNavbar variant="layout" />
-
       <section className="relative overflow-hidden bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-14 md:py-20">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-[18%] top-0 h-60 w-60 rounded-full bg-emerald-500/20 blur-3xl" />

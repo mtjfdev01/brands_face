@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
-import HomeHeroNavbar from "@/components/nav/HomeHeroNavbar";
-
 const VALUES = [
   {
     title: "Audit-First Thinking",
@@ -47,13 +45,12 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
       <section className="relative overflow-hidden bg-[#103a2a] px-4 pb-20 sm:px-6 lg:px-8">
-        <HomeHeroNavbar />
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-emerald-800/25 blur-[120px]" />
           <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-cyan-800/20 blur-[120px]" />
         </div>
 
-        <div className="relative mx-auto max-w-[1240px] pt-28 sm:pt-32">
+        <div className="relative mx-auto max-w-[1240px] pt-10 sm:pt-12">
           <div className="max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">About Brands Face</p>
             <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
