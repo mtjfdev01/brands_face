@@ -1,5 +1,9 @@
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
+import PageHero from "@/components/hero/PageHero";
+
+const HERO_IMAGE = "/assets/images/pages/about/about_hero.png";
+
 const VALUES = [
   {
     title: "Audit-First Thinking",
@@ -44,32 +48,24 @@ const JOURNEY = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[var(--primary-cream)]">
-      <section className="relative overflow-hidden bg-[var(--dark-primary-green)] px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-emerald-800/25 blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-cyan-800/20 blur-[120px]" />
-        </div>
-
-        <div className="relative mx-auto max-w-[1240px] pt-10 sm:pt-12">
-          <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--light-green)]">About Brands Face</p>
-            <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              We Build Packaging That
-              <span className="block text-[var(--light-green)]">Improves Brand Performance</span>
-            </h1>
-            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-emerald-50/85 sm:text-base">
-              Brands Face is a strategy-led packaging company helping modern brands transform ordinary packaging into
-              high-impact customer experiences. We combine audit insights, structural planning, and premium design to
-              make packaging a real growth channel.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About Brands Face"
+        title="We Re-Engineer Packaging Into a"
+        titleHighlight="Brand Growth Asset"
+        description="Brands Face is a strategy-led packaging company helping modern brands transform ordinary packaging into high-impact customer experiences. We combine audit insights, structural planning, and premium design to make packaging a real growth channel."
+        feature="Trusted by growing brands that treat packaging as a strategic brand asset—not just a box."
+        primaryCta={{ label: "Get a Free Packaging Audit", href: "/audit" }}
+        secondaryCta={{ label: "View Our Work", href: "/case-studies" }}
+        image={{ src: HERO_IMAGE, alt: "Premium skincare packaging on stone", priority: true }}
+      />
 
       <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto grid max-w-[1240px] gap-5 md:grid-cols-3">
           {VALUES.map((item) => (
-            <article key={item.title} className="rounded-2xl border border-[var(--dark-primary-green)]/10 bg-white p-6 shadow-sm">
+            <article
+              key={item.title}
+              className="rounded-2xl border border-[var(--dark-primary-green)]/10 bg-white p-6 shadow-sm"
+            >
               <h2 className="text-xl font-black text-[var(--dark-primary-green)]">{item.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-[var(--dark-primary-green)]/75">{item.description}</p>
             </article>
@@ -80,7 +76,9 @@ export default function AboutPage() {
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[1240px] rounded-3xl border border-[var(--dark-primary-green)]/10 bg-white p-6 shadow-[0_18px_60px_rgba(19,47,43,0.10)] sm:p-8 lg:p-10">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--dark-primary-green)]/70">How We Work</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--dark-primary-green)]/70">
+              How We Work
+            </p>
             <h3 className="mt-3 text-3xl font-black leading-tight tracking-tight text-[var(--dark-primary-green)] sm:text-4xl">
               A Proven Packaging Procedure
             </h3>
@@ -91,8 +89,13 @@ export default function AboutPage() {
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {JOURNEY.map((item) => (
-              <article key={item.step} className="rounded-2xl border border-[var(--dark-primary-green)]/10 bg-[var(--primary-cream)] p-5">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--dark-primary-green)]/55">{item.step}</p>
+              <article
+                key={item.step}
+                className="rounded-2xl border border-[var(--dark-primary-green)]/10 bg-[var(--primary-cream)] p-5"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--dark-primary-green)]/55">
+                  {item.step}
+                </p>
                 <h4 className="mt-2 text-xl font-black text-[var(--dark-primary-green)]">{item.title}</h4>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--dark-primary-green)]/75">{item.text}</p>
               </article>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/home/Footer";
+import PageHero from "@/components/hero/PageHero";
 import { defaultCategoryHubPath } from "@/lib/routes";
 
 type Study = {
@@ -231,54 +232,37 @@ export default async function ProductStudyCasePage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen bg-[#f4efe7]">
-      <section className="relative overflow-hidden bg-[#103a2a] pb-14 sm:pb-20">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -left-24 top-4 h-72 w-72 rounded-full bg-emerald-700/20 blur-[110px]" />
-          <div className="absolute -right-12 bottom-0 h-80 w-80 rounded-full bg-emerald-500/20 blur-[130px]" />
+      <PageHero
+        eyebrow="Client Trust Case Study"
+        title={study.title}
+        description={study.heroSummary}
+        primaryCta={{ label: "Get a Free Packaging Audit", href: "/audit" }}
+        secondaryCta={{ label: "Explore case studies", href: "/case-studies" }}
+        image={{ src: study.afterImage, alt: study.title, priority: true }}
+        className="pb-14 sm:pb-20"
+      >
+        <div className="flex flex-wrap gap-2">
+          {[study.brand, study.sector, study.engagement].map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
-
-        <div className="relative mx-auto max-w-[1260px] px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
-                Client Trust Case Study
-              </p>
-              <h1 className="mt-3 text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                {study.title}
-              </h1>
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-emerald-50/90 sm:text-base">
-                {study.heroSummary}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white">
-                  {study.brand}
-                </span>
-                <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white">
-                  {study.sector}
-                </span>
-                <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white">
-                  {study.engagement}
-                </span>
+        <div className="rounded-2xl border border-white/15 bg-black/20 p-5 sm:p-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--light-green)]">Trust Snapshot</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {study.trustStats.map((item) => (
+              <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
+                <p className="text-xl font-black text-white">{item.value}</p>
+                <p className="mt-1 text-[11px] font-medium leading-snug text-white/75">{item.label}</p>
               </div>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-200/20 bg-[#0d2f22]/70 p-5 sm:p-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-300">
-                Trust Snapshot
-              </p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                {study.trustStats.map((item) => (
-                  <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-                    <p className="text-xl font-black text-white">{item.value}</p>
-                    <p className="mt-1 text-[11px] font-medium leading-snug text-emerald-50/80">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      </PageHero>
 
       <section className="mx-auto max-w-[1260px] px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid gap-5 lg:grid-cols-2">

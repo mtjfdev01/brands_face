@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import AccordionSection from "@/components/quote/AccordionSection";
 import OptionCard from "@/components/quote/OptionCard";
+import PageHero from "@/components/hero/PageHero";
 
 const PRODUCT_CATEGORIES = [
   "Rigid Boxes",
@@ -199,24 +200,14 @@ export default function AuditRequestPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-14 md:py-20">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-[18%] top-0 h-60 w-60 rounded-full bg-emerald-500/20 blur-3xl" />
-          <div className="absolute bottom-0 right-[12%] h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
-            Free Packaging Audit
-          </p>
-          <h1 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
-            Re-Engineer Your Packaging Performance
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-emerald-100/85">
-            Share your current packaging details and we will send a structured audit with conversion,
-            shelf-impact, and production optimization recommendations.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Free Packaging Audit"
+        title="Re-Engineer Your"
+        titleHighlight="Packaging Performance"
+        description="Share your current packaging details and we will send a structured audit with conversion, shelf-impact, and production optimization recommendations."
+        feature="Actionable feedback on perception, structure, materials, and conversion—not generic design opinions."
+        image={{ src: "/assets/images/hero_main.png", alt: "Packaging audit consultation" }}
+      />
 
       <main className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
         <div className="py-12 lg:py-16">

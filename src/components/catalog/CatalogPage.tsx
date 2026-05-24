@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
+import PageHero from "@/components/hero/PageHero";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { HOME_CARDS } from "@/data/homeCards";
 
@@ -197,42 +198,16 @@ export default function CatalogPage() {
 
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
-      <section className="relative overflow-hidden bg-[#103a2a] px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="catalog-glow absolute left-[14%] top-[-60px] h-72 w-72 rounded-full bg-emerald-400/20 blur-[120px]" />
-          <div className="catalog-glow-delay absolute bottom-[-70px] right-[12%] h-80 w-80 rounded-full bg-cyan-400/18 blur-[120px]" />
-        </div>
-
-        <div className="relative mx-auto max-w-[1240px] pt-10 sm:pt-12">
-          <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
-              Brand Packaging Solutions
-            </p>
-            <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Explore Packaging Solutions
-              <span className="block text-emerald-300">That Build Stronger Brands</span>
-            </h1>
-            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-emerald-50/85 sm:text-base">
-              Discover custom packaging categories designed to improve presentation, perceived value,
-              and brand impact. Compare by industry, material, finish, and use case.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                href="/audit"
-                className="rounded-full bg-[#1dd1a1] px-6 py-3 text-sm font-bold text-[#0f2f22] transition hover:bg-[#37dfb2]"
-              >
-                Get Free Packaging Audit
-              </Link>
-              <Link
-                href="/quote"
-                className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                Request Custom Quote
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Brand Packaging Solutions"
+        title="Explore Packaging Solutions"
+        titleHighlight="That Build Stronger Brands"
+        description="Discover custom packaging categories designed to improve presentation, perceived value, and brand impact. Compare by industry, material, finish, and use case."
+        feature="From rigid boxes to pouches—find structures and finishes aligned with your category and growth goals."
+        primaryCta={{ label: "Get Free Packaging Audit", href: "/audit" }}
+        secondaryCta={{ label: "Request Custom Quote", href: "/quote" }}
+        image={{ src: "/assets/images/hero_main.png", alt: "Custom brand packaging samples", priority: true }}
+      />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[1240px] rounded-3xl border border-[#103a2a]/10 bg-white p-6 shadow-sm sm:p-8">

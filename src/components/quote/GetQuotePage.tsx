@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import PageHero from "@/components/hero/PageHero";
 import AccordionSection from "./AccordionSection";
 import OptionCard from "./OptionCard";
 
@@ -160,24 +161,19 @@ export default function GetQuotePage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      {/* ── Banner ── */}
-      <section className="bg-gradient-to-b from-[#1a3a2a] to-[#103a2a] py-12 md:py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl tracking-tight">
-            Get a Custom Quote
-          </h1>
-          <p className="mt-4 text-base text-emerald-100/85 leading-relaxed md:text-lg">
-            As we are Brands Face, we are available 24/7 to assist and guide
-            you. Just inform us about the packaging and we will create an instant
-            quote. Answer a few questions related to size, material, features and
-            numbers. Quotes for printed roll stock or custom-sized bags can be
-            requested and will be made within 2–3 business days.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Custom Quote"
+        title="Get a Custom"
+        titleHighlight="Packaging Quote"
+        description="Tell us about your packaging needs—dimensions, materials, finishes, and quantities. We respond with a tailored quote; printed roll stock or custom bag specs are typically ready within 2–3 business days."
+        feature="Available to guide you through specifications, production options, and lead times."
+        primaryCta={{ label: "Start below", href: "#quote-form" }}
+        secondaryCta={{ label: "Free packaging audit", href: "/audit" }}
+        image={{ src: "/assets/images/hero_main.png", alt: "Custom packaging quote" }}
+      />
 
       {/* ── Main: left form + right sticky image ── */}
-      <main className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
+      <main id="quote-form" className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 scroll-mt-24">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 py-12 lg:py-16">
           {/* Left: Scrollable form */}
           <div className="w-full lg:w-[58%] xl:w-[60%]">

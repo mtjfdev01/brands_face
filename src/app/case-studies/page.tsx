@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
+import PageHero from "@/components/hero/PageHero";
 import { defaultCategoryHubPath } from "@/lib/routes";
 
 const CASE_STUDIES = [
@@ -81,26 +82,16 @@ export default function CaseStudiesPage() {
 
   return (
     <main className="min-h-screen bg-[#f5f0ea]">
-      <section className="relative overflow-hidden bg-[#103a2a] pb-24">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-20 left-1/4 h-[320px] w-[320px] rounded-full bg-emerald-800/25 blur-[100px]" />
-          <div className="absolute -bottom-24 right-1/4 h-[360px] w-[360px] rounded-full bg-emerald-700/20 blur-[120px]" />
-        </div>
-
-        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12">
-          <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">Case Studies</p>
-            <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Packaging Strategies That
-              <span className="block text-emerald-300">Move Revenue, Not Just Boxes</span>
-            </h1>
-            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-emerald-50/85 sm:text-base">
-              Explore how Brands Face helps growing brands turn weak packaging into high-performing product experiences
-              through audit-led strategy, structural optimization, and premium design execution.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Case Studies"
+        title="Packaging Strategies That"
+        titleHighlight="Move Revenue, Not Just Boxes"
+        description="Explore how Brands Face helps growing brands turn weak packaging into high-performing product experiences through audit-led strategy, structural optimization, and premium design execution."
+        primaryCta={{ label: "Get a Free Packaging Audit", href: "/audit" }}
+        secondaryCta={{ label: "Explore Catalog", href: "/catalog" }}
+        image={{ src: "/assets/images/hero_main.png", alt: "Brand packaging case study showcase" }}
+        className="pb-20 lg:pb-24"
+      />
 
       <section className="relative z-10 -mt-4 pb-20 sm:-mt-6">
         <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
