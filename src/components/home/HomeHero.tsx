@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { BsStars } from "react-icons/bs";
 
-import CardFlowerSection from "@/components/home/CardFlowerSection";
 import ScrollCards from "@/components/home/ScrollCards";
 
-const STAGGER_BASE_DELAY_MS = 0;
 
 const HERO_MAIN = "/assets/images/hero_main.png";
 const HERO_READY_MAX_MS = 8000;
@@ -224,7 +221,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
       </div>
 
       {/* Desktop hero (existing layout) */}
-      <div className="relative hidden w-full max-lg:min-h-0 flex-col items-start pt-28 sm:pt-32 lg:flex lg:min-h-[100svh] lg:flex-row lg:items-center lg:pt-24">
+      <div className="relative hidden w-full max-lg:min-h-0 flex-col items-start pt-10 sm:pt-12 lg:flex lg:min-h-[100svh] lg:flex-row lg:items-center lg:pt-14">
         {/* ── Left: category flower (ScrollCards) lives in normal flow inside the hero column ── */}
         <div className="relative z-10 hidden h-[42svh] max-[700px]:h-[46svh] sm:h-[48svh] w-full overflow-visible lg:flex lg:h-full lg:min-h-0 lg:w-[45%] lg:items-center lg:justify-center lg:px-2">
           <ScrollCards />

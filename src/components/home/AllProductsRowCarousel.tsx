@@ -260,26 +260,28 @@ export default function AllProductsRowCarousel({ query }: Props) {
 
   if (!mixedReady) {
     return (
-      <div className="relative min-w-0 px-12 py-6">
+      <div className="relative mb-12 min-w-0 px-12 py-6">
         <div className="mx-auto h-[220px] max-w-5xl animate-pulse rounded-2xl bg-[#103a2a]/5" />
       </div>
     );
   }
 
   if (items.length === 0) {
-    return <div className="px-12 py-6 text-center text-sm text-[#103a2a]/70">No products available.</div>;
+    return (
+      <div className="mb-12 px-12 py-6 text-center text-sm text-[#103a2a]/70">No products available.</div>
+    );
   }
 
   if (filtered.length === 0) {
     return (
-      <div className="px-12 py-10 text-center text-sm text-[#103a2a]/70">
+      <div className="mb-12 px-12 py-10 text-center text-sm text-[#103a2a]/70">
         No products match "{query?.trim() ?? ""}".
       </div>
     );
   }
 
   return (
-    <div className="relative min-w-0">
+    <div className="relative mb-12 min-w-0">
       <button
         type="button"
         aria-label="Previous"
