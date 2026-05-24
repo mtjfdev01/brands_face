@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import PageHero from "@/components/hero/PageHero";
-import AccordionSection from "./AccordionSection";
+import QuoteAccordionGrid from "./QuoteAccordionGrid";
 import OptionCard from "./OptionCard";
 
 /* ── Option data ── */
@@ -82,7 +80,7 @@ export default function GetQuotePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState("");
-  const [previewImageError, setPreviewImageError] = useState(false);
+  // const [previewImageError, setPreviewImageError] = useState(false);
 
   const toggleAddon = (id: string) => {
     setAddons((prev) => {
@@ -161,248 +159,255 @@ export default function GetQuotePage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
-      <PageHero
-        eyebrow="Custom Quote"
-        title="Get a Custom"
-        titleHighlight="Packaging Quote"
-        description="Tell us about your packaging needs—dimensions, materials, finishes, and quantities. We respond with a tailored quote; printed roll stock or custom bag specs are typically ready within 2–3 business days."
-        feature="Available to guide you through specifications, production options, and lead times."
-        primaryCta={{ label: "Start below", href: "#quote-form" }}
-        secondaryCta={{ label: "Free packaging audit", href: "/audit" }}
-        image={{ src: "/assets/images/hero_main.png", alt: "Custom packaging quote" }}
-      />
-
-      {/* ── Main: left form + right sticky image ── */}
-      <main id="quote-form" className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 scroll-mt-24">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 py-12 lg:py-16">
-          {/* Left: Scrollable form */}
-          <div className="w-full lg:w-[58%] xl:w-[60%]">
-            <h2 className="mb-4 text-2xl font-bold text-[#103a2a] md:text-3xl">
+      <main id="quote-form" className="w-full scroll-mt-24">
+        <div className="mx-auto w-full max-w-[1600px] px-6 py-6 sm:px-10 lg:px-16 lg:py-8">
+          <div className="w-full">
+            <h2 className="mb-3 text-2xl font-bold text-[#103a2a] md:text-3xl">
               Product Details
             </h2>
 
             <form onSubmit={handleSubmit}>
-              {/* 1. Contact details */}
-              <AccordionSection title="Enter your details">
-                <div className="space-y-4">
-                  <input
-                    type="text"
-                    placeholder="Your Full Name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Your Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="(555) 555-0000 (your area)"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Your Company"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                  />
-                </div>
-              </AccordionSection>
+              <QuoteAccordionGrid
+                sections={[
+                  {
+                    id: "details",
+                    title: "Enter your details",
+                    content: (
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <input
+                          type="text"
+                          placeholder="Your Full Name"
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          required
+                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Your Email Address"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                        />
+                        <input
+                          type="tel"
+                          placeholder="(555) 555-0000 (your area)"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Your Company"
+                          value={company}
+                          onChange={(e) => setCompany(e.target.value)}
+                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                        />
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "dimensions",
+                    title: "Dimension",
+                    required: true,
+                    content: (
+                      <div className="flex items-center gap-4">
+                        <div className="flex-1">
+                          <label className="mb-1.5 block text-base text-[#103a2a]/70">Width</label>
+                          <input
+                            type="number"
+                            placeholder="Width"
+                            value={width}
+                            onChange={(e) => setWidth(e.target.value)}
+                            min={0}
+                            step={0.1}
+                            className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                          />
+                        </div>
+                        <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
+                        <div className="flex-1">
+                          <label className="mb-1.5 block text-base text-[#103a2a]/70">Height</label>
+                          <input
+                            type="number"
+                            placeholder="Height"
+                            value={height}
+                            onChange={(e) => setHeight(e.target.value)}
+                            min={0}
+                            step={0.1}
+                            className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                          />
+                        </div>
+                        <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
+                        <div className="flex-1">
+                          <label className="mb-1.5 block text-base text-[#103a2a]/70">Depth</label>
+                          <input
+                            type="number"
+                            placeholder="Depth"
+                            value={depth}
+                            onChange={(e) => setDepth(e.target.value)}
+                            min={0}
+                            step={0.1}
+                            className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                          />
+                        </div>
+                        <span className="mt-7 text-base text-[#103a2a]/45">in</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "material",
+                    title: "Material",
+                    count: MATERIALS.length,
+                    content: (
+                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                        {MATERIALS.map((m) => (
+                          <OptionCard
+                            key={m.id}
+                            label={m.label}
+                            description={m.desc}
+                            selected={material === m.id}
+                            onClick={() => setMaterial(m.id)}
+                          />
+                        ))}
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "thickness",
+                    title: "Thickness",
+                    count: THICKNESSES.length,
+                    content: (
+                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                        {THICKNESSES.map((t) => (
+                          <OptionCard
+                            key={t.id}
+                            label={t.label}
+                            description={t.desc}
+                            selected={thickness === t.id}
+                            onClick={() => setThickness(t.id)}
+                          />
+                        ))}
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "addons",
+                    title: "Add ons",
+                    count: ADDONS.length,
+                    content: (
+                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                        {ADDONS.map((a) => (
+                          <OptionCard
+                            key={a.id}
+                            label={a.label}
+                            description={a.desc}
+                            selected={addons.has(a.id)}
+                            onClick={() => toggleAddon(a.id)}
+                          />
+                        ))}
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "finishes",
+                    title: "Finishes",
+                    count: FINISHES.length,
+                    content: (
+                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
+                        {FINISHES.map((f) => (
+                          <OptionCard
+                            key={f.id}
+                            label={f.label}
+                            description={f.desc}
+                            selected={finish === f.id}
+                            onClick={() => setFinish(f.id)}
+                          />
+                        ))}
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "extra-finishes",
+                    title: "Extra Finishes",
+                    count: EXTRA_FINISHES.length,
+                    content: (
+                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
+                        {EXTRA_FINISHES.map((ef) => (
+                          <OptionCard
+                            key={ef.id}
+                            label={ef.label}
+                            description={ef.desc}
+                            selected={extraFinishes.has(ef.id)}
+                            onClick={() => toggleExtraFinish(ef.id)}
+                          />
+                        ))}
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "unboxing",
+                    title: "Unboxing",
+                    content: (
+                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                        {UNBOXING_OPTIONS.map((u) => (
+                          <OptionCard
+                            key={u.id}
+                            label={u.label}
+                            description={u.desc}
+                            selected={unboxing === u.id}
+                            onClick={() => setUnboxing(u.id)}
+                          />
+                        ))}
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "quantity",
+                    title: "Quantity",
+                    required: true,
+                    content: (
+                      <div>
+                        <div className="flex flex-wrap gap-2">
+                          {QUANTITY_PRESETS.map((qty) => (
+                            <button
+                              key={qty}
+                              type="button"
+                              onClick={() => {
+                                setQuantity(qty);
+                                setCustomQty("");
+                              }}
+                              className={`rounded-xl border-2 px-5 py-2.5 text-sm font-medium transition-all ${
+                                quantity === qty
+                                  ? "border-[#103a2a] bg-emerald-50 text-[#103a2a]"
+                                  : "border-[#103a2a]/15 text-[#103a2a]/70 hover:border-[#103a2a]/35"
+                              }`}
+                            >
+                              {qty.toLocaleString()}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="mt-3 flex items-center gap-2">
+                          <span className="text-xs text-[#103a2a]/65">Or enter custom:</span>
+                          <input
+                            type="number"
+                            placeholder="Custom qty"
+                            value={customQty}
+                            onChange={(e) => {
+                              setCustomQty(e.target.value);
+                              setQuantity(null);
+                            }}
+                            min={1}
+                            className="w-32 rounded-xl border border-[#103a2a]/15 bg-white px-3 py-2 text-sm text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
+                          />
+                        </div>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
 
-              {/* 2. Dimensions */}
-              <AccordionSection title="Dimension" required>
-                <div className="flex items-center gap-4">
-                  <div className="flex-1">
-                    <label className="mb-1.5 block text-base text-[#103a2a]/70">
-                      Width
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Width"
-                      value={width}
-                      onChange={(e) => setWidth(e.target.value)}
-                      min={0}
-                      step={0.1}
-                      className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                    />
-                  </div>
-                  <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
-                  <div className="flex-1">
-                    <label className="mb-1.5 block text-base text-[#103a2a]/70">
-                      Height
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Height"
-                      value={height}
-                      onChange={(e) => setHeight(e.target.value)}
-                      min={0}
-                      step={0.1}
-                      className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                    />
-                  </div>
-                  <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
-                  <div className="flex-1">
-                    <label className="mb-1.5 block text-base text-[#103a2a]/70">
-                      Depth
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Depth"
-                      value={depth}
-                      onChange={(e) => setDepth(e.target.value)}
-                      min={0}
-                      step={0.1}
-                      className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                    />
-                  </div>
-                  <span className="mt-7 text-base text-[#103a2a]/45">in</span>
-                </div>
-              </AccordionSection>
-
-              {/* 3. Material */}
-              <AccordionSection title="Material" count={MATERIALS.length}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {MATERIALS.map((m) => (
-                    <OptionCard
-                      key={m.id}
-                      label={m.label}
-                      description={m.desc}
-                      selected={material === m.id}
-                      onClick={() => setMaterial(m.id)}
-                    />
-                  ))}
-                </div>
-              </AccordionSection>
-
-              {/* 4. Thickness */}
-              <AccordionSection title="Thickness" count={THICKNESSES.length}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {THICKNESSES.map((t) => (
-                    <OptionCard
-                      key={t.id}
-                      label={t.label}
-                      description={t.desc}
-                      selected={thickness === t.id}
-                      onClick={() => setThickness(t.id)}
-                    />
-                  ))}
-                </div>
-              </AccordionSection>
-
-              {/* 5. Add ons */}
-              <AccordionSection title="Add ons" count={ADDONS.length}>
-                <div className="grid grid-cols-2 gap-3">
-                  {ADDONS.map((a) => (
-                    <OptionCard
-                      key={a.id}
-                      label={a.label}
-                      description={a.desc}
-                      selected={addons.has(a.id)}
-                      onClick={() => toggleAddon(a.id)}
-                    />
-                  ))}
-                </div>
-              </AccordionSection>
-
-              {/* 6. Finishes */}
-              <AccordionSection title="Finishes" count={FINISHES.length}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                  {FINISHES.map((f) => (
-                    <OptionCard
-                      key={f.id}
-                      label={f.label}
-                      description={f.desc}
-                      selected={finish === f.id}
-                      onClick={() => setFinish(f.id)}
-                    />
-                  ))}
-                </div>
-              </AccordionSection>
-
-              {/* 7. Extra Finishes */}
-              <AccordionSection
-                title="Extra Finishes"
-                count={EXTRA_FINISHES.length}
-              >
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                  {EXTRA_FINISHES.map((ef) => (
-                    <OptionCard
-                      key={ef.id}
-                      label={ef.label}
-                      description={ef.desc}
-                      selected={extraFinishes.has(ef.id)}
-                      onClick={() => toggleExtraFinish(ef.id)}
-                    />
-                  ))}
-                </div>
-              </AccordionSection>
-
-              {/* 8. Unboxing */}
-              <AccordionSection title="Unboxing">
-                <div className="grid grid-cols-2 gap-2.5">
-                  {UNBOXING_OPTIONS.map((u) => (
-                    <OptionCard
-                      key={u.id}
-                      label={u.label}
-                      description={u.desc}
-                      selected={unboxing === u.id}
-                      onClick={() => setUnboxing(u.id)}
-                    />
-                  ))}
-                </div>
-              </AccordionSection>
-
-              {/* 9. Quantity */}
-              <AccordionSection title="Quantity" required>
-                <div>
-                  <div className="flex flex-wrap gap-2">
-                    {QUANTITY_PRESETS.map((qty) => (
-                      <button
-                        key={qty}
-                        type="button"
-                        onClick={() => {
-                          setQuantity(qty);
-                          setCustomQty("");
-                        }}
-                        className={`px-5 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
-                          quantity === qty
-                            ? "border-[#103a2a] bg-emerald-50 text-[#103a2a]"
-                            : "border-[#103a2a]/15 text-[#103a2a]/70 hover:border-[#103a2a]/35"
-                        }`}
-                      >
-                        {qty.toLocaleString()}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="mt-3 flex items-center gap-2">
-                    <span className="text-xs text-[#103a2a]/65">Or enter custom:</span>
-                    <input
-                      type="number"
-                      placeholder="Custom qty"
-                      value={customQty}
-                      onChange={(e) => {
-                        setCustomQty(e.target.value);
-                        setQuantity(null);
-                      }}
-                      min={1}
-                      className="w-32 rounded-xl border border-[#103a2a]/15 bg-white px-3 py-2 text-sm text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                    />
-                  </div>
-                </div>
-              </AccordionSection>
-
-              {/* Submit */}
-              <div className="py-8">
+              <div className="mt-4 py-4 sm:mt-5">
                 {submitError ? (
                   <p className="mb-3 text-sm font-medium text-red-600">{submitError}</p>
                 ) : null}
@@ -428,7 +433,8 @@ export default function GetQuotePage() {
             </form>
           </div>
 
-          {/* Right: Sticky product image */}
+          {/* Right: Sticky product image — disabled for now */}
+          {/*
           <div className="hidden lg:block w-full lg:w-1/2 xl:w-[45%]">
             <div className="sticky top-20">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#103a2a]/20">
@@ -441,98 +447,18 @@ export default function GetQuotePage() {
                   priority
                   onError={() => setPreviewImageError(true)}
                 />
-
-                {/* Fallback when image missing */}
                 {previewImageError ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#103a2a]/95 to-[#1a3a2a]/95">
-                    <svg
-                      className="h-16 w-16 text-emerald-200/45"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                      />
-                    </svg>
-                    <p className="mt-4 text-sm font-medium text-emerald-100/85">
-                      Your custom packaging preview
-                    </p>
-                    <p className="mt-1 text-xs text-emerald-100/65">
-                      Configure options on the left
-                    </p>
+                    ...
                   </div>
                 ) : null}
               </div>
-
-              {/* Summary card */}
               <div className="mt-4 rounded-2xl border border-[#103a2a]/10 bg-white/90 p-5 backdrop-blur-sm">
-                <h4 className="mb-3 text-sm font-semibold text-[#103a2a]">
-                  Your Selection
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-[#103a2a]/60">Material</span>
-                    <span className="font-medium text-[#103a2a]">
-                      {material
-                        ? MATERIALS.find((m) => m.id === material)?.label
-                        : "—"}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#103a2a]/60">Thickness</span>
-                    <span className="font-medium text-[#103a2a]">
-                      {thickness
-                        ? THICKNESSES.find((t) => t.id === thickness)?.label
-                        : "—"}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#103a2a]/60">Finish</span>
-                    <span className="font-medium text-[#103a2a]">
-                      {finish
-                        ? FINISHES.find((f) => f.id === finish)?.label
-                        : "—"}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#103a2a]/60">Dimensions</span>
-                    <span className="font-medium text-[#103a2a]">
-                      {width && height && depth
-                        ? `${width} × ${height} × ${depth} in`
-                        : "—"}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#103a2a]/60">Quantity</span>
-                    <span className="font-medium text-[#103a2a]">
-                      {quantity
-                        ? quantity.toLocaleString()
-                        : customQty
-                          ? Number(customQty).toLocaleString()
-                          : "—"}
-                    </span>
-                  </div>
-                  {addons.size > 0 && (
-                    <div className="flex justify-between">
-                      <span className="text-[#103a2a]/60">Add-ons</span>
-                      <span className="max-w-[180px] text-right font-medium text-[#103a2a]">
-                        {Array.from(addons)
-                          .map(
-                            (id) =>
-                              ADDONS.find((a) => a.id === id)?.label
-                          )
-                          .join(", ")}
-                      </span>
-                    </div>
-                  )}
-                </div>
+                ...
               </div>
             </div>
           </div>
+          */}
         </div>
       </main>
     </div>

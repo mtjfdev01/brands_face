@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Hero from "@/components/hero/Hero";
+import CategoryPageHero from "@/components/hero/CategoryPageHero";
 import IndustryPackagingSlider from "@/components/common/IndustryPackagingSlider";
 import WhyChooseUs, { type FeatureCard } from "@/components/common/WhyChooseUs";
 // import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
@@ -147,9 +147,7 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
 
   return (
     <main className="min-h-screen bg-[var(--color-page-bg)]">
-      <Suspense fallback={<div className="w-full px-3 sm:px-4 lg:px-5 pb-12 md:pb-16 pt-0" />}>
-        <Hero categorySlug={canonical} />
-      </Suspense>
+      <CategoryPageHero categorySlug={canonical} />
 
       {config?.tabs && config.tabs.length > 0 && (
         <CategoryProductFilterTabs tabs={config.tabs} activeId={activeTabId} onChange={setActiveTabId} />

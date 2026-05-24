@@ -381,14 +381,14 @@ export default function QuickQuoteHeroSection({
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#0096FF] py-3.5 text-sm font-bold text-white shadow-md transition-colors hover:bg-[#0088e8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0096FF] focus-visible:ring-offset-2"
+                className="w-full rounded-full bg-[var(--dark-primary-green)] py-3.5 text-sm font-bold text-white shadow-md transition-colors hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--dark-primary-green)] focus-visible:ring-offset-2"
               >
                 Get a Quote
               </button>
 
               <p className="text-center text-xs text-gray-400">
                 Need full specs?{" "}
-                <Link href="/quote" className="font-semibold text-[#0096FF] underline-offset-2 hover:underline">
+                <Link href="/quote" className="font-semibold text-[var(--dark-primary-green)] underline-offset-2 hover:underline">
                   Open detailed quote form
                 </Link>
               </p>

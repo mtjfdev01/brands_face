@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import PageHeroMedia, { type PageHeroImage } from "@/components/hero/PageHeroMedia";
+
+export type { PageHeroImage };
 
 export type PageHeroCta = {
   label: string;
@@ -24,12 +26,12 @@ export type PageHeroProps = {
   feature?: string;
   primaryCta?: PageHeroCta;
   secondaryCta?: PageHeroCta;
-  /** Hero product / lifestyle image. Omit for text-only heroes (e.g. legal). */
-  image?: {
-    src: string;
-    alt: string;
-    priority?: boolean;
-  };
+  /** Single hero image (use `images` for a slider). */
+  image?: PageHeroImage;
+  /** Hero image slider — same frame size as a single image. */
+  images?: PageHeroImage[];
+  /** Autoplay interval (ms) when `images` has more than one slide. */
+  sliderAutoplayDelay?: number;
   /** Swap image column on large screens. */
   reverse?: boolean;
   breadcrumbs?: PageHeroBreadcrumb[];
@@ -121,24 +123,6 @@ function HeroActions({
   );
 }
 
-function HeroImage({ image }: { image: NonNullable<PageHeroProps["image"]> }) {
-  return (
-    <div className="relative mx-auto w-full max-w-[520px] lg:max-w-none">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/20 shadow-[0_28px_80px_rgba(0,0,0,0.35)] lg:aspect-[5/4]">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority={image.priority}
-          sizes="(max-width: 1024px) 90vw, 520px"
-          className="object-cover"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_40%,rgba(87,215,170,0.12),transparent_65%)]" />
-      </div>
-    </div>
-  );
-}
-
 /**
  * Marketing page hero — split layout on desktop, stacked on mobile (matches brand mockup).
  * Nav is provided globally via `SiteHeader`; this block is content only.
@@ -152,12 +136,16 @@ export default function PageHero({
   primaryCta,
   secondaryCta,
   image,
+  images,
+  sliderAutoplayDelay = 5000,
   reverse = false,
   breadcrumbs,
   children,
   className = "",
 }: PageHeroProps) {
-  const hasImage = Boolean(image?.src);
+  const resolvedImages: PageHeroImage[] =
+    images && images.length > 0 ? images : image?.src ? [image] : [];
+  const hasImage = resolvedImages.length > 0;
 
   return (
     <section
@@ -227,9 +215,9 @@ export default function PageHero({
             </div>
           </div>
 
-          {hasImage && image ? (
+          {hasImage ? (
             <div className={["mt-8 lg:mt-0", reverse ? "lg:order-1" : ""].join(" ")}>
-              <HeroImage image={image} />
+              <PageHeroMedia images={resolvedImages} autoplayDelay={sliderAutoplayDelay} />
             </div>
           ) : null}
 
