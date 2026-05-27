@@ -2,7 +2,7 @@
 
 import ComparisonSection from "@/components/home/ComparisonSection";
 import MobileComparison from "@/components/home/MobileComparison";
-import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
+// import CategoryFocusCarousel from "@/components/home/CategoryFocusCarousel";
 import HowItWorks from "@/components/home/HowItWorks";
 import NewHowItWorks from "@/components/home/NewHowItWorks";
 import CreativeDirection from "@/components/home/CreativeDirection";
@@ -22,9 +22,9 @@ export default function HomeBelowHero({ productQuery, onProductQueryChange }: Pr
   return (
     <>
      <CategoriesLayout />
-      <div className="md:hidden">
+      {/* <div className="md:hidden">
         <CategoryFocusCarousel />
-      </div>
+      </div> */}
       <section className="relative z-10 w-full bg-white px-3 py-10">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-6 text-center text-2xl font-semibold text-[#103a2a]">
