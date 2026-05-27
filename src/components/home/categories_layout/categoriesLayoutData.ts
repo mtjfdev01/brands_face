@@ -39,53 +39,60 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
   rigid_boxes: {
     description: "Premium rigid boxes crafted for luxury products and gift packaging.",
     images: [
-      "/assets/images/categories/rigid_box.jpeg",
-      "/assets/images/categories/rigid_box.jpeg",
+      "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(1).png",
+      "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(2).png",
+      "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(3).png",
+      "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(4).png",
     ],
   },
   corrugated_boxes: {
     description: "Sustainable corrugated packaging offering superior strength and durability.",
     images: [
-      "/assets/images/categories/coregerated_box.jpeg",
-      "/assets/images/categories/coregerated_box.jpeg",
+      "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(1).png",
+      "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(2).png",
+      "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(3).png",
+      "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(4).png",
     ],
   },
   custom_pouches: {
     description: "Flexible pouches designed with standout custom prints.",
     images: [
-      "/assets/images/categories/pouch.jpeg",
-      "/assets/images/categories/pouch.jpeg",
+      "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement.png",
+      "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement%20(2).png",
     ],
   },
   carry_bags: {
     title: "Hand / Shopping Bags",
     description: "Elegant bags that ensure your brand leaves a lasting impression.",
     images: [
-      "/assets/images/categories/gift_box.jpeg",
-      "/assets/images/categories/gift_box.jpeg",
+      "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(1).png",
+      "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(2).png",
+      "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(3).png",
     ],
   },
   kraft_boxes: {
     title: "Kraft Paper",
     description: "Eco-friendly Kraft paper packaging with natural charm.",
     images: [
-      "/assets/images/categories/craft_box.jpeg",
-      "/assets/images/categories/craft_box.jpeg",
+      "/assets/images/categories/categories_layout/art_card/art_card%20(1).png",
+      "/assets/images/categories/categories_layout/art_card/art_card%20(2).png",
     ],
   },
   labels_tags: {
     title: "Labels & Stickers",
     description: "Custom labels that add a refined touch to your brand's identity.",
     images: [
-      "/assets/images/categories/tags.jpeg",
-      "/assets/images/categories/tags.jpeg",
+      "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(1).webp",
+      "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(2).webp",
+      "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(3).webp",
     ],
   },
   art_card: {
     description: "Premium cards and stationery designed to elevate your brand experience.",
     images: [
-      "/assets/images/categories/art_card.jpeg",
-      "/assets/images/categories/art_card.jpeg",
+      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).webp",
+      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(2).webp",
+      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(3).webp",
     ],
   },
 };
@@ -106,7 +113,7 @@ function homeCardForSlug(slug: string) {
 
 function resolveImages(paths: string[], fallbackImage?: string): string[] {
   const list = paths.map((p) => p.trim()).filter(Boolean);
-  if (list.length >= 2) return list.slice(0, 3);
+  if (list.length >= 2) return list.slice(0, 4);
   if (list.length === 1) return [list[0], list[0]];
   if (fallbackImage) return [fallbackImage, fallbackImage];
   return [];
