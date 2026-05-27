@@ -94,15 +94,12 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
             </span>
           </div>
 
-          {/* Headline */}
-          <h4
-            className="mt-6 text-[40px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-5xl"
-          >
-            Re-Engineering{" "}
-            <span className="text-[#57d7aa]">Brand Perception</span>
-            <br />
-            Through Packaging.
-          </h4>
+          {/* Headline — one flex row per line so gap-3 is uniform */}
+          <h1 className="mt-6 flex flex-col gap-3 text-[32px] font-extrabold leading-none tracking-tight text-white max-[360px]:text-[28px] sm:text-[2.65rem]">
+            <span>Creating Premium</span>
+            <span className="text-[var(--light-green)]">Brand Perception</span>
+            <span>Through Packaging</span>
+          </h1>
 
           {/* Subline */}
           <p

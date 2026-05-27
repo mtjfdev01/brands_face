@@ -11,6 +11,7 @@ import Footer from "@/components/home/Footer";
 import AdvanceStudioShowCase from "@/components/common/AdvanceStudioShowCase";
 import AllProductsRowCarousel from "@/components/home/AllProductsRowCarousel";
 import PackagingInfoTabs from "@/components/sale/PackagingInfoTabs";
+import { CategoriesLayout } from "./categories_layout";
 
 type Props = {
   productQuery: string;
@@ -20,6 +21,7 @@ type Props = {
 export default function HomeBelowHero({ productQuery, onProductQueryChange }: Props) {
   return (
     <>
+     <CategoriesLayout />
       <div className="md:hidden">
         <CategoryFocusCarousel />
       </div>
