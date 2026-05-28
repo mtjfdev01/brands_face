@@ -32,7 +32,8 @@ function SingleHeroImage({ image }: { image: PageHeroImage }) {
           alt={image.alt}
           fill
           priority={image.priority}
-          sizes="(max-width: 1024px) 90vw, 520px"
+          sizes="(max-width: 1024px) 92vw, 50vw"
+          quality={90}
           className="object-cover"
         />
         <MediaOverlay />
@@ -81,7 +82,8 @@ function HeroImageSlider({ images, autoplayDelay = 5000 }: SliderProps) {
                   alt={item.alt}
                   fill
                   priority={item.priority ?? idx === 0}
-                  sizes="(max-width: 1024px) 90vw, 520px"
+                  sizes="(max-width: 1024px) 92vw, 50vw"
+                  quality={90}
                   className="object-cover"
                 />
               </div>

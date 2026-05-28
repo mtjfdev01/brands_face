@@ -22,8 +22,12 @@ function pdpFromProduct(p: ProductData | undefined) {
 const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     {
       category: "art_card",
-      cardImage: "/assets/images/categories/art_card.jpeg",
-      bannerImages: ["/assets/images/categories/art_card.jpeg", "/products/rigid-3.jpg"],
+      cardImage: "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
+      bannerImages: [
+        "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
+        "/assets/images/categories/categories_layout/art_card/art_card%20(2).webp",
+        "/assets/images/categories/categories_layout/art_card/art_card%20(3).webp",
+      ],
       tabs: [
         { id: "all", label: "All" },
         { id: "core_products", label: "Core Products" },
@@ -427,11 +431,11 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     },
     {
       category: "rigid_boxes",
-      cardImage: "/assets/images/categories/rigid_box.jpeg",
+      cardImage: "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(1).png",
       bannerImages: [
-        "/assets/images/categories/rigid_box.jpeg",
-        "/assets/images/categories/rigid_box.jpeg",
-        "/assets/images/categories/rigid_box.jpeg",
+        "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(1).png",
+        "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(2).png",
+        "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(3).png",
       ],
       tabs: [
         { id: "all", label: "All" },
@@ -907,11 +911,11 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     },
     {
       category: "corrugated_boxes",
-      cardImage: "/assets/images/categories/coregerated_box.jpeg",
+      cardImage: "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(1).png",
       bannerImages: [
-        "/assets/images/categories/Corrugated Boxes/Core Product Pages/Regular Slotted Corrugated Box/core_products_first.jpg",
-        "/assets/images/categories/Corrugated Boxes/Core Product Pages/Mailer Corrugated Box/core_products_first.jpg",
-        "/assets/images/categories/Corrugated Boxes/Use-Case Based Product Pages/E-commerce Corrugated Boxes/use_case_first.jpg",
+        "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(1).png",
+        "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(2).png",
+        "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(3).png",
       ],
       tabs: [
         { id: "all", label: "All" },
@@ -1344,11 +1348,11 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     },
     {
       category: "custom_pouches",
-      cardImage: "/assets/images/categories/Pouches/Pouches/Core Product Pages/Stand Up Pouches/download (5).jpg",
+      cardImage: "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement.png",
       bannerImages: [
-        "/assets/images/categories/Pouches/Pouches/Core Product Pages/Stand Up Pouches/download (5).jpg",
-        "/assets/images/categories/Pouches/Pouches/Premium  Variation Pages/Printed Pouches/All Products.jpg",
-        "/assets/images/categories/Pouches/Pouches/Use-Case Based Pages/Cosmetic Pouches/Free Cosmetic Refill Pouch Mockups PSD.jpg",
+        "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement.png",
+        "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement%20(2).png",
+        "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement.png",
       ],
       tabs: [
         { id: "all", label: "All" },
@@ -2622,11 +2626,11 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     },
     {
       category: "carry_bags",
-      cardImage: "/assets/images/categories/Carry Bags/Core Product Pages/Paper Carry Bags/Custom Logo Paper Shopping Bags - Luxury Gift Packaging Bags _ Personalized Clothing Boutique Paper Bag _ Eco-Friendly Retai.jpg",
+      cardImage: "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(1).png",
       bannerImages: [
-        "/assets/images/categories/Carry Bags/Core Product Pages/Paper Carry Bags/Custom Logo Paper Shopping Bags - Luxury Gift Packaging Bags _ Personalized Clothing Boutique Paper Bag _ Eco-Friendly Retai.jpg",
-        "/assets/images/categories/Carry Bags/Premium  Variation Pages/Custom Printed Carry Bags/Bag.jpg",
-        "/assets/images/categories/Carry Bags/Use-Case Based Pages/Retail Carry Bags/Coach [outlet] Women's And Men's Kraft Paper Bags Medium For Bag Wrappingjapan.jpg",
+        "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(1).png",
+        "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(2).png",
+        "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(3).png",
       ],
       tabs: [
         { id: "all", label: "All" },
@@ -3899,11 +3903,11 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     },
     {
       category: "kraft_boxes",
-      cardImage: "/assets/images/categories/craft_box.jpeg",
+      cardImage: "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).png",
       bannerImages: [
-        "/assets/images/categories/Kraft boxes/Core Product Pages/Core Product Pages/Kraft Tuck End Box/250 Kraft Boxes 4 x 4 x 4  Reverse Tuck by NationalCarton on Etsy, $40_00.jpg",
-        "/assets/images/categories/Kraft boxes/Use-Case Based Product Pages/Kraft Soap Boxes/Custom Kraft Soap Boxes at PrintnBox.jpg",
-        "/assets/images/categories/Kraft boxes/Premium  Variation Pages/Printed Kraft Boxes/download (5).jpg",
+        "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).png",
+        "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(2).png",
+        "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).png",
       ],
       tabs: [
         { id: "all", label: "All" },
@@ -4336,11 +4340,11 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     },
     {
       category: "labels_tags",
-      cardImage: "/assets/images/categories/Labels & Tags/Core Product Pages/Sheet Labels/🎁 Special Sticker Sale_ 20% OFF!_Get custom stickers for your business or event at a discounted price!_Order today! #Sticke.jpg",
+      cardImage: "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(1).webp",
       bannerImages: [
-              "/assets/images/categories/Labels & Tags/Core Product Pages/Apparel Tags/download (5).jpg",
-              "/assets/images/categories/Labels & Tags/Premium  Variation Pages/Clear Labels/72 Spice and Herb Name Jar Labels Clear Vinyl Stickers Waterproof and Washable 38mm Round - Etsy.jpg",
-              "/assets/images/categories/Labels & Tags/Use-Case Based Pages/Beverage Labels/Bottle design for miracle bone broth from scandinavia _ Product packaging contest.jpg"
+              "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(1).webp",
+              "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(2).webp",
+              "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(3).webp"
       ],
       tabs: [
         { id: "all", label: "All" },
