@@ -99,7 +99,8 @@ export default function CategoryGridCard({ item }: Props) {
                     src={src}
                     alt=""
                     fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 25vw"
+                    quality={90}
                     className="object-cover"
                   />
                 </div>
