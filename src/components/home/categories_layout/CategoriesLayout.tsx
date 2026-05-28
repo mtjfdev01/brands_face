@@ -74,7 +74,7 @@ export default function CategoriesLayout() {
           </p>
         </header>
 
-        <div className="grid grid-cols-2 gap-x-1.5 gap-y-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5">
           {CATEGORY_LAYOUT_ITEMS.map((item) => (
             <CategoryGridCard key={item.slug} item={item} />
           ))}

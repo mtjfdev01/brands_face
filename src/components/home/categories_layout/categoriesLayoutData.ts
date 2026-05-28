@@ -74,8 +74,8 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
     title: "Kraft Paper",
     description: "Eco-friendly Kraft paper packaging with natural charm.",
     images: [
-      "/assets/images/categories/categories_layout/art_card/art_card%20(1).png",
-      "/assets/images/categories/categories_layout/art_card/art_card%20(2).png",
+      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).png",
+      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(2).png",
     ],
   },
   labels_tags: {
@@ -90,9 +90,9 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
   art_card: {
     description: "Premium cards and stationery designed to elevate your brand experience.",
     images: [
-      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).webp",
-      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(2).webp",
-      "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(3).webp",
+      "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
+      "/assets/images/categories/categories_layout/art_card/art_card%20(2).webp",
+      "/assets/images/categories/categories_layout/art_card/art_card%20(3).webp",
     ],
   },
 };

@@ -139,7 +139,7 @@ export default function CategoryGridCard({ item }: Props) {
         count={slideCount}
         activeIndex={activeIndex}
         onSelect={goToSlide}
-        className="justify-center gap-1.5 pb-4 pt-2"
+        className="justify-center gap-1.5 pb-4 pt-2 lg:pt-1"
       />
     </article>
   );
