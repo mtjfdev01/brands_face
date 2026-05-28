@@ -62,7 +62,7 @@ function CategoriesCtaCard() {
 
 export default function CategoriesLayout() {
   return (
-    <section className="w-full bg-[var(--primary-cream)] px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+    <section className="w-full bg-[var(--primary-cream)] px-1.5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-[1240px]">
         <header className="mb-10 text-center sm:mb-12">
           <SectionFlourish />
@@ -74,7 +74,7 @@ export default function CategoriesLayout() {
           </p>
         </header>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+        <div className="grid grid-cols-2 gap-x-1.5 gap-y-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
           {CATEGORY_LAYOUT_ITEMS.map((item) => (
             <CategoryGridCard key={item.slug} item={item} />
           ))}
