@@ -7,7 +7,7 @@ import CategoryGridCard from "./CategoryGridCard";
 import { CATEGORY_LAYOUT_ITEMS } from "./categoriesLayoutData";
 import { CategoryIcon } from "./CategoryIcon";
 
-const FLOURISH_SRC = "/assets/images/categories/categories_layout/flourish_header.png";
+const FLOURISH_SRC = "/assets/images/categories/categories_layout/flourish.png";
 
 function SectionFlourish() {
   return (
