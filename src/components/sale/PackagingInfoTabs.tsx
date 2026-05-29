@@ -25,6 +25,10 @@ type LightboxState = {
   item: MediaSlide;
 };
 
+function isSvgSrc(src: string) {
+  return /\.svg($|[?#])/i.test(src);
+}
+
 function MediaSlideLightbox({
   state,
   onClose,
@@ -56,7 +60,7 @@ function MediaSlideLightbox({
       onClick={onClose}
     >
       <div
-        className="relative flex max-h-[min(72vh,520px)] w-full max-w-[min(720px,100%)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+        className="relative flex w-full max-w-[min(520px,100%)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -69,15 +73,27 @@ function MediaSlideLightbox({
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <div className="relative flex h-[min(38vh,320px)] w-full items-center justify-center bg-gray-50 px-4 py-3 sm:h-[min(42vh,360px)]">
-          {/* Native img loads full source file — sharper than upscaling the thumbnail srcset */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.src}
-            alt={item.label}
-            className="max-h-full max-w-full object-contain"
-            decoding="async"
-          />
+        {/* Cap display ~400px — most assets are 360×360; avoids blurry upscale in a huge frame */}
+        <div className="relative mx-auto flex aspect-square w-full max-h-[min(72vh,400px)] max-w-[min(92vw,400px)] items-center justify-center bg-gray-50 p-5">
+          {isSvgSrc(item.src) ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={item.src}
+              alt={item.label}
+              className="max-h-full max-w-full object-contain"
+              decoding="async"
+            />
+          ) : (
+            <Image
+              src={item.src}
+              alt={item.label}
+              fill
+              unoptimized
+              className="object-contain"
+              sizes="400px"
+              priority
+            />
+          )}
         </div>
         <p className="border-t border-gray-100 px-5 py-3 text-center text-sm font-medium text-gray-800">
           {item.label}
@@ -110,7 +126,8 @@ function buildMediaSlides(
           alt=""
           fill
           className={objectFit === "contain" ? "object-contain p-3" : "object-cover"}
-          sizes="(max-width: 640px) 132px, 140px"
+          sizes="(max-width: 640px) 264px, 280px"
+          quality={90}
         />
       </button>
       {showLabel && (
