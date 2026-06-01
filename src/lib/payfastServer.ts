@@ -1,4 +1,5 @@
 import { dbQuery } from "@/lib/postgres";
+import { resolvePayableTotal } from "@/lib/orderLineItems";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
 import { isCheckoutPhoneOk } from "@/lib/payfastPhone";
@@ -217,13 +218,16 @@ export async function createPayfastCheckoutForStandardOrder(
     id: number;
     request_type: string;
     line_total: string | null;
+    grand_total: string | null;
+    discounted_grand_total: string | null;
     email: string;
     phone: string | null;
     payment_status: string;
   };
 
   const result = await dbQuery<Row>(
-    `SELECT id, request_type, line_total::text, email, phone, payment_status
+    `SELECT id, request_type, line_total::text, grand_total::text, discounted_grand_total::text,
+            email, phone, payment_status
      FROM product_orders WHERE id = $1`,
     [orderId],
   );
@@ -234,7 +238,7 @@ export async function createPayfastCheckoutForStandardOrder(
   if (row.request_type !== "standard_order") {
     throw new Error("Only standard orders can use PayFast checkout.");
   }
-  const amount = Number(row.line_total);
+  const amount = resolvePayableTotal(row);
   if (!Number.isFinite(amount) || amount <= 0) {
     throw new Error("Order has no payable total.");
   }

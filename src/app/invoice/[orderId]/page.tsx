@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import Footer from "@/components/home/Footer";
 import InvoiceView from "./InvoiceView";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function InvoicePage() {
       }
     >
       <InvoiceView />
+      <Footer />
     </Suspense>
   );
 }

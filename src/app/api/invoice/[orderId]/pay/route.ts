@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getPublicInvoicePayload } from "@/lib/publicInvoice";
+import { resolvePublicInvoice } from "@/lib/publicInvoice";
 import { createPayfastCheckoutForStandardOrder, isPayfastConfigured } from "@/lib/payfastServer";
 
 export const dynamic = "force-dynamic";
@@ -22,10 +22,18 @@ export async function POST(request: Request, { params }: { params: { orderId: st
       return NextResponse.json({ message: "Missing key." }, { status: 400 });
     }
 
-    const inv = await getPublicInvoicePayload(id, key);
-    if (!inv) {
+    const result = await resolvePublicInvoice(id, key);
+    if (result.status === "not_found") {
       return NextResponse.json({ message: "Invoice not found." }, { status: 404 });
     }
+    if (result.status === "expired") {
+      return NextResponse.json(
+        { message: result.expired.message, expired: true, support_email: result.expired.support_email },
+        { status: 410 },
+      );
+    }
+
+    const inv = result.data;
 
     if (inv.order.request_type !== "standard_order") {
       return NextResponse.json({ message: "This invoice is not payable online." }, { status: 400 });

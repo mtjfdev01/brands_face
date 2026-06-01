@@ -1,7 +1,6 @@
-import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
-import { dbQuery } from "@/lib/postgres";
 import { getAdminSessionFromRequest } from "@/lib/adminAuth";
+import { buildPublicInvoiceUrl, ensureInvoicePublicKey } from "@/lib/invoiceLink";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
 
 export const dynamic = "force-dynamic";
@@ -27,27 +26,18 @@ export async function POST(request: Request, { params }: { params: { id: string 
     const body = (await request.json().catch(() => ({}))) as Body;
     const regenerate = Boolean(body.regenerate);
 
-    const existing = await dbQuery<{ invoice_public_key: string | null }>(
-      `SELECT invoice_public_key FROM product_orders WHERE id = $1`,
-      [id],
-    );
-    const row = existing.rows[0];
-    if (!row) {
-      return NextResponse.json({ message: "Not found." }, { status: 404 });
+    let key: string;
+    try {
+      key = await ensureInvoicePublicKey(id, { regenerate });
+    } catch (err) {
+      if (err instanceof Error && err.message === "Order not found.") {
+        return NextResponse.json({ message: "Not found." }, { status: 404 });
+      }
+      throw err;
     }
-
-    let key = row.invoice_public_key?.trim() || null;
-    if (!key || regenerate) {
-      key = randomUUID();
-      await dbQuery(`UPDATE product_orders SET invoice_public_key = $1, updated_at = NOW() WHERE id = $2`, [
-        key,
-        id,
-      ]);
-    }
-
     const envOrigin = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "").trim();
     const origin = envOrigin || new URL(request.url).origin;
-    const url = `${origin}/invoice/${id}?key=${encodeURIComponent(key)}`;
+    const url = buildPublicInvoiceUrl(id, key, origin);
 
     return NextResponse.json({ url, invoicePublicKey: key }, { status: 200 });
   } catch (error) {

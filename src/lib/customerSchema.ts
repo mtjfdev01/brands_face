@@ -18,8 +18,37 @@ export async function ensureCustomerSchema() {
   `);
 
   await dbQuery(`CREATE INDEX IF NOT EXISTS customers_email_idx ON customers (email);`);
+  await dbQuery(`CREATE INDEX IF NOT EXISTS customers_full_name_idx ON customers (full_name);`);
 
   ensured = true;
+}
+
+export type CustomerRow = {
+  id: number;
+  full_name: string;
+  email: string;
+  phone: string | null;
+  company: string | null;
+};
+
+export async function searchCustomers(query: string, limit = 20): Promise<CustomerRow[]> {
+  await ensureCustomerSchema();
+  const q = query.trim();
+  if (!q) return [];
+
+  const pattern = `%${q}%`;
+  const result = await dbQuery<CustomerRow>(
+    `SELECT id, full_name, email, phone, company
+     FROM customers
+     WHERE full_name ILIKE $1
+        OR email ILIKE $1
+        OR COALESCE(phone, '') ILIKE $1
+        OR COALESCE(company, '') ILIKE $1
+     ORDER BY updated_at DESC
+     LIMIT $2`,
+    [pattern, limit],
+  );
+  return result.rows;
 }
 
 export type UpsertCustomerInput = {

@@ -9,6 +9,7 @@ import {
   markOrderPaymentPendingCheckout,
   persistProductOrderGatewayError,
 } from "@/lib/payfastServer";
+import { insertOrderLineItems } from "@/lib/orderLineItems";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
 
@@ -116,6 +117,7 @@ export async function POST(request: Request) {
         size_dimensions,
         price_per_piece,
         line_total,
+        grand_total,
         full_name,
         email,
         phone,
@@ -123,7 +125,7 @@ export async function POST(request: Request) {
         customer_notes,
         customer_id
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING id`,
       [
         requestType,
@@ -135,6 +137,7 @@ export async function POST(request: Request) {
         sizeDimensions,
         pricePerPiece,
         lineTotal,
+        requestType === "standard_order" ? lineTotal : null,
         fullName,
         email,
         phone,
@@ -147,6 +150,20 @@ export async function POST(request: Request) {
     const orderId = inserted.rows[0]?.id ?? null;
     if (!orderId) {
       return NextResponse.json({ message: "Unable to create order." }, { status: 500 });
+    }
+
+    if (requestType === "standard_order" && lineTotal !== null) {
+      await insertOrderLineItems(orderId, [
+        {
+          productTitle,
+          productSlug,
+          sizeLabel,
+          sizeDimensions,
+          quantity,
+          pricePerPiece: pricePerPiece!,
+          lineTotal,
+        },
+      ]);
     }
 
     let payfast: Record<string, unknown> | undefined;

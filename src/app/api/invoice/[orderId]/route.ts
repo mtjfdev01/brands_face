@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getPublicInvoicePayload } from "@/lib/publicInvoice";
+import { resolvePublicInvoice } from "@/lib/publicInvoice";
 
 export const dynamic = "force-dynamic";
 
@@ -15,10 +15,13 @@ export async function GET(request: Request, { params }: { params: { orderId: str
     return NextResponse.json({ message: "Missing key." }, { status: 400 });
   }
 
-  const payload = await getPublicInvoicePayload(id, key);
-  if (!payload) {
+  const result = await resolvePublicInvoice(id, key);
+  if (result.status === "not_found") {
     return NextResponse.json({ message: "Invoice not found." }, { status: 404 });
   }
+  if (result.status === "expired") {
+    return NextResponse.json(result.expired, { status: 410 });
+  }
 
-  return NextResponse.json(payload, { status: 200 });
+  return NextResponse.json(result.data, { status: 200 });
 }

@@ -35,6 +35,54 @@ async function migrateProductOrderCtaAndInvoice() {
   `);
 }
 
+async function migrateProductOrderTotalsAndDueDate() {
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS grand_total NUMERIC(12, 2);`);
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS discounted_grand_total NUMERIC(12, 2);`);
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS due_date DATE;`);
+}
+
+async function migrateOrderLineItemsTable() {
+  await dbQuery(`
+    CREATE TABLE IF NOT EXISTS order_line_items (
+      id BIGSERIAL PRIMARY KEY,
+      order_id BIGINT NOT NULL REFERENCES product_orders(id) ON DELETE CASCADE,
+      sort_order INTEGER NOT NULL DEFAULT 0,
+      product_title TEXT NOT NULL,
+      product_slug TEXT,
+      size_label TEXT,
+      size_dimensions TEXT,
+      quantity INTEGER NOT NULL CHECK (quantity > 0),
+      price_per_piece NUMERIC(12, 4) NOT NULL,
+      line_total NUMERIC(12, 2) NOT NULL,
+      discounted_line_total NUMERIC(12, 2),
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+  `);
+  await dbQuery(
+    `CREATE INDEX IF NOT EXISTS order_line_items_order_id_idx ON order_line_items (order_id, sort_order);`,
+  );
+  await dbQuery(`ALTER TABLE order_line_items ADD COLUMN IF NOT EXISTS category TEXT;`);
+
+  await dbQuery(`
+    INSERT INTO order_line_items (
+      order_id, sort_order, product_title, product_slug, size_label, size_dimensions,
+      quantity, price_per_piece, line_total
+    )
+    SELECT
+      po.id, 0, po.product_title, po.product_slug, po.size_label, po.size_dimensions,
+      po.quantity, COALESCE(po.price_per_piece, 0), COALESCE(po.line_total, 0)
+    FROM product_orders po
+    WHERE po.product_title IS NOT NULL AND po.product_title <> ''
+      AND NOT EXISTS (SELECT 1 FROM order_line_items oli WHERE oli.order_id = po.id)
+  `);
+
+  await dbQuery(`
+    UPDATE product_orders po
+    SET grand_total = COALESCE(po.grand_total, po.line_total)
+    WHERE po.grand_total IS NULL AND po.line_total IS NOT NULL
+  `);
+}
+
 async function migrateProductOrderStatusConstraint() {
   await dbQuery(
     `UPDATE product_orders SET status = 'responded' WHERE status = 'contacted' OR status = 'in_review';`,
@@ -77,6 +125,8 @@ export async function ensureProductOrderSchema() {
   await migrateProductOrderStatusConstraint();
   await migrateProductOrderPaymentColumns();
   await migrateProductOrderCtaAndInvoice();
+  await migrateProductOrderTotalsAndDueDate();
+  await migrateOrderLineItemsTable();
 
   await dbQuery(
     `CREATE INDEX IF NOT EXISTS product_orders_status_idx ON product_orders (status);`,
