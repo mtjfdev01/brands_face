@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
+import BankDetails from "@/components/common/BankDetails";
 import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
 import type { PublicInvoiceResponse } from "@/lib/publicInvoice";
@@ -162,21 +163,38 @@ export default function InvoiceView() {
           <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
             Thank you — this invoice is marked paid.
           </p>
-        ) : canPayOnline ? (
-          <div className="space-y-3">
-            {payMessage && <p className="text-sm text-rose-700">{payMessage}</p>}
-            <button
-              type="button"
-              disabled={paying}
-              onClick={() => void pay()}
-              className="w-full rounded-full bg-[#1dd1a1] py-3.5 text-sm font-bold text-[#0f2f22] shadow-[0_6px_20px_rgba(29,209,161,0.3)] transition hover:bg-[#37dfb2] disabled:opacity-60 sm:w-auto sm:min-w-[220px] sm:px-10"
-            >
-              {paying ? "Redirecting…" : "Pay invoice"}
-            </button>
-            <p className="text-xs text-slate-500">You will be taken to our bank&apos;s secure checkout page.</p>
-          </div>
         ) : (
-          <p className="text-sm text-slate-600">Contact us to complete payment for this invoice.</p>
+          <div className="space-y-5">
+            {canPayOnline && (
+              <div className="space-y-3">
+                {payMessage && <p className="text-sm text-rose-700">{payMessage}</p>}
+                <button
+                  type="button"
+                  disabled={paying}
+                  onClick={() => void pay()}
+                  className="w-full rounded-full bg-[#1dd1a1] py-3.5 text-sm font-bold text-[#0f2f22] shadow-[0_6px_20px_rgba(29,209,161,0.3)] transition hover:bg-[#37dfb2] disabled:opacity-60 sm:w-auto sm:min-w-[220px] sm:px-10"
+                >
+                  {paying ? "Redirecting…" : "Pay invoice online"}
+                </button>
+                <p className="text-xs text-slate-500">Secure card checkout via our payment partner.</p>
+              </div>
+            )}
+
+            <div className="rounded-2xl border border-slate-200 bg-white p-5">
+              <h2 className="text-xs font-semibold uppercase text-slate-400">
+                {canPayOnline ? "Or pay by bank transfer" : "Pay by bank transfer"}
+              </h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Use invoice <span className="font-semibold text-slate-900">#{data.order.id}</span> as the payment
+                reference.
+              </p>
+              <BankDetails
+                className="mt-4 space-y-3"
+                labelClassName="text-xs font-semibold uppercase text-slate-400"
+                valueClassName="text-sm font-medium text-slate-900 break-all"
+              />
+            </div>
+          </div>
         )}
       </section>
     </div>

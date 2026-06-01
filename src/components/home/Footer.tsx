@@ -4,6 +4,7 @@ import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { defaultCategoryHubPath } from "@/lib/routes";
+import BankDetails from "@/components/common/BankDetails";
 import {
   SITE_ADDRESS_LINES,
   SITE_CONTACT_EMAIL,
@@ -587,6 +588,15 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className="relative mt-4 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.08] p-4 sm:p-5">
+              <p className="text-sm font-bold text-white">Bank details</p>
+              <BankDetails
+                className="relative mt-3 space-y-2.5"
+                labelClassName="text-[10px] font-semibold uppercase tracking-wide text-white/60"
+                valueClassName="text-sm font-medium leading-snug text-white/90 break-all"
+              />
             </div>
           </div>
         </div>

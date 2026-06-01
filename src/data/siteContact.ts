@@ -15,6 +15,15 @@ export const LEGAL_DOCS_LAST_UPDATED = "19 April 2026";
 /** National Tax Number (Pakistan) or equivalent — replace `value` when confirmed. */
 export const SITE_NTN = { label: "NTN", value: "1636441" } as const;
 
-export const SITE_PAYMENT_NOTE = "We accept all major credit cards.";
+/** Bank transfer details (footer, invoices, policies). */
+export const SITE_BANK_DETAILS = {
+  accountTitle: "BRANDS FACE (SMC-PRIVATE) LIMITED",
+  accountNumber: "3516499000006659",
+  iban: "PK91FAYS3516499000006659",
+  bankName: "FAYSAL BANK",
+} as const;
+
+export const SITE_PAYMENT_NOTE =
+  "Pay online via card or bank transfer to the account below.";
 
 export const SITE_FOOTER_TAGLINE = "Packaging that cares. Brands that grow.";
