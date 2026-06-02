@@ -416,7 +416,7 @@ export default function InvoiceView() {
                   <th className="pb-3 pr-3">Product</th>
                   <th className="pb-3 pr-3">Size</th>
                   <th className="pb-3 pr-3 text-right">Qty</th>
-                  <th className="pb-3 pr-3 text-right">Unit</th>
+                  <th className="pb-3 pr-3 text-right">Unit Price</th>
                   <th className="pb-3 text-right">Amount</th>
                 </tr>
               </thead>
@@ -430,7 +430,9 @@ export default function InvoiceView() {
                     <tr key={idx} className="border-b border-slate-50 last:border-0">
                       <td className="py-3.5 pr-3">
                         <div className="flex items-center gap-3">
-                          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                          <span
+                            className={`relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-slate-100${item.category_image ? "" : " hidden sm:block"}`}
+                          >
                             {item.category_image ? (
                               <Image
                                 src={item.category_image}
