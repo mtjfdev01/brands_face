@@ -70,6 +70,7 @@ type CreateAdminOrderBody = {
   /** @deprecated Use lineItems */
   productSlug?: string;
   productTitle?: string;
+  category?: string | null;
   quantity?: number;
   sizeLabel?: string | null;
   sizeDimensions?: string | null;
