@@ -345,6 +345,58 @@
   }
 }
 
+/* Floating FAB: blink like a bulb (soft glow on/off) */
+@keyframes fab-bulb-blink {
+  0%,
+  100% {
+    transform: translateZ(0) scale(1);
+    filter: saturate(1);
+  }
+  48% {
+    transform: translateZ(0) scale(1);
+    filter: saturate(1);
+  }
+  56% {
+    transform: translateZ(0) scale(1.03);
+    filter: saturate(1.15);
+  }
+  64% {
+    transform: translateZ(0) scale(1);
+    filter: saturate(1);
+  }
+}
+
+.fab-bulb-blink {
+  animation: fab-bulb-blink 1.6s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+.fab-bulb-glow-green {
+  box-shadow:
+    0 8px 28px rgba(37, 211, 102, 0.45),
+    0 0 0 0 rgba(37, 211, 102, 0);
+  transition: box-shadow 260ms ease, transform 260ms ease, filter 260ms ease;
+}
+
+.fab-bulb-glow-green.fab-bulb-blink {
+  box-shadow:
+    0 12px 36px rgba(37, 211, 102, 0.55),
+    0 0 0 10px rgba(37, 211, 102, 0.18);
+}
+
+.fab-bulb-glow-brand {
+  box-shadow:
+    0 8px 28px rgba(16, 58, 42, 0.35),
+    0 0 0 0 rgba(16, 58, 42, 0);
+  transition: box-shadow 260ms ease, transform 260ms ease, filter 260ms ease;
+}
+
+.fab-bulb-glow-brand.fab-bulb-blink {
+  box-shadow:
+    0 12px 36px rgba(16, 58, 42, 0.45),
+    0 0 0 10px rgba(16, 58, 42, 0.20);
+}
+
 /* ── Base hidden state: elements start invisible ── */
 .anim-ready {
   opacity: 0;
@@ -452,6 +504,12 @@
   .anim-visible.anim-blur-in {
     animation: none;
     opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .fab-bulb-blink {
+    animation: none;
     transform: none;
     filter: none;
   }

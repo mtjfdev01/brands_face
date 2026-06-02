@@ -2,8 +2,7 @@
  * Footer / legal surface copy. Replace with official business details when available.
  */
 export const SITE_ADDRESS_LINES = [
-  "Brands Face",
-  "Karachi, Pakistan",
+  "H#L6, Murtaza Town, Wireless gate, Malir karachi.",
 ] as const;
 
 export const SITE_CONTACT_EMAIL =

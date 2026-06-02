@@ -568,12 +568,10 @@ export default function Footer() {
               <div className="relative flex items-center gap-3 sm:items-start">
                 <MapPinIcon className="h-5 w-5 shrink-0 text-light-green sm:mt-0.5" />
                 <div className="min-w-0 flex-1 sm:pr-20">
-                  {/* Mobile: label + address on one line; scroll if needed */}
-                  <p className="flex w-full min-w-0 items-baseline gap-2 text-sm leading-snug sm:hidden">
-                    <span className="shrink-0 font-bold text-white">
-                      Address
-                    </span>
-                    <span className="w-full min-w-0 flex-1 basis-0 overflow-x-auto overflow-y-hidden whitespace-nowrap text-white/85 [scrollbar-width:thin]">
+                  {/* Mobile: show full address with wrapping (no horizontal scroll). */}
+                  <p className="w-full min-w-0 text-sm leading-snug text-white/85 sm:hidden">
+                    <span className="font-bold text-white">Address</span>
+                    <span className="mt-1 block min-w-0 break-words [overflow-wrap:anywhere]">
                       {addressSingleLine}
                     </span>
                   </p>

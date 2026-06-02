@@ -44,10 +44,11 @@ function PhoneIcon({ className }: { className?: string }) {
 }
 
 const fab =
-  "flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl active:scale-95 sm:h-14 sm:w-14";
+  "flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl active:scale-95 sm:h-14 sm:w-14 motion-reduce:transform-none motion-reduce:hover:scale-100";
 
 export default function WhatsAppChatFab() {
   const [hide, setHide] = useState(false);
+  const [isPeekVisible, setIsPeekVisible] = useState(true);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -59,14 +60,40 @@ export default function WhatsAppChatFab() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    // Auto hide/show so page content behind stays usable.
+    // Behavior: show briefly, then hide longer (fades out + disables pointer events).
+    let showTimeout: number | undefined;
+    let hideTimeout: number | undefined;
+
+    const showThenHide = () => {
+      setIsPeekVisible(true);
+      showTimeout = window.setTimeout(() => setIsPeekVisible(false), 3000);
+      hideTimeout = window.setTimeout(showThenHide, 5200);
+    };
+
+    // Initial: show for a moment, then start cycle.
+    showThenHide();
+
+    return () => {
+      if (showTimeout) window.clearTimeout(showTimeout);
+      if (hideTimeout) window.clearTimeout(hideTimeout);
+    };
+  }, []);
+
   if (hide) return null;
+
+  const visibilityClass = isPeekVisible
+    ? "opacity-100 pointer-events-auto"
+    : "opacity-0 pointer-events-none";
 
   return (
     <div
-      className="fixed bottom-5 left-4 z-[10050] flex flex-row items-center gap-2 print:hidden sm:bottom-6 sm:left-5 sm:gap-2.5 md:bottom-7 md:left-6 lg:left-7"
+      className={`fixed bottom-5 right-4 z-[10050] flex flex-col items-start gap-2.5 print:hidden transition-opacity duration-500 ${visibilityClass} sm:bottom-6 sm:left-5 sm:right-auto sm:flex-row sm:items-center sm:gap-2.5 md:bottom-7 md:left-6 lg:left-7`}
       style={{
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
         paddingLeft: "env(safe-area-inset-left, 0px)",
+        paddingRight: "env(safe-area-inset-right, 0px)",
       }}
     >
       <a
