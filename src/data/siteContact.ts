@@ -19,6 +19,7 @@ export const SITE_BANK_DETAILS = {
   accountTitle: "BRANDS FACE (SMC-PRIVATE) LIMITED",
   accountNumber: "3516499000006659",
   iban: "PK91FAYS3516499000006659",
+  swift: "FAYSPKKA",
   bankName: "FAYSAL BANK",
 } as const;
 

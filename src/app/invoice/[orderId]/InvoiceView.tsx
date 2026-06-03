@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import BankDetails from "@/components/common/BankDetails";
+import { SITE_ADDRESS_LINES, SITE_NTN } from "@/data/siteContact";
 import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
 import type { PublicInvoiceExpiredResponse, PublicInvoiceResponse } from "@/lib/publicInvoice";
@@ -580,6 +581,17 @@ export default function InvoiceView() {
             </SectionCard>
           </div>
         )}
+
+        <div className="mt-6 space-y-1.5 text-center text-sm text-slate-600">
+          <p>
+            <span className="font-semibold text-slate-800">Address: </span>
+            {SITE_ADDRESS_LINES.join(", ")}
+          </p>
+          <p>
+            <span className="font-semibold text-slate-800">{SITE_NTN.label}: </span>
+            <span className="tabular-nums font-medium text-slate-800">{SITE_NTN.value}</span>
+          </p>
+        </div>
 
         <p className="pt-4 text-center font-serif text-2xl italic text-[#103a2a]/80">
         Crafted with care. Delivered with trust.
