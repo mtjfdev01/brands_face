@@ -57,7 +57,10 @@ export default function AdminNewProductOrderPage() {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const [messageTone, setMessageTone] = useState<"success" | "error" | "warning">("warning");
   const [invoiceUrl, setInvoiceUrl] = useState("");
+  const [orderId, setOrderId] = useState<number | null>(null);
+  const [emailSending, setEmailSending] = useState(false);
 
   const [customerSearch, setCustomerSearch] = useState("");
   const [searchHits, setSearchHits] = useState<CustomerHit[]>([]);
@@ -142,18 +145,50 @@ export default function AdminNewProductOrderPage() {
     if (!invoiceUrl) return;
     try {
       await navigator.clipboard.writeText(invoiceUrl);
+      setMessageTone("success");
       setMessage("Invoice link copied.");
     } catch {
+      setMessageTone("warning");
       setMessage("Could not copy — select the URL manually.");
     }
   }, [invoiceUrl]);
 
+  const sendInvoiceEmail = useCallback(async () => {
+    if (!orderId) return;
+    setEmailSending(true);
+    setMessage("");
+    try {
+      const res = await fetch(`/api/admin/product-orders/${orderId}/send-invoice`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: email.trim() || undefined }),
+      });
+      const data = (await res.json()) as { message?: string };
+      if (!res.ok) {
+        setMessageTone("error");
+        setMessage(data.message ?? "Failed to send invoice email.");
+        return;
+      }
+      setMessageTone("success");
+      setMessage(data.message ?? "Invoice email sent.");
+    } catch {
+      setMessageTone("error");
+      setMessage("Failed to send invoice email.");
+    } finally {
+      setEmailSending(false);
+    }
+  }, [email, orderId]);
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setMessage("");
+    setMessageTone("warning");
     setInvoiceUrl("");
+    setOrderId(null);
 
     if (!fullName.trim() || !EMAIL_REGEX.test(email.trim())) {
+      setMessageTone("warning");
       setMessage("Customer name and valid email are required.");
       return;
     }
@@ -165,14 +200,17 @@ export default function AdminNewProductOrderPage() {
       const qty = parseInt(l.quantity, 10);
       const ppp = Number(l.pricePerPiece);
       if (!title) {
+        setMessageTone("warning");
         setMessage(`Product ${i + 1}: name is required.`);
         return;
       }
       if (!Number.isInteger(qty) || qty <= 0) {
+        setMessageTone("warning");
         setMessage(`Product ${i + 1}: enter a valid quantity.`);
         return;
       }
       if (!Number.isFinite(ppp) || ppp < 0) {
+        setMessageTone("warning");
         setMessage(`Product ${i + 1}: enter a valid price per item.`);
         return;
       }
@@ -181,6 +219,7 @@ export default function AdminNewProductOrderPage() {
       if (l.discountedLineTotal.trim() !== "") {
         discountedLineTotal = Number(l.discountedLineTotal);
         if (!Number.isFinite(discountedLineTotal) || discountedLineTotal < 0) {
+          setMessageTone("warning");
           setMessage(`Product ${i + 1}: discounted line total is invalid.`);
           return;
         }
@@ -200,6 +239,7 @@ export default function AdminNewProductOrderPage() {
     if (orderDiscountedGrandTotal.trim() !== "") {
       discountedGrandTotal = Number(orderDiscountedGrandTotal);
       if (!Number.isFinite(discountedGrandTotal) || discountedGrandTotal < 0) {
+        setMessageTone("warning");
         setMessage("Discounted grand total is invalid.");
         return;
       }
@@ -233,11 +273,14 @@ export default function AdminNewProductOrderPage() {
         invoiceUrl?: string;
       };
       if (!res.ok) {
+        setMessageTone("error");
         setMessage(data.message ?? "Failed to create order.");
         return;
       }
       if (data.invoiceUrl) {
         setInvoiceUrl(data.invoiceUrl);
+        if (data.id) setOrderId(data.id);
+        setMessageTone("success");
         setMessage(data.message ?? "Order created. Invoice link is ready below.");
         return;
       }
@@ -245,6 +288,7 @@ export default function AdminNewProductOrderPage() {
         router.push("/admin/product-orders");
       }
     } catch {
+      setMessageTone("error");
       setMessage("Request failed.");
     } finally {
       setSubmitting(false);
@@ -267,9 +311,11 @@ export default function AdminNewProductOrderPage() {
       {message && (
         <div
           className={`rounded-xl border px-4 py-3 text-sm ${
-            invoiceUrl
+            messageTone === "success"
               ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-              : "border-amber-200 bg-amber-50 text-amber-900"
+              : messageTone === "error"
+                ? "border-rose-200 bg-rose-50 text-rose-900"
+                : "border-amber-200 bg-amber-50 text-amber-900"
           }`}
         >
           {message}
@@ -296,6 +342,14 @@ export default function AdminNewProductOrderPage() {
             >
               Open invoice
             </a>
+            <button
+              type="button"
+              onClick={() => void sendInvoiceEmail()}
+              disabled={emailSending || !orderId}
+              className="rounded-lg border border-[#103a2a]/30 bg-white px-4 py-2 text-xs font-semibold text-[#103a2a] hover:bg-[#103a2a]/5 disabled:opacity-50"
+            >
+              {emailSending ? "Sending…" : "Send via email"}
+            </button>
             <Link
               href="/admin/product-orders"
               className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-800 hover:bg-slate-50"

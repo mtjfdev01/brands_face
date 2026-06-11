@@ -44,7 +44,9 @@ type EditState = {
   saving: boolean;
   checkoutLoading: boolean;
   invoiceWorking: boolean;
+  invoiceEmailSending: boolean;
   invoiceFlash: string;
+  invoiceFlashError: boolean;
   message: string;
 };
 
@@ -117,7 +119,9 @@ export default function AdminProductOrdersPage() {
             saving: false,
             checkoutLoading: false,
             invoiceWorking: false,
+            invoiceEmailSending: false,
             invoiceFlash: "",
+            invoiceFlashError: false,
             message: "",
           };
           return acc;
@@ -244,6 +248,38 @@ export default function AdminProductOrdersPage() {
       patchField(o.id, { invoiceFlash: "Copied to clipboard." });
     } catch {
       patchField(o.id, { invoiceFlash: "Could not copy — copy the URL manually." });
+    }
+  };
+
+  const sendInvoiceEmail = async (o: OrderRow) => {
+    patchField(o.id, { invoiceEmailSending: true, invoiceFlash: "", invoiceFlashError: false, message: "" });
+    try {
+      const res = await fetch(`/api/admin/product-orders/${o.id}/send-invoice`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: o.email }),
+      });
+      const data = (await res.json()) as { message?: string };
+      if (!res.ok) {
+        patchField(o.id, {
+          invoiceEmailSending: false,
+          invoiceFlash: data.message ?? "Email failed.",
+          invoiceFlashError: true,
+        });
+        return;
+      }
+      patchField(o.id, {
+        invoiceEmailSending: false,
+        invoiceFlash: data.message ?? `Invoice sent to ${o.email}.`,
+        invoiceFlashError: false,
+      });
+    } catch {
+      patchField(o.id, {
+        invoiceEmailSending: false,
+        invoiceFlash: "Email request failed.",
+        invoiceFlashError: true,
+      });
     }
   };
 
@@ -416,7 +452,11 @@ export default function AdminProductOrdersPage() {
                       <p className="mt-2 break-all font-mono text-[11px] text-slate-600">{invoiceUrlFor(o)}</p>
                     )}
                     {edit.invoiceFlash && (
-                      <p className="mt-2 text-xs font-medium text-emerald-800">{edit.invoiceFlash}</p>
+                      <p
+                        className={`mt-2 text-xs font-medium ${edit.invoiceFlashError ? "text-rose-700" : "text-emerald-800"}`}
+                      >
+                        {edit.invoiceFlash}
+                      </p>
                     )}
                     <div className="mt-3 flex flex-wrap gap-2">
                       <button
@@ -443,6 +483,14 @@ export default function AdminProductOrdersPage() {
                             className="rounded-lg bg-slate-800 px-3 py-2 text-xs font-semibold text-white hover:bg-slate-900"
                           >
                             Copy URL
+                          </button>
+                          <button
+                            type="button"
+                            disabled={edit.invoiceEmailSending || edit.invoiceWorking}
+                            onClick={() => void sendInvoiceEmail(o)}
+                            className="rounded-lg border border-[#103a2a]/30 bg-[#103a2a]/5 px-3 py-2 text-xs font-semibold text-[#103a2a] hover:bg-[#103a2a]/10 disabled:opacity-50"
+                          >
+                            {edit.invoiceEmailSending ? "Sending…" : "Send via email"}
                           </button>
                         </>
                       )}
