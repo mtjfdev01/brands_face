@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { dbQuery } from "@/lib/postgres";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
+import { PAYFAST_IPN_AUTO_UPDATE_PAYMENT_STATUS } from "@/lib/productOrderPaymentStatus";
 
 export const dynamic = "force-dynamic";
 
@@ -57,6 +58,12 @@ export async function POST(request: Request) {
       respCode === "";
 
     await ensureProductOrderSchema();
+
+    // Auto payment_status updates disabled — admin sets invoice payment status manually.
+    if (!PAYFAST_IPN_AUTO_UPDATE_PAYMENT_STATUS) {
+      console.info("payfast ipn (ignored for payment_status):", { orderId, respCode, successLike });
+      return new NextResponse("OK", { status: 200 });
+    }
 
     if (successLike) {
       await dbQuery(

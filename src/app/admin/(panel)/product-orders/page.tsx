@@ -7,6 +7,10 @@ import {
   PRODUCT_ORDER_STATUS_LABELS,
   type ProductOrderStatus,
 } from "@/lib/productOrderStatus";
+import {
+  PRODUCT_ORDER_PAYMENT_STATUSES,
+  PRODUCT_ORDER_PAYMENT_STATUS_LABELS,
+} from "@/lib/productOrderPaymentStatus";
 import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
 import { isCheckoutPhoneOk } from "@/lib/payfastPhone";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
@@ -39,6 +43,7 @@ type OrderRow = {
 
 type EditState = {
   status: string;
+  paymentStatus: string;
   adminNotes: string;
   contactPhone: string;
   saving: boolean;
@@ -114,6 +119,7 @@ export default function AdminProductOrdersPage() {
         rows.reduce<Record<number, EditState>>((acc, o) => {
           acc[o.id] = {
             status: o.status,
+            paymentStatus: o.payment_status,
             adminNotes: o.admin_notes ?? "",
             contactPhone: o.phone ?? "",
             saving: false,
@@ -153,14 +159,14 @@ export default function AdminProductOrdersPage() {
       const res = await fetch(`/api/admin/product-orders/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status, adminNotes: e.adminNotes }),
+        body: JSON.stringify({ status, paymentStatus: e.paymentStatus, adminNotes: e.adminNotes }),
       });
       const data = (await res.json()) as { message?: string };
       if (!res.ok) {
         patchField(id, { saving: false, message: data.message ?? "Save failed" });
         return;
       }
-      patchField(id, { saving: false, message: "Saved.", status });
+      patchField(id, { saving: false, message: "Saved.", status, paymentStatus: e.paymentStatus });
       await load();
     } catch {
       patchField(id, { saving: false, message: "Save failed" });
@@ -567,7 +573,7 @@ export default function AdminProductOrdersPage() {
 
                     <div className="flex flex-wrap items-end gap-3">
                       <label className="text-sm font-medium text-slate-700">
-                        Status
+                        Order status
                         <select
                           value={edit.status}
                           onChange={(e) => patchField(o.id, { status: e.target.value })}
@@ -576,6 +582,20 @@ export default function AdminProductOrdersPage() {
                           {PRODUCT_ORDER_STATUSES.map((opt) => (
                             <option key={opt} value={opt}>
                               {PRODUCT_ORDER_STATUS_LABELS[opt]}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <label className="text-sm font-medium text-slate-700">
+                        Invoice payment
+                        <select
+                          value={edit.paymentStatus}
+                          onChange={(e) => patchField(o.id, { paymentStatus: e.target.value })}
+                          className="mt-1 block w-52 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm"
+                        >
+                          {PRODUCT_ORDER_PAYMENT_STATUSES.map((opt) => (
+                            <option key={opt} value={opt}>
+                              {PRODUCT_ORDER_PAYMENT_STATUS_LABELS[opt]}
                             </option>
                           ))}
                         </select>

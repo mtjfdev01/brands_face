@@ -3,11 +3,13 @@ import { dbQuery } from "@/lib/postgres";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
 import { getAdminSessionFromRequest } from "@/lib/adminAuth";
 import { isProductOrderStatus } from "@/lib/productOrderStatus";
+import { isProductOrderPaymentStatus } from "@/lib/productOrderPaymentStatus";
 
 /** Updates only; rows are never deleted — use status `cancelled` to close an order. */
 
 type PatchBody = {
   status?: string;
+  paymentStatus?: string;
   adminNotes?: string | null;
   phone?: string | null;
 };
@@ -27,10 +29,11 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
     const body = (await request.json()) as PatchBody;
     const hasStatus = typeof body.status !== "undefined";
+    const hasPaymentStatus = typeof body.paymentStatus !== "undefined";
     const hasNotes = typeof body.adminNotes !== "undefined";
     const hasPhone = typeof body.phone !== "undefined";
 
-    if (!hasStatus && !hasNotes && !hasPhone) {
+    if (!hasStatus && !hasPaymentStatus && !hasNotes && !hasPhone) {
       return NextResponse.json({ message: "Nothing to update." }, { status: 400 });
     }
 
@@ -45,6 +48,18 @@ export async function PATCH(request: Request, { params }: { params: { id: string
       }
       updates.push(`status = $${idx++}`);
       values.push(status);
+    }
+
+    if (hasPaymentStatus) {
+      const paymentStatus = body.paymentStatus?.trim().toLowerCase() ?? "";
+      if (!isProductOrderPaymentStatus(paymentStatus)) {
+        return NextResponse.json({ message: "Invalid payment status." }, { status: 400 });
+      }
+      updates.push(`payment_status = $${idx++}`);
+      values.push(paymentStatus);
+      if (paymentStatus === "paid") {
+        updates.push(`gateway_error = NULL`);
+      }
     }
 
     if (hasNotes) {
