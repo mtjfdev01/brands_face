@@ -204,6 +204,21 @@ export function getAllCategorySlugs(): string[] {
   return HOME_CARDS.map((c) => c.category);
 }
 
+/** Unique PDP slugs from `CATEGORY_PAGE_CONFIG` (for sitemap / static params). */
+export function getAllCatalogProductSlugs(): string[] {
+  const seen = new Set<string>();
+  const slugs: string[] = [];
+  for (const cfg of CATEGORY_PAGE_CONFIG) {
+    for (const product of cfg.products) {
+      const slug = product.slug?.trim();
+      if (!slug || seen.has(slug)) continue;
+      seen.add(slug);
+      slugs.push(slug);
+    }
+  }
+  return slugs;
+}
+
 /** Tab id that shows every product in the list. */
 export const CATEGORY_TAB_ALL_ID = "all";
 
