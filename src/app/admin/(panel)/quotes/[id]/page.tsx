@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 type QuoteDetail = {
   id: number;
   phone: string | null;
+  email?: string | null;
   requirement: string | null;
   attachment_paths: string[] | null;
   status: string;
@@ -14,7 +15,6 @@ type QuoteDetail = {
   created_at: string;
   updated_at: string;
   full_name?: string | null;
-  email?: string | null;
   company?: string | null;
   width?: string | null;
   height?: string | null;
@@ -29,7 +29,18 @@ type QuoteDetail = {
 };
 
 function isImageUrl(url: string) {
-  return /\.(jpe?g|png|webp|gif)(\?|$)/i.test(url) || url.includes("amazonaws.com") || url.includes("cloudfront");
+  return (
+    /\.(jpe?g|png|webp|gif)(\?|$)/i.test(url) ||
+    url.includes("amazonaws.com") ||
+    url.includes("cloudfront")
+  );
+}
+
+function displayEmail(email: string | null | undefined) {
+  const value = (email ?? "").trim();
+  if (!value) return "—";
+  if (value.endsWith("@leads.brandsface.local")) return "—";
+  return value;
 }
 
 export default function AdminQuoteDetailPage({ params }: { params: { id: string } }) {
@@ -93,7 +104,7 @@ export default function AdminQuoteDetailPage({ params }: { params: { id: string 
           <div>
             <h1 className="text-2xl font-black text-slate-900">Quote Request #{params.id}</h1>
             <p className="mt-1 text-sm text-slate-600">
-              Phone, requirement, and any uploaded image from the quote form.
+              Email, phone, requirement, and any uploaded image from the quote form.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -125,6 +136,7 @@ export default function AdminQuoteDetailPage({ params }: { params: { id: string 
         ) : (
           <div className="space-y-5">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <Info label="Email" value={displayEmail(quote.email)} />
               <Info label="Phone" value={quote.phone || "—"} />
               <Info label="Status" value={quote.status} />
               <Info label="Counter Offer" value={quote.counter_offer ?? "—"} />
@@ -180,25 +192,24 @@ export default function AdminQuoteDetailPage({ params }: { params: { id: string 
                 </summary>
                 <div className="mt-4 grid gap-3 md:grid-cols-2">
                   <Info label="Full Name" value={quote.full_name || "—"} />
-                  <Info label="Email" value={quote.email || "—"} />
                   <Info label="Company" value={quote.company || "—"} />
-                  <Info label="Quantity" value={quote.quantity != null ? String(quote.quantity) : "—"} />
+                  <Info label="Quantity" value={quote.quantity != null ? String(quote.quantity) : "?"} />
                   <Info
                     label="Dimensions"
                     value={
                       Number(quote.width) || Number(quote.height) || Number(quote.depth)
                         ? `${quote.width} × ${quote.height} × ${quote.depth}`
-                        : "—"
+                        : "?"
                     }
                   />
                   <Info label="Material" value={quote.material || "—"} />
                   <Info label="Thickness" value={quote.thickness || "—"} />
                   <Info label="Finish" value={quote.finish || "—"} />
                   <Info label="Unboxing" value={quote.unboxing || "—"} />
-                  <Info label="Add-ons" value={quote.addons?.length ? quote.addons.join(", ") : "—"} />
+                  <Info label="Add-ons" value={quote.addons?.length ? quote.addons.join(", ") : "?"} />
                   <Info
                     label="Extra Finishes"
-                    value={quote.extra_finishes?.length ? quote.extra_finishes.join(", ") : "—"}
+                    value={quote.extra_finishes?.length ? quote.extra_finishes.join(", ") : "?"}
                   />
                 </div>
               </details>

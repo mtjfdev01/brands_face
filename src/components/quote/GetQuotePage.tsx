@@ -4,12 +4,14 @@ import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const fieldClass =
   "w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-4 text-base text-[#103a2a] placeholder:text-[#103a2a]/40 outline-none transition focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25";
 
 export default function GetQuotePage() {
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [requirement, setRequirement] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState("");
@@ -52,14 +54,26 @@ export default function GetQuotePage() {
     setFileError("");
 
     const phoneValue = phone.trim();
+    const emailValue = email.trim();
     const requirementValue = requirement.trim();
+    const phoneDigits = phoneValue.replace(/\D/g, "");
+    const hasPhone = phoneDigits.length >= 7;
+    const hasEmail = EMAIL_RE.test(emailValue);
 
-    if (!phoneValue) {
-      setSubmitError("Please enter your contact number.");
+    if (!phoneValue && !emailValue) {
+      setSubmitError("Please enter an email or a contact number.");
       return;
     }
-    if (phoneValue.replace(/\D/g, "").length < 7) {
+    if (phoneValue && !hasPhone) {
       setSubmitError("Please enter a valid contact number.");
+      return;
+    }
+    if (emailValue && !hasEmail) {
+      setSubmitError("Please enter a valid email address.");
+      return;
+    }
+    if (!hasPhone && !hasEmail) {
+      setSubmitError("Please enter an email or a contact number.");
       return;
     }
     if (!requirementValue) {
@@ -71,6 +85,7 @@ export default function GetQuotePage() {
       setIsSubmitting(true);
       const formData = new FormData();
       formData.append("phone", phoneValue);
+      formData.append("email", emailValue);
       formData.append("requirement", requirementValue);
       if (file) formData.append("attachment", file);
 
@@ -86,6 +101,7 @@ export default function GetQuotePage() {
 
       setSubmitted(true);
       setPhone("");
+      setEmail("");
       setRequirement("");
       clearFile();
     } catch {
@@ -101,7 +117,7 @@ export default function GetQuotePage() {
         <div className="mx-auto w-full max-w-2xl px-6 py-4 sm:px-10 sm:py-5">
           <h1 className="text-2xl font-bold text-[#103a2a] md:text-3xl">Get a Quote</h1>
           <p className="mt-1.5 text-sm text-[#103a2a]/70 sm:text-base">
-            Share your contact number and what you need — we&apos;ll get back to you soon.
+            Share your email or phone and what you need — we&apos;ll get back to you soon.
           </p>
 
           {submitted ? (
@@ -124,10 +140,31 @@ export default function GetQuotePage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={(e) => void handleSubmit(e)} className="mt-5 space-y-5">
+            <form onSubmit={(e) => void handleSubmit(e)} className="mt-5 space-y-5" noValidate>
+              <p className="rounded-xl border border-[#103a2a]/10 bg-white/70 px-4 py-3 text-sm text-[#103a2a]/75">
+                Provide at least one: <span className="font-semibold text-[#103a2a]">email or phone</span>.
+              </p>
+
+              <div>
+                <label htmlFor="quote-email" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
+                  Email{" "}
+                  <span className="font-normal text-[#103a2a]/55">(or phone)</span>
+                </label>
+                <input
+                  id="quote-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  autoComplete="email"
+                  className={fieldClass}
+                />
+              </div>
+
               <div>
                 <label htmlFor="quote-phone" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
-                  Contact number <span className="text-rose-600">*</span>
+                  Contact number{" "}
+                  <span className="font-normal text-[#103a2a]/55">(or email)</span>
                 </label>
                 <input
                   id="quote-phone"
@@ -135,7 +172,6 @@ export default function GetQuotePage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Your contact number"
-                  required
                   autoComplete="tel"
                   className={fieldClass}
                 />
