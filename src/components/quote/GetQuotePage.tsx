@@ -1,155 +1,93 @@
 "use client";
 
-import { useState } from "react";
-import QuoteAccordionGrid from "./QuoteAccordionGrid";
-import OptionCard from "./OptionCard";
+import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 
-/* ── Option data ── */
+const MAX_FILE_BYTES = 8 * 1024 * 1024;
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
 
-const MATERIALS = [
-  { id: "plain-white", label: "Plain White", desc: "Economical single-side coated cardstock" },
-  { id: "metalized", label: "Metalized", desc: "Premium metallic foil effect surface" },
-  { id: "clear", label: "Clear / Large", desc: "Transparent, excellent for window boxes" },
-  { id: "eco-style", label: "Eco-Style+One", desc: "100% recyclable, premium kraft texture" },
-  { id: "foil", label: "Foil", desc: "Excellent metallic, premium and lustrous" },
-  { id: "kraft", label: "Kraft", desc: "Natural kraft, earthy premium feel" },
-];
+const fieldClass =
+  "w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-4 text-base text-[#103a2a] placeholder:text-[#103a2a]/40 outline-none transition focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25";
 
-const THICKNESSES = [
-  { id: "60", label: "60 microns", desc: "Ultra-light" },
-  { id: "80", label: "80 microns", desc: "Lightweight" },
-  { id: "100", label: "100 microns", desc: "Standard" },
-  { id: "110", label: "110 microns", desc: "Medium" },
-  { id: "130", label: "130 microns", desc: "Sturdy" },
-  { id: "150", label: "150 microns", desc: "Heavy-duty" },
-  { id: "140", label: "140 microns", desc: "Premium" },
-  { id: "180", label: "180 microns", desc: "Extra rigid" },
-];
-
-const ADDONS = [
-  { id: "tear-notch", label: "Tear Notch", desc: "Easy-open for consumer convenience" },
-  { id: "hang-hole", label: "Hang Hole", desc: "Die-cut hole for retail hanging" },
-  { id: "child-resistant", label: "Child Resistant", desc: "Secure child-proof mechanism" },
-  { id: "zipper", label: "Press to Close Zipper", desc: "Resealable closure for freshness" },
-];
-
-const FINISHES = [
-  { id: "gloss-lam", label: "Gloss Laminated", desc: "Thin flexible shiny protective film" },
-  { id: "foil-drip", label: "Foil Drip UV", desc: "UV coated gloss for a rich, vibrant look" },
-  { id: "soft-touch", label: "Soft-touch Lamination", desc: "Velvety smooth soft-touch feel" },
-  { id: "matte-lam", label: "Matte Lamination", desc: "Elegant smooth matte finish" },
-  { id: "spot-gloss", label: "Spot Gloss", desc: "Selective gloss coating for contrast" },
-];
-
-const EXTRA_FINISHES = [
-  { id: "embossing", label: "Embossing", desc: "Raised text or pattern for tactile appeal" },
-  { id: "deep-emboss", label: "Deep Embossing", desc: "Extra-deep relief for bold texture" },
-  { id: "3d-uv", label: "3D Raised UV", desc: "Rich raised UV coating with a glossy feel" },
-  { id: "window", label: "Window", desc: "Die-cut window for product visibility" },
-  { id: "holo-foil", label: "Holographic Foiling", desc: "Iridescent foil for premium appeal" },
-  { id: "hot-stamp", label: "Hot Stamp Foil", desc: "Metallic stamped foil for luxury detail" },
-];
-
-const UNBOXING_OPTIONS = [
-  { id: "fit-inside", label: "Fit Inside", desc: "Inner tray fits snugly inside the box" },
-  { id: "fit-outside", label: "Fit Outside", desc: "Outer sleeve wraps around the tray" },
-];
-
-const QUANTITY_PRESETS = [100, 500, 1000, 2000, 5000];
-
-/* ── Main component ── */
 export default function GetQuotePage() {
-  /* Form state */
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
-
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
-  const [depth, setDepth] = useState("");
-
-  const [material, setMaterial] = useState<string | null>(null);
-  const [thickness, setThickness] = useState<string | null>(null);
-  const [addons, setAddons] = useState<Set<string>>(new Set());
-  const [finish, setFinish] = useState<string | null>(null);
-  const [extraFinishes, setExtraFinishes] = useState<Set<string>>(new Set());
-  const [unboxing, setUnboxing] = useState<string | null>(null);
-  const [quantity, setQuantity] = useState<number | null>(null);
-  const [customQty, setCustomQty] = useState("");
+  const [requirement, setRequirement] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [submitSuccess, setSubmitSuccess] = useState("");
-  // const [previewImageError, setPreviewImageError] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const toggleAddon = (id: string) => {
-    setAddons((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFileError("");
+    const next = e.target.files?.[0] ?? null;
+    if (!next) {
+      setFile(null);
+      return;
+    }
+    if (!ACCEPTED_TYPES.includes(next.type)) {
+      setFileError("Please upload a JPG, PNG, or WEBP image.");
+      setFile(null);
+      e.target.value = "";
+      return;
+    }
+    if (next.size > MAX_FILE_BYTES) {
+      setFileError("Image must be 8 MB or smaller.");
+      setFile(null);
+      e.target.value = "";
+      return;
+    }
+    setFile(next);
   };
 
-  const toggleExtraFinish = (id: string) => {
-    setExtraFinishes((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+  const clearFile = () => {
+    setFile(null);
+    setFileError("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitError("");
-    setSubmitSuccess("");
+    setFileError("");
 
-    const parsedWidth = Number(width);
-    const parsedHeight = Number(height);
-    const parsedDepth = Number(depth);
-    const parsedQuantity = quantity ?? Number(customQty);
+    const phoneValue = phone.trim();
+    const requirementValue = requirement.trim();
 
-    if (![parsedWidth, parsedHeight, parsedDepth].every((value) => Number.isFinite(value) && value > 0)) {
-      setSubmitError("Please enter valid dimensions (width, height, depth).");
+    if (!phoneValue) {
+      setSubmitError("Please enter your contact number.");
       return;
     }
-
-    if (!Number.isInteger(parsedQuantity) || parsedQuantity <= 0) {
-      setSubmitError("Please select or enter a valid quantity.");
+    if (phoneValue.replace(/\D/g, "").length < 7) {
+      setSubmitError("Please enter a valid contact number.");
       return;
     }
-
-    const formData = {
-      fullName,
-      email,
-      phone,
-      company,
-      dimensions: { width: parsedWidth, height: parsedHeight, depth: parsedDepth },
-      material,
-      thickness,
-      addons: Array.from(addons),
-      finish,
-      extraFinishes: Array.from(extraFinishes),
-      unboxing,
-      quantity: parsedQuantity,
-    };
+    if (!requirementValue) {
+      setSubmitError("Please type your requirement.");
+      return;
+    }
 
     try {
       setIsSubmitting(true);
+      const formData = new FormData();
+      formData.append("phone", phoneValue);
+      formData.append("requirement", requirementValue);
+      if (file) formData.append("attachment", file);
+
       const response = await fetch("/api/quotes", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formData,
       });
-
       const data = (await response.json()) as { message?: string };
       if (!response.ok) {
         setSubmitError(data.message ?? "Unable to submit quote right now.");
         return;
       }
 
-      setSubmitSuccess(data.message ?? "Quote request submitted successfully.");
+      setSubmitted(true);
+      setPhone("");
+      setRequirement("");
+      clearFile();
     } catch {
       setSubmitError("Unable to submit quote right now. Please try again.");
     } finally {
@@ -160,305 +98,109 @@ export default function GetQuotePage() {
   return (
     <div className="min-h-screen bg-[#f5f0ea]">
       <main id="quote-form" className="w-full scroll-mt-24">
-        <div className="mx-auto w-full max-w-[1600px] px-6 py-6 sm:px-10 lg:px-16 lg:py-8">
-          <div className="w-full">
-            <h2 className="mb-3 text-2xl font-bold text-[#103a2a] md:text-3xl">
-              Product Details
-            </h2>
+        <div className="mx-auto w-full max-w-2xl px-6 py-4 sm:px-10 sm:py-5">
+          <h1 className="text-2xl font-bold text-[#103a2a] md:text-3xl">Get a Quote</h1>
+          <p className="mt-1.5 text-sm text-[#103a2a]/70 sm:text-base">
+            Share your contact number and what you need — we&apos;ll get back to you soon.
+          </p>
 
-            <form onSubmit={handleSubmit}>
-              <QuoteAccordionGrid
-                sections={[
-                  {
-                    id: "details",
-                    title: "Enter your details",
-                    content: (
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        <input
-                          type="text"
-                          placeholder="Your Full Name"
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                          required
-                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                        />
-                        <input
-                          type="email"
-                          placeholder="Your Email Address"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                        />
-                        <input
-                          type="tel"
-                          placeholder="(555) 555-0000 (your area)"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                        />
-                        <input
-                          type="text"
-                          placeholder="Your Company"
-                          value={company}
-                          onChange={(e) => setCompany(e.target.value)}
-                          className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-6 py-4 text-lg text-[#103a2a] placeholder:text-[#103a2a]/35 outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                        />
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "dimensions",
-                    title: "Dimension",
-                    required: true,
-                    content: (
-                      <div className="flex items-center gap-4">
-                        <div className="flex-1">
-                          <label className="mb-1.5 block text-base text-[#103a2a]/70">Width</label>
-                          <input
-                            type="number"
-                            placeholder="Width"
-                            value={width}
-                            onChange={(e) => setWidth(e.target.value)}
-                            min={0}
-                            step={0.1}
-                            className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                          />
-                        </div>
-                        <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
-                        <div className="flex-1">
-                          <label className="mb-1.5 block text-base text-[#103a2a]/70">Height</label>
-                          <input
-                            type="number"
-                            placeholder="Height"
-                            value={height}
-                            onChange={(e) => setHeight(e.target.value)}
-                            min={0}
-                            step={0.1}
-                            className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                          />
-                        </div>
-                        <span className="mt-7 text-xl text-[#103a2a]/25">×</span>
-                        <div className="flex-1">
-                          <label className="mb-1.5 block text-base text-[#103a2a]/70">Depth</label>
-                          <input
-                            type="number"
-                            placeholder="Depth"
-                            value={depth}
-                            onChange={(e) => setDepth(e.target.value)}
-                            min={0}
-                            step={0.1}
-                            className="w-full rounded-xl border border-[#103a2a]/15 bg-white px-5 py-3.5 text-lg text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                          />
-                        </div>
-                        <span className="mt-7 text-base text-[#103a2a]/45">in</span>
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "material",
-                    title: "Material",
-                    count: MATERIALS.length,
-                    content: (
-                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                        {MATERIALS.map((m) => (
-                          <OptionCard
-                            key={m.id}
-                            label={m.label}
-                            description={m.desc}
-                            selected={material === m.id}
-                            onClick={() => setMaterial(m.id)}
-                          />
-                        ))}
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "thickness",
-                    title: "Thickness",
-                    count: THICKNESSES.length,
-                    content: (
-                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                        {THICKNESSES.map((t) => (
-                          <OptionCard
-                            key={t.id}
-                            label={t.label}
-                            description={t.desc}
-                            selected={thickness === t.id}
-                            onClick={() => setThickness(t.id)}
-                          />
-                        ))}
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "addons",
-                    title: "Add ons",
-                    count: ADDONS.length,
-                    content: (
-                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                        {ADDONS.map((a) => (
-                          <OptionCard
-                            key={a.id}
-                            label={a.label}
-                            description={a.desc}
-                            selected={addons.has(a.id)}
-                            onClick={() => toggleAddon(a.id)}
-                          />
-                        ))}
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "finishes",
-                    title: "Finishes",
-                    count: FINISHES.length,
-                    content: (
-                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
-                        {FINISHES.map((f) => (
-                          <OptionCard
-                            key={f.id}
-                            label={f.label}
-                            description={f.desc}
-                            selected={finish === f.id}
-                            onClick={() => setFinish(f.id)}
-                          />
-                        ))}
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "extra-finishes",
-                    title: "Extra Finishes",
-                    count: EXTRA_FINISHES.length,
-                    content: (
-                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
-                        {EXTRA_FINISHES.map((ef) => (
-                          <OptionCard
-                            key={ef.id}
-                            label={ef.label}
-                            description={ef.desc}
-                            selected={extraFinishes.has(ef.id)}
-                            onClick={() => toggleExtraFinish(ef.id)}
-                          />
-                        ))}
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "unboxing",
-                    title: "Unboxing",
-                    content: (
-                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-                        {UNBOXING_OPTIONS.map((u) => (
-                          <OptionCard
-                            key={u.id}
-                            label={u.label}
-                            description={u.desc}
-                            selected={unboxing === u.id}
-                            onClick={() => setUnboxing(u.id)}
-                          />
-                        ))}
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "quantity",
-                    title: "Quantity",
-                    required: true,
-                    content: (
-                      <div>
-                        <div className="flex flex-wrap gap-2">
-                          {QUANTITY_PRESETS.map((qty) => (
-                            <button
-                              key={qty}
-                              type="button"
-                              onClick={() => {
-                                setQuantity(qty);
-                                setCustomQty("");
-                              }}
-                              className={`rounded-xl border-2 px-5 py-2.5 text-sm font-medium transition-all ${
-                                quantity === qty
-                                  ? "border-[#103a2a] bg-emerald-50 text-[#103a2a]"
-                                  : "border-[#103a2a]/15 text-[#103a2a]/70 hover:border-[#103a2a]/35"
-                              }`}
-                            >
-                              {qty.toLocaleString()}
-                            </button>
-                          ))}
-                        </div>
-                        <div className="mt-3 flex items-center gap-2">
-                          <span className="text-xs text-[#103a2a]/65">Or enter custom:</span>
-                          <input
-                            type="number"
-                            placeholder="Custom qty"
-                            value={customQty}
-                            onChange={(e) => {
-                              setCustomQty(e.target.value);
-                              setQuantity(null);
-                            }}
-                            min={1}
-                            className="w-32 rounded-xl border border-[#103a2a]/15 bg-white px-3 py-2 text-sm text-[#103a2a] outline-none transition-all focus:border-[#103a2a]/45 focus:ring-1 focus:ring-[#103a2a]/25"
-                          />
-                        </div>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
-
-              <div className="mt-4 py-4 sm:mt-5">
-                {submitError ? (
-                  <p className="mb-3 text-sm font-medium text-red-600">{submitError}</p>
-                ) : null}
-                {submitSuccess ? (
-                  <p className="mb-3 text-sm font-medium text-emerald-700">{submitSuccess}</p>
-                ) : null}
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-[var(--color-brand-primary)] text-white text-sm font-semibold py-4 rounded-xl hover:bg-[var(--color-cta-hover)] transition-colors shadow-lg hover:shadow-xl active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Quote Request"}
-                </button>
-                <p className="mt-3 text-center text-xs text-[#103a2a]/55">
-                  We&apos;ll respond within 24 hours with a detailed quote
-                  tailored to your requirements.
-                </p>
-                <p className="mt-1 text-center text-[11px] text-[#103a2a]/45">
-                  Attachment upload is intentionally skipped for now and will be added after storage integration.
-                </p>
+          {submitted ? (
+            <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-8 text-center shadow-sm">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-            </form>
-          </div>
-
-          {/* Right: Sticky product image — disabled for now */}
-          {/*
-          <div className="hidden lg:block w-full lg:w-1/2 xl:w-[45%]">
-            <div className="sticky top-20">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#103a2a]/20">
-                <Image
-                  src="/products/quote-showcase.jpg"
-                  alt="Custom packaging products showcase"
-                  fill
-                  className="object-cover"
-                  sizes="50vw"
-                  priority
-                  onError={() => setPreviewImageError(true)}
-                />
-                {previewImageError ? (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#103a2a]/95 to-[#1a3a2a]/95">
-                    ...
-                  </div>
-                ) : null}
-              </div>
-              <div className="mt-4 rounded-2xl border border-[#103a2a]/10 bg-white/90 p-5 backdrop-blur-sm">
-                ...
-              </div>
+              <h2 className="mt-5 text-xl font-bold text-[#103a2a]">Thank you!</h2>
+              <p className="mt-2 text-sm leading-relaxed text-[#103a2a]/80 sm:text-base">
+                Your quote request has been received. We will contact you soon.
+              </p>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                className="mt-6 rounded-xl border border-[#103a2a]/20 bg-white px-5 py-2.5 text-sm font-semibold text-[#103a2a] transition hover:bg-[#103a2a]/5"
+              >
+                Submit another request
+              </button>
             </div>
-          </div>
-          */}
+          ) : (
+            <form onSubmit={(e) => void handleSubmit(e)} className="mt-5 space-y-5">
+              <div>
+                <label htmlFor="quote-phone" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
+                  Contact number <span className="text-rose-600">*</span>
+                </label>
+                <input
+                  id="quote-phone"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="Your contact number"
+                  required
+                  autoComplete="tel"
+                  className={fieldClass}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="quote-requirement" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
+                  Requirement <span className="text-rose-600">*</span>
+                </label>
+                <textarea
+                  id="quote-requirement"
+                  value={requirement}
+                  onChange={(e) => setRequirement(e.target.value)}
+                  placeholder="Type Your requirement"
+                  required
+                  rows={3}
+                  className={`${fieldClass} min-h-[5.5rem] resize-y py-3`}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="quote-file" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
+                  Related image <span className="font-normal text-[#103a2a]/55">(optional)</span>
+                </label>
+                <div className="rounded-xl border border-dashed border-[#103a2a]/25 bg-white px-3 py-2.5">
+                  <input
+                    ref={fileInputRef}
+                    id="quote-file"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"
+                    onChange={onFileChange}
+                    className="block w-full text-sm text-[#103a2a]/80 file:mr-3 file:rounded-lg file:border-0 file:bg-[#103a2a] file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-[#0c2e22]"
+                  />
+                  <p className="mt-1 text-xs text-[#103a2a]/55">JPG, PNG, or WEBP — max 8 MB</p>
+                  {file ? (
+                    <div className="mt-1.5 flex items-center justify-between gap-3 rounded-lg bg-[#103a2a]/5 px-2.5 py-1.5 text-sm text-[#103a2a]">
+                      <span className="min-w-0 truncate font-medium">{file.name}</span>
+                      <button
+                        type="button"
+                        onClick={clearFile}
+                        className="shrink-0 text-xs font-semibold text-rose-700 hover:underline"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ) : null}
+                  {fileError ? <p className="mt-1 text-sm font-medium text-rose-600">{fileError}</p> : null}
+                </div>
+              </div>
+
+              {submitError ? (
+                <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">
+                  {submitError}
+                </p>
+              ) : null}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full rounded-xl bg-[var(--color-brand-primary,#103a2a)] py-4 text-sm font-semibold text-white shadow-lg transition hover:bg-[var(--color-cta-hover,#0c2e22)] hover:shadow-xl active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isSubmitting ? "Submitting…" : "Submit Quote Request"}
+              </button>
+            </form>
+          )}
         </div>
       </main>
     </div>

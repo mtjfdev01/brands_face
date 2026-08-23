@@ -189,9 +189,9 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
 
         <div className="mx-auto max-w-xl px-6 pb-12 pt-4 sm:px-8 sm:pb-14 sm:pt-5">
           <div className="grid grid-cols-1 gap-3">
-            <Link href="/audit" className="primary_btn w-full">
-              Get Free Packaging Audit
-              <span className="primary_btn__icon">
+            <Link href="/quote" className="primary_btn w-full">
+            Get a Quote For Your Product
+            <span className="primary_btn__icon">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden className="h-4 w-4">
                   <path
                     d="M7 17L17 7M10 7h7v7"
@@ -204,12 +204,13 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
               </span>
             </Link>
 
-            {/* <Link
-              href="/catalog"
+            <Link
+              href="/audit"
               className="inline-flex w-full items-center justify-center rounded-xl border border-white/15 bg-white/[0.03] px-5 py-3.5 text-sm font-semibold text-white/85 backdrop-blur transition-colors active:scale-[0.99]"
             >
-              See How We Work
-            </Link> */}
+              Get Free Packaging Audit
+
+            </Link>
           </div>
         </div>
       </div>

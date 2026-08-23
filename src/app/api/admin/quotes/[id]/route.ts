@@ -26,6 +26,8 @@ type QuoteDetailRow = {
   extra_finishes: string[];
   unboxing: string | null;
   quantity: number;
+  requirement: string | null;
+  attachment_paths: string[] | null;
   status: string;
   counter_offer: string | null;
   created_at: string;
@@ -62,6 +64,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
         extra_finishes,
         unboxing,
         quantity,
+        requirement,
+        attachment_paths,
         status,
         counter_offer,
         created_at,
@@ -148,5 +152,34 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   } catch (error) {
     console.error("Admin quote update error:", error);
     return NextResponse.json({ message: "Unable to update quote right now." }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+  try {
+    const session = getAdminSessionFromRequest(request);
+    if (!session) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    await ensureQuoteSchema();
+    const quoteId = Number(params.id);
+    if (!Number.isInteger(quoteId) || quoteId <= 0) {
+      return NextResponse.json({ message: "Invalid quote id." }, { status: 400 });
+    }
+
+    const result = await dbQuery<{ id: number }>(
+      `DELETE FROM quote_requests WHERE id = $1 RETURNING id`,
+      [quoteId],
+    );
+
+    if (!result.rowCount) {
+      return NextResponse.json({ message: "Quote not found." }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Quote deleted." }, { status: 200 });
+  } catch (error) {
+    console.error("Admin quote delete error:", error);
+    return NextResponse.json({ message: "Unable to delete quote right now." }, { status: 500 });
   }
 }

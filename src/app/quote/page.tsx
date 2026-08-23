@@ -4,7 +4,7 @@ import GetQuotePage from "@/components/quote/GetQuotePage";
 export const metadata: Metadata = {
   title: "Get a Custom Quote | Brands Face",
   description:
-    "Request a custom packaging quote. Choose materials, finishes, dimensions, and quantities — we'll respond within 24 hours with a tailored quote.",
+    "Request a custom packaging quote. Share your contact number and requirements — we'll get back to you soon.",
 };
 
 export default function QuotePage() {

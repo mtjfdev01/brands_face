@@ -7,24 +7,12 @@ export const dynamic = "force-dynamic";
 
 type QuoteRow = {
   id: number;
-  full_name: string;
-  email: string;
   phone: string | null;
-  company: string | null;
-  width: string;
-  height: string;
-  depth: string;
-  material: string | null;
-  thickness: string | null;
-  addons: string[];
-  finish: string | null;
-  extra_finishes: string[];
-  unboxing: string | null;
-  quantity: number;
+  requirement: string | null;
+  attachment_paths: string[] | null;
   status: string;
   counter_offer: string | null;
   created_at: string;
-  updated_at: string;
 };
 
 export async function GET(request: Request) {
@@ -56,24 +44,12 @@ export async function GET(request: Request) {
     const result = await dbQuery<QuoteRow>(
       `SELECT
         id,
-        full_name,
-        email,
         phone,
-        company,
-        width,
-        height,
-        depth,
-        material,
-        thickness,
-        addons,
-        finish,
-        extra_finishes,
-        unboxing,
-        quantity,
+        requirement,
+        attachment_paths,
         status,
         counter_offer,
-        created_at,
-        updated_at
+        created_at
       FROM quote_requests
       ${whereSql}
       ORDER BY created_at DESC`,
