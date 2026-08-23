@@ -116,9 +116,6 @@ export default function GetQuotePage() {
       <main id="quote-form" className="w-full scroll-mt-24">
         <div className="mx-auto w-full max-w-2xl px-6 py-4 sm:px-10 sm:py-5">
           <h1 className="text-2xl font-bold text-[#103a2a] md:text-3xl">Get a Quote</h1>
-          <p className="mt-1.5 text-sm text-[#103a2a]/70 sm:text-base">
-            Share your email or phone and what you need — we&apos;ll get back to you soon.
-          </p>
 
           {submitted ? (
             <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-8 text-center shadow-sm">
@@ -141,14 +138,9 @@ export default function GetQuotePage() {
             </div>
           ) : (
             <form onSubmit={(e) => void handleSubmit(e)} className="mt-5 space-y-5" noValidate>
-              <p className="rounded-xl border border-[#103a2a]/10 bg-white/70 px-4 py-3 text-sm text-[#103a2a]/75">
-                Provide at least one: <span className="font-semibold text-[#103a2a]">email or phone</span>.
-              </p>
-
               <div>
                 <label htmlFor="quote-email" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
-                  Email{" "}
-                  <span className="font-normal text-[#103a2a]/55">(or phone)</span>
+                  Email
                 </label>
                 <input
                   id="quote-email"
@@ -163,8 +155,7 @@ export default function GetQuotePage() {
 
               <div>
                 <label htmlFor="quote-phone" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
-                  Contact number{" "}
-                  <span className="font-normal text-[#103a2a]/55">(or email)</span>
+                  Contact number
                 </label>
                 <input
                   id="quote-phone"
