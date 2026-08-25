@@ -36,7 +36,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
       ],
       products: [
         {
-          slug: "art-card-tuck-end",
+          slug: "tuck-end-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Tuck End Art Card Box/download (5).jpg",
           detailImages: [
@@ -47,10 +47,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Tuck End Art Card Box",
           subtitle: "Standard folding carton — fast pack, sharp graphics on coated stock.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-tuck-end"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["tuck-end-art-card-box"]),
         },
         {
-          slug: "art-card-reverse-tuck-end",
+          slug: "reverse-tuck-end-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Reverse Tuck End Art Card Box/Eco-Friendly Tuck End Boxes for Bath Bomb Packaging.jpg",
           detailImages: [
@@ -61,10 +61,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Reverse Tuck End Art Card Box",
           subtitle: "Opposing tucks — balanced retail presentation and clean opening.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-reverse-tuck-end"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["reverse-tuck-end-art-card-box"]),
         },
         {
-          slug: "art-card-straight-tuck-end",
+          slug: "straight-tuck-end-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Straight Tuck End Art Card Box/A vibrant and minimal straight tuck end box design….jpg", 
           detailImages: [
@@ -75,10 +75,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Straight Tuck End Art Card Box",
           subtitle: "Same-side tucks — machine-friendly and hero-face friendly.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-straight-tuck-end"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["straight-tuck-end-art-card-box"]),
         },
         {
-          slug: "art-card-auto-lock-bottom",
+          slug: "auto-lock-bottom-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Auto Lock Bottom Art Card Box/Auto_Lock_Bottom_Tuck_Top_Front_Back_A.jpg",
           detailImages: [
@@ -89,10 +89,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Auto Lock Bottom Art Card Box",
           subtitle: "Pop-open base — quick assembly, stable for bottles and sets.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-auto-lock-bottom"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["auto-lock-bottom-art-card-box"]),
         },
         {
-          slug: "art-card-crash-lock-bottom",
+          slug: "crash-lock-bottom-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Crash Lock Bottom Art Card Box/Auto-lock-Boxes05-600x500.jpg",
           detailImages: [
@@ -103,10 +103,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Crash Lock Bottom Art Card Box",
           subtitle: "One-push crash base — high-throughput fulfilment lines.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-crash-lock-bottom"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["crash-lock-bottom-art-card-box"]),
         },
         {
-          slug: "art-card-sleeve",
+          slug: "sleeve-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Sleeve Art Card Box/aquira_500x500.png",
           detailImages: [
@@ -117,10 +117,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Sleeve Art Card Box",
           subtitle: "Slipcase sleeves — swap campaigns without retooling the inner tray.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-sleeve"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["sleeve-art-card-box"]),
         },
         {
-          slug: "art-card-pillow",
+          slug: "pillow-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Pillow Art Card Box/Custom pillow boxes are eye captivating and best….jpg",
           detailImages: [
@@ -131,10 +131,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Pillow Art Card Box",
           subtitle: "Compact curved pack — accessories, vouchers, small giftables.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-pillow"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["pillow-art-card-box"]),
         },
         {
-          slug: "art-card-window",
+          slug: "window-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Window Art Card Box/6 x Gift Boxes with Window Packaging Gift Boxes Wrapping Paper Boxes Party  _ eBay UK.jpg",
           detailImages: [
@@ -145,10 +145,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Window Art Card Box",
           subtitle: "PET window patches — product visibility with clean film edges.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-window"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["window-art-card-box"]),
         },
         {
-          slug: "art-card-hang-tab",
+          slug: "hang-tab-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Hang Tab Art Card Box/ChatGPT Image Mar 30, 2026, 11_13_58 AM.png",
           detailImages: [
@@ -159,10 +159,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Hang Tab Art Card Box",
           subtitle: "Peg-ready — integrated or applied tabs for retail strips.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-hang-tab"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["hang-tab-art-card-box"]),
         },
         {
-          slug: "art-card-two-piece",
+          slug: "two-piece-art-card-box",
           tabId: "core_products",
           cardImage: "/assets/images/categories/ART Card BOXES/Core Product Pages/Two-Piece Art Card Box/Aquira Solid Shampoo Packaging __ Behance.jpg",
           detailImages: [
@@ -173,10 +173,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Two-Piece Art Card Box",
           subtitle: "Telescope lid + base — giftable presentation at carton economics.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-two-piece"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["two-piece-art-card-box"]),
         },
         {
-          slug: "art-card-perfume",
+          slug: "perfume-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Perfume Art Card Boxes/download (5).jpg",
           detailImages: [
@@ -187,10 +187,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Perfume Art Card Boxes",
           subtitle: "Fragrance-grade registration, bottle clearance, counter presence.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-perfume"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["perfume-art-card-boxes"]),
         },
         {
-          slug: "art-card-skincare",
+          slug: "skincare-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Skincare Art Card Boxes/cocco_500x500.jpg",
           detailImages: [
@@ -201,10 +201,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Skincare Art Card Boxes",
           subtitle: "Routines and ampoules — panels for claims and ingredients.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-skincare"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["skincare-art-card-boxes"]),
         },
         {
-          slug: "art-card-cosmetics",
+          slug: "cosmetics-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Cosmetics Art Card Boxes/download (5).jpg",
           detailImages: [
@@ -215,10 +215,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Cosmetics Art Card Boxes",
           subtitle: "Colour cosmetics — scuff-resistant finishes and campaign sleeves.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-cosmetics"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["cosmetics-art-card-boxes"]),
         },
         {
-          slug: "art-card-makeup",
+          slug: "makeup-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Makeup Art Card Boxes/test_1.jpg",
           detailImages: [
@@ -229,10 +229,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Makeup Art Card Boxes",
           subtitle: "Palettes and kits — shallow depths, mirrors, refill-friendly layouts.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-makeup"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["makeup-art-card-boxes"]),
         },
         {
-          slug: "art-card-soap",
+          slug: "soap-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Soap Art Card Boxes/How to Choosing the Best Soap Box Packaging_.jpg",
           detailImages: [
@@ -243,10 +243,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Soap Art Card Boxes",
           subtitle: "Bars and sets — grease barriers, vents, rustic or clinical look.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-soap"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["soap-art-card-boxes"]),
         },
         {
-          slug: "art-card-hair-care",
+          slug: "hair-care-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Hair Care Art Card Boxes/Colorful Lotion Pump Bottles _ OEM & Custom Packaging Inspiration.jpg",
           detailImages: [
@@ -257,10 +257,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Hair Care Art Card Boxes",
           subtitle: "Bottle stability, cluster packs, salon and retail graphics.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-hair-care"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["hair-care-art-card-boxes"]),
         },
         {
-          slug: "art-card-essential-oil",
+          slug: "essential-oil-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Essential Oil Art Card Boxes/d4a68a1919612b076697ce9f92cd4614.jpg",
           detailImages: [
@@ -271,10 +271,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Essential Oil Art Card Boxes",
           subtitle: "Small bottles, compliance copy, oil-safe coatings.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-essential-oil"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["essential-oil-art-card-boxes"]),
         },
         {
-          slug: "art-card-lipstick",
+          slug: "lipstick-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Lipstick Art Card Boxes/Custom Lipstick Packaging.jpg",
           detailImages: [
@@ -285,10 +285,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Lipstick Art Card Boxes",
           subtitle: "Slim vertical packs — foil, metallic ink, counter-ready.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-lipstick"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["lipstick-art-card-boxes"]),
         },
         {
-          slug: "art-card-serum",
+          slug: "serum-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Serum Art Card Boxes/Amber glass essential oil bottle branding mockup _ Premium PSD.jpg",
           detailImages: [
@@ -299,10 +299,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Serum Art Card Boxes",
           subtitle: "Droppers and airless — inserts and clinical or premium tone.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-serum"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["serum-art-card-boxes"]),
         },
         {
-          slug: "art-card-gift",
+          slug: "gift-art-card-boxes",
           tabId: "use_case",
           cardImage: "/assets/images/categories/ART Card BOXES/Use-Case Based Product Pages/Gift Art Card Boxes/10pcs Colorful Gift Boxes with Flower Decorations, Perfect for Present Wrapping.jpg",
           detailImages: [
@@ -313,10 +313,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Gift Art Card Boxes",
           subtitle: "Occasion-ready — ribbon, window, two-piece gifting without rigid cost.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-gift"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["gift-art-card-boxes"]),
         },
         {
-          slug: "art-card-printed",
+          slug: "printed-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Printed Art Card Boxes/Bliff Organic Tea.jpg",
           detailImages: [
@@ -327,10 +327,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Printed Art Card Boxes",
           subtitle: "High-fidelity CMYK — colour governance and contract proofs.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-printed"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["printed-art-card-boxes"]),
         },
         {
-          slug: "art-card-foiled",
+          slug: "foiled-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Foiled Art Card Boxes/Aqua day perfume box.jpg",
           detailImages: [
@@ -341,10 +341,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Foiled Art Card Boxes",
           subtitle: "Hot foil on cartons — metallic logos with laminate-safe adhesion.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-foiled"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["foiled-art-card-boxes"]),
         },
         {
-          slug: "art-card-embossed",
+          slug: "embossed-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Embossed Art Card Boxes/Custom Packaging Designs.jpg",
           detailImages: [
@@ -355,10 +355,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Embossed Art Card Boxes",
           subtitle: "Blind or registered emboss — tactile brand memory on SBS.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-embossed"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["embossed-art-card-boxes"]),
         },
         {
-          slug: "art-card-matte-finish",
+          slug: "matte-finish-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Matte Finish Art Card Boxes/Blue Karavan Saffron.jpg",
           detailImages: [
@@ -369,10 +369,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Matte Finish Art Card Boxes",
           subtitle: "Soft-touch and satin matte — fingerprint-friendly luxury fields.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-matte-finish"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["matte-finish-art-card-boxes"]),
         },
         {
-          slug: "art-card-gloss-finish",
+          slug: "gloss-finish-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Gloss Finish Art Card Boxes/Bomibox September 2019.jpg",
           detailImages: [
@@ -383,10 +383,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Gloss Finish Art Card Boxes",
           subtitle: "High-gloss UV or film — saturated colour and shelf pop.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-gloss-finish"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["gloss-finish-art-card-boxes"]),
         },
         {
-          slug: "art-card-spot-uv",
+          slug: "spot-uv-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Spot UV Art Card Boxes/The Black Box.jpg",
           detailImages: [
@@ -397,10 +397,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Spot UV Art Card Boxes",
           subtitle: "Selective gloss on matte — logo lift and editorial contrast.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-spot-uv"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["spot-uv-art-card-boxes"]),
         },
         {
-          slug: "art-card-window-patch",
+          slug: "window-patch-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Window Patch Art Card Boxes/What-is-a-window-patching.png",
           detailImages: [
@@ -411,10 +411,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Window Patch Art Card Boxes",
           subtitle: "Precision film patches — RPET options and clean corners.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-window-patch"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["window-patch-art-card-boxes"]),
         },
         {
-          slug: "art-card-insert",
+          slug: "insert-art-card-boxes",
           tabId: "premium_variations",
           cardImage: "/assets/images/categories/ART Card BOXES/Premium Variation Pages/Insert Art Card Boxes/2023 Longtake Eau de Parfum & Solid Perfume.jpg",
           detailImages: [
@@ -425,7 +425,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Insert Art Card Boxes",
           subtitle: "Paper, pulp, EVA inserts — retention and unboxing rhythm.",
-          pdp: pdpFromProduct(ART_CARD_PRODUCTS["art-card-insert"]),
+          pdp: pdpFromProduct(ART_CARD_PRODUCTS["insert-art-card-boxes"]),
         },
       ],
     },

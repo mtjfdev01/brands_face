@@ -73,10 +73,6 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!requirement) {
-      return NextResponse.json({ message: "Please type your requirement." }, { status: 400 });
-    }
-
     const attachmentPaths: string[] = [];
     if (attachment) {
       if (!isS3Configured()) {

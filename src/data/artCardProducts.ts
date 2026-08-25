@@ -53,7 +53,7 @@ function artCardProduct(spec: ArtCardSpec): ProductData {
 const ART_CARD_SPECS: ArtCardSpec[] = [
   /* ── Core folding structures ── */
   {
-    slug: "art-card-tuck-end",
+    slug: "tuck-end-art-card-box",
     title: "Tuck End Art Card Box",
     description:
       "The everyday folding carton — front tuck with friction fit. Fast to pack, economical at scale, and ideal for retail cartons and light DTC.",
@@ -69,7 +69,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Tuck end art card boxes are the backbone of folding-carton programs. We tune tuck depth and flap angles for your product weight and fulfilment speed.\n\nPair with matte or gloss laminate, soft-touch, or foil accents for shelf presence without rigid-tooling cost.\n\nBest when you need volume, predictable assembly, and sharp graphics on coated stock.",
   },
   {
-    slug: "art-card-reverse-tuck-end",
+    slug: "reverse-tuck-end-art-card-box",
     title: "Reverse Tuck End Art Card Box",
     description:
       "Top and bottom tucks oppose each other — cleaner retail presentation and balanced opening for hand-packed lines.",
@@ -85,7 +85,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Reverse tuck ends are chosen when both openings need controlled reveal — common for cosmetics, supplements, and giftable cartons.\n\nWe align panel breaks so logos and regulatory copy land squarely on faces.\n\nExcellent for Brands Face clients balancing fulfilment speed with premium perception.",
   },
   {
-    slug: "art-card-straight-tuck-end",
+    slug: "straight-tuck-end-art-card-box",
     title: "Straight Tuck End Art Card Box",
     description:
       "Both tucks on the same panel edge — efficient for machine filling and straight-line graphics on the front face.",
@@ -101,7 +101,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Straight tuck cartons simplify panel layout when your hero art lives on one primary face.\n\nWe engineer tuck interference and glue strip placement for your line speed.\n\nCommon for pharma-style cartons, tea, and compact retail sets.",
   },
   {
-    slug: "art-card-auto-lock-bottom",
+    slug: "auto-lock-bottom-art-card-box",
     title: "Auto Lock Bottom Art Card Box",
     description:
       "Pop-open base with interlocking flaps — quick assembly at pack stations without tape, strong enough for modest weight.",
@@ -117,7 +117,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Auto lock bottoms are the standard when you want a rigid-feeling base without rigid cost. We validate burst strength for your product mass.\n\nIdeal for subscription refills, retail cartons, and kits that ship in an outer mailer.\n\nPair with inserts for glass and PET.",
   },
   {
-    slug: "art-card-crash-lock-bottom",
+    slug: "crash-lock-bottom-art-card-box",
     title: "Crash Lock Bottom Art Card Box",
     description:
       "One-push crash assembly with high base integrity — faster than auto-lock on high-volume lines when tooling allows.",
@@ -133,7 +133,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Crash lock cartons reduce labour on busy fulfilment floors. We prototype assembly feel so operators get consistent snaps.\n\nUse when bottle weight and line speed demand predictable bases.\n\nDiscuss palletisation and stack height early — we design compression accordingly.",
   },
   {
-    slug: "art-card-sleeve",
+    slug: "sleeve-art-card-box",
     title: "Sleeve Art Card Box",
     description:
       "Slipcase sleeve over trays or bundles — campaign swaps without changing the inner tray investment.",
@@ -149,7 +149,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Sleeves let you refresh seasonal art while keeping one inner tray or bottle format.\n\nWe control grain direction and varnish for smooth pull on glossy art.\n\nStrong for cosmetics, chocolate, and beverage adjacency programs.",
   },
   {
-    slug: "art-card-pillow",
+    slug: "pillow-art-card-box",
     title: "Pillow Art Card Box",
     description:
       "Curved pillow pack — compact footprint for accessories, vouchers, and small giftables with minimal material.",
@@ -165,7 +165,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Pillow packs are efficient and charming for small goods. We size curve radius so boards don’t crack on fold.\n\nPopular for accessories, samples, and event kits.\n\nPair with belly bands for premium layering.",
   },
   {
-    slug: "art-card-window",
+    slug: "window-art-card-box",
     title: "Window Art Card Box",
     description:
       "PET or RPET window patches with clean registration — show the product while protecting the film edge in fulfilment.",
@@ -181,7 +181,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Window cartons sell the product inside. We engineer patch adhesion and fold relief so films don’t lift in transit.\n\nDiscuss UV exposure and product sensitivity — we specify film grade.\n\nCommon for colour cosmetics, confectionery, and retail sets.",
   },
   {
-    slug: "art-card-hang-tab",
+    slug: "hang-tab-art-card-box",
     title: "Hang Tab Art Card Box",
     description:
       "Integrated or applied hang tabs for peg and clip strips — retail-ready without a separate hang card.",
@@ -197,7 +197,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Hang tab cartons need honest pull testing. We specify board grain and glue paths so tabs survive retail handling.\n\nIdeal for health & beauty, hardware smalls, and impulse SKUs.\n\nWe can supply test reports for buyer compliance.",
   },
   {
-    slug: "art-card-two-piece",
+    slug: "two-piece-art-card-box",
     title: "Two-Piece Art Card Box",
     description:
       "Telescope lid + base in paperboard — premium presentation at folding-carton economics for giftable programs.",
@@ -215,7 +215,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
 
   /* ── Use-case based ── */
   {
-    slug: "art-card-perfume",
+    slug: "perfume-art-card-boxes",
     title: "Perfume Art Card Boxes",
     description:
       "Fragrance cartons with tight registration and weight-rated bases — bottle silhouette, collar clearance, and counter presence.",
@@ -231,7 +231,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Perfume packaging must feel precious. We design dielines around your glass CAD and test drop scenarios.\n\nArt card allows high-chroma graphics and specialty finishes without rigid tooling on every SKU.\n\nIdeal for niche houses and travel formats.",
   },
   {
-    slug: "art-card-skincare",
+    slug: "skincare-art-card-boxes",
     title: "Skincare Art Card Boxes",
     description:
       "Routine sets, ampoules, and tubes — panel hierarchy for ingredients, claims, and brand story on coated stock.",
@@ -247,7 +247,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Skincare cartons balance regulation with desire. We sequence panel priority so mandatory copy and hero art coexist.\n\nTray heights account for pumps, droppers, and airless packs.\n\nBuilt for DTC routines, spa retail, and travel sets.",
   },
   {
-    slug: "art-card-cosmetics",
+    slug: "cosmetics-art-card-boxes",
     title: "Cosmetics Art Card Boxes",
     description:
       "Colour cosmetics and compacts — scuff-resistant varnish, tight fits, and campaign-ready sleeves.",
@@ -263,7 +263,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Cosmetics demand fingerprint resistance and tight registration. We specify varnish stacks for handling in retail.\n\nSleeves and window patches let you rotate launches on one tray.\n\nPerfect for colour stories and seasonal coffrets.",
   },
   {
-    slug: "art-card-makeup",
+    slug: "makeup-art-card-boxes",
     title: "Makeup Art Card Boxes",
     description:
       "Palettes, brushes, and kits — shallow depths, mirror allowances, and refill-friendly layouts.",
@@ -279,7 +279,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Makeup kits need precision — we align wells to pan geometry and brush lengths.\n\nArt card keeps campaigns affordable while delivering bold colour.\n\nSuited to pro kits, collabs, and education sets.",
   },
   {
-    slug: "art-card-soap",
+    slug: "soap-art-card-boxes",
     title: "Soap Art Card Boxes",
     description:
       "Bars and sets — grease-resistant coatings, breathable structures, and rustic or clinical aesthetics.",
@@ -295,7 +295,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Soap cartons must handle oil and humidity without looking tired. We select coatings and board pairs honestly.\n\nWindows and hang tabs support retail placement.\n\nGreat for handmade, spa, and mass-market lines.",
   },
   {
-    slug: "art-card-hair-care",
+    slug: "hair-care-art-card-boxes",
     title: "Hair Care Art Card Boxes",
     description:
       "Bottles, pumps, and tubes — tall carton stability, cluster packs, and shelf-ready graphics.",
@@ -311,7 +311,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Hair care cartons fight gravity on shelf. We engineer base geometry and glue for heavier fills.\n\nCluster packs and gift sets get partition maps tuned to your BOM.\n\nIdeal for salon, DTC, and mass retail.",
   },
   {
-    slug: "art-card-essential-oil",
+    slug: "essential-oil-art-card-boxes",
     title: "Essential Oil Art Card Boxes",
     description:
       "Small bottles and roller formats — drop protection, compliance panels, and oil-safe finishes.",
@@ -327,7 +327,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Essential oil packs need small-format precision and credible compliance. We plan microcopy zones early.\n\nCoatings are selected to minimise oil migration into paper.\n\nSuited to wellness, apothecary, and retail sets.",
   },
   {
-    slug: "art-card-lipstick",
+    slug: "lipstick-art-card-boxes",
     title: "Lipstick Art Card Boxes",
     description:
       "Slim vertical cartons — tight fit for slimline bullets, giftable reveals, and counter-friendly faces.",
@@ -343,7 +343,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Lipstick cartons are jewellery-small. We protect bullets with snug wells and clean edges.\n\nFinishes that read luxury on a tiny canvas — foil, emboss, soft-touch.\n\nPerfect for singles, duos, and holiday minis.",
   },
   {
-    slug: "art-card-serum",
+    slug: "serum-art-card-boxes",
     title: "Serum Art Card Boxes",
     description:
       "Dropper bottles and airless packs — height clearance, insert discipline, and clinical or premium tone.",
@@ -359,7 +359,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Serum cartons must survive drops and shelf scrutiny. We engineer inserts and panel breaks for droppers and pumps.\n\nArt card keeps batch flexibility for formula updates.\n\nStrong for clinical and premium DTC brands.",
   },
   {
-    slug: "art-card-gift",
+    slug: "gift-art-card-boxes",
     title: "Gift Art Card Boxes",
     description:
       "Occasion-ready folding cartons — ribbon, window, and two-piece options for gifting without rigid cost.",
@@ -377,7 +377,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
 
   /* ── Premium variations ── */
   {
-    slug: "art-card-printed",
+    slug: "printed-art-card-boxes",
     title: "Printed Art Card Boxes",
     description:
       "High-fidelity CMYK on coated board — brand colour governance, proofing, and consistency run to run.",
@@ -393,7 +393,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Printed art card is your billboard at folding-carton scale. We manage dot gain and substrate white point.\n\nInterior print turns every open into a second impression.\n\nCore to Brands Face programs that need colour-accurate packaging.",
   },
   {
-    slug: "art-card-foiled",
+    slug: "foiled-art-card-boxes",
     title: "Foiled Art Card Boxes",
     description:
       "Hot foil on folding cartons — metallic logos, borders, and typography with controlled register on board.",
@@ -409,7 +409,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Foiling elevates folding cartons without rigid cost. We test adhesion on your laminate stack.\n\nPopular for fragrance adjacency, gifting, and holiday editions.\n\nQuiet luxury with a metallic flash.",
   },
   {
-    slug: "art-card-embossed",
+    slug: "embossed-art-card-boxes",
     title: "Embossed Art Card Boxes",
     description:
       "Blind or registered emboss / deboss on SBS — tactile logos and patterns within paper limits.",
@@ -425,7 +425,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Embossing adds hand-feel memory on cartons. We review art for crush and feathering on folds.\n\nCombine with soft-touch for maximum tactility.\n\nExcellent for monograms and geometric patterns.",
   },
   {
-    slug: "art-card-matte-finish",
+    slug: "matte-finish-art-card-boxes",
     title: "Matte Finish Art Card Boxes",
     description:
       "Soft-touch and satin matte laminates — fingerprint-friendly luxury with deep, even colour fields.",
@@ -441,7 +441,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Matte finishes dominate premium folding cartons. We specify laminate thickness for fold radii.\n\nIdeal for skincare, wellness, and quiet luxury brands.\n\nSampling recommended to lock hand-feel.",
   },
   {
-    slug: "art-card-gloss-finish",
+    slug: "gloss-finish-art-card-boxes",
     title: "Gloss Finish Art Card Boxes",
     description:
       "High-gloss UV or film laminate — saturated colour pop and shelf shine for high-velocity retail.",
@@ -457,7 +457,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Gloss cartons read energetic and clean. We manage scuff resistance with varnish selection.\n\nCommon for mass beauty, confectionery, and youth-focused brands.\n\nCombine with spot matte for logo lockups.",
   },
   {
-    slug: "art-card-spot-uv",
+    slug: "spot-uv-art-card-boxes",
     title: "Spot UV Art Card Boxes",
     description:
       "Selective gloss UV over matte laminate — logo lift, droplet effects, and editorial contrast.",
@@ -473,7 +473,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Spot UV creates micro-contrast without full gloss. We align varnish height and register to art.\n\nPopular for logos, ingredient callouts, and pattern highlights.\n\nA Brands Face favourite for premium folding cartons.",
   },
   {
-    slug: "art-card-window-patch",
+    slug: "window-patch-art-card-boxes",
     title: "Window Patch Art Card Boxes",
     description:
       "Precision film patches with clean corners — anti-fog, RPET options, and retail-ready visibility.",
@@ -489,7 +489,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       "Window patches sell what’s inside. We engineer adhesive paths and fold relief for durability.\n\nDiscuss cold chain and condensation where relevant.\n\nDistinct from simple window die cuts — full patch programs.",
   },
   {
-    slug: "art-card-insert",
+    slug: "insert-art-card-boxes",
     title: "Insert Art Card Boxes",
     description:
       "Paper, pulp, and EVA inserts integrated with folding cartons — retention, unboxing rhythm, and recyclability options.",

@@ -76,10 +76,6 @@ export default function GetQuotePage() {
       setSubmitError("Please enter an email or a contact number.");
       return;
     }
-    if (!requirementValue) {
-      setSubmitError("Please type your requirement.");
-      return;
-    }
 
     try {
       setIsSubmitting(true);
@@ -115,7 +111,7 @@ export default function GetQuotePage() {
     <div className="min-h-screen bg-[#f5f0ea]">
       <main id="quote-form" className="w-full scroll-mt-24">
         <div className="mx-auto w-full max-w-2xl px-6 py-4 sm:px-10 sm:py-5">
-          <h1 className="text-2xl font-bold text-[#103a2a] md:text-3xl">Get a Quote</h1>
+          {/* <h1 className="text-2xl font-bold text-[#103a2a] md:text-3xl">Get a Quote</h1> */}
 
           {submitted ? (
             <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-8 text-center shadow-sm">
@@ -170,14 +166,13 @@ export default function GetQuotePage() {
 
               <div>
                 <label htmlFor="quote-requirement" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
-                  Requirement <span className="text-rose-600">*</span>
+                  Requirement <span className="font-normal text-[#103a2a]/55">(optional)</span>
                 </label>
                 <textarea
                   id="quote-requirement"
                   value={requirement}
                   onChange={(e) => setRequirement(e.target.value)}
                   placeholder="Type Your requirement"
-                  required
                   rows={3}
                   className={`${fieldClass} min-h-[5.5rem] resize-y py-3`}
                 />
