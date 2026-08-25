@@ -52,7 +52,7 @@ function rigidProduct(spec: RigidSpec): ProductData {
 const RIGID_SPECS: RigidSpec[] = [
   /* ── Core structures ── */
   {
-    slug: "rigid-magnetic-closure",
+    slug: "magnetic-closure-rigid-box",
     title: "Magnetic Closure Rigid Box",
     description:
       "A flagship presentation format with concealed magnets and a clean reveal — ideal for luxury retail, subscriptions, and unboxing moments that need to feel effortless.",
@@ -68,7 +68,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Magnetic closure rigid boxes are the backbone of premium product presentation. We engineer flap depth, magnet pull strength, and wrap tension so the lid seats perfectly — run after run.\n\nPair with foam, velvet, or paper inserts for cosmetics, tech, spirits, and gifts. Our studio aligns artwork to live edges and corner radius so your brand reads sharp at shelf and on camera.\n\nBest for Brands Face clients who want a focused, high-end line: flagship SKUs, limited drops, and influencer kits where first open matters.",
   },
   {
-    slug: "rigid-drawer-slide-out",
+    slug: "drawer-slide-out-rigid-box",
     title: "Drawer / Slide-Out Rigid Box",
     description:
       "Slide-out drawer mechanics with a tactile pull — perfect for curated kits, jewelry, and products where discovery should feel deliberate and premium.",
@@ -84,7 +84,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Drawer rigid boxes turn unboxing into a ritual. We calibrate sleeve clearance and drawer glide so movement feels smooth — never loose or sticky.\n\nUse for tiered kits, sampling programs, or retail sets where the inner tray can be lifted for display. Inserts and partitions keep every SKU in place during shipping.\n\nA strong choice when you want structure-forward packaging without a traditional hinged lid.",
   },
   {
-    slug: "rigid-lift-off-lid",
+    slug: "lift-off-lid-rigid-box",
     title: "Lift-Off Lid Rigid Box",
     description:
       "Classic two-part construction with a telescoping lid — clean lines, maximum billboard space, and a satisfying lift for high-end gifts and retail.",
@@ -100,7 +100,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Lift-off lid boxes offer maximum surface for brand storytelling on the lid and base. We engineer lid overhang and finger clearance for a comfortable open without marring the wrap.\n\nIdeal for apparel gifts, premium consumables, and presentation sets where the lid can be reused or displayed.\n\nCombine with shoulder platforms or platform inserts for a staged product reveal.",
   },
   {
-    slug: "rigid-shoulder-neck",
+    slug: "shoulder-neck-rigid-box",
     title: "Shoulder Neck Rigid Box",
     description:
       "Interior shoulder creates a refined step-down reveal — the lid appears to float while the product sits proud for photography and retail.",
@@ -116,7 +116,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Shoulder neck rigid boxes are a Brands Face favourite for luxury positioning. The visible neck line frames the product and adds depth to unboxing content.\n\nWe tune shoulder width so the lid slides without binding, and align interior colours for a gallery-like presentation.\n\nExcellent for fragrance, skincare heroes, and single-SKU premium launches.",
   },
   {
-    slug: "rigid-book-style",
+    slug: "book-style-rigid-box",
     title: "Book-Style Rigid Box",
     description:
       "Hinged spine and book-like opening — narrative-friendly packaging for storytelling, press kits, and multi-panel brand experiences.",
@@ -132,7 +132,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Book-style rigids behave like a bound volume — perfect when you want packaging to feel editorial. We reinforce the spine and hinge cycle for repeated opens.\n\nUse for PR kits, founder stories, certificate presentation, or retail sets with layered inserts.\n\nPair with debossed titles or foil spine type for a true collectable feel.",
   },
   {
-    slug: "rigid-hinged-lid",
+    slug: "hinged-lid-rigid-box",
     title: "Hinged Lid Rigid Box",
     description:
       "Single-body hinged lid with retail-friendly closure — strong structure for heavier products and frequent opening at counter or home.",
@@ -148,7 +148,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Hinged lid rigids balance durability with ceremony. We specify board weight and hinge reinforcement based on product mass and open frequency.\n\nSuited to electronics accessories, wellness devices, and gift sets that stay on display after purchase.\n\nOptional elastic bands or ribbon keeps help when shipping without outer mailers.",
   },
   {
-    slug: "rigid-two-piece",
+    slug: "two-piece-rigid-box",
     title: "Two-Piece Rigid Box",
     description:
       "Minimal base + lid separation — economical premium look with fast packing workflows for e-commerce and retail replenishment.",
@@ -164,7 +164,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Two-piece rigids are the workhorse of premium packaging — simple, reliable, and easy to scale. We optimise lid depth for your insert stack height so nothing rattles.\n\nGreat for brands balancing fulfilment speed with shelf presence. Add sleeves or belly bands for seasonal campaigns without retooling the base box.",
   },
   {
-    slug: "rigid-collapsible",
+    slug: "collapsible-rigid-box",
     title: "Collapsible Rigid Box",
     description:
       "Fold-flat rigid that assembles to full strength — lower inbound freight and storage while keeping a luxury unboxing on arrival.",
@@ -180,7 +180,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Collapsible rigids solve warehousing and import cost without giving up the rigid feel. We design corner keys and tape paths so operators can assemble consistently.\n\nIdeal for growing DTC brands and global fulfilment where cube matters.\n\nWe validate assembled compression for your product weight class before production.",
   },
   {
-    slug: "rigid-ribbon-pull",
+    slug: "ribbon-pull-rigid-box",
     title: "Ribbon Pull Rigid Box",
     description:
       "Integrated ribbon lift for lids or drawers — tactile, photogenic, and gift-ready without extra packing steps.",
@@ -196,7 +196,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Ribbon pulls add a human, giftable gesture to rigid packaging. We engineer anchor strength and ribbon length for your box depth and product weight.\n\nPopular for holiday lines, bridal, and premium skincare gifting.\n\nColour-match ribbon to Pantone for a fully on-brand unboxing.",
   },
   {
-    slug: "rigid-sleeve-tray",
+    slug: "sleeve-tray-rigid-box",
     title: "Sleeve & Tray Rigid Box",
     description:
       "Outer printed sleeve over a rigid tray — swap sleeves for seasons while keeping one tray system for SKU efficiency.",
@@ -214,7 +214,7 @@ const RIGID_SPECS: RigidSpec[] = [
 
   /* ── Use-case based ── */
   {
-    slug: "rigid-perfume",
+    slug: "perfume-rigid-boxes",
     title: "Perfume Rigid Boxes",
     description:
       "Fragrance-grade rigids with insert discipline — bottle stability, collar clearance, and finishes that read luxury under glass counters and studio lighting.",
@@ -230,7 +230,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Perfume packaging has zero tolerance for movement — we prototype around your bottle CAD and weight distribution.\n\nExterior treatments are tuned for fingerprint resistance and counter display.\n\nIdeal for niche houses, travel sizes, and gift coffrets with multiple flacons.",
   },
   {
-    slug: "rigid-skincare",
+    slug: "skincare-rigid-boxes",
     title: "Skincare Rigid Boxes",
     description:
       "Serum sets, jars, and ampoule programs — rigids sized for pumps, droppers, and regulatory copy panels without crowding the art.",
@@ -246,7 +246,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Skincare rigids balance regulation, education, and desire. We plan panel hierarchy so mandatory copy and hero visuals coexist.\n\nTray heights account for droppers, airless pumps, and jar lids.\n\nBuilt for DTC regimens, spa retail, and limited-edition drops.",
   },
   {
-    slug: "rigid-cosmetics-gift-set",
+    slug: "cosmetics-gift-set-rigid-boxes",
     title: "Cosmetics Gift Set Rigid Boxes",
     description:
       "Curated colour stories and giftable compositions — partitions, windows, and layered reveals for holiday and GWP programs.",
@@ -262,7 +262,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Gift sets need to look abundant without chaos. We design partition maps that keep every SKU visible and secure.\n\nOptional outer sleeves let you rotate campaigns on one tray architecture.\n\nPerfect for holiday coffrets, influencer mailers, and counter displays.",
   },
   {
-    slug: "rigid-makeup-kit",
+    slug: "makeup-kit-rigid-boxes",
     title: "Makeup Kit Rigid Boxes",
     description:
       "Palettes, brushes, and refill stories — rigids engineered for shallow depths, mirror clearance, and refill-friendly layouts.",
@@ -278,7 +278,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Makeup kits demand precision — we align wells to pan geometry and brush lengths so nothing shifts in transit.\n\nMirror integration and protective films are specified for scratch-free arrival.\n\nSuited to pro kits, collab launches, and education sets.",
   },
   {
-    slug: "rigid-jewelry",
+    slug: "jewelry-rigid-boxes",
     title: "Jewelry Rigid Boxes",
     description:
       "Soft interiors, anti-tarnish considerations, and delicate product cradles — rigids that feel like a vault and a jewel case at once.",
@@ -294,7 +294,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Jewelry rigids protect sentiment and margin. We specify insert density and fabric wrap so metals and stones do not contact abrasive surfaces.\n\nScale from single-piece gifts to multi-SKU sets.\n\nIdeal for fine fashion, demi-fine, and commemorative drops.",
   },
   {
-    slug: "rigid-candle",
+    slug: "candle-rigid-boxes",
     title: "Candle Rigid Boxes",
     description:
       "Heat-aware spacing, jar clearance, and gift-forward structure — premium rigids for single wicks, trios, and accessory bundles.",
@@ -310,7 +310,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Candles stress packaging with weight and fragility. We engineer base crush strength and insert grip for glass jars.\n\nCopy panels for safety and scent notes are built into the layout.\n\nGreat for home fragrance brands and seasonal gifting.",
   },
   {
-    slug: "rigid-apparel-gift",
+    slug: "apparel-gift-rigid-boxes",
     title: "Apparel Gift Rigid Boxes",
     description:
       "Folded garment depth, tissue stories, and lid clearance — rigids that protect drape and feel high-end at unboxing.",
@@ -326,7 +326,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Apparel gifts need generous volume without a sloppy fit. We map depth to your fold protocol and optional certificate pockets.\n\nWorks for knitwear, silk, caps, and premium basics.\n\nPair with magnetic or ribbon closure for a boutique feel.",
   },
   {
-    slug: "rigid-electronics",
+    slug: "electronics-rigid-boxes",
     title: "Electronics Rigid Boxes",
     description:
       "Device-centric rigids with ESD-aware insert options, cable wells, and quick-scan unboxing for premium peripherals.",
@@ -342,7 +342,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Electronics rigids must survive fulfilment and feel worthy of the chipset inside. We design insert retention and finger lifts for accessories.\n\nESD considerations are discussed for sensitive SKUs.\n\nIdeal for audio, wearables, and premium charging ecosystems.",
   },
   {
-    slug: "rigid-pr-influencer-kit",
+    slug: "pr-influencer-kit-rigid-boxes",
     title: "PR / Influencer Kit Rigid Boxes",
     description:
       "Share-worthy structure, layered storytelling, and room for press sheets — built for unboxing content and repeat opens on set.",
@@ -358,7 +358,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "PR kits are packaging as media. We sequence layers so creators capture each beat — from outer sleeve to hero product.\n\nSized for press releases, vouchers, and surprise inserts.\n\nA priority format for Brands Face when you want focused, premium launches.",
   },
   {
-    slug: "rigid-luxury-hamper",
+    slug: "luxury-hamper-gift-rigid-boxes",
     title: "Luxury Hamper / Gift Rigid Boxes",
     description:
       "Deep formats, mixed SKU layouts, and carry handles — rigids that behave like hampers while staying photographable and retail-ready.",
@@ -376,7 +376,7 @@ const RIGID_SPECS: RigidSpec[] = [
 
   /* ── Premium variations ── */
   {
-    slug: "rigid-foam-insert",
+    slug: "foam-insert-rigid-boxes",
     title: "Foam Insert Rigid Boxes",
     description:
       "CNC-routed or die-cut foam cradles — exact product silhouette, shock absorption, and a studio-clean presentation.",
@@ -392,7 +392,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Foam insert rigids are the standard for protection and precision. We prototype from your 3D files or physical samples.\n\nIdeal for electronics, tools, fragrance, and collector editions.\n\nAmong the best premium pages for Brands Face when protection and perceived value must align.",
   },
   {
-    slug: "rigid-velvet-insert",
+    slug: "velvet-insert-rigid-boxes",
     title: "Velvet Insert Rigid Boxes",
     description:
       "Plush wrapped platforms and cavities — jewellery-forward tactility and light absorption for reflective products.",
@@ -408,7 +408,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Velvet inserts signal heirloom quality. We specify nap direction and adhesive systems that stay clean on edges.\n\nUse for jewelry, medals, premium cosmetics, and keepsakes.\n\nPhotographs beautifully for social and e-commerce grids.",
   },
   {
-    slug: "rigid-divider-insert",
+    slug: "divider-insert-rigid-boxes",
     title: "Divider Insert Rigid Boxes",
     description:
       "Paper or board partitions for multi-SKU sets — clean lanes, no rattle, and easy pick paths for fulfilment.",
@@ -424,7 +424,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Divider inserts keep variety sets disciplined. We tune cell size to your BOM and add lift tabs where needed.\n\nPopular for skincare routines, sampler sets, and accessory kits.\n\nCost-effective premium structure versus full molded inserts.",
   },
   {
-    slug: "rigid-custom-printed",
+    slug: "custom-printed-rigid-boxes",
     title: "Custom Printed Rigid Boxes",
     description:
       "Photographic wraps, all-over patterns, and interior flood print — maximum colour control for campaigns that live on the shelf.",
@@ -440,7 +440,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Custom printed rigids are your billboard. We manage registration across corners and edges so art feels intentional.\n\nInterior print turns every open into a second impression.\n\nIdeal for launches where colour accuracy is brand equity.",
   },
   {
-    slug: "rigid-foiled",
+    slug: "foiled-rigid-boxes",
     title: "Foiled Rigid Boxes",
     description:
       "Hot foil and cold foil accents — metallic logos, borders, and typography that catch retail light and camera flash.",
@@ -456,7 +456,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Foiling elevates rigids without noisy graphics. We test foil adhesion on your chosen wrap and laminate stack.\n\nPopular for fragrance, spirits adjacency, and holiday editions.\n\nA core premium variation for brands that want quiet luxury with a flash of metal.",
   },
   {
-    slug: "rigid-embossed-debossed",
+    slug: "embossed-debossed-rigid-boxes",
     title: "Embossed / Debossed Rigid Boxes",
     description:
       "Sculpted logos and patterns you can feel — blind or registered to print for depth and craft cues.",
@@ -472,7 +472,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Emboss and deboss add tactile brand memory. We review artwork for crush and feathering on tight radii.\n\nCombine with soft-touch laminate for maximum hand feel.\n\nExcellent for monograms, crests, and geometric patterns.",
   },
   {
-    slug: "rigid-textured-paper",
+    slug: "textured-paper-wrapped-rigid-boxes",
     title: "Textured Paper Wrapped Rigid Boxes",
     description:
       "Linen, leather-grain, and specialty stocks — material-first packaging when you want surface story before ink.",
@@ -488,7 +488,7 @@ const RIGID_SPECS: RigidSpec[] = [
       "Textured wraps trade flat print for material honesty. We map grain direction across panels for consistent light play.\n\nIdeal for wellness, stationery-adjacent brands, and quiet luxury.\n\nSampling recommended — we source swatches before full runs.",
   },
   {
-    slug: "rigid-sustainable",
+    slug: "sustainable-rigid-boxes",
     title: "Sustainable Rigid Boxes",
     description:
       "Recycled board, FSC papers, and designed-for-recycling simplification — premium feel with credible material stories.",

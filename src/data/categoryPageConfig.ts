@@ -464,7 +464,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Magnetic Closure Rigid Box",
           subtitle: "Concealed magnets and a clean reveal — flagship luxury unboxing.",
-          slug: "rigid-magnetic-closure",
+          slug: "magnetic-closure-rigid-box",
           pdp: {
             title: "Magnetic Closure Rigid Box",
             description:
@@ -503,7 +503,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           }
         },
         {
-          slug: "rigid-drawer-slide-out",
+          slug: "drawer-slide-out-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Drawer  Slide-Out Rigid Box/D-S-1.jpg",
@@ -515,10 +515,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Drawer / Slide-Out Rigid Box",
           subtitle: "Sleeve and drawer mechanics for curated kits and jewelry-style reveals.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-drawer-slide-out"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["drawer-slide-out-rigid-box"]),
         },
         {
-          slug: "rigid-lift-off-lid",
+          slug: "lift-off-lid-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Lift-Off Lid Rigid Box/L-1.jpg",
@@ -530,10 +530,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Lift-Off Lid Rigid Box",
           subtitle: "Telescoping lid and base — maximum billboard space for retail and gifts.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-lift-off-lid"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["lift-off-lid-rigid-box"]),
         },
         {
-          slug: "rigid-shoulder-neck",
+          slug: "shoulder-neck-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Shoulder Neck Rigid Box/NS_1.jpg",
@@ -545,10 +545,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Shoulder Neck Rigid Box",
           subtitle: "Step-down neck reveal — lid appears to float above the product.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-shoulder-neck"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["shoulder-neck-rigid-box"]),
         },
         {
-          slug: "rigid-book-style",
+          slug: "book-style-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Book-Style Rigid Box/B_1.jpg",
@@ -560,10 +560,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Book-Style Rigid Box",
           subtitle: "Hinged spine and narrative panels — editorial packaging for PR and retail.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-book-style"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["book-style-rigid-box"]),
         },
         {
-          slug: "rigid-hinged-lid",
+          slug: "hinged-lid-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Hinged Lid Rigid Box/H1.jpg",
@@ -575,10 +575,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Hinged Lid Rigid Box",
           subtitle: "Durable hinge and retail-friendly closure for heavier products.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-hinged-lid"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["hinged-lid-rigid-box"]),
         },
         {
-          slug: "rigid-two-piece",
+          slug: "two-piece-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Two-Piece Rigid Box/T-1.jpg",
@@ -590,10 +590,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Two-Piece Rigid Box",
           subtitle: "Fast-pack base and lid — premium look with efficient fulfilment.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-two-piece"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["two-piece-rigid-box"]),
         },
         {
-          slug: "rigid-collapsible",
+          slug: "collapsible-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Collapsible Rigid Box/C1.jpg",
@@ -605,10 +605,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Collapsible Rigid Box",
           subtitle: "Fold-flat inbound, full rigid strength assembled — lower freight and storage.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-collapsible"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["collapsible-rigid-box"]),
         },
         {
-          slug: "rigid-ribbon-pull",
+          slug: "ribbon-pull-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Ribbon Pull Rigid Box/R1.jpg",
@@ -620,10 +620,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Ribbon Pull Rigid Box",
           subtitle: "Integrated ribbon lift — gift-ready and optimised for unboxing content.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-ribbon-pull"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["ribbon-pull-rigid-box"]),
         },
         {
-          slug: "rigid-sleeve-tray",
+          slug: "sleeve-tray-rigid-box",
           tabId: "core_products",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Core Product Pages Rigid/Sleeve & Tray Rigid Box/ST1.jpg",
@@ -635,10 +635,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Core",
           title: "Sleeve & Tray Rigid Box",
           subtitle: "Interchangeable sleeves over a rigid tray — seasonal campaigns, one tray system.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-sleeve-tray"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["sleeve-tray-rigid-box"]),
         },
         {
-          slug: "rigid-perfume",
+          slug: "perfume-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Perfume Rigid Boxes/Elegant black perfume packaging designed to….jpg",
@@ -650,10 +650,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Perfume Rigid Boxes",
           subtitle: "Bottle stability, collar clearance, and luxury finishes for fragrance.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-perfume"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["perfume-rigid-boxes"]),
         },
         {
-          slug: "rigid-skincare",
+          slug: "skincare-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Skincare Rigid Boxes/Luxury Skincare Gift Box with Insert….jpg",
@@ -665,10 +665,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Skincare Rigid Boxes",
           subtitle: "Serum sets and jars — inserts and panels sized for pumps and compliance copy.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-skincare"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["skincare-rigid-boxes"]),
         },
         {
-          slug: "rigid-cosmetics-gift-set",
+          slug: "cosmetics-gift-set-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Cosmetics Gift Set Rigid Boxes/premium cosmetic boxes.jpg",
@@ -680,10 +680,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Cosmetics Gift Set Rigid Boxes",
           subtitle: "Partitions and layered reveals for holiday coffrets and GWP programs.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-cosmetics-gift-set"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["cosmetics-gift-set-rigid-boxes"]),
         },
         {
-          slug: "rigid-makeup-kit",
+          slug: "makeup-kit-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Makeup Kit Rigid Boxes/download (5).jpg",
@@ -695,10 +695,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Makeup Kit Rigid Boxes",
           subtitle: "Palettes, brushes, and mirrors — shallow depths tuned to your BOM.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-makeup-kit"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["makeup-kit-rigid-boxes"]),
         },
         {
-          slug: "rigid-jewelry",
+          slug: "jewelry-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Jewelry Rigid Boxes/High Quality Custom logo two open door luxury….jpg",
@@ -710,10 +710,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Jewelry Rigid Boxes",
           subtitle: "Velvet interiors and anti-scuff cradles for fine and demi-fine lines.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-jewelry"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["jewelry-rigid-boxes"]),
         },
         {
-          slug: "rigid-candle",
+          slug: "candle-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Candle Rigid Boxes/download (5).jpg",
@@ -725,10 +725,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Candle Rigid Boxes",
           subtitle: "Jar clearance, shock buffers, and gift-forward structure for home fragrance.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-candle"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["candle-rigid-boxes"]),
         },
         {
-          slug: "rigid-apparel-gift",
+          slug: "apparel-gift-rigid-boxes",
           tabId: "use_case",
           cardImage:
           "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Apparel Gift Rigid Boxes/sales@kraftpackagingfactory_com MOQ-100.jpg",
@@ -740,10 +740,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Apparel Gift Rigid Boxes",
           subtitle: "Depth for folded garments, tissue stories, and premium retail presence.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-apparel-gift"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["apparel-gift-rigid-boxes"]),
         },
         {
-          slug: "rigid-electronics",
+          slug: "electronics-rigid-boxes",
           tabId: "use_case",
           cardImage:
           "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Electronics Rigid Boxes/power bank box.jpg",
@@ -755,10 +755,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Electronics Rigid Boxes",
           subtitle: "Device wells, cable lanes, and drop-tested inserts for premium peripherals.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-electronics"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["electronics-rigid-boxes"]),
         },
         {
-          slug: "rigid-pr-influencer-kit",
+          slug: "pr-influencer-kit-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/PR  Influencer Kit Rigid Boxes/250ml 450ml Shampoo Bottle _ XingYuan.jpg",
@@ -770,10 +770,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "PR / Influencer Kit Rigid Boxes",
           subtitle: "Layered storytelling and share-worthy structure for creator unboxings.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-pr-influencer-kit"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["pr-influencer-kit-rigid-boxes"]),
         },
         {
-          slug: "rigid-luxury-hamper",
+          slug: "luxury-hamper-gift-rigid-boxes",
           tabId: "use_case",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/USE Case Based Rigid BOXes/Luxury Hamper  Gift Rigid Boxes/download (5).jpg",
@@ -785,10 +785,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Use case",
           title: "Luxury Hamper / Gift Rigid Boxes",
           subtitle: "Deep mixed-SKU layouts with reinforced corners and carry options.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-luxury-hamper"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["luxury-hamper-gift-rigid-boxes"]),
         },
         {
-          slug: "rigid-foam-insert",
+          slug: "foam-insert-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foam Insert Rigid Boxes/Box Tray.jpg",
@@ -800,10 +800,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Foam Insert Rigid Boxes",
           subtitle: "CNC-routed cavities — exact silhouette, shock absorption, studio-clean presentation.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-foam-insert"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["foam-insert-rigid-boxes"]),
         },
         {
-          slug: "rigid-velvet-insert",
+          slug: "velvet-insert-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Velvet Insert Rigid Boxes/2pcs pink jewelry gift boxes 3 15x3 15x0 7 inch 8x8x1 8cm - Temu Ireland.jpg",
@@ -815,10 +815,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Velvet Insert Rigid Boxes",
           subtitle: "Plush platforms and jewellery-forward tactility for reflective products.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-velvet-insert"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["velvet-insert-rigid-boxes"]),
         },
         {
-          slug: "rigid-divider-insert",
+          slug: "divider-insert-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Divider Insert Rigid Boxes/2.jpg",
@@ -830,10 +830,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Divider Insert Rigid Boxes",
           subtitle: "Paper or board partitions — multi-SKU sets without rattle.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-divider-insert"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["divider-insert-rigid-boxes"]),
         },
         {
-          slug: "rigid-custom-printed",
+          slug: "custom-printed-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Custom Printed Rigid Boxes/Custom Mailer Boxes for B2B Business _ Premium Mailer Packaging _ Kumar Printers.jpg",
@@ -845,10 +845,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Custom Printed Rigid Boxes",
           subtitle: "All-over exterior and interior print — campaign-grade colour control.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-custom-printed"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["custom-printed-rigid-boxes"]),
         },
         {
-          slug: "rigid-foiled",
+          slug: "foiled-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Foiled Rigid Boxes/Luxury B2B packaging for body care products.jpg",
@@ -860,10 +860,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Foiled Rigid Boxes",
           subtitle: "Hot and cold foil accents — logos and borders that catch light and camera.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-foiled"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["foiled-rigid-boxes"]),
         },
         {
-          slug: "rigid-embossed-debossed",
+          slug: "embossed-debossed-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Embossed  Debossed Rigid Boxes/Emboss Craft For Paper Box Cover.jpg",
@@ -875,10 +875,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Embossed / Debossed Rigid Boxes",
           subtitle: "Sculpted depth — blind or registered to print for craft cues.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-embossed-debossed"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["embossed-debossed-rigid-boxes"]),
         },
         {
-          slug: "rigid-textured-paper",
+          slug: "textured-paper-wrapped-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Textured Paper Wrapped Rigid Boxes/Custom Rigid Boxes that Scream Sophistication.jpg",
@@ -890,10 +890,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Textured Paper Wrapped Rigid Boxes",
           subtitle: "Linen and leather-grain stocks — material-first luxury before ink.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-textured-paper"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["textured-paper-wrapped-rigid-boxes"]),
         },
         {
-          slug: "rigid-sustainable",
+          slug: "sustainable-rigid-boxes",
           tabId: "premium_variations",
           cardImage:
             "/assets/images/categories/RIGID BOX Category/Premium Variation Pages/Sustainable Rigid Boxes/7_5_.jpg",
@@ -905,7 +905,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           heading: "Premium",
           title: "Sustainable Rigid Boxes",
           subtitle: "FSC papers and recycled board — premium feel with credible material stories.",
-          pdp: pdpFromProduct(RIGID_PRODUCTS["rigid-sustainable"]),
+          pdp: pdpFromProduct(RIGID_PRODUCTS["sustainable-rigid-boxes"]),
         },
       ],
     },
