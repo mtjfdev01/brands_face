@@ -19,25 +19,25 @@ export interface HomeCard {
 
 export const HOME_CARDS: HomeCard[] = [
   {
-    title: "Rigid Boxes",
-    category: "rigid_boxes",
-    image: "/assets/images/categories/rigid_box.jpeg",
-    color: "#c4a265",
+    title: "Art Card",
+    category: "art_card",
+    image: "/assets/images/categories/art_card.jpeg",
+    color: "#9b8ec4",
     heroDescription:
-      "Durable rigid packaging that gives your products a premium shelf presence with precise structure, elegant finishing, and consistent brand impact.",
-    heroCtaText: "Get Rigid Box Quote",
+      "Art-card packaging with vibrant print reproduction, smooth finishing options, and refined construction for premium product categories.",
+    heroCtaText: "Get Art Card Quote",
     heroSlides: [
       {
-        title: "Premium Rigid Boxes",
+        title: "Art Card Packaging",
         description:
-          "Elevate high-value products with premium rigid box structures, luxury finishes, and stronger shelf appeal for retail success.",
-        ctaText: "Get Rigid Box Quote",
+          "Deliver vibrant graphics and premium print quality with art-card packaging tailored for high-impact product displays.",
+        ctaText: "Get Art Card Quote",
       },
       {
-        title: "Magnetic & Setup Rigid Styles",
+        title: "Premium Coated Art Card",
         description:
-          "Choose from magnetic closure, lift-off lid, and custom setup rigid styles tailored to your brand presentation and unboxing feel.",
-        ctaText: "Customize Rigid Style",
+          "Choose coated art-card stocks for sharper visuals, cleaner details, and elegant finishing that supports premium positioning.",
+        ctaText: "Explore Art Card Finish",
       },
     ],
   },
@@ -157,25 +157,25 @@ export const HOME_CARDS: HomeCard[] = [
     ],
   },
   {
-    title: "Art Card",
-    category: "art_card",
-    image: "/assets/images/categories/art_card.jpeg",
-    color: "#9b8ec4",
+    title: "Rigid Boxes",
+    category: "rigid_boxes",
+    image: "/assets/images/categories/rigid_box.jpeg",
+    color: "#c4a265",
     heroDescription:
-      "Art-card packaging with vibrant print reproduction, smooth finishing options, and refined construction for premium product categories.",
-    heroCtaText: "Get Art Card Quote",
+      "Durable rigid packaging that gives your products a premium shelf presence with precise structure, elegant finishing, and consistent brand impact.",
+    heroCtaText: "Get Rigid Box Quote",
     heroSlides: [
       {
-        title: "Art Card Packaging",
+        title: "Premium Rigid Boxes",
         description:
-          "Deliver vibrant graphics and premium print quality with art-card packaging tailored for high-impact product displays.",
-        ctaText: "Get Art Card Quote",
+          "Elevate high-value products with premium rigid box structures, luxury finishes, and stronger shelf appeal for retail success.",
+        ctaText: "Get Rigid Box Quote",
       },
       {
-        title: "Premium Coated Art Card",
+        title: "Magnetic & Setup Rigid Styles",
         description:
-          "Choose coated art-card stocks for sharper visuals, cleaner details, and elegant finishing that supports premium positioning.",
-        ctaText: "Explore Art Card Finish",
+          "Choose from magnetic closure, lift-off lid, and custom setup rigid styles tailored to your brand presentation and unboxing feel.",
+        ctaText: "Customize Rigid Style",
       },
     ],
   },

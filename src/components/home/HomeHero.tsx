@@ -155,22 +155,6 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
             ))}
           </div>
         </div>
-
-        {/* Let the image define its own height instead of forcing a fixed frame. */}
-        <div
-          className="relative mt-8 w-full shadow-[0_30px_70px_-40px_rgba(87,215,170,0.55)]"
-        >
-          <div className="relative w-full">
-            <img
-              src={HERO_MAIN}
-              alt=""
-              draggable={false}
-              className="block h-auto w-full select-none"
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(87,215,170,0.18),transparent_62%)]" />
-          </div>
-        </div>
-
         <div className="mx-auto max-w-xl px-6 pt-6 sm:px-8 sm:pt-8">
           <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[12px] text-white/75 backdrop-blur">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#57d7aa]/15 text-[#57d7aa]">
@@ -213,6 +197,22 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
             </Link>
           </div>
         </div>
+        {/* Let the image define its own height instead of forcing a fixed frame. */}
+        <div
+          className="relative mt-8 w-full shadow-[0_30px_70px_-40px_rgba(87,215,170,0.55)]"
+        >
+          <div className="relative w-full">
+            <img
+              src={HERO_MAIN}
+              alt=""
+              draggable={false}
+              className="block h-auto w-full select-none"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(87,215,170,0.18),transparent_62%)]" />
+          </div>
+        </div>
+
+
       </div>
 
       {/* Desktop hero (existing layout) */}

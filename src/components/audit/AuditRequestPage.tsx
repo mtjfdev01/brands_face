@@ -6,13 +6,13 @@ import OptionCard from "@/components/quote/OptionCard";
 import PageHero from "@/components/hero/PageHero";
 
 const PRODUCT_CATEGORIES = [
-  "Rigid Boxes",
+  "Art Card",
   "Corrugated Boxes",
   "Custom Pouches",
   "Gift Boxes",
   "Kraft Boxes",
   "Labels & Tags",
-  "Art Card",
+  "Rigid Boxes",
   "Other",
 ];
 

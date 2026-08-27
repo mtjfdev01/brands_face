@@ -14,16 +14,16 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = Object.fromEntries(
 
 const CATALOG_CATEGORIES = [
   {
-    id: "rigid",
-    title: "Rigid Boxes",
-    slug: "rigid_boxes",
+    id: "art-card",
+    title: "Art Cards",
+    slug: "art_card",
     description:
-      "Premium packaging for luxury products, gifts, apparel, and cosmetics. Ideal for stronger presentation and perceived value.",
-    tags: ["Premium", "Luxury", "Retail"],
-    image: CATEGORY_IMAGE_MAP["rigid boxes"],
+      "Vibrant printed art-card packaging for high-impact presentation where color depth, finish quality, and detail matter.",
+    tags: ["Print Quality", "Visual Impact", "Premium"],
+    image: CATEGORY_IMAGE_MAP["art card"],
     industries: ["Cosmetics", "Apparel", "Gift Brands"],
-    materialFinish: ["Art Card", "Gold Foil", "Embossing", "Debossing", "Matte / Gloss"],
-    purposes: ["Branding", "Premium Presentation", "Shelf Appeal"],
+    materialFinish: ["Art Card", "Matte / Gloss", "Embossing", "Debossing"],
+    purposes: ["Branding", "Shelf Appeal", "Premium Presentation"],
   },
   {
     id: "corrugated",
@@ -74,18 +74,6 @@ const CATALOG_CATEGORIES = [
     purposes: ["Branding", "Shipping", "Shelf Appeal"],
   },
   {
-    id: "art-card",
-    title: "Art Cards",
-    slug: "art_card",
-    description:
-      "Vibrant printed art-card packaging for high-impact presentation where color depth, finish quality, and detail matter.",
-    tags: ["Print Quality", "Visual Impact", "Premium"],
-    image: CATEGORY_IMAGE_MAP["art card"],
-    industries: ["Cosmetics", "Apparel", "Gift Brands"],
-    materialFinish: ["Art Card", "Matte / Gloss", "Embossing", "Debossing"],
-    purposes: ["Branding", "Shelf Appeal", "Premium Presentation"],
-  },
-  {
     id: "luxury",
     title: "Luxury Packaging",
     slug: "rigid_boxes",
@@ -133,6 +121,18 @@ const CATALOG_CATEGORIES = [
     materialFinish: ["Gold Foil", "Embossing", "Debossing", "Matte / Gloss"],
     purposes: ["Premium Presentation", "Branding", "Shelf Appeal"],
   },
+  {
+    id: "rigid",
+    title: "Rigid Boxes",
+    slug: "rigid_boxes",
+    description:
+      "Premium packaging for luxury products, gifts, apparel, and cosmetics. Ideal for stronger presentation and perceived value.",
+    tags: ["Premium", "Luxury", "Retail"],
+    image: CATEGORY_IMAGE_MAP["rigid boxes"],
+    industries: ["Cosmetics", "Apparel", "Gift Brands"],
+    materialFinish: ["Art Card", "Gold Foil", "Embossing", "Debossing", "Matte / Gloss"],
+    purposes: ["Branding", "Premium Presentation", "Shelf Appeal"],
+  },
 ];
 
 const FILTER_GROUPS = [
@@ -144,7 +144,7 @@ const FILTER_GROUPS = [
   {
     key: "packagingType",
     title: "Browse by Packaging Type",
-    items: ["Rigid Boxes", "Corrugated Boxes", "Custom Pouches", "Labels", "Hang Tags", "Luxury Packaging"],
+    items: ["Art Cards", "Corrugated Boxes", "Custom Pouches", "Labels", "Hang Tags", "Luxury Packaging", "Rigid Boxes"],
   },
   {
     key: "materialFinish",

@@ -98,13 +98,13 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
 };
 
 const CATEGORY_ORDER = [
-  "rigid_boxes",
+  "art_card",
   "corrugated_boxes",
   "custom_pouches",
   "carry_bags",
   "kraft_boxes",
   "labels_tags",
-  "art_card",
+  "rigid_boxes",
 ] as const;
 
 function homeCardForSlug(slug: string) {
