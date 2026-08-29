@@ -36,6 +36,10 @@ export function CategoryIcon({ type }: { type: CategoryLayoutIcon }) {
           <path d="M4 6h12l4 4v8H4V6Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
           <circle cx="9" cy="11" r="1.5" fill="currentColor" />
         </svg>
+      ) : type === "christmas" ? (
+        <svg viewBox="0 0 24 24" fill="none" className={ICON_CLASS}>
+          <path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 5L12 14.8 7.5 16.7l.9-5L4.8 8.2l5-.7L12 3Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        </svg>
       ) : (
         <svg viewBox="0 0 24 24" fill="none" className={ICON_CLASS}>
           <rect x="5" y="3" width="14" height="18" rx="1.5" stroke="currentColor" strokeWidth="1.6" />

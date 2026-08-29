@@ -9,6 +9,7 @@ import type { CategoryFaqItem, CategoryPageConfig } from "./categoryPages";
 import type { ProductData } from "@/components/product/ProductInfo";
 import { buildProductDetailBlocksForTeaser } from "./productDetailLongDescription";
 import { ART_CARD_PRODUCTS } from "@/data/artCardProducts";
+import { CHRISTMAS_PRODUCTS } from "@/data/christmasProducts";
 import { CORRUGATED_PRODUCTS } from "@/data/corrugatedProducts";
 import { KRAFT_PRODUCTS } from "@/data/kraftProducts";
 import { RIGID_PRODUCTS } from "@/data/rigidProducts";
@@ -5614,6 +5615,141 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
         },
       ],
     },
+    {
+      category: "christmas-packaging",
+      cardImage: "/assets/images/categories/christmas/christmas_gift_bag.png",
+      bannerImages: [
+        "/assets/images/categories/christmas/christmas_gift_bag.png",
+        "/assets/images/categories/christmas/christmas (4).png",
+        "/assets/images/categories/christmas/christmas_sweet_box.png",
+        "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+      ],
+      tabs: [
+        { id: "all", label: "All" },
+        { id: "core_products", label: "Core Products" },
+        { id: "use_case", label: "Use-case Based" },
+        { id: "premium_variations", label: "Premium variations" },
+      ],
+      products: [
+        {
+          slug: "custom-christmas-gift-boxes",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas (4).png",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas_gift_bag.png",
+            "/assets/images/categories/christmas/christmas_sweet_box.png",
+          ],
+          heading: "Core",
+          title: "Custom Christmas Gift Boxes",
+          subtitle: "Holiday gift boxes for retail, hampers, and corporate Christmas gifting.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["custom-christmas-gift-boxes"]),
+        },
+        {
+          slug: "custom-christmas-gift-bags",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas_gift_bag.png",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas-gift-bags-2.jpg",
+            "/assets/images/categories/christmas/christmas (4).png",
+          ],
+          heading: "Core",
+          title: "Custom Christmas Gift Bags",
+          subtitle: "Festive paper shopping bags with seasonal print and retail-ready handles.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["custom-christmas-gift-bags"]),
+        },
+        {
+          slug: "custom-christmas-wrapping-paper",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas-stickers-and-seals.jpg",
+            "/assets/images/categories/christmas/christmas_tag.png",
+          ],
+          heading: "Core",
+          title: "Custom Christmas Wrapping Paper",
+          subtitle: "Branded Christmas gift wrap sheets and rolls for holiday campaigns.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["custom-christmas-wrapping-paper"]),
+        },
+        {
+          slug: "christmas-sweet-boxes",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas_sweet_box.png",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas sweet box 2.png",
+            "/assets/images/categories/christmas/christmas choclate.png",
+          ],
+          heading: "Core",
+          title: "Christmas Sweet Boxes",
+          subtitle: "Festive confectionery cartons for candies, biscuits, and holiday assortments.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["christmas-sweet-boxes"]),
+        },
+        {
+          slug: "christmas-art-card-boxes",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas-art-card-boxes.jpg",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas (4).png",
+            "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+          ],
+          heading: "Core",
+          title: "Christmas Art Card Boxes",
+          subtitle: "Premium folding cartons with festive print and foil for Christmas SKUs.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["christmas-art-card-boxes"]),
+        },
+        {
+          slug: "christmas-bakery-boxes",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas baked.png",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas sweet box 2.png",
+            "/assets/images/categories/christmas/christmas_sweet_box.png",
+          ],
+          heading: "Core",
+          title: "Christmas Bakery Boxes",
+          subtitle: "Window bakery cartons for Christmas cookies, cakes, and baked gifts.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["christmas-bakery-boxes"]),
+        },
+        {
+          slug: "christmas-chocolate-boxes",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas choclate.png",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas_sweet_box.png",
+            "/assets/images/categories/christmas/christmas (4).png",
+          ],
+          heading: "Core",
+          title: "Christmas Chocolate Boxes",
+          subtitle: "Festive chocolate gift packaging with trays and holiday branding.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["christmas-chocolate-boxes"]),
+        },
+        {
+          slug: "custom-christmas-gift-tags",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas_tag.png",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas-gift-tags-2.jpg",
+            "/assets/images/categories/christmas/christmas-stickers-and-seals.jpg",
+          ],
+          heading: "Core",
+          title: "Custom Christmas Gift Tags",
+          subtitle: "Printed holiday hang tags and gift tags to finish Christmas packaging.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["custom-christmas-gift-tags"]),
+        },
+        {
+          slug: "christmas-stickers-and-seals",
+          tabId: "core_products",
+          cardImage: "/assets/images/categories/christmas/christmas-stickers-and-seals.jpg",
+          detailImages: [
+            "/assets/images/categories/christmas/christmas-gift-tags-2.jpg",
+            "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+          ],
+          heading: "Core",
+          title: "Christmas Stickers and Seals",
+          subtitle: "Festive adhesive seals and stickers for Christmas wrap, boxes, and bags.",
+          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["christmas-stickers-and-seals"]),
+        },
+      ],
+    },
 
   ];
 
@@ -5755,6 +5891,23 @@ const CATEGORY_FAQ_DEFAULTS: Record<string, CategoryFaqItem[]> = {
       question: "Can you match regulatory and barcode requirements?",
       answer:
         "We review legibility, contrast, and placement for retail and regulated categories before production.",
+    },
+  ],
+  "christmas-packaging": [
+    {
+      question: "When should I order Christmas packaging?",
+      answer:
+        "Book Christmas packaging early — typically 8–12 weeks before your ship-by date — so proofs, foil, and packed kits land before November–December peaks.",
+    },
+    {
+      question: "Can I match boxes, bags, wrap, and tags as one Christmas set?",
+      answer:
+        "Yes. We colour-match gift boxes, gift bags, wrapping paper, tags, and seals so your Christmas packaging looks like one holiday collection.",
+    },
+    {
+      question: "Do you print food-safe Christmas sweet and bakery boxes?",
+      answer:
+        "We can specify food-adjacent inks, grease-tolerant coatings, and windows for Christmas sweets, chocolates, and bakery gifts — share your fill and region.",
     },
   ],
 };

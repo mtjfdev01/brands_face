@@ -14,6 +14,18 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = Object.fromEntries(
 
 const CATALOG_CATEGORIES = [
   {
+    id: "christmas-packaging",
+    title: "Christmas Packaging",
+    slug: "christmas-packaging",
+    description:
+      "Custom Christmas packaging for holiday gifting — gift boxes, bags, wrapping paper, sweet boxes, tags, and seals for seasonal retail and corporate gifts.",
+    tags: ["Christmas", "Holiday Gifting", "Seasonal"],
+    image: CATEGORY_IMAGE_MAP["christmas packaging"],
+    industries: ["Gift Brands", "Food", "Ecommerce"],
+    materialFinish: ["Art Card", "Kraft", "Gold Foil", "Matte / Gloss"],
+    purposes: ["Branding", "Premium Presentation", "Shelf Appeal"],
+  },
+  {
     id: "art-card",
     title: "Art Cards",
     slug: "art_card",
@@ -144,7 +156,7 @@ const FILTER_GROUPS = [
   {
     key: "packagingType",
     title: "Browse by Packaging Type",
-    items: ["Art Cards", "Corrugated Boxes", "Custom Pouches", "Labels", "Hang Tags", "Luxury Packaging", "Rigid Boxes"],
+    items: ["Christmas Packaging", "Art Cards", "Corrugated Boxes", "Custom Pouches", "Labels", "Hang Tags", "Luxury Packaging", "Rigid Boxes"],
   },
   {
     key: "materialFinish",

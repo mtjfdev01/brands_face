@@ -7,7 +7,8 @@ export type CategoryLayoutIcon =
   | "bag"
   | "kraft"
   | "label"
-  | "artcard";
+  | "artcard"
+  | "christmas";
 
 export type CategoryLayoutItem = {
   title: string;
@@ -32,6 +33,7 @@ const ICON_BY_SLUG: Record<string, CategoryLayoutIcon> = {
   kraft_boxes: "kraft",
   labels_tags: "label",
   art_card: "artcard",
+  "christmas-packaging": "christmas",
 };
 
 /** Edit copy and slider image paths here. */
@@ -95,9 +97,20 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
       "/assets/images/categories/categories_layout/art_card/art_card%20(3).webp",
     ],
   },
+  "christmas-packaging": {
+    title: "Christmas Packaging",
+    description: "Custom Christmas gift boxes, bags, wrapping paper, tags, and festive packing for the holiday season.",
+    images: [
+      "/assets/images/categories/christmas/christmas_gift_bag.png",
+      "/assets/images/categories/christmas/christmas%20(4).png",
+      "/assets/images/categories/christmas/christmas_sweet_box.png",
+      "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+    ],
+  },
 };
 
 const CATEGORY_ORDER = [
+  "christmas-packaging",
   "art_card",
   "corrugated_boxes",
   "custom_pouches",

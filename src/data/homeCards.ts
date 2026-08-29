@@ -19,6 +19,29 @@ export interface HomeCard {
 
 export const HOME_CARDS: HomeCard[] = [
   {
+    title: "Christmas Packaging",
+    category: "christmas-packaging",
+    image: "/assets/images/categories/christmas/christmas_gift_bag.png",
+    color: "#b23a3a",
+    heroDescription:
+      "Custom Christmas packaging for holiday gifting — Christmas gift boxes, gift bags, wrapping paper, sweet boxes, bakery packs, tags, and seals for seasonal retail and corporate gifts.",
+    heroCtaText: "Get Christmas Packaging Quote",
+    heroSlides: [
+      {
+        title: "Custom Christmas Gift Packaging",
+        description:
+          "Festive gift boxes, bags, and wrap designed for Christmas retail, hampers, and corporate holiday gifting with foil, kraft, and full-colour print.",
+        ctaText: "Get Christmas Packaging Quote",
+      },
+      {
+        title: "Christmas Boxes, Bags & Gift Wrap",
+        description:
+          "Build a matching Christmas packaging set — sweet boxes, chocolate cartons, bakery windows, gift tags, and seals ready for the holiday season.",
+        ctaText: "Shop Christmas Packaging",
+      },
+    ],
+  },
+  {
     title: "Art Card",
     category: "art_card",
     image: "/assets/images/categories/art_card.jpeg",

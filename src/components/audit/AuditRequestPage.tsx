@@ -6,6 +6,7 @@ import OptionCard from "@/components/quote/OptionCard";
 import PageHero from "@/components/hero/PageHero";
 
 const PRODUCT_CATEGORIES = [
+  "Christmas Packaging",
   "Art Card",
   "Corrugated Boxes",
   "Custom Pouches",

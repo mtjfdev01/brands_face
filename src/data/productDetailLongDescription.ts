@@ -174,6 +174,7 @@ const CATEGORY_RANGE_LABEL: Record<string, string> = {
   carry_bags: "paper retail and event bags",
   kraft_boxes: "kraft and unbleached fibre packs",
   labels_tags: "labels, tags, and adhesive graphics",
+  "christmas-packaging": "Christmas gift packaging and holiday wrap",
 };
 
 type CategorySnippet = {
@@ -295,6 +296,22 @@ const CATEGORY_SNIPPETS: Record<string, CategorySnippet> = {
     ],
     fulfilment:
       "We pack to protect edges and unwind; core sizes and direction match your line or fulfilment partner’s spec.",
+  },
+  "christmas-packaging": {
+    fitOut:
+      "Christmas packaging is specified for peak gifting — festive print, foil, and sturdy structures that survive wrap, courier, and unboxing in November–December.",
+    structureBullets: (title) => [
+      `${title} can be sized for hampers, chocolates, bakery, apparel, and mixed Christmas gifts with matching bags, wrap, and tags.`,
+      "Folding cartons, gift bags, wrap sheets, and seals are often quoted as one seasonal set so colours and foil match.",
+      "We plan proofs and press dates around holiday cut-offs so retail and corporate gifts ship on time.",
+    ],
+    materialsBullets: (title) => [
+      `${title} typically runs on art card, kraft, or rigid wrap with Christmas reds, greens, metallics, and kraft-and-gold finishes.`,
+      "Food-adjacent sweets and bakery packs can use grease-tolerant coatings and window films where needed.",
+      "Tags and seals use adhesive and board chosen for wrap, kraft, and coated Christmas cartons.",
+    ],
+    fulfilment:
+      "Holiday SKUs should be booked early; we mark cartons for gift-pack lines and can kit boxes, bags, tags, and seals together.",
   },
 };
 
