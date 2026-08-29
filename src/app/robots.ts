@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 function siteOrigin(): string {
   const fromEnv = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "").trim();
-  return fromEnv || "https://brandsface.com";
+  return fromEnv || "https://www.brandsface.com";
 }
 
 /** Crawler rules + sitemap pointer. Private admin/invoice routes are blocked. */

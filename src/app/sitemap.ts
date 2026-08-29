@@ -4,7 +4,7 @@ import { categoryHubPath } from "@/lib/routes";
 
 function siteOrigin(): string {
   const fromEnv = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "").trim();
-  return fromEnv || "https://brandsface.com";
+  return fromEnv || "https://www.brandsface.com";
 }
 
 /** Public marketing + catalog URLs for search engines. */
