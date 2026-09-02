@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import SaleCategoryClient from "@/components/sale/SaleCategoryClient";
 import { isValidCategorySlug, resolveCategorySlug } from "@/data/categoryPages";
 import { HOME_CARDS } from "@/data/homeCards";
+import { categoryShareMetadata } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return HOME_CARDS.map((c) => ({ category: c.category }));
@@ -17,13 +18,10 @@ export async function generateMetadata({
   const { category } = await params;
   const canonical = resolveCategorySlug(category);
   const card = HOME_CARDS.find((c) => c.category === canonical);
-  if (!card) {
+  if (!card || !canonical) {
     return { title: "Category | Brands Face" };
   }
-  return {
-    title: `${card.title} | Brands Face`,
-    description: card.heroDescription,
-  };
+  return categoryShareMetadata(canonical);
 }
 
 export default async function CategoryHubPage({

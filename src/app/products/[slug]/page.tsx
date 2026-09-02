@@ -8,6 +8,7 @@ import {
   getProductFromCategoryConfig,
   getRelatedProductsInCategory,
 } from "@/data/categoryPages";
+import { productShareMetadata } from "@/lib/seo";
 
 
 /* ── Fallback product for unknown slugs ── */
@@ -46,10 +47,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductFromCategoryConfig(slug) ?? FALLBACK_PRODUCT;
-  return {
-    title: `${product.title} | Brands Face`,
-    description: product.description,
-  };
+  return productShareMetadata(slug, product);
 }
 
 /* ── Page ── */
