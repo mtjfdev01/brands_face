@@ -3,7 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import TawkToScript from '@/components/TawkToScript';
 import WhatsAppChatFab from '@/components/WhatsAppChatFab';
 import SiteHeader from '@/components/nav/SiteHeader';
-import { siteOrigin } from '@/lib/seo';
+import { homeShareMetadata, siteOrigin } from '@/lib/seo';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,9 +21,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin()),
-  title: 'Brands Face | Packaging Re-Engineering & Manufacturing Firm',
-  description:
-    'BrandsFace is a packaging re-engineering and manufacturing firm helping businesses transform their product packaging into a powerful branding and sales asset.',
+  ...homeShareMetadata(),
   icons: {
     icon: '/assets/images/logos/logo_x.png',
     shortcut: '/assets/images/logos/logo_x.png',
