@@ -101,9 +101,9 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
     title: "Christmas Packaging",
     description: "Custom Christmas gift boxes, bags, wrapping paper, tags, and festive packing for the holiday season.",
     images: [
+      "/assets/images/categories/christmas/christmas_sweet_box.png",
       "/assets/images/categories/christmas/christmas_gift_bag.png",
       "/assets/images/categories/christmas/christmas%20(4).png",
-      "/assets/images/categories/christmas/christmas_sweet_box.png",
       "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
     ],
   },

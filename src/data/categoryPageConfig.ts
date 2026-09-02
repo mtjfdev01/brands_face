@@ -5632,25 +5632,12 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
       ],
       products: [
         {
-          slug: "custom-christmas-gift-boxes",
-          tabId: "core_products",
-          cardImage: "/assets/images/categories/christmas/christmas (4).png",
-          detailImages: [
-            "/assets/images/categories/christmas/christmas_gift_bag.png",
-            "/assets/images/categories/christmas/christmas_sweet_box.png",
-          ],
-          heading: "Core",
-          title: "Custom Christmas Gift Boxes",
-          subtitle: "Holiday gift boxes for retail, hampers, and corporate Christmas gifting.",
-          pdp: pdpFromProduct(CHRISTMAS_PRODUCTS["custom-christmas-gift-boxes"]),
-        },
-        {
           slug: "custom-christmas-gift-bags",
           tabId: "core_products",
           cardImage: "/assets/images/categories/christmas/christmas_gift_bag.png",
           detailImages: [
             "/assets/images/categories/christmas/christmas-gift-bags-2.jpg",
-            "/assets/images/categories/christmas/christmas (4).png",
+            // "/assets/images/categories/christmas/christmas (4).png",
           ],
           heading: "Core",
           title: "Custom Christmas Gift Bags",
@@ -5661,10 +5648,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           slug: "custom-christmas-wrapping-paper",
           tabId: "core_products",
           cardImage: "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
-          detailImages: [
-            "/assets/images/categories/christmas/christmas-stickers-and-seals.jpg",
-            "/assets/images/categories/christmas/christmas_tag.png",
-          ],
+          // detailImages: [
+          //   "/assets/images/categories/christmas/christmas-stickers-and-seals.jpg",
+          //   "/assets/images/categories/christmas/christmas_tag.png",
+          // ],
           heading: "Core",
           title: "Custom Christmas Wrapping Paper",
           subtitle: "Branded Christmas gift wrap sheets and rolls for holiday campaigns.",
@@ -5687,10 +5674,10 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           slug: "christmas-art-card-boxes",
           tabId: "core_products",
           cardImage: "/assets/images/categories/christmas/christmas-art-card-boxes.jpg",
-          detailImages: [
-            "/assets/images/categories/christmas/christmas (4).png",
-            "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
-          ],
+          // detailImages: [
+          //   "/assets/images/categories/christmas/christmas (4).png",
+          //   "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+          // ],
           heading: "Core",
           title: "Christmas Art Card Boxes",
           subtitle: "Premium folding cartons with festive print and foil for Christmas SKUs.",
@@ -5715,7 +5702,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage: "/assets/images/categories/christmas/christmas choclate.png",
           detailImages: [
             "/assets/images/categories/christmas/christmas_sweet_box.png",
-            "/assets/images/categories/christmas/christmas (4).png",
+            // "/assets/images/categories/christmas/christmas (4).png",
           ],
           heading: "Core",
           title: "Christmas Chocolate Boxes",
@@ -5741,7 +5728,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           cardImage: "/assets/images/categories/christmas/christmas-stickers-and-seals.jpg",
           detailImages: [
             "/assets/images/categories/christmas/christmas-gift-tags-2.jpg",
-            "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
+            // "/assets/images/categories/christmas/christmas-wrapping-paper.jpg",
           ],
           heading: "Core",
           title: "Christmas Stickers and Seals",
