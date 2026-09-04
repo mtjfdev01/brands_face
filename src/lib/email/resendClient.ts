@@ -44,33 +44,37 @@ function replacePlaceholders(text: string, data: Record<string, string | number 
 
 /** Send HTML email with {{placeholder}} substitution (Resend). */
 export async function sendDynamicEmail(params: {
-  to: string;
+  to: string | string[];
   subject: string;
   body: string;
   data: Record<string, string | number | null | undefined>;
+  replyTo?: string;
 }): Promise<{ ok: true } | { ok: false; error: string }> {
   const resend = getResendClient();
   if (!resend) {
     return { ok: false, error: "Email service is not configured. Set RESEND_API_KEY and RESEND_FROM_EMAIL in the project root `.env.local` file, then restart the dev server." };
   }
 
-  const to = params.to.trim();
-  if (!to) {
+  const recipients = (Array.isArray(params.to) ? params.to : [params.to])
+    .map((email) => email.trim().toLowerCase())
+    .filter(Boolean);
+  if (!recipients.length) {
     return { ok: false, error: "Recipient email is required." };
   }
 
   const renderedSubject = replacePlaceholders(params.subject, params.data);
   const renderedBody = replacePlaceholders(params.body, params.data);
   const fromEmail = getFromEmail();
+  const replyTo = params.replyTo?.trim() || fromEmail;
 
   const result = await resend.emails.send({
     from: getFromAddress(),
-    to: [to],
+    to: recipients,
     subject: renderedSubject,
     html: renderedBody,
+    replyTo,
     headers: {
-      "X-Mailer": "Brands Face Invoice System",
-      "Reply-To": fromEmail,
+      "X-Mailer": "Brands Face",
     },
   });
 

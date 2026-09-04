@@ -1,6 +1,7 @@
 import path from "path";
 import { NextResponse } from "next/server";
 import { upsertCustomerFromLead } from "@/lib/customerSchema";
+import { notifyAdminOfQuoteRequest } from "@/lib/email/quoteNotificationEmail";
 import { dbQuery } from "@/lib/postgres";
 import { ensureQuoteSchema } from "@/lib/quoteSchema";
 import { getQuotesS3Folder, isS3Configured, uploadFileToS3 } from "@/lib/s3";
@@ -148,10 +149,24 @@ export async function POST(request: Request) {
       ["Quote Lead", quoteEmail, storedPhone, requirement, attachmentPaths, customerId],
     );
 
+    const quoteId = inserted.rows[0]?.id ?? null;
+    if (quoteId) {
+      const notify = await notifyAdminOfQuoteRequest({
+        quoteId,
+        email: quoteEmail,
+        phone: storedPhone,
+        requirement,
+        attachmentPaths,
+      });
+      if (!notify.ok) {
+        console.error("Quote admin email failed:", notify.error);
+      }
+    }
+
     return NextResponse.json(
       {
         message: "Thank you! Your quote request has been received. We will contact you soon.",
-        quoteId: inserted.rows[0]?.id ?? null,
+        quoteId,
       },
       { status: 201 },
     );
