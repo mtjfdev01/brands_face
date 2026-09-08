@@ -23,9 +23,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin()),
   ...homeShareMetadata(),
   icons: {
-    icon: '/assets/images/logos/logo_x.png',
-    shortcut: '/assets/images/logos/logo_x.png',
-    apple: '/assets/images/logos/logo_x.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
 };
 
