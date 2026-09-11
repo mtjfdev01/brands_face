@@ -13,6 +13,7 @@
   --primary-btn-shadow: 0 14px 40px color-mix(in srgb, var(--light-green) 25%, transparent);
   --dark-btn-text: var(--color-brand-white);
   --dark-btn-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  --site-header-h: 5.5rem;
   --color-brand-white: #ffffff;
   --color-brand-primary: #1a1a1a;
   --color-brand-accent: #c8102e;
@@ -107,12 +108,15 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
     background-color: var(--color-page-bg);
     color: var(--color-page-text);
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   /* Custom scrollbar */
@@ -483,27 +487,34 @@
 @keyframes hero-from-left {
   from {
     opacity: 0;
-    transform: translateX(-56px);
+    transform: translate3d(-2rem, 0, 0);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes hero-from-right {
   from {
     opacity: 0;
-    transform: translateX(56px);
+    transform: translate3d(2rem, 0, 0);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-.home-hero-swiper .hero-line {
-  opacity: 0;
+.home-hero-swiper.swiper {
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.home-hero-swiper .swiper-wrapper,
+.home-hero-swiper .swiper-slide {
+  max-width: 100%;
 }
 
 .home-hero-swiper .swiper-slide-active .hero-from-left {

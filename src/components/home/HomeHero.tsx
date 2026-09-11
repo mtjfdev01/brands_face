@@ -93,7 +93,7 @@ function getHeroAssetUrls(): string[] {
 function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boolean }) {
   const Heading = slide.headingTag;
   return (
-    <div className={`hero-slide-copy ${compact ? "max-w-xl" : "max-w-4xl"}`}>
+    <div className={`hero-slide-copy min-w-0 max-w-full ${compact ? "mx-auto w-full max-w-xl" : "max-w-4xl"}`}>
       <p
         className={`hero-line hero-from-left flex items-center justify-center font-semibold uppercase tracking-[0.22em] text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.55)] ${
           compact ? "gap-3 text-[10px]" : "gap-4 text-[11px]"
@@ -174,8 +174,8 @@ function HeroNavButton({
       type="button"
       aria-label={isPrev ? "Previous slide" : "Next slide"}
       onClick={onClick}
-      className={`absolute top-1/2 z-40 flex h-14 w-12 -translate-y-1/2 items-center justify-center text-white/85 transition hover:text-white active:scale-95 max-lg:top-auto max-lg:bottom-14 max-lg:h-12 max-lg:w-10 sm:h-16 sm:w-14 ${
-        isPrev ? "left-1 lg:left-3" : "right-1 lg:right-3"
+      className={`absolute top-1/2 z-40 flex h-12 w-10 -translate-y-1/2 items-center justify-center text-white/85 transition hover:text-white active:scale-95 max-lg:top-auto max-lg:bottom-12 max-lg:h-11 max-lg:w-9 sm:h-14 sm:w-12 ${
+        isPrev ? "left-0 lg:left-2" : "right-0 lg:right-2"
       }`}
     >
       <svg
@@ -221,7 +221,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
   }, [onReady]);
 
   return (
-    <section className="relative h-[calc(100svh-4.5rem)] max-h-[calc(100svh-4.5rem)] w-full overflow-hidden bg-[var(--dark-primary-green)]">
+    <section className="relative h-[calc(100dvh-var(--site-header-h))] max-h-[calc(100dvh-var(--site-header-h))] w-full max-w-full overflow-hidden bg-[var(--dark-primary-green)]">
       <Swiper
         modules={[Autoplay, EffectFade, Keyboard, Pagination]}
         effect="fade"
@@ -236,13 +236,13 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
           swiperRef.current = swiper;
           swiper.autoplay?.stop();
         }}
-        className="home-hero-swiper !h-full min-h-0 w-full [&_.swiper-wrapper]:h-full [&_.swiper-slide]:!h-full [&_.swiper-slide]:overflow-hidden [&_.swiper-pagination]:bottom-[26%] [&_.swiper-pagination]:z-30 [&_.swiper-pagination-bullet]:h-2.5 [&_.swiper-pagination-bullet]:w-2.5 [&_.swiper-pagination-bullet]:bg-white/45 [&_.swiper-pagination-bullet]:opacity-100 [&_.swiper-pagination-bullet-active]:bg-[var(--light-green)] max-lg:[&_.swiper-pagination]:bottom-6"
+        className="home-hero-swiper !h-full min-h-0 w-full max-w-full overflow-hidden [&_.swiper-wrapper]:h-full [&_.swiper-slide]:!h-full [&_.swiper-slide]:max-w-full [&_.swiper-slide]:overflow-hidden [&_.swiper-pagination]:bottom-[26%] [&_.swiper-pagination]:z-30 [&_.swiper-pagination-bullet]:h-2.5 [&_.swiper-pagination-bullet]:w-2.5 [&_.swiper-pagination-bullet]:bg-white/45 [&_.swiper-pagination-bullet]:opacity-100 [&_.swiper-pagination-bullet-active]:bg-[var(--light-green)] max-lg:[&_.swiper-pagination]:bottom-6"
       >
         {HERO_SLIDES.map((slide, idx) => {
           return (
             <SwiperSlide key={slide.id} className="!h-full overflow-hidden">
               <div className="relative h-full min-h-0 w-full overflow-hidden">
-                <div className="absolute inset-0 lg:hidden">
+                <div className="absolute inset-0 overflow-hidden lg:hidden">
                   <Image
                     src={slide.mobileSrc}
                     alt=""
@@ -256,7 +256,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
                     className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#132f2b]/70 via-[#132f2b]/35 to-transparent"
                     aria-hidden
                   />
-                  <div className="relative z-10 mx-auto px-6 pb-24 pt-6 text-center sm:px-8 sm:pt-8">
+                  <div className="absolute inset-x-0 top-0 z-10 px-4 pb-20 pt-5 text-center sm:px-6 sm:pt-6">
                     <SlideCopy slide={slide} compact />
                   </div>
                 </div>
@@ -275,7 +275,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
                     className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#132f2b]/40 via-transparent to-transparent"
                     aria-hidden
                   />
-                  <div className="absolute inset-x-0 top-[6%] z-10 flex justify-center px-8 text-center">
+                  <div className="absolute inset-x-0 top-[6%] z-10 flex justify-center overflow-hidden px-8 text-center">
                     <SlideCopy slide={slide} />
                   </div>
                 </div>

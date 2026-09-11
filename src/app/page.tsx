@@ -20,7 +20,7 @@ export default function HomePage() {
   const handleHeroReady = useCallback(() => setHeroReady(true), []);
 
   return (
-    <main className="relative bg-[var(--color-page-bg)]">
+    <main className="relative w-full max-w-full overflow-x-clip bg-[var(--color-page-bg)]">
       {!heroReady && <PageLoader overlay />}
       <HomeHero onReady={handleHeroReady} />
       {heroReady && (
