@@ -95,7 +95,7 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
   return (
     <div className={`hero-slide-copy ${compact ? "max-w-xl" : "max-w-4xl"}`}>
       <p
-        className={`hero-line hero-from-left flex items-center justify-center font-semibold uppercase tracking-[0.28em] text-white/90 ${
+        className={`hero-line hero-from-left flex items-center justify-center font-semibold uppercase tracking-[0.22em] text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.55)] ${
           compact ? "gap-3 text-[10px]" : "gap-4 text-[11px]"
         }`}
         style={{ animationDelay: "0ms" }}
@@ -105,7 +105,7 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
         <span className={`h-px bg-white/55 ${compact ? "w-8" : "w-10"}`} aria-hidden />
       </p>
       <Heading
-        className={`font-[family-name:var(--font-playfair)] font-bold leading-[1.08] tracking-tight text-white ${
+        className={`font-[family-name:var(--font-playfair)] font-extrabold leading-[1.14] tracking-normal text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55),0_1px_3px_rgba(0,0,0,0.7)] ${
           compact
             ? "mt-3 text-[2.1rem] max-[360px]:text-[1.85rem] sm:text-4xl"
             : "mt-2 text-[2.75rem] xl:text-5xl"
@@ -115,14 +115,14 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
           {slide.title}
         </span>
         <span
-          className="hero-line hero-from-left mt-1 block text-[#d4c0a1]"
+          className="hero-line hero-from-left mt-1 block text-[#ead9b8]"
           style={{ animationDelay: "360ms" }}
         >
           {slide.highlight}
         </span>
       </Heading>
       <p
-        className={`hero-line hero-from-right mx-auto max-w-2xl font-medium text-white/80 ${
+        className={`hero-line hero-from-right mx-auto max-w-2xl font-semibold text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] ${
           compact ? "mt-3 text-[15px]" : "mt-3 text-[15px] xl:text-base"
         }`}
         style={{ animationDelay: "540ms" }}
@@ -130,7 +130,7 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
         {slide.sub}
       </p>
       <p
-        className={`hero-line hero-from-left mx-auto max-w-xl leading-relaxed text-white/70 ${
+        className={`hero-line hero-from-left mx-auto max-w-xl leading-relaxed text-white/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)] ${
           compact ? "mt-2 text-[13px]" : "mt-2.5 text-sm"
         }`}
         style={{ animationDelay: "720ms" }}
