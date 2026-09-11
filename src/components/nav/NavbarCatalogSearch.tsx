@@ -100,10 +100,15 @@ export default function NavbarCatalogSearch({ className = "", onNavigate, tone =
     onNavigate?.();
   }, [onNavigate]);
 
+  const typing = query.trim().length > 0;
   const inputClass =
     tone === "nav"
-      ? "w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none transition-colors focus:border-[#1dd1a1]/60 focus:ring-2 focus:ring-[#1dd1a1]/25"
-      : "w-full rounded-xl border border-white/15 bg-white/[0.08] px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none focus:border-[#1dd1a1]/50 focus:ring-2 focus:ring-[#1dd1a1]/20";
+      ? typing
+        ? "w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none transition-colors focus:border-[#1dd1a1]/60 focus:ring-2 focus:ring-[#1dd1a1]/25"
+        : "w-full rounded-xl border border-white bg-white/10 px-3 py-2 pl-9 text-sm text-white placeholder:text-white placeholder:opacity-100 outline-none transition-colors focus:border-white focus:ring-2 focus:ring-white/25"
+      : typing
+        ? "w-full rounded-xl border border-white/15 bg-white/[0.08] px-3 py-2 pl-9 text-sm text-white placeholder:text-white/45 outline-none focus:border-[#1dd1a1]/50 focus:ring-2 focus:ring-[#1dd1a1]/20"
+        : "w-full rounded-xl border border-white bg-white/[0.08] px-3 py-2 pl-9 text-sm text-white placeholder:text-white placeholder:opacity-100 outline-none focus:border-white focus:ring-2 focus:ring-white/20";
 
   const panelClass =
     tone === "nav"

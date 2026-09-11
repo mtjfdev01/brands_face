@@ -69,7 +69,7 @@ const CATEGORY_SEO: Record<string, SeoCopy> = {
       "custom packaging company USA",
     ],
   },
-  art_card: {
+  art_card_box: {
     title: "Custom Box Manufacturer for Brands | Brands Face",
     description:
       "Custom box manufacturer for brands. Custom printed boxes, product packaging boxes, and retail cartons from a custom box maker serving brands across the USA.",
@@ -211,7 +211,7 @@ function productShareFallback(productTitle: string, categorySlug?: string): stri
   if (categorySlug === "rigid_boxes") {
     return `${productTitle} — custom rigid box packaging from a rigid box manufacturer & maker serving premium brands across the USA.`;
   }
-  if (categorySlug === "art_card") {
+  if (categorySlug === "art_card_box") {
     return `${productTitle} — custom printed boxes from a custom box manufacturer for brands across the USA.`;
   }
   const category = HOME_CARDS.find((c) => c.category === categorySlug);

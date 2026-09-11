@@ -42,8 +42,8 @@ export const HOME_CARDS: HomeCard[] = [
     ],
   },
   {
-    title: "Art Card",
-    category: "art_card",
+    title: "Art Card Boxes",
+    category: "art_card_box",
     image: "/assets/images/categories/art_card.jpeg",
     color: "#9b8ec4",
     heroDescription:

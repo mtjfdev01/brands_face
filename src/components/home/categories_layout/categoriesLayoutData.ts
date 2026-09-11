@@ -32,7 +32,7 @@ const ICON_BY_SLUG: Record<string, CategoryLayoutIcon> = {
   carry_bags: "bag",
   kraft_boxes: "kraft",
   labels_tags: "label",
-  art_card: "artcard",
+  art_card_box: "artcard",
   "christmas-packaging": "christmas",
 };
 
@@ -89,7 +89,7 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
       "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(3).webp",
     ],
   },
-  art_card: {
+  art_card_box: {
     description: "Premium cards and stationery designed to elevate your brand experience.",
     images: [
       "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
@@ -111,7 +111,7 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
 
 const CATEGORY_ORDER = [
   "christmas-packaging",
-  "art_card",
+  "art_card_box",
   "corrugated_boxes",
   "custom_pouches",
   "carry_bags",

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { HiEye, HiEyeSlash } from "react-icons/hi2";
+import PageLoader from "@/components/common/PageLoader";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -50,6 +51,7 @@ export default function AdminLoginPage() {
       const data = (await response.json()) as { message?: string };
       if (!response.ok) {
         setError(data.message ?? "Login failed.");
+        setLoading(false);
         return;
       }
 
@@ -57,13 +59,13 @@ export default function AdminLoginPage() {
       router.push("/admin/quotes");
     } catch {
       setError("Unable to reach server. Please try again.");
-    } finally {
       setLoading(false);
     }
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#eef5f0] to-white px-4 py-10 sm:px-6 lg:px-8">
+      {loading ? <PageLoader overlay /> : null}
       <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-6xl items-center justify-center">
         <div className="grid w-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_24px_80px_rgba(16,58,42,0.12)] lg:grid-cols-2">
           <section className="hidden bg-[#103a2a] p-10 text-white lg:flex lg:flex-col lg:justify-between">

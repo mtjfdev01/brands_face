@@ -22,7 +22,7 @@ function pdpFromProduct(p: ProductData | undefined) {
 
 const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     {
-      category: "art_card",
+      category: "art_card_box",
       cardImage: "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
       bannerImages: [
         "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",

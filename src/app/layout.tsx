@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import TawkToScript from '@/components/TawkToScript';
 import WhatsAppChatFab from '@/components/WhatsAppChatFab';
 import SiteHeader from '@/components/nav/SiteHeader';
+import NavigationLoader from '@/components/common/NavigationLoader';
 import { homeShareMetadata, siteOrigin } from '@/lib/seo';
 import './globals.css';
 
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${playfair.variable}`}>
+        <NavigationLoader />
         <SiteHeader />
         {children}
         <TawkToScript />

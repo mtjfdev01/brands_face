@@ -14,6 +14,7 @@ import {
 import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
 import { isCheckoutPhoneOk } from "@/lib/payfastPhone";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
+import PageLoader from "@/components/common/PageLoader";
 
 type OrderRow = {
   id: number;
@@ -382,7 +383,7 @@ export default function AdminProductOrdersPage() {
       )}
 
       {loading ? (
-        <p className="text-sm text-slate-500">Loading…</p>
+        <PageLoader compact tone="onLight" size={0.75} label="Loading" />
       ) : orders.length === 0 ? (
         <p className="text-sm text-slate-500">No rows for this filter.</p>
       ) : (

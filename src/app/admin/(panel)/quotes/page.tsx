@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { HiOutlineCheck, HiOutlineEye, HiOutlineTrash } from "react-icons/hi2";
+import PageLoader from "@/components/common/PageLoader";
 
 type Quote = {
   id: number;
@@ -282,10 +283,7 @@ export default function AdminQuotesPage() {
 
       <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
         {loading ? (
-          <div className="flex items-center gap-3 p-8 text-sm text-slate-600">
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-[#103a2a]" />
-            Loading quotes…
-          </div>
+          <PageLoader compact tone="onLight" size={0.75} label="Loading" />
         ) : error ? (
           <div className="m-4 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">
             {error}

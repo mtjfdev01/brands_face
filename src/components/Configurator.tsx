@@ -5,15 +5,13 @@ import ControlsPanel from './ControlsPanel';
 import UploadTexture from './UploadTexture';
 import PreviewExport from './PreviewExport';
 import PresentationBar from './PresentationBar';
+import Loader from '@/components/common/Loader';
 
 const BoxCanvas = dynamic(() => import('./BoxCanvas'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full min-h-[400px] rounded-xl bg-panel flex items-center justify-center">
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-        <p className="text-sm text-gray-400">Loading 3D viewer...</p>
-      </div>
+      <Loader size={0.75} label="Loading" />
     </div>
   ),
 });

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import PageLoader from "@/components/common/PageLoader";
 
 type QuoteDetail = {
   id: number;
@@ -128,7 +129,7 @@ export default function AdminQuoteDetailPage({ params }: { params: { id: string 
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         {loading ? (
-          <p className="text-sm text-slate-600">Loading quote details...</p>
+          <PageLoader compact tone="onLight" size={0.75} label="Loading" />
         ) : error ? (
           <p className="text-sm font-medium text-red-600">{error}</p>
         ) : !quote ? (

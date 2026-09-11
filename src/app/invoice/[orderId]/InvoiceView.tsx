@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import BankDetails from "@/components/common/BankDetails";
+import PageLoader from "@/components/common/PageLoader";
 import { SITE_ADDRESS_LINES, SITE_NTN } from "@/data/siteContact";
 import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
@@ -349,7 +350,7 @@ export default function InvoiceView() {
   if (loading) {
     return (
       <InvoiceShell>
-        <p className="py-20 text-center text-slate-600">Loading your invoice…</p>
+        <PageLoader tone="onLight" label="Loading" />
       </InvoiceShell>
     );
   }

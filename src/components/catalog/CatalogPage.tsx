@@ -26,13 +26,13 @@ const CATALOG_CATEGORIES = [
     purposes: ["Branding", "Premium Presentation", "Shelf Appeal"],
   },
   {
-    id: "art-card",
+    id: "art-card-box",
     title: "Art Cards",
-    slug: "art_card",
+    slug: "art_card_box",
     description:
       "Vibrant printed art-card packaging for high-impact presentation where color depth, finish quality, and detail matter.",
     tags: ["Print Quality", "Visual Impact", "Premium"],
-    image: CATEGORY_IMAGE_MAP["art card"],
+    image: CATEGORY_IMAGE_MAP["art card box"],
     industries: ["Cosmetics", "Apparel", "Gift Brands"],
     materialFinish: ["Art Card", "Matte / Gloss", "Embossing", "Debossing"],
     purposes: ["Branding", "Shelf Appeal", "Premium Presentation"],

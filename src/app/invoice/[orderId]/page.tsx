@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Footer from "@/components/home/Footer";
+import PageLoader from "@/components/common/PageLoader";
 import InvoiceView from "./InvoiceView";
 
 export const metadata: Metadata = {
@@ -11,11 +12,7 @@ export const metadata: Metadata = {
 export default function InvoicePage() {
   return (
     <Suspense
-      fallback={
-        <div className="mx-auto max-w-2xl px-4 py-16 text-center text-slate-600">
-          <p>Loading…</p>
-        </div>
-      }
+      fallback={<PageLoader overlay />}
     >
       <InvoiceView />
       <Footer />

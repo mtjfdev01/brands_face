@@ -47,18 +47,7 @@ const fab =
   "flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl active:scale-95 sm:h-14 sm:w-14 motion-reduce:transform-none motion-reduce:hover:scale-100";
 
 export default function WhatsAppChatFab() {
-  const [hide, setHide] = useState(false);
   const [isPeekVisible, setIsPeekVisible] = useState(true);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const sync = () => setHide(Boolean(root.dataset.curtainActive));
-    sync();
-
-    const obs = new MutationObserver(sync);
-    obs.observe(root, { attributes: true, attributeFilter: ["data-curtain-active"] });
-    return () => obs.disconnect();
-  }, []);
 
   useEffect(() => {
     // Auto hide/show so page content behind stays usable.
@@ -80,8 +69,6 @@ export default function WhatsAppChatFab() {
       if (hideTimeout) window.clearTimeout(hideTimeout);
     };
   }, []);
-
-  if (hide) return null;
 
   const visibilityClass = isPeekVisible
     ? "opacity-100 pointer-events-auto"

@@ -167,7 +167,7 @@ export const DEFAULT_PRODUCT_DETAIL_BLOCKS: ProductDetailBlock[] = [
 ];
 
 const CATEGORY_RANGE_LABEL: Record<string, string> = {
-  art_card: "art card folding cartons",
+  art_card_box: "art card boxes",
   rigid_boxes: "rigid set-up boxes",
   corrugated_boxes: "corrugated shippers and retail packs",
   custom_pouches: "flexible pouches and barrier films",
@@ -185,7 +185,7 @@ type CategorySnippet = {
 };
 
 const CATEGORY_SNIPPETS: Record<string, CategorySnippet> = {
-  art_card: {
+  art_card_box: {
     fitOut:
       "Cartons erect quickly from flat, suit high-graphic retail, and pair well with windows, hang tabs, and speciality folds when the SKU demands shelf theatre.",
     structureBullets: (title) => [

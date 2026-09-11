@@ -2,11 +2,16 @@
 
 import { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
-import CurtainOverlay from "@/components/home/CurtainOverlay";
 import HomeHero from "@/components/home/HomeHero";
+import PageLoader from "@/components/common/PageLoader";
+import Loader from "@/components/common/Loader";
 
 const HomeBelowHero = dynamic(() => import("@/components/home/HomeBelowHero"), {
-  loading: () => null,
+  loading: () => (
+    <div className="flex min-h-[40vh] items-center justify-center bg-[var(--color-page-bg)]">
+      <Loader tone="onLight" size={0.75} />
+    </div>
+  ),
 });
 
 export default function HomePage() {
@@ -16,10 +21,7 @@ export default function HomePage() {
 
   return (
     <main className="relative bg-[var(--color-page-bg)]">
-      <CurtainOverlay
-        desktopSrc="/hero/hero banner.png"
-        mobileSrc="/hero/hero mobile banner.png"
-      />
+      {!heroReady && <PageLoader overlay />}
       <HomeHero onReady={handleHeroReady} />
       {heroReady && (
         <HomeBelowHero

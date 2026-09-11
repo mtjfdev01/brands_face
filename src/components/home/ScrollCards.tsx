@@ -43,7 +43,7 @@ function getResponsiveConfig(width: number) {
    fan, drag, or bloom). Scroll progress only drives exit at end of journey.
    ────────────────────────────────────────────────── */
 
-const ENTRY_DELAY = 1500; // matches curtain
+const ENTRY_DELAY = 0;
 
 /** Visual scale for each orbit slot (exactly +3.5% vs 0.72). */
 const FLOWER_SLOT_SCALE = 0.72 * 1.035;
