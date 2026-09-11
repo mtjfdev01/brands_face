@@ -40,7 +40,7 @@ function isImageUrl(url: string) {
 function displayEmail(email: string | null | undefined) {
   const value = (email ?? "").trim();
   if (!value) return "—";
-  if (value.endsWith("@leads.brandsface.local")) return "—";
+  if (value.endsWith("@leads.Brandsface.local")) return "—";
   return value;
 }
 

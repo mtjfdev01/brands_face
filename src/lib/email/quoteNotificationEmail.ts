@@ -2,7 +2,7 @@ import { getAdminNotifyEmails } from "@/lib/email/adminNotify";
 import { isResendConfigured, sendDynamicEmail } from "@/lib/email/resendClient";
 import { siteOrigin } from "@/lib/seo";
 
-const SUBJECT = "New quote request #{{quote_id}} — Brands Face";
+const SUBJECT = "New quote request #{{quote_id}} — Brandsface";
 
 const BODY = `
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ const BODY = `
             <tr>
               <td style="padding:28px;">
                 <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#334155;">
-                  A quote request was submitted on brandsface.com.
+                  A quote request was submitted on Brandsface.com.
                 </p>
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 24px;border:1px solid #e2e8f0;border-radius:12px;">
                   <tr>
@@ -86,7 +86,7 @@ function escapeHtml(value: string): string {
 
 function displayEmail(email: string): string {
   const value = email.trim();
-  if (!value || value.endsWith("@leads.brandsface.local")) return "Not provided";
+  if (!value || value.endsWith("@leads.Brandsface.local")) return "Not provided";
   return value;
 }
 

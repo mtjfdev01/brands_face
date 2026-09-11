@@ -22,7 +22,7 @@ function pdpFromProduct(p: ProductData | undefined) {
 
 const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
     {
-      category: "art_card_box",
+      category: "art_card_boxes",
       cardImage: "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
       bannerImages: [
         "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
@@ -470,7 +470,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
             title: "Magnetic Closure Rigid Box",
             description:
               "A flagship presentation format with concealed magnets and a clean reveal — ideal for luxury retail, subscriptions, and unboxing moments that need to feel effortless.",
-            badges: ["PREMIUM RIGID", "CUSTOM STRUCTURE", "BRANDS FACE STUDIO"],
+            badges: ["PREMIUM RIGID", "CUSTOM STRUCTURE", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Rigid line — complimentary structural review",
@@ -500,7 +500,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Lead time", value: "14–22 business days" },
             ],
             details:
-              "Magnetic closure rigid boxes are the backbone of premium product presentation. We engineer flap depth, magnet pull strength, and wrap tension so the lid seats perfectly — run after run.\n\nPair with foam, velvet, or paper inserts for cosmetics, tech, spirits, and gifts. Our studio aligns artwork to live edges and corner radius so your brand reads sharp at shelf and on camera.\n\nBest for Brands Face clients who want a focused, high-end line: flagship SKUs, limited drops, and influencer kits where first open matters.",
+              "Magnetic closure rigid boxes are the backbone of premium product presentation. We engineer flap depth, magnet pull strength, and wrap tension so the lid seats perfectly — run after run.\n\nPair with foam, velvet, or paper inserts for cosmetics, tech, spirits, and gifts. Our studio aligns artwork to live edges and corner radius so your brand reads sharp at shelf and on camera.\n\nBest for Brandsface clients who want a focused, high-end line: flagship SKUs, limited drops, and influencer kits where first open matters.",
           }
         },
         {
@@ -1377,7 +1377,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Stand Up Pouches",
             description: "Stand Up Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1404,7 +1404,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Stand Up Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Stand Up Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1422,7 +1422,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Flat Pouches",
             description: "Flat Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1449,7 +1449,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Flat Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Flat Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1467,7 +1467,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Spout Pouches",
             description: "Spout Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1494,7 +1494,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Spout Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Spout Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1512,7 +1512,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Zipper Pouches",
             description: "Zipper Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1539,7 +1539,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Zipper Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Zipper Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1557,7 +1557,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Three Side Seal Pouches",
             description: "Three Side Seal Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1584,7 +1584,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Three Side Seal Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Three Side Seal Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1602,7 +1602,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Four Side Seal Pouches",
             description: "Four Side Seal Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1629,7 +1629,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Four Side Seal Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Four Side Seal Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1647,7 +1647,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Gusset Pouches",
             description: "Gusset Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1674,7 +1674,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Gusset Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Gusset Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1693,7 +1693,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Pillow Pouches",
             description: "Pillow Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1720,7 +1720,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Pillow Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Pillow Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1738,7 +1738,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Sachet Pouches",
             description: "Sachet Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1765,7 +1765,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Sachet Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Sachet Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1783,7 +1783,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Die-Cut Pouches",
             description: "Die-Cut Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1810,7 +1810,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Core Product Pages/Die-Cut Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Core Product Pages/Die-Cut Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1828,7 +1828,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Cosmetic Pouches",
             description: "Cosmetic Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1855,7 +1855,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Cosmetic Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Cosmetic Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1873,7 +1873,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Skincare Pouches",
             description: "Skincare Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1900,7 +1900,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Skincare Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Skincare Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1918,7 +1918,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Makeup Pouches",
             description: "Makeup Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1945,7 +1945,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Makeup Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Makeup Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -1963,7 +1963,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Hair Care Pouches",
             description: "Hair Care Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -1990,7 +1990,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Hair Care Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Hair Care Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2008,7 +2008,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Sample Pouches",
             description: "Sample Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2035,7 +2035,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "2,500 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Sample Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Sample Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2053,7 +2053,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Travel Size Pouches",
             description: "Travel Size Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2080,7 +2080,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Travel Size Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Travel Size Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2098,7 +2098,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Refill Pouches",
             description: "Refill Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2125,7 +2125,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Refill Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Refill Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2143,7 +2143,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Retail Pouches",
             description: "Retail Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2170,7 +2170,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Retail Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Retail Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2188,7 +2188,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Gift Pouches",
             description: "Gift Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2215,7 +2215,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Gift Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Gift Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2233,7 +2233,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Promotional Pouches",
             description: "Promotional Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2260,7 +2260,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "10,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Promotional Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Use-Case Based Pages/Promotional Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2278,7 +2278,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Printed Pouches",
             description: "Printed Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2305,7 +2305,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Printed Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Printed Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2323,7 +2323,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Matte Finish Pouches",
             description: "Matte Finish Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2350,7 +2350,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Matte Finish Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Matte Finish Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2368,7 +2368,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Gloss Finish Pouches",
             description: "Gloss Finish Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2395,7 +2395,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Gloss Finish Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Gloss Finish Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2413,7 +2413,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Foil Pouches",
             description: "Foil Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2440,7 +2440,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Gloss Finish Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Gloss Finish Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2458,7 +2458,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Kraft Pouches",
             description: "Kraft Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2485,7 +2485,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Kraft Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Kraft Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2503,7 +2503,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Transparent Pouches",
             description: "Transparent Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2530,7 +2530,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Transparent Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Transparent Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2548,7 +2548,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Eco-Friendly Pouches",
             description: "Eco-Friendly Pouches — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2575,7 +2575,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Eco-Friendly Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Eco-Friendly Pouches.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
         {
@@ -2593,7 +2593,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Pouches with Zip Lock",
             description: "Pouches with Zip Lock — custom films, seals, and fitments matched to your fill product, barrier needs, and line speed.",
-            badges: ["CUSTOM POUCHES", "FLEX PACK", "BRANDS FACE STUDIO"],
+            badges: ["CUSTOM POUCHES", "FLEX PACK", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Barrier + seal audit",
@@ -2620,7 +2620,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "5,000 pouches" },
               { label: "Lead time", value: "8–18 business days" },
             ],
-            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Pouches with Zip Lock.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrands Face specs for retail, DTC, and refill programs.",
+            details: "Gallery paths mirror on-disk references under Premium  Variation Pages/Pouches with Zip Lock.\n\nWe align film structure, zipper or spout placement, and burst to your supply chain.\n\nBrandsface specs for retail, DTC, and refill programs.",
           },
         },
       ],
@@ -2655,7 +2655,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Paper Carry Bags",
             description: "Paper Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2682,7 +2682,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Paper Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Paper Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2700,7 +2700,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Kraft Carry Bags",
             description: "Kraft Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2727,7 +2727,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Kraft Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Kraft Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2745,7 +2745,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Luxury Carry Bags",
             description: "Luxury Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2772,7 +2772,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Luxury Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Luxury Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2790,7 +2790,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Rope Handle Carry Bags",
             description: "Rope Handle Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2817,7 +2817,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Rope Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Rope Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2835,7 +2835,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Ribbon Handle Carry Bags",
             description: "Ribbon Handle Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2862,7 +2862,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Ribbon Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Ribbon Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2880,7 +2880,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Die-Cut Handle Carry Bags",
             description: "Die-Cut Handle Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2907,7 +2907,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Die-Cut Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Die-Cut Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2925,7 +2925,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Twisted Handle Carry Bags",
             description: "Twisted Handle Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2952,7 +2952,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Twisted Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Twisted Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -2970,7 +2970,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Flat Handle Carry Bags",
             description: "Flat Handle Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -2997,7 +2997,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Flat Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Flat Handle Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3015,7 +3015,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Laminated Carry Bags",
             description: "Laminated Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3042,7 +3042,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Laminated Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Laminated Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3060,7 +3060,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Foldable Carry Bags",
             description: "Foldable Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3087,7 +3087,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Foldable Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Foldable Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3105,7 +3105,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Retail Carry Bags",
             description: "Retail Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3132,7 +3132,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Retail Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Retail Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3150,7 +3150,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Boutique Carry Bags",
             description: "Boutique Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3177,7 +3177,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Boutique Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Boutique Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3195,7 +3195,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Cosmetics Carry Bags",
             description: "Cosmetics Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3222,7 +3222,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Cosmetics Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Cosmetics Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3240,7 +3240,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Skincare Carry Bags",
             description: "Skincare Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3267,7 +3267,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Skincare Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Skincare Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3285,7 +3285,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Perfume Carry Bags",
             description: "Perfume Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3312,7 +3312,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Perfume Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Perfume Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3330,7 +3330,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Gift Carry Bags",
             description: "Gift Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3357,7 +3357,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Gift Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Gift Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3375,7 +3375,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Apparel Carry Bags",
             description: "Apparel Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3402,7 +3402,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Apparel Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Apparel Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3420,7 +3420,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Jewelry Carry Bags",
             description: "Jewelry Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3447,7 +3447,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Jewelry Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Jewelry Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3465,7 +3465,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Event Carry Bags",
             description: "Event Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3492,7 +3492,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Event Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Event Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3510,7 +3510,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Promotional Carry Bags",
             description: "Promotional Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3537,7 +3537,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Promotional Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Promotional Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3555,7 +3555,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Custom Printed Carry Bags",
             description: "Custom Printed Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3582,7 +3582,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Custom Printed Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Custom Printed Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3600,7 +3600,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Foiled Carry Bags",
             description: "Foiled Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3627,7 +3627,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Foiled Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Foiled Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3645,7 +3645,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Embossed Carry Bags",
             description: "Embossed Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3672,7 +3672,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Embossed Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Embossed Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3690,7 +3690,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Matte Finish Carry Bags",
             description: "Matte Finish Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3717,7 +3717,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Matte Finish Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Matte Finish Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3735,7 +3735,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Gloss Finish Carry Bags",
             description: "Gloss Finish Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3762,7 +3762,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Gloss Finish Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Gloss Finish Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3780,7 +3780,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Eco-Friendly Carry Bags",
             description: "Eco-Friendly Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3807,7 +3807,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Eco-Friendly Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Eco-Friendly Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3825,7 +3825,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Recycled Paper Carry Bags",
             description: "Recycled Paper Carry Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3852,7 +3852,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Recycled Paper Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Recycled Paper Carry Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
         {
@@ -3870,7 +3870,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Premium Shopping Bags",
             description: "Premium Shopping Bags — custom board, handles, and print matched to your retail load, fulfilment cube, and campaign calendar.",
-            badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+            badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Handle load + burst check",
@@ -3897,7 +3897,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 bags" },
               { label: "Lead time", value: "10–20 business days" },
             ],
-            details: "Gallery paths mirror on-disk references for Premium Shopping Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrands Face specs for retail, DTC unboxing, and gifting.",
+            details: "Gallery paths mirror on-disk references for Premium Shopping Bags.\n\nWe align GSM, fold, and handle attachment to your line speed and brand story.\n\nBrandsface specs for retail, DTC unboxing, and gifting.",
           },
         },
       ],
@@ -4340,7 +4340,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
       ],
     },
     {
-      category: "labels_tags",
+      category: "labels_and_tags",
       cardImage: "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(1).webp",
       bannerImages: [
               "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(1).webp",
@@ -4369,7 +4369,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Apparel Tags",
             description: "Apparel Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4396,7 +4396,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Apparel Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Apparel Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4414,7 +4414,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Bottle Labels",
             description: "Bottle Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4441,7 +4441,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Bottle Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Bottle Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4458,7 +4458,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Custom Product Labels",
             description: "Custom Product Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4485,7 +4485,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Custom Product Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Custom Product Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4503,7 +4503,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Die-Cut Labels",
             description: "Die-Cut Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4530,7 +4530,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Die-Cut Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Die-Cut Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4548,7 +4548,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Hang Tags",
             description: "Hang Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4575,7 +4575,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Hang Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Hang Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4593,7 +4593,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Jar Labels",
             description: "Jar Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4620,7 +4620,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Jar Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Jar Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4638,7 +4638,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Price Tags",
             description: "Price Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4665,7 +4665,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Price Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Price Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4683,7 +4683,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Roll Labels",
             description: "Roll Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4710,7 +4710,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Roll Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Roll Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4727,7 +4727,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Sheet Labels",
             description: "Sheet Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4754,7 +4754,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Sheet Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Sheet Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4772,7 +4772,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Swing Tags",
             description: "Swing Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4799,7 +4799,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Core Product Pages/Swing Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Core Product Pages/Swing Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4817,7 +4817,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Clear Labels",
             description: "Clear Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4844,7 +4844,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Clear Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Clear Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4862,7 +4862,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Embossed Labels",
             description: "Embossed Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4889,7 +4889,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Embossed Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Embossed Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4907,7 +4907,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Foil Labels",
             description: "Foil Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4934,7 +4934,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Foil Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Foil Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4952,7 +4952,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Gloss Labels",
             description: "Gloss Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -4979,7 +4979,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Gloss Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Gloss Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -4997,7 +4997,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Kraft Tags",
             description: "Kraft Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5024,7 +5024,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Kraft Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Kraft Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5042,7 +5042,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Matte Labels",
             description: "Matte Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5069,7 +5069,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Matte Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Matte Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5087,7 +5087,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Textured Paper Tags",
             description: "Textured Paper Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5114,7 +5114,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Textured Paper Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Textured Paper Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5132,7 +5132,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Waterproof Labels",
             description: "Waterproof Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5159,7 +5159,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Waterproof Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Premium  Variation Pages/Waterproof Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5177,7 +5177,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Beverage Labels",
             description: "Beverage Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5204,7 +5204,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Beverage Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Beverage Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5222,7 +5222,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Candle Labels",
             description: "Candle Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5249,7 +5249,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Candle Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Candle Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5267,7 +5267,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Cosmetic Labels",
             description: "Cosmetic Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5294,7 +5294,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Cosmetic Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Cosmetic Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5312,7 +5312,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Food Labels",
             description: "Food Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5339,7 +5339,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Food Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Food Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5357,7 +5357,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Hair Care Labels",
             description: "Hair Care Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5384,7 +5384,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Hair Care Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Hair Care Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5402,7 +5402,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Luxury Brand Tags",
             description: "Luxury Brand Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5429,7 +5429,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Luxury Brand Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Luxury Brand Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5448,7 +5448,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Perfume Labels",
             description: "Perfume Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5475,7 +5475,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Perfume Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Perfume Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5493,7 +5493,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Retail Tags",
             description: "Retail Tags — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5520,7 +5520,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "250 pieces" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Retail Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Retail Tags.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5538,7 +5538,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Skincare Labels",
             description: "Skincare Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5565,7 +5565,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Skincare Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Skincare Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
         {
@@ -5583,7 +5583,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
           pdp: {
             title: "Soap Labels",
             description: "Soap Labels — custom print, die-cut, and stock options matched to your applicator, climate, and retail plan.",
-            badges: ["LABELS & TAGS", "BRAND READY", "BRANDS FACE STUDIO"],
+            badges: ["LABELS & TAGS", "BRAND READY", "Brandsface STUDIO"],
             deals: [
               {
                 title: "Applicator and unwind audit",
@@ -5610,7 +5610,7 @@ const _CATEGORY_PAGE_CONFIG_RAW: CategoryPageConfig[] = [
               { label: "Min. order", value: "500 labels" },
               { label: "Lead time", value: "7–16 business days" },
             ],
-            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Soap Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrands Face specs for DTC and retail programs.",
+            details: "Gallery paths mirror your on-disk references under Use-Case Based Pages/Soap Labels.\n\nWe align adhesive, caliper, and finish to fulfilment and climate.\n\nBrandsface specs for DTC and retail programs.",
           },
         },
       ],
@@ -5863,7 +5863,7 @@ const CATEGORY_FAQ_DEFAULTS: Record<string, CategoryFaqItem[]> = {
         "Most mailers and cartons ship flat to save freight; we’ll confirm assembly needs for speciality formats.",
     },
   ],
-  labels_tags: [
+  labels_and_tags: [
     {
       question: "Roll or sheet labels — which do I need?",
       answer:

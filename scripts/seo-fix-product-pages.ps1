@@ -35,14 +35,14 @@ foreach ($category in $categories.Keys) {
                 
                 # Construct proper canonical URL
                 $relativePath = "products/$category/$($file.Name)"
-                $canonicalUrl = "https://brandsface.com/$relativePath"
+                $canonicalUrl = "https://Brandsface.com/$relativePath"
                 
                 # Extract existing description if present, or create new one
                 $descMatch = [regex]::Match($content, 'meta name="description" content="([^"]+)"')
                 $description = if ($descMatch.Success) { $descMatch.Groups[1].Value } else { "Premium $categoryTitle - Custom packaging solution. High-quality manufacturing from Karachi, Pakistan." }
                 
                 # Build proper title
-                $titleContent = "$productName | $categoryTitle | Brands Face"
+                $titleContent = "$productName | $categoryTitle | Brandsface"
                 
                 # Fix all the problematic sections
                 $content = $content -replace 'name="description" content="[^"]*"', "name=`"description`" content=`"$description`""
@@ -62,9 +62,9 @@ foreach ($category in $categories.Keys) {
                 $breadcrumbPattern = '"itemListElement": \[[\s\S]*?\]'
                 $breadcrumbReplace = @"
 "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://brandsface.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://brandsface.com/products/" },
-            { "@type": "ListItem", "position": 3, "name": "$categoryTitle", "item": "https://brandsface.com/products/$category.html" },
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://Brandsface.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://Brandsface.com/products/" },
+            { "@type": "ListItem", "position": 3, "name": "$categoryTitle", "item": "https://Brandsface.com/products/$category.html" },
             { "@type": "ListItem", "position": 4, "name": "$productName", "item": "$canonicalUrl" }
         ]
 "@

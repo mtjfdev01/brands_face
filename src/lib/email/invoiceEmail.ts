@@ -70,8 +70,8 @@ export type SendInvoiceEmailParams = {
 export async function sendInvoiceEmail(
   params: SendInvoiceEmailParams,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
-  const companyName = params.companyName?.trim() || "Brands Face";
-  const supportEmail = params.supportEmail?.trim() || process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@brandsface.com";
+  const companyName = params.companyName?.trim() || "Brandsface";
+  const supportEmail = params.supportEmail?.trim() || process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@Brandsface.com";
   const dueDateLine = params.dueDate
     ? `Payment is due by <strong>${params.dueDate}</strong>.`
     : "Please review the details and complete payment at your earliest convenience.";

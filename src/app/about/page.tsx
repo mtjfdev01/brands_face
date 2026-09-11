@@ -49,10 +49,10 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[var(--primary-cream)]">
       <PageHero
-        eyebrow="About Brands Face"
+        eyebrow="About Brandsface"
         title="We Re-Engineer Packaging Into a"
         titleHighlight="Brand Growth Asset"
-        description="Brands Face is a strategy-led packaging company helping modern brands transform ordinary packaging into high-impact customer experiences. We combine audit insights, structural planning, and premium design to make packaging a real growth channel."
+        description="Brandsface is a strategy-led packaging company helping modern brands transform ordinary packaging into high-impact customer experiences. We combine audit insights, structural planning, and premium design to make packaging a real growth channel."
         feature="Trusted by growing brands that treat packaging as a strategic brand asset—not just a box."
         primaryCta={{ label: "Get a Free Packaging Audit", href: "/audit" }}
         secondaryCta={{ label: "View Our Work", href: "/case-studies" }}

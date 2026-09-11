@@ -41,7 +41,7 @@ type ArtCardSpec = Pick<ProductData, "slug" | "title" | "description" | "feature
 function artCardProduct(spec: ArtCardSpec): ProductData {
   return {
     ...spec,
-    badges: ["ART CARD", "CMYK + FINISH", "BRANDS FACE STUDIO"],
+    badges: ["ART CARD", "CMYK + FINISH", "Brandsface STUDIO"],
     deals: ART_CARD_DEALS,
     quantities: ART_CARD_QUANTITIES,
     sizes: ART_CARD_SIZES,
@@ -82,7 +82,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       { label: "Lead time", value: "10–18 business days" },
     ],
     details:
-      "Reverse tuck ends are chosen when both openings need controlled reveal — common for cosmetics, supplements, and giftable cartons.\n\nWe align panel breaks so logos and regulatory copy land squarely on faces.\n\nExcellent for Brands Face clients balancing fulfilment speed with premium perception.",
+      "Reverse tuck ends are chosen when both openings need controlled reveal — common for cosmetics, supplements, and giftable cartons.\n\nWe align panel breaks so logos and regulatory copy land squarely on faces.\n\nExcellent for Brandsface clients balancing fulfilment speed with premium perception.",
   },
   {
     slug: "straight-tuck-end-art-card-box",
@@ -390,7 +390,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       { label: "Lead time", value: "10–18 business days" },
     ],
     details:
-      "Printed art card is your billboard at folding-carton scale. We manage dot gain and substrate white point.\n\nInterior print turns every open into a second impression.\n\nCore to Brands Face programs that need colour-accurate packaging.",
+      "Printed art card is your billboard at folding-carton scale. We manage dot gain and substrate white point.\n\nInterior print turns every open into a second impression.\n\nCore to Brandsface programs that need colour-accurate packaging.",
   },
   {
     slug: "foiled-art-card-boxes",
@@ -470,7 +470,7 @@ const ART_CARD_SPECS: ArtCardSpec[] = [
       { label: "Lead time", value: "12–20 business days" },
     ],
     details:
-      "Spot UV creates micro-contrast without full gloss. We align varnish height and register to art.\n\nPopular for logos, ingredient callouts, and pattern highlights.\n\nA Brands Face favourite for premium folding cartons.",
+      "Spot UV creates micro-contrast without full gloss. We align varnish height and register to art.\n\nPopular for logos, ingredient callouts, and pattern highlights.\n\nA Brandsface favourite for premium folding cartons.",
   },
   {
     slug: "window-patch-art-card-boxes",

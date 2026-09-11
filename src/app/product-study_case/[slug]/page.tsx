@@ -157,7 +157,7 @@ const STUDIES: Study[] = [
       "Sustained month-over-month performance improvements.",
     ],
     quote:
-      "Brands Face didn’t hand over files and disappear. They built a system that keeps improving.",
+      "Brandsface didn’t hand over files and disappear. They built a system that keeps improving.",
     quoteAuthor: "Operations Lead, D2C Supplement Brand",
   },
   {
@@ -214,13 +214,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!study) {
     return {
-      title: "Case Study | Brands Face",
-      description: "Audit-led packaging case study from Brands Face.",
+      title: "Case Study | Brandsface",
+      description: "Audit-led packaging case study from Brandsface.",
     };
   }
 
   return {
-    title: `${study.title} | Brands Face Case Study`,
+    title: `${study.title} | Brandsface Case Study`,
     description: study.heroSummary,
   };
 }

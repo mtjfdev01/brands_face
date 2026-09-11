@@ -239,7 +239,8 @@ export function filterTeasersByTab(
 }
 
 /** Encode each path segment so spaces (e.g. `RIGID BOX Category`) work with `next/image` for files under `public/`. */
-function encodePublicPath(src: string): string {
+function encodePublicPath(src: string | undefined): string {
+  if (!src) return "";
   if (!src.startsWith("/")) return src;
   return (
     "/" +

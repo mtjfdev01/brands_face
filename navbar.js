@@ -255,7 +255,7 @@ function injectProductNavbar() {
         </style>
         <nav id="navbar" class="scrolled">
             <div class="nav-left"><a href="${quoteLink}" class="btn btn-primary btn-nav">Get a Quote</a></div>
-            <a href="/index.html" class="logo">BRANDS FACE</a>
+            <a href="/index.html" class="logo">Brandsface</a>
             <div class="nav-right">
                 <a href="/index.html">HOME</a>
                 <div class="nav-item dropdown">
@@ -286,7 +286,7 @@ function injectProductNavbar() {
 
             <div id="mobileMenu" class="mobile-menu">
                 <div class="mobile-menu-header">
-                    <a href="/" class="mobile-logo">Brands Face</a>
+                    <a href="/" class="mobile-logo">Brandsface</a>
                     <button class="mobile-close-btn" aria-label="Close menu">×</button>
                 </div>
                 <div class="mobile-menu-content">

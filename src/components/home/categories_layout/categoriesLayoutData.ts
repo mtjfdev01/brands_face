@@ -31,15 +31,15 @@ const ICON_BY_SLUG: Record<string, CategoryLayoutIcon> = {
   custom_pouches: "pouch",
   carry_bags: "bag",
   kraft_boxes: "kraft",
-  labels_tags: "label",
-  art_card_box: "artcard",
+  labels_and_tags: "label",
+  art_card_boxes: "artcard",
   "christmas-packaging": "christmas",
 };
 
 /** Edit copy and slider image paths here. */
 const DISPLAY: Record<string, CategoryDisplayConfig> = {
   rigid_boxes: {
-    description: "Premium rigid boxes crafted for luxury products and gift packaging.",
+    description: "Custom rigid boxes for luxury products, magnetic closures, and premium gift packaging.",
     images: [
       "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(1).png",
       "/assets/images/categories/categories_layout/rigid_box/rigid_cat_main%20(2).png",
@@ -48,7 +48,7 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
     ],
   },
   corrugated_boxes: {
-    description: "Sustainable corrugated packaging offering superior strength and durability.",
+    description: "Custom corrugated boxes for shipping, mailers, and durable branded cartons.",
     images: [
       "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(1).png",
       "/assets/images/categories/categories_layout/corrugrated/corrugrated%20(2).png",
@@ -57,15 +57,14 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
     ],
   },
   custom_pouches: {
-    description: "Flexible pouches designed with standout custom prints.",
+    description: "Custom pouches with stand-up, zipper, and printed flexible packaging options.",
     images: [
       "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement.png",
       "/assets/images/categories/categories_layout/pouches/elegant_pouch_packaging_arrangement%20(2).png",
     ],
   },
   carry_bags: {
-    title: "Hand / Shopping Bags",
-    description: "Elegant bags that ensure your brand leaves a lasting impression.",
+    description: "Custom paper shopping bags, kraft carry bags, and luxury retail bags with branded handles.",
     images: [
       "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(1).png",
       "/assets/images/categories/categories_layout/shopping_bags/shopping_bags%20(2).png",
@@ -73,24 +72,22 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
     ],
   },
   kraft_boxes: {
-    title: "Kraft Paper",
-    description: "Eco-friendly Kraft paper packaging with natural charm.",
+    description: "Custom kraft boxes with natural texture and eco-friendly print for sustainable brands.",
     images: [
       "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(1).png",
       "/assets/images/categories/categories_layout/kraft_paper/kraft_paper%20(2).png",
     ],
   },
-  labels_tags: {
-    title: "Labels & Stickers",
-    description: "Custom labels that add a refined touch to your brand's identity.",
+  labels_and_tags: {
+    description: "Custom hang tags, product labels, and seals that keep brand identity consistent.",
     images: [
       "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(1).webp",
       "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(2).webp",
       "/assets/images/categories/categories_layout/Labels%20%26%20Stickers/label_stickers%20(3).webp",
     ],
   },
-  art_card_box: {
-    description: "Premium cards and stationery designed to elevate your brand experience.",
+  art_card_boxes: {
+    description: "Custom art card boxes with vibrant print, coated stocks, and retail-ready finishing.",
     images: [
       "/assets/images/categories/categories_layout/art_card/art_card%20(1).webp",
       "/assets/images/categories/categories_layout/art_card/art_card%20(2).webp",
@@ -99,7 +96,7 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
   },
   "christmas-packaging": {
     title: "Christmas Packaging",
-    description: "Custom Christmas gift boxes, bags, wrapping paper, tags, and festive packing for the holiday season.",
+    description: "Custom Christmas gift bags, wrapping paper, sweet and bakery boxes, tags, and seals for the holiday season.",
     images: [
       "/assets/images/categories/christmas/christmas_sweet_box.png",
       "/assets/images/categories/christmas/christmas_gift_bag.png",
@@ -111,12 +108,12 @@ const DISPLAY: Record<string, CategoryDisplayConfig> = {
 
 const CATEGORY_ORDER = [
   "christmas-packaging",
-  "art_card_box",
+  "art_card_boxes",
   "corrugated_boxes",
   "custom_pouches",
   "carry_bags",
   "kraft_boxes",
-  "labels_tags",
+  "labels_and_tags",
   "rigid_boxes",
 ] as const;
 

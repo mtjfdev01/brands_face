@@ -20,7 +20,7 @@ export async function generateMetadata({
   const canonical = resolveCategorySlug(category);
   const card = HOME_CARDS.find((c) => c.category === canonical);
   if (!card || !canonical) {
-    return { title: "Category | Brands Face" };
+    return { title: "Category | Brandsface" };
   }
   return categoryShareMetadata(canonical);
 }

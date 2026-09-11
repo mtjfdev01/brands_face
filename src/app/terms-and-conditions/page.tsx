@@ -3,15 +3,15 @@ import PolicyPageLayout from "@/components/legal/PolicyPageLayout";
 import { LEGAL_DOCS_LAST_UPDATED } from "@/data/siteContact";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Brands Face",
-  description: "Terms governing use of the Brands Face website and services.",
+  title: "Terms & Conditions | Brandsface",
+  description: "Terms governing use of the Brandsface website and services.",
 };
 
 export default function TermsAndConditionsPage() {
   return (
     <PolicyPageLayout title="Terms & Conditions" kicker="Legal" lastUpdated={LEGAL_DOCS_LAST_UPDATED}>
       <p>
-        These terms apply to your use of the Brands Face website and to general engagements unless superseded by a
+        These terms apply to your use of the Brandsface website and to general engagements unless superseded by a
         signed contract or purchase order. Please read them carefully.
       </p>
       <h2>Use of the website</h2>
@@ -39,7 +39,7 @@ export default function TermsAndConditionsPage() {
         months preceding the claim, where no contract exists.
       </p>
       <h2>Governing law</h2>
-      <p>Disputes are subject to the laws and courts of the jurisdiction stated in your primary agreement with Brands Face, or as otherwise required by applicable law.</p>
+      <p>Disputes are subject to the laws and courts of the jurisdiction stated in your primary agreement with Brandsface, or as otherwise required by applicable law.</p>
     </PolicyPageLayout>
   );
 }

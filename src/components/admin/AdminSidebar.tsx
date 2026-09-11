@@ -23,7 +23,7 @@ export default function AdminSidebar() {
   return (
     <aside className="w-full border-b border-slate-200 bg-white p-4 md:w-64 md:border-b-0 md:border-r md:p-6">
       <div className="mb-6">
-        <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Brands Face</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Brandsface</p>
         <h2 className="mt-2 text-xl font-black text-slate-900">Admin Panel</h2>
       </div>
 

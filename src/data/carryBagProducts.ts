@@ -41,7 +41,7 @@ type CarryBagSpec = Pick<ProductData, "slug" | "title" | "description" | "featur
 function carryBagProduct(spec: CarryBagSpec): ProductData {
   return {
     ...spec,
-    badges: ["CARRY BAGS", "RETAIL READY", "BRANDS FACE STUDIO"],
+    badges: ["CARRY BAGS", "RETAIL READY", "Brandsface STUDIO"],
     deals: CARRY_BAG_DEALS,
     quantities: CARRY_BAG_QUANTITIES,
     sizes: CARRY_BAG_SIZES,
@@ -228,7 +228,7 @@ const CARRY_BAG_SPECS: CarryBagSpec[] = [
       { label: "Lead time", value: "10–18 business days" },
     ],
     details:
-      "Retail carry bags see abuse. We specify laminate and board for your traffic.\n\nMulti-store rollouts with consistent colour.\n\nBrands Face programs for chain retail.",
+      "Retail carry bags see abuse. We specify laminate and board for your traffic.\n\nMulti-store rollouts with consistent colour.\n\nBrandsface programs for chain retail.",
   },
   {
     slug: "carry-bag-boutique",
@@ -292,7 +292,7 @@ const CARRY_BAG_SPECS: CarryBagSpec[] = [
       { label: "Lead time", value: "14–24 business days" },
     ],
     details:
-      "Perfume bags must feel precious. We engineer for bottle weight and glass protection.\n\nLimited editions and seasonal coffrets.\n\nBrands Face studio for campaign art.",
+      "Perfume bags must feel precious. We engineer for bottle weight and glass protection.\n\nLimited editions and seasonal coffrets.\n\nBrandsface studio for campaign art.",
   },
   {
     slug: "carry-bag-gift",
@@ -390,7 +390,7 @@ const CARRY_BAG_SPECS: CarryBagSpec[] = [
       { label: "Lead time", value: "12–22 business days" },
     ],
     details:
-      "Custom printed bags are walking billboards. We manage registration across folds and gussets.\n\nInterior print for surprise unboxing.\n\nCore to Brands Face retail programs.",
+      "Custom printed bags are walking billboards. We manage registration across folds and gussets.\n\nInterior print for surprise unboxing.\n\nCore to Brandsface retail programs.",
   },
   {
     slug: "carry-bag-foiled",
@@ -470,7 +470,7 @@ const CARRY_BAG_SPECS: CarryBagSpec[] = [
       { label: "Lead time", value: "10–20 business days" },
     ],
     details:
-      "Eco-friendly bags require honest material choices. We document chain of custody where available.\n\nRight-size to reduce waste.\n\nBrands Face alignment for values-led retail.",
+      "Eco-friendly bags require honest material choices. We document chain of custody where available.\n\nRight-size to reduce waste.\n\nBrandsface alignment for values-led retail.",
   },
   {
     slug: "carry-bag-recycled-paper",
@@ -502,7 +502,7 @@ const CARRY_BAG_SPECS: CarryBagSpec[] = [
       { label: "Lead time", value: "16–28 business days" },
     ],
     details:
-      "Premium shopping bags are the top of the category. We prototype every finish and handle.\n\nBuilt for flagship, luxury gifting, and hero campaigns.\n\nA Brands Face signature when retail must feel unforgettable.",
+      "Premium shopping bags are the top of the category. We prototype every finish and handle.\n\nBuilt for flagship, luxury gifting, and hero campaigns.\n\nA Brandsface signature when retail must feel unforgettable.",
   },
 ];
 

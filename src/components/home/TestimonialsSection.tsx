@@ -60,7 +60,7 @@ const TESTIMONIALS = [
     name: "David Kim",
     role: "Co-Founder, SnackHive",
     stars: 5,
-    quote: "We tried three agencies before finding Brands Face. Night and day difference — these guys get it.",
+    quote: "We tried three agencies before finding Brandsface. Night and day difference — these guys get it.",
     thumbnail: "/assets/testimonials/thumbnail_6.png",
     video: "/assets/testimonials/video_6.mp4",
     color: "#3a5a40",

@@ -6,7 +6,7 @@ export const SITE_ADDRESS_LINES = [
 ] as const;
 
 export const SITE_CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@brandsface.com";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@Brandsface.com";
 
 /** Shown on policy pages and footer “last updated” where used. */
 export const LEGAL_DOCS_LAST_UPDATED = "19 April 2026";
@@ -16,7 +16,7 @@ export const SITE_NTN = { label: "NTN", value: "1636441" } as const;
 
 /** Bank transfer details (footer, invoices, policies). */
 export const SITE_BANK_DETAILS = {
-  accountTitle: "BRANDS FACE (SMC-PRIVATE) LIMITED",
+  accountTitle: "Brandsface (SMC-PRIVATE) LIMITED",
   accountNumber: "3516499000006659",
   iban: "PK91FAYS3516499000006659",
   swift: "FAYSPKKA",

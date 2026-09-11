@@ -40,7 +40,7 @@ type RigidSpec = Pick<ProductData, "slug" | "title" | "description" | "features"
 function rigidProduct(spec: RigidSpec): ProductData {
   return {
     ...spec,
-    badges: ["PREMIUM RIGID", "CUSTOM STRUCTURE", "BRANDS FACE STUDIO"],
+    badges: ["PREMIUM RIGID", "CUSTOM STRUCTURE", "Brandsface STUDIO"],
     deals: RIGID_DEALS,
     quantities: RIGID_QUANTITIES,
     sizes: RIGID_SIZES,
@@ -65,7 +65,7 @@ const RIGID_SPECS: RigidSpec[] = [
       { label: "Lead time", value: "14–22 business days" },
     ],
     details:
-      "Magnetic closure rigid boxes are the backbone of premium product presentation. We engineer flap depth, magnet pull strength, and wrap tension so the lid seats perfectly — run after run.\n\nPair with foam, velvet, or paper inserts for cosmetics, tech, spirits, and gifts. Our studio aligns artwork to live edges and corner radius so your brand reads sharp at shelf and on camera.\n\nBest for Brands Face clients who want a focused, high-end line: flagship SKUs, limited drops, and influencer kits where first open matters.",
+      "Magnetic closure rigid boxes are the backbone of premium product presentation. We engineer flap depth, magnet pull strength, and wrap tension so the lid seats perfectly — run after run.\n\nPair with foam, velvet, or paper inserts for cosmetics, tech, spirits, and gifts. Our studio aligns artwork to live edges and corner radius so your brand reads sharp at shelf and on camera.\n\nBest for Brandsface clients who want a focused, high-end line: flagship SKUs, limited drops, and influencer kits where first open matters.",
   },
   {
     slug: "drawer-slide-out-rigid-box",
@@ -113,7 +113,7 @@ const RIGID_SPECS: RigidSpec[] = [
       { label: "Lead time", value: "16–24 business days" },
     ],
     details:
-      "Shoulder neck rigid boxes are a Brands Face favourite for luxury positioning. The visible neck line frames the product and adds depth to unboxing content.\n\nWe tune shoulder width so the lid slides without binding, and align interior colours for a gallery-like presentation.\n\nExcellent for fragrance, skincare heroes, and single-SKU premium launches.",
+      "Shoulder neck rigid boxes are a Brandsface favourite for luxury positioning. The visible neck line frames the product and adds depth to unboxing content.\n\nWe tune shoulder width so the lid slides without binding, and align interior colours for a gallery-like presentation.\n\nExcellent for fragrance, skincare heroes, and single-SKU premium launches.",
   },
   {
     slug: "book-style-rigid-box",
@@ -355,7 +355,7 @@ const RIGID_SPECS: RigidSpec[] = [
       { label: "Lead time", value: "16–24 business days" },
     ],
     details:
-      "PR kits are packaging as media. We sequence layers so creators capture each beat — from outer sleeve to hero product.\n\nSized for press releases, vouchers, and surprise inserts.\n\nA priority format for Brands Face when you want focused, premium launches.",
+      "PR kits are packaging as media. We sequence layers so creators capture each beat — from outer sleeve to hero product.\n\nSized for press releases, vouchers, and surprise inserts.\n\nA priority format for Brandsface when you want focused, premium launches.",
   },
   {
     slug: "luxury-hamper-gift-rigid-boxes",
@@ -389,7 +389,7 @@ const RIGID_SPECS: RigidSpec[] = [
       { label: "Lead time", value: "16–24 business days" },
     ],
     details:
-      "Foam insert rigids are the standard for protection and precision. We prototype from your 3D files or physical samples.\n\nIdeal for electronics, tools, fragrance, and collector editions.\n\nAmong the best premium pages for Brands Face when protection and perceived value must align.",
+      "Foam insert rigids are the standard for protection and precision. We prototype from your 3D files or physical samples.\n\nIdeal for electronics, tools, fragrance, and collector editions.\n\nAmong the best premium pages for Brandsface when protection and perceived value must align.",
   },
   {
     slug: "velvet-insert-rigid-boxes",

@@ -167,13 +167,13 @@ export const DEFAULT_PRODUCT_DETAIL_BLOCKS: ProductDetailBlock[] = [
 ];
 
 const CATEGORY_RANGE_LABEL: Record<string, string> = {
-  art_card_box: "art card boxes",
+  art_card_boxes: "art card boxes",
   rigid_boxes: "rigid set-up boxes",
   corrugated_boxes: "corrugated shippers and retail packs",
   custom_pouches: "flexible pouches and barrier films",
   carry_bags: "paper retail and event bags",
   kraft_boxes: "kraft and unbleached fibre packs",
-  labels_tags: "labels, tags, and adhesive graphics",
+  labels_and_tags: "labels, tags, and adhesive graphics",
   "christmas-packaging": "Christmas gift packaging and holiday wrap",
 };
 
@@ -185,7 +185,7 @@ type CategorySnippet = {
 };
 
 const CATEGORY_SNIPPETS: Record<string, CategorySnippet> = {
-  art_card_box: {
+  art_card_boxes: {
     fitOut:
       "Cartons erect quickly from flat, suit high-graphic retail, and pair well with windows, hang tabs, and speciality folds when the SKU demands shelf theatre.",
     structureBullets: (title) => [
@@ -281,7 +281,7 @@ const CATEGORY_SNIPPETS: Record<string, CategorySnippet> = {
     fulfilment:
       "Most kraft formats ship flat; we coordinate with your tape, label, and stamp workflow if you fulfil in-house.",
   },
-  labels_tags: {
+  labels_and_tags: {
     fitOut:
       "Labels and tags are the interface between your brand and the product surface — adhesive, face stock, and finish must survive the full lifecycle.",
     structureBullets: (title) => [

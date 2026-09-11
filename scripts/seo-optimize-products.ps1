@@ -41,7 +41,7 @@ function GenerateSEOHead {
         [string]$category,
         [string]$categoryTitle,
         [string]$filePath,
-        [string]$baseUrl = "https://brandsface.com"
+        [string]$baseUrl = "https://Brandsface.com"
     )
     
     # Build the breadcrumb and URL
@@ -71,16 +71,16 @@ function GenerateSEOHead {
     <meta name="theme-color" content="#1a4d2e">
     <meta name="description" content="$description Brand Face Packaging - Pakistan's leading custom packaging manufacturer for USA markets.">
     <meta name="keywords" content="$(ConvertFileNameToTitle $productName), $category packaging, custom boxes, packaging solutions, retail packaging">
-    <meta name="author" content="Brands Face Packaging">
+    <meta name="author" content="Brandsface Packaging">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>$(ConvertFileNameToTitle $productName) | $categoryTitle | Brands Face Packaging</title>
+    <title>$(ConvertFileNameToTitle $productName) | $categoryTitle | Brandsface Packaging</title>
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="canonical" href="$canonicalUrl">
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="$(ConvertFileNameToTitle $productName) | $categoryTitle | Brands Face">
+    <meta property="og:title" content="$(ConvertFileNameToTitle $productName) | $categoryTitle | Brandsface">
     <meta property="og:description" content="$description">
     <meta property="og:type" content="website">
     <meta property="og:url" content="$canonicalUrl">
@@ -140,11 +140,11 @@ function GenerateSEOHead {
         "image": "$baseUrl/box-mockup.png",
         "brand": {
             "@type": "Brand",
-            "name": "Brands Face Packaging"
+            "name": "Brandsface Packaging"
         },
         "manufacturer": {
             "@type": "Organization",
-            "name": "Brands Face Packaging",
+            "name": "Brandsface Packaging",
             "url": "$baseUrl/",
             "address": {
                 "@type": "PostalAddress",

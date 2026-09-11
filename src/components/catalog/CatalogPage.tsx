@@ -28,7 +28,7 @@ const CATALOG_CATEGORIES = [
   {
     id: "art-card-box",
     title: "Art Cards",
-    slug: "art_card_box",
+    slug: "art_card_boxes",
     description:
       "Vibrant printed art-card packaging for high-impact presentation where color depth, finish quality, and detail matter.",
     tags: ["Print Quality", "Visual Impact", "Premium"],
@@ -64,7 +64,7 @@ const CATALOG_CATEGORIES = [
   {
     id: "hang-tags",
     title: "Hang Tags",
-    slug: "labels_tags",
+    slug: "labels_and_tags",
     description:
       "Custom hang tags with foil, embossing, and textured stock to strengthen fashion, gift, and premium product branding.",
     tags: ["Branding", "Fashion", "Premium Finish"],
@@ -76,7 +76,7 @@ const CATALOG_CATEGORIES = [
   {
     id: "labels",
     title: "Labels",
-    slug: "labels_tags",
+    slug: "labels_and_tags",
     description:
       "Product and shipping labels engineered for clarity, consistency, and stronger brand recall across every customer touchpoint.",
     tags: ["Branding", "Compliance", "Retail"],

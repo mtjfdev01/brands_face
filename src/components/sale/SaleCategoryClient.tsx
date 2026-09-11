@@ -175,8 +175,8 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
       {/* <AdvanceStudioShowCase /> */}
       <PackagingInfoTabs />
       <WhyChooseUs
-        heading="Why Choose BrandsFace?"
-        subheading="We don’t just create packaging — we build brand perception. From strategy to design to manufacturing, BrandsFace helps your product stand out, build trust, and convert customers at first glance."
+        heading="Why Choose Brandsface?"
+        subheading="We don’t just create packaging — we build brand perception. From strategy to design to manufacturing, Brandsface helps your product stand out, build trust, and convert customers at first glance."
         features={whyFeatures}
       />
 

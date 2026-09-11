@@ -23,12 +23,12 @@ export function getFromEmail(): string {
   return (
     process.env.RESEND_FROM_EMAIL?.trim() ||
     process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ||
-    "info@brandsface.com"
+    "info@Brandsface.com"
   );
 }
 
 export function getSenderName(): string {
-  return process.env.SENDER_NAME?.trim() || "Brands Face";
+  return process.env.SENDER_NAME?.trim() || "Brandsface";
 }
 
 export function getFromAddress(): string {
@@ -74,7 +74,7 @@ export async function sendDynamicEmail(params: {
     html: renderedBody,
     replyTo,
     headers: {
-      "X-Mailer": "Brands Face",
+      "X-Mailer": "Brandsface",
     },
   });
 

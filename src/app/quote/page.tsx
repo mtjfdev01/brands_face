@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import GetQuotePage from "@/components/quote/GetQuotePage";
 
 export const metadata: Metadata = {
-  title: "Get a Custom Quote | Brands Face",
+  title: "Get a Custom Quote | Brandsface",
   description:
     "Request a custom packaging quote. Share your email or phone and requirements — we'll get back to you soon.",
 };

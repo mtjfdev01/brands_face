@@ -15,7 +15,7 @@ export type PageHeroBreadcrumb = {
 };
 
 export type PageHeroProps = {
-  /** Small caps label above the headline (e.g. "About Brands Face"). */
+  /** Small caps label above the headline (e.g. "About Brandsface"). */
   eyebrow: string;
   /** White headline line(s) — serif on desktop/mobile. */
   title: string;
@@ -154,10 +154,10 @@ export default function PageHero({
         className,
       ].join(" ")}
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[12%] top-[-4rem] h-72 w-72 rounded-full bg-emerald-500/15 blur-[120px]" />
-        <div className="absolute bottom-[-3rem] right-[10%] h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(0,0,0,0.22)_0%,transparent_45%,rgba(87,215,170,0.06)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <div className="absolute left-[8%] top-[-6rem] h-56 w-56 rounded-full bg-emerald-500/12 blur-[80px]" />
+        <div className="absolute bottom-[-4rem] right-[6%] h-64 w-64 rounded-full bg-cyan-500/8 blur-[80px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(0,0,0,0.18)_0%,transparent_50%)]" />
       </div>
 
       <div className="relative mx-auto max-w-[1240px]">
@@ -182,14 +182,14 @@ export default function PageHero({
           className={hasImage ? "lg:grid lg:grid-cols-2 lg:items-center lg:gap-12 xl:gap-16" : "max-w-3xl"}
         >
           {/* Copy column */}
-          <div className={["min-w-0", reverse && hasImage ? "lg:order-2" : ""].join(" ")}>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--light-green)] sm:text-xs">
+          <div className={["relative z-10 min-w-0", reverse && hasImage ? "lg:order-2" : ""].join(" ")}>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--light-green)] sm:text-xs">
               {eyebrow}
             </p>
 
             <h1
               className={[
-                "mt-4 font-[family-name:var(--font-playfair)] text-[2rem] font-bold leading-[1.08] tracking-tight text-white",
+                "relative z-10 mt-4 font-[family-name:var(--font-playfair)] text-[2rem] font-extrabold leading-[1.15] tracking-normal text-white",
                 "sm:text-[2.35rem] lg:text-[2.75rem] xl:text-[3rem]",
               ].join(" ")}
             >
@@ -199,7 +199,7 @@ export default function PageHero({
               ) : null}
             </h1>
 
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base lg:mt-6">
+            <p className="relative z-10 mt-5 max-w-xl text-sm font-medium leading-relaxed text-white sm:text-base lg:mt-6">
               {description}
             </p>
 

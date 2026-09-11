@@ -41,7 +41,7 @@ type PouchSpec = Pick<ProductData, "slug" | "title" | "description" | "features"
 function pouchProduct(spec: PouchSpec): ProductData {
   return {
     ...spec,
-    badges: ["FLEXIBLE PACK", "BARRIER FILMS", "BRANDS FACE STUDIO"],
+    badges: ["FLEXIBLE PACK", "BARRIER FILMS", "Brandsface STUDIO"],
     deals: POUCH_DEALS,
     quantities: POUCH_QUANTITIES,
     sizes: POUCH_SIZES,
@@ -244,7 +244,7 @@ const POUCH_SPECS: PouchSpec[] = [
       { label: "Lead time", value: "12–22 business days" },
     ],
     details:
-      "Skincare pouches extend shelf life without glass. We document film compatibility with your preservative system.\n\nRefill pouches support retail and subscription.\n\nBrands Face alignment for clean beauty.",
+      "Skincare pouches extend shelf life without glass. We document film compatibility with your preservative system.\n\nRefill pouches support retail and subscription.\n\nBrandsface alignment for clean beauty.",
   },
   {
     slug: "pouch-makeup",
@@ -356,7 +356,7 @@ const POUCH_SPECS: PouchSpec[] = [
       { label: "Lead time", value: "12–22 business days" },
     ],
     details:
-      "Gift pouches need emotion and protection. We balance finish cost with shelf life.\n\nHoliday and limited editions.\n\nBrands Face studio for campaign art.",
+      "Gift pouches need emotion and protection. We balance finish cost with shelf life.\n\nHoliday and limited editions.\n\nBrandsface studio for campaign art.",
   },
   {
     slug: "pouch-promotional",
@@ -390,7 +390,7 @@ const POUCH_SPECS: PouchSpec[] = [
       { label: "Lead time", value: "12–22 business days" },
     ],
     details:
-      "Printed pouches are your billboard. We manage registration across seals and gussets.\n\nInterior print for surprise unboxing.\n\nCore to Brands Face flexible programs.",
+      "Printed pouches are your billboard. We manage registration across seals and gussets.\n\nInterior print for surprise unboxing.\n\nCore to Brandsface flexible programs.",
   },
   {
     slug: "pouch-matte-finish",
@@ -486,7 +486,7 @@ const POUCH_SPECS: PouchSpec[] = [
       { label: "Lead time", value: "14–24 business days" },
     ],
     details:
-      "Eco-friendly pouches are evolving. We document recyclability and end-of-life honestly.\n\nNot every SKU fits mono-material today — we advise per barrier need.\n\nBrands Face alignment for values-led launches.",
+      "Eco-friendly pouches are evolving. We document recyclability and end-of-life honestly.\n\nNot every SKU fits mono-material today — we advise per barrier need.\n\nBrandsface alignment for values-led launches.",
   },
   {
     slug: "pouch-zip-lock",

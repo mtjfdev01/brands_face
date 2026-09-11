@@ -3,8 +3,8 @@ import PolicyPageLayout from "@/components/legal/PolicyPageLayout";
 import { LEGAL_DOCS_LAST_UPDATED } from "@/data/siteContact";
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Brands Face",
-  description: "Refunds, cancellations, and credits for Brands Face packaging orders.",
+  title: "Refund Policy | Brandsface",
+  description: "Refunds, cancellations, and credits for Brandsface packaging orders.",
 };
 
 export default function RefundPolicyPage() {

@@ -75,7 +75,7 @@ const catalog = {
     "Custom Rigid Box": {
         image: "Custom Rigid.png",
         desc: "Let's create something unique, your idea our execution!",
-        overview: "Brands Face not only gives you variety of box options but also accepts challenge to customize desing of your choice, so bring any idea and we brings it to life.",
+        overview: "Brandsface not only gives you variety of box options but also accepts challenge to customize desing of your choice, so bring any idea and we brings it to life.",
         link: "products/rigid-boxes/custom-rigid-box.html"
     },
     "Corrugated": {
@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });// Add this helper function to update the WhatsApp link
 function updateWhatsAppLink(productName) {
     const waBase = "https://wa.me/1234567890"; // Replace with your real number
-    const message = encodeURIComponent(`Hi Brands Face! I just saw the ${productName} on your website and would like to get a quote.`);
+    const message = encodeURIComponent(`Hi Brandsface! I just saw the ${productName} on your website and would like to get a quote.`);
     const waBtn = document.querySelector('.fab-whatsapp');
     if (waBtn) waBtn.href = `${waBase}?text=${message}`;
 }

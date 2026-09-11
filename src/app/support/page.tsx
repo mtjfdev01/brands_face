@@ -4,8 +4,8 @@ import Footer from "@/components/home/Footer";
 import PageHero from "@/components/hero/PageHero";
 
 export const metadata: Metadata = {
-  title: "Support | Brands Face",
-  description: "Get help with quotes, orders, and packaging projects from Brands Face.",
+  title: "Support | Brandsface",
+  description: "Get help with quotes, orders, and packaging projects from Brandsface.",
 };
 
 export default function SupportPage() {
@@ -16,8 +16,8 @@ export default function SupportPage() {
         title="Support"
         description="We are here for questions about quotes, specifications, timelines, and after-sales support."
         primaryCta={{ label: "Get a quote", href: "/quote" }}
-        secondaryCta={{ label: "About Brands Face", href: "/about" }}
-        image={{ src: "/assets/images/hero_main.png", alt: "Brands Face support" }}
+        secondaryCta={{ label: "About Brandsface", href: "/about" }}
+        image={{ src: "/assets/images/hero_main.png", alt: "Brandsface support" }}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Support" }]}
       />
 
@@ -39,7 +39,7 @@ export default function SupportPage() {
               href="/about"
               className="inline-flex rounded-full border border-[var(--dark-primary-green)]/20 bg-[var(--dark-primary-green)]/5 px-5 py-2.5 text-sm font-semibold text-[var(--dark-primary-green)] transition hover:bg-[var(--dark-primary-green)]/10"
             >
-              About Brands Face
+              About Brandsface
             </Link>
           </div>
         </div>

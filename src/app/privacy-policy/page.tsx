@@ -3,15 +3,15 @@ import PolicyPageLayout from "@/components/legal/PolicyPageLayout";
 import { LEGAL_DOCS_LAST_UPDATED } from "@/data/siteContact";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Brands Face",
-  description: "How Brands Face collects, uses, and protects your information.",
+  title: "Privacy Policy | Brandsface",
+  description: "How Brandsface collects, uses, and protects your information.",
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <PolicyPageLayout title="Privacy Policy" kicker="Legal" lastUpdated={LEGAL_DOCS_LAST_UPDATED}>
       <p>
-        This policy describes how Brands Face (“we”, “us”) handles personal and business information when you use our
+        This policy describes how Brandsface (“we”, “us”) handles personal and business information when you use our
         website, request quotes, or work with us on packaging projects. It is a general summary; your agreement or
         statement of work may add further terms.
       </p>

@@ -183,7 +183,7 @@ const SOCIAL: { label: string; href: string; icon: ComponentType<{ className?: s
   },
   {
     label: "TikTok",
-    href: "https://www.tiktok.com/@brandsface?_r=1&_t=ZS-94Z4BX3eAku",
+    href: "https://www.tiktok.com/@Brandsface?_r=1&_t=ZS-94Z4BX3eAku",
     icon: TikTokIcon,
   },
   {
@@ -429,7 +429,7 @@ export default function Footer() {
               <div className="relative mx-auto mb-2 h-[128px] w-[128px] shrink-0 sm:h-[140px] sm:w-[140px]">
                 <Image
                   src="/assets/images/sustainable.webp"
-                  alt="Brands Face"
+                  alt="Brandsface"
                   fill
                   className="object-contain object-center"
                   sizes="140px"
@@ -438,7 +438,7 @@ export default function Footer() {
               <div className="relative h-11 w-[min(100%,200px)] shrink-0 sm:h-12 sm:w-[220px] lg:w-[228px]">
                 <Image
                   src="/assets/images/logos/logo.png"
-                  alt="Brands Face"
+                  alt="Brandsface"
                   fill
                   className="object-contain object-center"
                   sizes="(max-width: 640px) 200px, (max-width: 1024px) 220px, 228px"
@@ -595,7 +595,7 @@ export default function Footer() {
           <span className="inline-flex min-w-0 max-w-full shrink items-center justify-center gap-1.5">
             <LeafIcon className="h-3.5 w-3.5 shrink-0 text-light-green" aria-hidden />
             <span className="min-w-0 whitespace-nowrap">
-              &copy; {year} Brands Face. All rights reserved.
+              &copy; {year} Brandsface. All rights reserved.
             </span>
           </span>
           <span
@@ -616,7 +616,7 @@ export default function Footer() {
         <div className="mt-8 hidden flex-col items-center gap-4 border-t border-white/12 pt-4 text-center text-xs text-white/65 sm:flex sm:flex-row sm:justify-between sm:gap-6 sm:text-left md:pb-2">
           <span className="inline-flex items-center justify-center gap-2 sm:justify-start">
             <LeafIcon className="h-4 w-4 shrink-0 text-light-green opacity-70" />
-            &copy; {year} Brands Face. All rights reserved.
+            &copy; {year} Brandsface. All rights reserved.
           </span>
           <span className="inline-flex items-center justify-center gap-2">
             <DocumentIcon className="h-4 w-4 shrink-0 text-light-green opacity-70" />

@@ -41,7 +41,7 @@ type KraftSpec = Pick<ProductData, "slug" | "title" | "description" | "features"
 function kraftProduct(spec: KraftSpec): ProductData {
   return {
     ...spec,
-    badges: ["KRAFT STOCK", "NATURAL PRINT", "BRANDS FACE STUDIO"],
+    badges: ["KRAFT STOCK", "NATURAL PRINT", "Brandsface STUDIO"],
     deals: KRAFT_DEALS,
     quantities: KRAFT_QUANTITIES,
     sizes: KRAFT_SIZES,
@@ -390,7 +390,7 @@ const KRAFT_SPECS: KraftSpec[] = [
       { label: "Lead time", value: "10–18 business days" },
     ],
     details:
-      "Printed kraft is a craft — fibre shows through. We calibrate ink for your brand.\n\nWhite ink and dense blacks are common heroes.\n\nCore to Brands Face natural programs.",
+      "Printed kraft is a craft — fibre shows through. We calibrate ink for your brand.\n\nWhite ink and dense blacks are common heroes.\n\nCore to Brandsface natural programs.",
   },
   {
     slug: "kraft-foiled",
@@ -502,7 +502,7 @@ const KRAFT_SPECS: KraftSpec[] = [
       { label: "Lead time", value: "10–18 business days" },
     ],
     details:
-      "Eco-friendly kraft is holistic — stock, ink, inserts, and fulfilment cube.\n\nWe optimise for your actual supply chain.\n\nBrands Face alignment for values-led brands.",
+      "Eco-friendly kraft is holistic — stock, ink, inserts, and fulfilment cube.\n\nWe optimise for your actual supply chain.\n\nBrandsface alignment for values-led brands.",
   },
 ];
 

@@ -31,14 +31,14 @@ function buildCategoryHeroImages(
       slide.productImage ||
       (bannerImages.length > 0 ? bannerImages[idx % bannerImages.length] : undefined) ||
       card.image;
-    push(src, slide.title || card.title, idx === 0);
+    push(src, slide.title || card.heroTitle || card.title, idx === 0);
   });
 
   bannerImages.forEach((src, idx) => {
-    push(src, `${card.title} packaging ${idx + 1}`);
+    push(src, `${card.heroTitle || card.title} ${idx + 1}`);
   });
 
-  push(card.image, card.title, result.length === 0);
+  push(card.image, card.heroTitle || card.title, result.length === 0);
 
   return result;
 }
@@ -55,10 +55,8 @@ export default function CategoryPageHero({ categorySlug }: Props) {
     return buildCategoryHeroImages(card, bannerImages);
   }, [card, categorySlug]);
 
-  const primarySlide = card?.heroSlides?.[0];
-  const title = primarySlide?.title ?? `Custom ${card?.title ?? "Packaging"}`;
+  const title = card?.heroTitle ?? `Custom ${card?.title ?? "Packaging"}`;
   const description =
-    primarySlide?.description ||
     card?.heroDescription ||
     "Premium custom packaging solutions tailored to your category with reliable production quality, flexible finishes, and fast turnaround.";
 
@@ -66,8 +64,12 @@ export default function CategoryPageHero({ categorySlug }: Props) {
     <PageHero
       eyebrow={card?.title ?? "Packaging"}
       title={title}
+      titleHighlight={card?.heroHighlight}
       description={description}
-      feature="Category-specific structures, finishes, and production options built for retail and e-commerce growth."
+      feature={
+        card?.heroFeature ??
+        `${card?.title ?? "Packaging"} with structures, finishes, and production options built for retail and e-commerce growth.`
+      }
       primaryCta={{ label: card?.heroCtaText ?? "Get a Free Quote", href: "/quote" }}
       secondaryCta={{ label: "Free packaging audit", href: "/audit" }}
       images={images}

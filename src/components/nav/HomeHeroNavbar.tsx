@@ -254,7 +254,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
           {/* Invisible home control: bar-height only so transparent image padding / vertical spill does not drive hit area */}
           <Link
             href="/"
-            aria-label="BrandsFace home"
+            aria-label="Brandsface home"
             className="absolute left-4 top-1/2 z-[3] h-9 w-[152px] -translate-y-1/2 translate-x-0 sm:left-5 sm:w-[180px] md:left-1/2 md:w-[205px] md:-translate-x-1/2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
           />
 

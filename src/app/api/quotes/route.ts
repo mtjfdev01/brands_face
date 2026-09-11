@@ -112,7 +112,7 @@ export async function POST(request: Request) {
     const storedPhone = hasPhone ? phone : null;
     const customerEmail = hasEmail
       ? email
-      : `quote.${phoneDigits}@leads.brandsface.local`;
+      : `quote.${phoneDigits}@leads.Brandsface.local`;
     const quoteEmail = hasEmail ? email : "";
 
     const customerId = await upsertCustomerFromLead({

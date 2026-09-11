@@ -104,7 +104,7 @@ foreach ($dir in $directories) {
         $newContent = $template
         
         # Replace title and meta
-        $newContent = $newContent -replace 'Custom Rigid Boxes \| Brands Face Packaging', "$productTitle | $($catData.category) | Brands Face Packaging"
+        $newContent = $newContent -replace 'Custom Rigid Boxes \| Brandsface Packaging', "$productTitle | $($catData.category) | Brandsface Packaging"
         $newContent = $newContent -replace '<span class="badge"[^>]*>[^<]*</span>', "<span class=`"badge`">$($catData.category)</span>"
         $newContent = $newContent -replace '<h1[^>]*>[^<]*</h1>', "<h1>$productTitle</h1>"
         $newContent = $newContent -replace 'Uncompromising strength meets effortless elegance\..*?<\/p>', "Uncompromising quality for $($catData.category.ToLower()) brands. $($catData.intro)</p>"

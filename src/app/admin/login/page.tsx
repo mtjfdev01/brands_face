@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
         <div className="grid w-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_24px_80px_rgba(16,58,42,0.12)] lg:grid-cols-2">
           <section className="hidden bg-[#103a2a] p-10 text-white lg:flex lg:flex-col lg:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-emerald-200/80">Brands Face</p>
+              <p className="text-xs uppercase tracking-[0.22em] text-emerald-200/80">Brandsface</p>
               <h1 className="mt-5 text-4xl font-black leading-tight">
                 Admin
                 <br />
@@ -93,7 +93,7 @@ export default function AdminLoginPage() {
           <section className="p-6 sm:p-8 lg:p-10">
             <div className="mx-auto w-full max-w-md">
               <div className="mb-8 lg:hidden">
-                <p className="text-xs uppercase tracking-[0.22em] text-[#103a2a]/70">Brands Face</p>
+                <p className="text-xs uppercase tracking-[0.22em] text-[#103a2a]/70">Brandsface</p>
                 <h1 className="mt-2 text-3xl font-black text-[#103a2a]">Admin Login</h1>
               </div>
 

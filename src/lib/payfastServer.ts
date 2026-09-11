@@ -26,8 +26,8 @@ export function isPayfastConfigured(): boolean {
 export function getPayfastBrandingFromRequest(request: Request): PayfastCheckoutBranding {
   const envOrigin = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "").trim();
   const origin = envOrigin || new URL(request.url).origin;
-  const merchantName = process.env.PAYFAST_MERCHANT_DISPLAY_NAME?.trim() || "BrandsFace";
-  const txndesc = process.env.PAYFAST_TXN_DESC?.trim() || "BrandsFace product order";
+  const merchantName = process.env.PAYFAST_MERCHANT_DISPLAY_NAME?.trim() || "Brandsface";
+  const txndesc = process.env.PAYFAST_TXN_DESC?.trim() || "Brandsface product order";
   const currencyCode = process.env.PAYFAST_CURRENCY_CODE?.trim() || "PKR";
   return {
     merchantName,

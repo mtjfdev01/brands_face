@@ -13,7 +13,7 @@ function GenerateSEOHead {
         [string]$filePath
     )
     
-    $baseUrl = "https://brandsface.com"
+    $baseUrl = "https://Brandsface.com"
     $relativeUrl = $filePath.Replace("d:\Main Website file\website-setup\", "").Replace("\", "/")
     $canonicalUrl = "$baseUrl/$relativeUrl"
     
@@ -39,11 +39,11 @@ function GenerateSEOHead {
     $seoHead += "    <meta name=`"theme-color`" content=`"#1a4d2e`">`r`n"
     $seoHead += "    <meta name=`"description`" content=`"$description Brand Face Packaging - Custom packaging from Karachi.`">`r`n"
     $seoHead += "    <meta name=`"keywords`" content=`"$productName, $category packaging, custom boxes, packaging solutions`">`r`n"
-    $seoHead += "    <meta name=`"author`" content=`"Brands Face Packaging`">`r`n"
+    $seoHead += "    <meta name=`"author`" content=`"Brandsface Packaging`">`r`n"
     $seoHead += "    <meta name=`"robots`" content=`"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1`">`r`n"
     $seoHead += "    <meta http-equiv=`"X-UA-Compatible`" content=`"IE=edge`">`r`n"
     $seoHead += "    `r`n"
-    $seoHead += "    <title>$productTitle | $categoryTitle | Brands Face</title>`r`n"
+    $seoHead += "    <title>$productTitle | $categoryTitle | Brandsface</title>`r`n"
     $seoHead += "    <link rel=`"icon`" href=`"../../favicon.ico`" type=`"image/x-icon`">`r`n"
     $seoHead += "    <link rel=`"canonical`" href=`"$canonicalUrl`">`r`n"
     $seoHead += "    `r`n"

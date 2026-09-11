@@ -3,8 +3,8 @@ import PolicyPageLayout from "@/components/legal/PolicyPageLayout";
 import { LEGAL_DOCS_LAST_UPDATED } from "@/data/siteContact";
 
 export const metadata: Metadata = {
-  title: "Whistleblowing Policy | Brands Face",
-  description: "How to report concerns safely and confidentially at Brands Face.",
+  title: "Whistleblowing Policy | Brandsface",
+  description: "How to report concerns safely and confidentially at Brandsface.",
 };
 
 export default function WhistleblowingPolicyPage() {
@@ -15,7 +15,7 @@ export default function WhistleblowingPolicyPage() {
       lastUpdated={LEGAL_DOCS_LAST_UPDATED}
     >
       <p>
-        Brands Face is committed to lawful and ethical conduct. If you become aware of serious wrongdoing related to
+        Brandsface is committed to lawful and ethical conduct. If you become aware of serious wrongdoing related to
         our business, this policy explains how you can raise it.
       </p>
       <h2>What to report</h2>

@@ -41,7 +41,7 @@ type ChristmasSpec = Pick<ProductData, "slug" | "title" | "description" | "featu
 function christmasProduct(spec: ChristmasSpec): ProductData {
   return {
     ...spec,
-    badges: ["CHRISTMAS PACKAGING", "HOLIDAY GIFTING", "BRANDS FACE STUDIO"],
+    badges: ["CHRISTMAS PACKAGING", "HOLIDAY GIFTING", "Brandsface STUDIO"],
     deals: CHRISTMAS_DEALS,
     quantities: CHRISTMAS_QUANTITIES,
     sizes: CHRISTMAS_SIZES,

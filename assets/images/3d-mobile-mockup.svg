@@ -51,7 +51,7 @@
 
       <!-- logo plate on the front face -->
       <rect x="360" y="250" width="200" height="110" rx="12" fill="#f3faf3" stroke="#e6efe6" stroke-width="1" />
-      <text x="460" y="318" font-family="'Playfair Display', serif" font-size="44" text-anchor="middle" fill="#164a2d">Brands Face</text>
+      <text x="460" y="318" font-family="'Playfair Display', serif" font-size="44" text-anchor="middle" fill="#164a2d">Brandsface</text>
 
       <!-- material texture subtle lines -->
       <g opacity="0.03" stroke="#000" stroke-width="1">

@@ -86,7 +86,7 @@ export default function CaseStudiesPage() {
         eyebrow="Case Studies"
         title="Packaging Strategies That"
         titleHighlight="Move Revenue, Not Just Boxes"
-        description="Explore how Brands Face helps growing brands turn weak packaging into high-performing product experiences through audit-led strategy, structural optimization, and premium design execution."
+        description="Explore how Brandsface helps growing brands turn weak packaging into high-performing product experiences through audit-led strategy, structural optimization, and premium design execution."
         primaryCta={{ label: "Get a Free Packaging Audit", href: "/audit" }}
         secondaryCta={{ label: "Explore Catalog", href: "/catalog" }}
         image={{ src: "/assets/images/hero_main.png", alt: "Brand packaging case study showcase" }}

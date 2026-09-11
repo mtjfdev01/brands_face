@@ -3,8 +3,8 @@ import PolicyPageLayout from "@/components/legal/PolicyPageLayout";
 import { LEGAL_DOCS_LAST_UPDATED } from "@/data/siteContact";
 
 export const metadata: Metadata = {
-  title: "Shipping Policy | Brands Face",
-  description: "Delivery, freight, and risk for Brands Face packaging shipments.",
+  title: "Shipping Policy | Brandsface",
+  description: "Delivery, freight, and risk for Brandsface packaging shipments.",
 };
 
 export default function ShippingPolicyPage() {

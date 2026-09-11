@@ -41,7 +41,7 @@ type CorrSpec = Pick<ProductData, "slug" | "title" | "description" | "features" 
 function corrugatedProduct(spec: CorrSpec): ProductData {
   return {
     ...spec,
-    badges: ["CORRUGATED", "SHIP-READY", "BRANDS FACE STUDIO"],
+    badges: ["CORRUGATED", "SHIP-READY", "Brandsface STUDIO"],
     deals: CORR_DEALS,
     quantities: CORR_QUANTITIES,
     sizes: CORR_SIZES,
@@ -98,7 +98,7 @@ const CORR_SPECS: CorrSpec[] = [
       { label: "Lead time", value: "8–18 business days" },
     ],
     details:
-      "Corrugated mailers bridge protection and brand. We tune board for cube efficiency vs crush in small parcel networks.\n\nInside print turns the arrival moment into a channel — perfect for Brands Face DTC programs.\n\nDistinct from folding-carton mailers when you need flute cushioning.",
+      "Corrugated mailers bridge protection and brand. We tune board for cube efficiency vs crush in small parcel networks.\n\nInside print turns the arrival moment into a channel — perfect for Brandsface DTC programs.\n\nDistinct from folding-carton mailers when you need flute cushioning.",
   },
   {
     slug: "corrugated-roll-end-tuck-top",
@@ -210,7 +210,7 @@ const CORR_SPECS: CorrSpec[] = [
       { label: "Lead time", value: "8–18 business days" },
     ],
     details:
-      "Shipping boxes are logistics first. We align board with carrier limits and your damage rate targets.\n\nBranding can stay efficient with one flexo hit or full litho for hero SKUs.\n\nCore to high-volume Brands Face fulfilment programs.",
+      "Shipping boxes are logistics first. We align board with carrier limits and your damage rate targets.\n\nBranding can stay efficient with one flexo hit or full litho for hero SKUs.\n\nCore to high-volume Brandsface fulfilment programs.",
   },
 
   /* ── Use-case based ── */
@@ -340,7 +340,7 @@ const CORR_SPECS: CorrSpec[] = [
       { label: "Lead time", value: "10–20 business days" },
     ],
     details:
-      "PR kits are packaging as media. We sequence layers for creator beats — from outer sleeve to hero product.\n\nCorrugated keeps weight and cost sane at influencer scale.\n\nA Brands Face staple for launches.",
+      "PR kits are packaging as media. We sequence layers for creator beats — from outer sleeve to hero product.\n\nCorrugated keeps weight and cost sane at influencer scale.\n\nA Brandsface staple for launches.",
   },
   {
     slug: "corrugated-food",
@@ -390,7 +390,7 @@ const CORR_SPECS: CorrSpec[] = [
       { label: "Lead time", value: "10–22 business days" },
     ],
     details:
-      "Custom printed corrugated is how DTC brands own the porch. We manage washboarding expectations on kraft and white mediums.\n\nLitho laminate unlocks photography and fine type on B-flute and heavier.\n\nCore to Brands Face campaigns that need shelf and doorstep parity.",
+      "Custom printed corrugated is how DTC brands own the porch. We manage washboarding expectations on kraft and white mediums.\n\nLitho laminate unlocks photography and fine type on B-flute and heavier.\n\nCore to Brandsface campaigns that need shelf and doorstep parity.",
   },
   {
     slug: "corrugated-kraft",
@@ -502,7 +502,7 @@ const CORR_SPECS: CorrSpec[] = [
       { label: "Lead time", value: "8–18 business days" },
     ],
     details:
-      "Eco-friendly corrugated is about credible choices — not stickers. We document recycled content and recyclability pathways.\n\nRight-sizing reduces filler and emissions.\n\nFor Brands Face clients who need performance and values alignment.",
+      "Eco-friendly corrugated is about credible choices — not stickers. We document recycled content and recyclability pathways.\n\nRight-sizing reduces filler and emissions.\n\nFor Brandsface clients who need performance and values alignment.",
   },
 ];
 

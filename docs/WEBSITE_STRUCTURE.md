@@ -1,4 +1,4 @@
-# Brands Face Packaging - Complete Website Structure
+# Brandsface Packaging - Complete Website Structure
 
 ## Overview
 
