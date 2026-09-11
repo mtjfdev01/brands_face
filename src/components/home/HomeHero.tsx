@@ -23,6 +23,7 @@ type HeroSlide = {
   title: string;
   highlight: string;
   sub: string;
+  desc: string;
   primary: { href: string; label: string };
   secondary: { href: string; label: string };
   desktopImageClass?: string;
@@ -38,6 +39,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Your Brand Deserves",
     highlight: "Better Packaging",
     sub: "Premium packaging for every idea, industry and occasion.",
+    desc: "Custom boxes, rigid packaging, and printed packs for 300+ brands across the USA.",
     primary: { href: "/audit", label: "Get Started" },
     secondary: { href: "/catalog", label: "Explore All Products" },
   },
@@ -50,6 +52,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Holiday Packaging",
     highlight: "That Gets Remembered",
     sub: "Custom Christmas gift boxes, bags, and wrap for brands across the USA.",
+    desc: "Gift boxes, bags, and wrap for Christmas retail, hampers, and corporate gifting.",
     primary: { href: CHRISTMAS_HREF, label: "Shop Christmas Packaging" },
     secondary: { href: "/quote", label: "Get a Quote" },
     desktopImageClass: "origin-bottom scale-[1.22]",
@@ -63,6 +66,7 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Boxes, Bags & Wrap",
     highlight: "One Holiday Line",
     sub: "Matching Christmas packaging for retail, hampers, and corporate gifting.",
+    desc: "Sweet boxes, gift bags, tags, and seals that ship together as one holiday line.",
     primary: { href: CHRISTMAS_HREF, label: "Explore Christmas Line" },
     secondary: { href: "/quote", label: "Get a Quote" },
     desktopImageClass: "origin-bottom scale-[1.28]",
@@ -103,8 +107,8 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
       <Heading
         className={`font-[family-name:var(--font-playfair)] font-bold leading-[1.08] tracking-tight text-white ${
           compact
-            ? "mt-3 text-[2rem] max-[360px]:text-[1.7rem] sm:text-4xl"
-            : "mt-2 text-4xl xl:text-5xl"
+            ? "mt-3 text-[2.1rem] max-[360px]:text-[1.85rem] sm:text-4xl"
+            : "mt-2 text-[2.75rem] xl:text-5xl"
         }`}
       >
         <span className="hero-line hero-from-right block" style={{ animationDelay: "180ms" }}>
@@ -118,16 +122,24 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
         </span>
       </Heading>
       <p
-        className={`hero-line hero-from-right mx-auto max-w-xl font-medium text-white/80 ${
-          compact ? "mt-3 text-sm" : "mt-2.5 text-sm xl:text-base"
+        className={`hero-line hero-from-right mx-auto max-w-2xl font-medium text-white/80 ${
+          compact ? "mt-3 text-[15px]" : "mt-3 text-[15px] xl:text-base"
         }`}
         style={{ animationDelay: "540ms" }}
       >
         {slide.sub}
       </p>
-      <div
-        className={`hero-line hero-from-left flex flex-wrap items-center justify-center gap-3 ${compact ? "mt-5" : "mt-4"}`}
+      <p
+        className={`hero-line hero-from-left mx-auto max-w-xl leading-relaxed text-white/70 ${
+          compact ? "mt-2 text-[13px]" : "mt-2.5 text-sm"
+        }`}
         style={{ animationDelay: "720ms" }}
+      >
+        {slide.desc}
+      </p>
+      <div
+        className={`hero-line hero-from-right flex flex-wrap items-center justify-center gap-3 ${compact ? "mt-5" : "mt-4"}`}
+        style={{ animationDelay: "900ms" }}
       >
         <Link
           href={slide.primary.href}
