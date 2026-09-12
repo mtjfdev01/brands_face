@@ -36,6 +36,21 @@ type SeoCopy = {
 /** USA is the market we serve — do not imply a US factory. */
 const SERVING_USA = "Custom packaging company serving brands across the USA";
 
+const ABOUT_SEO: SeoCopy = {
+  title: "About Brandsface | Custom Packaging Company Serving the USA",
+  description:
+    "About Brandsface — a custom packaging company serving brands across the USA. We design and produce custom boxes, rigid boxes, pouches, carry bags, and labels with an audit-first process.",
+  keywords: [
+    "about Brandsface",
+    "custom packaging company USA",
+    "custom packaging manufacturer",
+    "custom box manufacturer",
+    "packaging company serving USA brands",
+    "custom rigid boxes",
+    "custom printed packaging",
+  ],
+};
+
 const HOME_SEO: SeoCopy = {
   title: "Brandsface | Custom Packaging Solutions for USA Businesses",
   description:
@@ -277,6 +292,16 @@ export function homeShareMetadata(): Metadata {
     url: absoluteUrl("/"),
     image: "/assets/images/logos/logo_x.png",
     keywords: HOME_SEO.keywords,
+  });
+}
+
+export function aboutShareMetadata(): Metadata {
+  return toMetadata({
+    title: ABOUT_SEO.title,
+    description: ABOUT_SEO.description,
+    url: absoluteUrl("/about"),
+    image: "/assets/images/pages/about/about_hero.png",
+    keywords: ABOUT_SEO.keywords,
   });
 }
 

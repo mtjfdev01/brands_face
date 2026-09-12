@@ -1,135 +1,261 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
-import PageHero from "@/components/hero/PageHero";
+import QuickQuoteHeroSection from "@/components/home/QuickQuoteHeroSection";
+import { HOME_CARDS } from "@/data/homeCards";
+import { aboutShareMetadata, siteOrigin } from "@/lib/seo";
 
-const HERO_IMAGE = "/assets/images/pages/about/about_hero.png";
+export const metadata: Metadata = aboutShareMetadata();
+
+const STORY_IMAGE = "/assets/images/pages/about/about_hero.png";
+
+const EXPERTISE = HOME_CARDS.filter((card) =>
+  ["rigid_boxes", "corrugated_boxes", "custom_pouches", "carry_bags"].includes(card.category),
+).map((card) => ({
+  title: card.heroTitle,
+  href: `/category/${card.category}`,
+  image: card.image,
+  blurb: card.heroDescription,
+}));
 
 const VALUES = [
   {
-    title: "Audit-First Thinking",
-    description:
-      "Before design, we evaluate what your packaging is currently communicating and where it is silently costing you conversions.",
+    n: "01",
+    title: "Quality First",
+    text: "Every structure, print, and finish is specified to protect the product and raise perceived value on shelf and at unboxing.",
   },
   {
-    title: "Strategy + Execution",
-    description:
-      "We bridge brand positioning, structure, and production so every packaging decision supports both growth and practical operations.",
+    n: "02",
+    title: "Strategy Before Print",
+    text: "We audit what your current pack is saying before we design a new one — so spend goes to conversion, not decoration.",
   },
   {
-    title: "Global Market Standards",
-    description:
-      "Our approach is built for performance-driven brands targeting modern retail and e-commerce audiences in the US and Europe.",
-  },
-];
-
-const JOURNEY = [
-  {
-    step: "01",
-    title: "Discover",
-    text: "We study your product category, competitors, and current packaging strengths and blind spots.",
+    n: "03",
+    title: "Built for USA Brands",
+    text: "We serve retail and e-commerce brands across the USA with custom boxes, pouches, bags, and labels matched to US market expectations.",
   },
   {
-    step: "02",
-    title: "Diagnose",
-    text: "You receive actionable packaging audit insights with clear priorities for perception and conversion gains.",
+    n: "04",
+    title: "Clear Quotes & Timelines",
+    text: "You get a written scope, finishing options, and a production window you can plan a launch around — no hidden add-ons after approval.",
   },
   {
-    step: "03",
-    title: "Design",
-    text: "Our team translates strategy into premium packaging concepts, structure, and brand-consistent detail.",
+    n: "05",
+    title: "Eco-Conscious Options",
+    text: "Kraft, recyclable stocks, and responsible coatings are available whenever the category and supply chain support them.",
   },
   {
-    step: "04",
-    title: "Deliver",
-    text: "From prototype to production, we ensure packaging quality and launch-readiness at scale.",
+    n: "06",
+    title: "End-to-End Execution",
+    text: "From dieline and proof to production and packing specs, one team owns the line so colour, structure, and delivery stay aligned.",
   },
 ];
 
 export default function AboutPage() {
+  const origin = siteOrigin();
+
   return (
     <main className="min-h-screen bg-[var(--primary-cream)]">
-      <PageHero
-        eyebrow="About Brandsface"
-        title="We Re-Engineer Packaging Into a"
-        titleHighlight="Brand Growth Asset"
-        description="Brandsface is a strategy-led packaging company helping modern brands transform ordinary packaging into high-impact customer experiences. We combine audit insights, structural planning, and premium design to make packaging a real growth channel."
-        feature="Trusted by growing brands that treat packaging as a strategic brand asset—not just a box."
-        primaryCta={{ label: "Get a Free Packaging Audit", href: "/audit" }}
-        secondaryCta={{ label: "View Our Work", href: "/case-studies" }}
-        image={{ src: HERO_IMAGE, alt: "Premium skincare packaging on stone", priority: true }}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            name: "About Brandsface",
+            url: `${origin}/about`,
+            description:
+              "About Brandsface — a custom packaging company serving brands across the USA with custom boxes, rigid boxes, pouches, carry bags, and labels.",
+            mainEntity: {
+              "@type": "Organization",
+              name: "Brandsface",
+              url: origin,
+              description:
+                "Custom packaging company serving brands across the USA with custom boxes, rigid boxes, pouches, carry bags, and labels.",
+              areaServed: { "@type": "Country", name: "United States" },
+            },
+          }),
+        }}
       />
 
-      <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto grid max-w-[1240px] gap-5 md:grid-cols-3">
-          {VALUES.map((item) => (
-            <article
-              key={item.title}
-              className="rounded-2xl border border-[var(--dark-primary-green)]/10 bg-white p-6 shadow-sm"
-            >
-              <h2 className="text-xl font-black text-[var(--dark-primary-green)]">{item.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--dark-primary-green)]/75">{item.description}</p>
-            </article>
-          ))}
+      <section className="px-4 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-10 lg:px-8">
+        <div className="mx-auto max-w-[1100px]">
+          <nav className="text-xs text-[var(--dark-primary-green)]/55" aria-label="Breadcrumb">
+            <Link href="/" className="transition-colors hover:text-[var(--dark-primary-green)]">
+              Home
+            </Link>
+            <span className="mx-2 opacity-50">/</span>
+            <span className="text-[var(--dark-primary-green)]">About us</span>
+          </nav>
+
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">
+            Custom packaging company
+          </p>
+          <h1 className="mt-3 max-w-3xl font-[family-name:var(--font-playfair)] text-[2.15rem] font-extrabold leading-[1.15] text-[var(--dark-primary-green)] sm:text-5xl lg:text-[3.35rem]">
+            Our Commitment To You
+          </h1>
+          <p className="mt-3 font-[family-name:var(--font-playfair)] text-xl italic text-[#c5a059] sm:text-2xl">
+            Packaging as a growth channel
+          </p>
+          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[var(--dark-primary-green)]/80 sm:text-base">
+            Brandsface treats every custom packaging order with the same care — whether you are launching a first SKU
+            or scaling a national line. We stand behind print quality, structure, and the quote we give. When something
+            is not right, we fix it. As a custom packaging company serving brands across the USA, we design boxes,
+            pouches, carry bags, and labels that look premium, protect the product, and help the brand sell.
+          </p>
         </div>
       </section>
 
-      <section className="px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-[1240px] rounded-3xl border border-[var(--dark-primary-green)]/10 bg-white p-6 shadow-[0_18px_60px_rgba(19,47,43,0.10)] sm:p-8 lg:p-10">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--dark-primary-green)]/70">
-              How We Work
-            </p>
-            <h3 className="mt-3 text-3xl font-black leading-tight tracking-tight text-[var(--dark-primary-green)] sm:text-4xl">
-              A Proven Packaging Procedure
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--dark-primary-green)]/75 sm:text-base">
-              Our process is built to reduce guesswork and turn packaging decisions into measurable business outcomes.
-            </p>
+      <section className="border-y border-[var(--dark-primary-green)]/8 bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-[1100px] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">Origin · Mission</p>
+            <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--dark-primary-green)] sm:text-4xl">
+              Our Story
+            </h2>
+            <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--dark-primary-green)]/80 sm:text-[15px]">
+              <p>
+                Growing brands used to choose between generic stock boxes and packaging programmes built only for
+                the largest corporations. Brandsface exists to close that gap. We give retail, beauty, food, and
+                e-commerce teams a custom box manufacturer they can brief like a brand partner — not a commodity
+                printer.
+              </p>
+              <p>
+                We serve brands across the United States with custom rigid boxes, corrugated shippers, printed art-card
+                cartons, pouches, carry bags, kraft packs, and labels. Production is planned around US retail and
+                fulfilment standards: readable barcodes, durable transit, and unboxing that still feels considered when
+                the pack lands on a doorstep.
+              </p>
+              <p>
+                Every project starts with an audit of what the current pack communicates. Then we lock structure,
+                board, print, and finish so colour, cost, and lead time stay honest from proof to shipment.
+              </p>
+            </div>
           </div>
+          <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[var(--dark-primary-green)]/5 shadow-[0_18px_50px_rgba(19,47,43,0.12)]">
+            <Image
+              src={STORY_IMAGE}
+              alt="Premium branded packaging designed by Brandsface"
+              fill
+              priority
+              sizes="(max-width: 1024px) 92vw, 520px"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {JOURNEY.map((item) => (
-              <article
-                key={item.step}
-                className="rounded-2xl border border-[var(--dark-primary-green)]/10 bg-[var(--primary-cream)] p-5"
+      <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-[1100px]">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">What we make</p>
+          <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--dark-primary-green)] sm:text-4xl">
+            Our Packaging Expertise
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--dark-primary-green)]/75 sm:text-base">
+            Custom boxes, folding cartons, flexible pouches, retail bags, and labels for food, beauty, retail, and
+            e-commerce brands across the USA.
+          </p>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {EXPERTISE.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group overflow-hidden rounded-2xl border border-[var(--dark-primary-green)]/10 bg-white shadow-[0_10px_32px_rgba(19,47,43,0.07)] transition hover:-translate-y-0.5 hover:border-[#c5a059]/40"
               >
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--dark-primary-green)]/55">
-                  {item.step}
-                </p>
-                <h4 className="mt-2 text-xl font-black text-[var(--dark-primary-green)]">{item.title}</h4>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--dark-primary-green)]/75">{item.text}</p>
-              </article>
+                <div className="relative aspect-[16/9] overflow-hidden bg-[#f3eee6]">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 92vw, 520px"
+                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="p-5 sm:p-6">
+                  <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[var(--dark-primary-green)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--dark-primary-green)]/70">
+                    {item.blurb}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
+
+          <p className="mt-8 text-sm text-[var(--dark-primary-green)]/70">
+            Also available:{" "}
+            <Link href="/category/art_card_boxes" className="font-semibold text-[var(--dark-primary-green)] underline-offset-2 hover:underline">
+              art card boxes
+            </Link>
+            ,{" "}
+            <Link href="/category/kraft_boxes" className="font-semibold text-[var(--dark-primary-green)] underline-offset-2 hover:underline">
+              kraft boxes
+            </Link>
+            ,{" "}
+            <Link href="/category/labels_and_tags" className="font-semibold text-[var(--dark-primary-green)] underline-offset-2 hover:underline">
+              labels &amp; tags
+            </Link>
+            , and{" "}
+            <Link href="/category/christmas-packaging" className="font-semibold text-[var(--dark-primary-green)] underline-offset-2 hover:underline">
+              Christmas packaging
+            </Link>
+            .{" "}
+            <Link href="/catalog" className="font-semibold text-[#c5a059] underline-offset-2 hover:underline">
+              View all products
+            </Link>
+          </p>
         </div>
       </section>
 
-      <section className="px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-[1240px] rounded-3xl bg-[var(--dark-primary-green)] px-6 py-10 text-center sm:px-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--light-green)]">Start With Insight</p>
-          <h5 className="mx-auto mt-4 max-w-3xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl">
-            Get a Free Packaging Audit Before You Invest in the Wrong Direction
-          </h5>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-emerald-50/85 sm:text-base">
-            We assess your current packaging and give you practical recommendations to improve trust, perceived value,
-            and conversion outcomes.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/quote"
-              className="rounded-full bg-[var(--light-green)] px-6 py-3 text-sm font-bold text-[var(--primary-btn-text)] transition hover:brightness-110"
-            >
-              Request Free Audit
-            </Link>
-            <Link
-              href="/case-studies"
-              className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-            >
-              View Case Studies
-            </Link>
+      <section className="border-t border-[var(--dark-primary-green)]/8 bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-[1100px] items-start gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">How we work</p>
+            <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--dark-primary-green)] sm:text-4xl">
+              Our Values
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-[var(--dark-primary-green)]/75 sm:text-base">
+              Honest quoting, dependable production, and packaging that performs for the brand — not just the brief.
+            </p>
+
+            <ol className="mt-10 space-y-7">
+              {VALUES.map((item) => (
+                <li key={item.n} className="flex gap-4">
+                  <span className="mt-0.5 w-10 shrink-0 font-[family-name:var(--font-playfair)] text-xl font-extrabold text-[#c5a059]">
+                    {item.n}.
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold text-[var(--dark-primary-green)]">{item.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-[var(--dark-primary-green)]/75">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-[var(--primary-cream)] shadow-[0_18px_50px_rgba(19,47,43,0.12)] lg:mt-16">
+            <Image
+              src={STORY_IMAGE}
+              alt="Brandsface custom packaging values — quality print and structure"
+              fill
+              sizes="(max-width: 1024px) 90vw, 420px"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
+
+      <QuickQuoteHeroSection
+        backgroundSrc="/assets/images/quick_quote.jpg"
+        formAlign="right"
+        layout="band"
+        hangOnTop
+        className="border-t border-[#103a2a]/10"
+      />
+
       <Footer />
     </main>
   );
