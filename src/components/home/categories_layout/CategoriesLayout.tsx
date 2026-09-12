@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import CategoryGridCard from "./CategoryGridCard";
 import { CATEGORY_LAYOUT_ITEMS } from "./categoriesLayoutData";
-import { CategoryIcon } from "./CategoryIcon";
 
 const FLOURISH_SRC = "/assets/images/categories/categories_layout/flourish.png";
 
@@ -24,38 +23,50 @@ function SectionFlourish() {
   );
 }
 
-function CategoriesCtaCard() {
+function CategoriesCtaBar() {
   return (
-    <div className="flex h-full flex-col items-center justify-center rounded-2xl border-2 border-[#c5a059]/70 bg-white px-5 py-8 text-center shadow-[0_8px_28px_rgba(19,47,43,0.06)] sm:px-6 sm:py-10">
-      <span
-        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a059]/45 text-[#c5a059]"
-        aria-hidden
-      >
-        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
-          <path d="M12 8v13M12 8a4 4 0 00-4-4H6a2 2 0 00-2 2v2h16V6a2 2 0 00-2-2h-2a4 4 0 00-4 4z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        </svg>
-      </span>
-      <h3 className="mt-4 font-[family-name:var(--font-playfair)] text-lg font-bold leading-snug text-[var(--dark-primary-green)] sm:text-xl">
-        Need Custom Packaging?
-      </h3>
-      <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-[var(--dark-primary-green)]/55 sm:text-sm">
-        Let&apos;s create packaging that&apos;s uniquely yours.
-      </p>
-      <Link
-        href="/audit"
-        className="mt-5 inline-flex items-center gap-2 rounded-lg border-2 border-[#c5a059] px-5 py-2.5 text-sm font-semibold text-[#c5a059] transition-colors hover:bg-[#c5a059]/8"
-      >
-        Get Free Audit
-        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
-          <path
-            d="M5 12h14M13 6l6 6-6 6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </Link>
+    <div className="mt-5 flex flex-col items-center gap-4 rounded-2xl border-2 border-[#c5a059]/70 bg-white px-5 py-5 text-center shadow-[0_8px_28px_rgba(19,47,43,0.06)] sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8 sm:py-5 sm:text-left lg:mt-8">
+      <div className="flex min-w-0 flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-5">
+        <span
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#c5a059]/45 text-[#c5a059]"
+          aria-hidden
+        >
+          <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
+            <path d="M12 8v13M12 8a4 4 0 00-4-4H6a2 2 0 00-2 2v2h16V6a2 2 0 00-2-2h-2a4 4 0 00-4 4z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+        </span>
+        <div className="min-w-0">
+          <h3 className="font-[family-name:var(--font-playfair)] text-lg font-bold leading-snug text-[var(--dark-primary-green)] sm:text-xl">
+            Need Custom Packaging?
+          </h3>
+          <p className="mt-1 text-xs leading-relaxed text-[var(--dark-primary-green)]/55 sm:text-sm">
+            Let&apos;s create packaging that&apos;s uniquely yours.
+          </p>
+        </div>
+      </div>
+      <div className="flex w-full shrink-0 flex-col items-stretch gap-2.5 sm:w-auto sm:flex-row sm:items-center">
+        <Link
+          href="/quote"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--dark-primary-green)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--dark-primary-green)]/90"
+        >
+          Get a Quote
+          <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+        <Link
+          href="/catalog"
+          className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[#c5a059] px-5 py-2.5 text-sm font-semibold text-[#c5a059] transition-colors hover:bg-[#c5a059]/8"
+        >
+          View All Products
+        </Link>
+      </div>
     </div>
   );
 }
@@ -78,8 +89,8 @@ export default function CategoriesLayout() {
           {CATEGORY_LAYOUT_ITEMS.map((item) => (
             <CategoryGridCard key={item.slug} item={item} />
           ))}
-          <CategoriesCtaCard />
         </div>
+        <CategoriesCtaBar />
       </div>
     </section>
   );
