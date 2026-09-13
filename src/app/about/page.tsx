@@ -3,21 +3,65 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/home/Footer";
 import QuickQuoteHeroSection from "@/components/home/QuickQuoteHeroSection";
-import { HOME_CARDS } from "@/data/homeCards";
 import { aboutShareMetadata, siteOrigin } from "@/lib/seo";
 
 export const metadata: Metadata = aboutShareMetadata();
 
 const STORY_IMAGE = "/assets/images/pages/about/about_hero.png";
 
-const EXPERTISE = HOME_CARDS.filter((card) =>
-  ["rigid_boxes", "corrugated_boxes", "custom_pouches", "carry_bags"].includes(card.category),
-).map((card) => ({
-  title: card.heroTitle,
-  href: `/category/${card.category}`,
-  image: card.image,
-  blurb: card.heroDescription,
-}));
+const STUDIO = {
+  atelier: "/assets/images/pages/about/expertise-atelier.png",
+  foil: "/assets/images/pages/about/expertise-foil.png",
+  board: "/assets/images/pages/about/expertise-board.png",
+};
+
+const VALUE_STILLS = [
+  {
+    src: "/assets/images/pages/about/values-quality.png",
+    alt: "Print proof, colour chips, and foil swatches on a packaging quality table",
+    caption: "Quality",
+  },
+  {
+    src: "/assets/images/pages/about/values-strategy.png",
+    alt: "Packaging audit still life with kraft box, pouch sample, and dieline sketches",
+    caption: "Strategy",
+  },
+  {
+    src: "/assets/images/pages/about/values-materials.png",
+    alt: "Kraft roll, recycled flute, cotton twine, and responsible packaging materials",
+    caption: "Materials",
+  },
+];
+
+const CRAFTS = [
+  {
+    n: "01",
+    title: "Structure",
+    text: "Rigid, corrugated, and folding cartons specified for shelf, ship, and unboxing.",
+  },
+  {
+    n: "02",
+    title: "Print",
+    text: "Colour-true graphics that stay aligned from proof to the packed carton.",
+  },
+  {
+    n: "03",
+    title: "Finish",
+    text: "Foil, emboss, kraft, and soft-touch stocks that raise perceived value.",
+  },
+  {
+    n: "04",
+    title: "Formats",
+    text: "Pouches, carry bags, labels, and seasonal packs in the same brand system.",
+  },
+];
+
+const LINES = [
+  { label: "Rigid boxes", href: "/category/rigid_boxes" },
+  { label: "Corrugated boxes", href: "/category/corrugated_boxes" },
+  { label: "Custom pouches", href: "/category/custom_pouches" },
+  { label: "Carry bags", href: "/category/carry_bags" },
+];
 
 const VALUES = [
   {
@@ -81,13 +125,13 @@ export default function AboutPage() {
 
       <section className="px-4 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-10 lg:px-8">
         <div className="mx-auto max-w-[1100px]">
-          <nav className="text-xs text-[var(--dark-primary-green)]/55" aria-label="Breadcrumb">
+          {/* <nav className="text-xs text-[var(--dark-primary-green)]/55" aria-label="Breadcrumb">
             <Link href="/" className="transition-colors hover:text-[var(--dark-primary-green)]">
               Home
             </Link>
             <span className="mx-2 opacity-50">/</span>
             <span className="text-[var(--dark-primary-green)]">About us</span>
-          </nav>
+          </nav> */}
 
           <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">
             Custom packaging company
@@ -148,44 +192,88 @@ export default function AboutPage() {
 
       <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-[1100px]">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">What we make</p>
-          <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--dark-primary-green)] sm:text-4xl">
-            Our Packaging Expertise
-          </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--dark-primary-green)]/75 sm:text-base">
-            Custom boxes, folding cartons, flexible pouches, retail bags, and labels for food, beauty, retail, and
-            e-commerce brands across the USA.
-          </p>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">The studio</p>
+              <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--dark-primary-green)] sm:text-4xl">
+                Our Packaging Expertise
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-[var(--dark-primary-green)]/75 sm:text-base">
+                We work like a packaging studio: structure first, then print and finish — so boxes, pouches, bags, and
+                labels feel like one line, not four separate orders.
+              </p>
+            </div>
+            <p className="max-w-xs font-[family-name:var(--font-playfair)] text-lg italic text-[#c5a059] lg:text-right lg:text-xl">
+              From dieline to finish.
+            </p>
+          </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {EXPERTISE.map((item) => (
+          <div className="mt-10 grid gap-3 lg:grid-cols-3">
+            <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#f3eee6] shadow-[0_18px_50px_rgba(19,47,43,0.1)] lg:col-span-2">
+              <Image
+                src={STUDIO.atelier}
+                alt="Packaging studio table with a rigid box, kraft board, gold foil, and ribbon"
+                fill
+                sizes="(max-width: 1024px) 92vw, 720px"
+                className="object-cover"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--dark-primary-green)]/85 to-transparent px-5 pb-4 pt-16 text-sm font-medium tracking-wide text-white">
+                Studio table · box, kraft, foil, ribbon
+              </figcaption>
+            </figure>
+
+            <figure className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-[var(--dark-primary-green)] shadow-[0_18px_50px_rgba(19,47,43,0.1)] sm:aspect-[4/3] lg:aspect-auto lg:h-full">
+              <Image
+                src={STUDIO.foil}
+                alt="Gold foil stamping on forest-green paper stock"
+                fill
+                sizes="(max-width: 1024px) 92vw, 360px"
+                className="object-cover"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-4 pb-4 pt-12 text-xs font-semibold uppercase tracking-[0.18em] text-[#c5a059]">
+                Print &amp; finish
+              </figcaption>
+            </figure>
+
+            <figure className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-[#f3eee6] shadow-[0_18px_50px_rgba(19,47,43,0.1)] sm:aspect-[4/3] lg:aspect-[3/4]">
+              <Image
+                src={STUDIO.board}
+                alt="Corrugated flute and kraft carton structure"
+                fill
+                sizes="(max-width: 1024px) 92vw, 360px"
+                className="object-cover"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--dark-primary-green)]/80 to-transparent px-4 pb-4 pt-12 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                Board &amp; structure
+              </figcaption>
+            </figure>
+
+            <div className="grid gap-6 rounded-2xl border border-[var(--dark-primary-green)]/10 bg-white p-6 sm:grid-cols-2 sm:p-8 lg:col-span-2 lg:content-center">
+              {CRAFTS.map((item) => (
+                <div key={item.n}>
+                  <p className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-none text-[#c5a059]">
+                    {item.n}
+                  </p>
+                  <h3 className="mt-2 text-base font-bold text-[var(--dark-primary-green)]">{item.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--dark-primary-green)]/70">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            {LINES.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="group overflow-hidden rounded-2xl border border-[var(--dark-primary-green)]/10 bg-white shadow-[0_10px_32px_rgba(19,47,43,0.07)] transition hover:-translate-y-0.5 hover:border-[#c5a059]/40"
+                className="rounded-full border border-[var(--dark-primary-green)]/15 bg-white px-4 py-2 text-sm font-semibold text-[var(--dark-primary-green)] transition hover:border-[#c5a059]/50 hover:text-[#c5a059]"
               >
-                <div className="relative aspect-[16/9] overflow-hidden bg-[#f3eee6]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 92vw, 520px"
-                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="p-5 sm:p-6">
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[var(--dark-primary-green)]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--dark-primary-green)]/70">
-                    {item.blurb}
-                  </p>
-                </div>
+                {item.label}
               </Link>
             ))}
           </div>
 
-          <p className="mt-8 text-sm text-[var(--dark-primary-green)]/70">
+          <p className="mt-6 text-sm text-[var(--dark-primary-green)]/70">
             Also available:{" "}
             <Link href="/category/art_card_boxes" className="font-semibold text-[var(--dark-primary-green)] underline-offset-2 hover:underline">
               art card boxes
@@ -210,41 +298,57 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--dark-primary-green)]/8 bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-[1100px] items-start gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">How we work</p>
-            <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--dark-primary-green)] sm:text-4xl">
-              Our Values
-            </h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-[var(--dark-primary-green)]/75 sm:text-base">
-              Honest quoting, dependable production, and packaging that performs for the brand — not just the brief.
+      <section className="bg-[var(--dark-primary-green)] px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-[1100px]">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c5a059]">How we work</p>
+              <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-3xl font-extrabold text-[var(--primary-cream)] sm:text-4xl">
+                Our Values
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base">
+                Honest quoting, dependable production, and packaging that performs for the brand — not just the brief.
+              </p>
+            </div>
+            <p className="max-w-xs font-[family-name:var(--font-playfair)] text-lg italic text-[#c5a059] lg:text-right lg:text-xl">
+              Quality before quantity.
             </p>
-
-            <ol className="mt-10 space-y-7">
-              {VALUES.map((item) => (
-                <li key={item.n} className="flex gap-4">
-                  <span className="mt-0.5 w-10 shrink-0 font-[family-name:var(--font-playfair)] text-xl font-extrabold text-[#c5a059]">
-                    {item.n}.
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold text-[var(--dark-primary-green)]">{item.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-[var(--dark-primary-green)]/75">{item.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
           </div>
 
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-[var(--primary-cream)] shadow-[0_18px_50px_rgba(19,47,43,0.12)] lg:mt-16">
-            <Image
-              src={STORY_IMAGE}
-              alt="Brandsface custom packaging values — quality print and structure"
-              fill
-              sizes="(max-width: 1024px) 90vw, 420px"
-              className="object-cover"
-            />
+          <div className="mt-10 grid grid-cols-3 gap-2 sm:gap-3">
+            {VALUE_STILLS.map((still) => (
+              <figure
+                key={still.src}
+                className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-[#0d221f] shadow-[0_18px_50px_rgba(0,0,0,0.28)]"
+              >
+                <Image
+                  src={still.src}
+                  alt={still.alt}
+                  fill
+                  sizes="(max-width: 640px) 92vw, 360px"
+                  className="object-cover"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-4 pb-4 pt-12 text-xs font-semibold uppercase tracking-[0.18em] text-[#c5a059]">
+                  {still.caption}
+                </figcaption>
+              </figure>
+            ))}
           </div>
+
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {VALUES.map((item) => (
+              <li
+                key={item.n}
+                className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-5 sm:px-6 sm:py-6"
+              >
+                <p className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-none text-[#c5a059]">
+                  {item.n}
+                </p>
+                <h3 className="mt-3 text-base font-bold text-[var(--primary-cream)]">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/65">{item.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
