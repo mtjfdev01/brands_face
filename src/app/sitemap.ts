@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllCatalogProductSlugs, getAllCategorySlugs } from "@/data/categoryPages";
+import { getAllCategorySlugs, getSitemapFeaturedProductSlugs } from "@/data/categoryPages";
 import { categoryHubPath } from "@/lib/routes";
 
 function siteOrigin(): string {
@@ -7,7 +7,7 @@ function siteOrigin(): string {
   return fromEnv || "https://www.Brandsface.com";
 }
 
-/** Public marketing + catalog URLs for search engines. */
+/** Public marketing + category hubs + a few flagship PDPs per category. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = siteOrigin();
   const now = new Date();
@@ -41,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const productPages: MetadataRoute.Sitemap = getAllCatalogProductSlugs().map((slug) => ({
+  const productPages: MetadataRoute.Sitemap = getSitemapFeaturedProductSlugs().map((slug) => ({
     url: `${origin}/products/${encodeURIComponent(slug)}`,
     lastModified: now,
     changeFrequency: "weekly",

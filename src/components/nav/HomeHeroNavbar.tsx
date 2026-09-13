@@ -24,6 +24,7 @@ export type HomeHeroNavbarProps = {
 
 export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarProps) {
   const [open, setOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
   const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
   const [hoveredMegaCategory, setHoveredMegaCategory] = useState<string | null>(null);
@@ -46,6 +47,15 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
   };
 
   useEffect(() => () => cancelMegaClose(), []);
+
+  useEffect(() => {
+    if (!mobileSearchOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileSearchOpen]);
 
   const megaMenuTopClass =
     variant === "layout"
@@ -275,13 +285,38 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             </Link> */}
           </div>
 
-          {/* Mobile: hamburger on the right */}
+          {/* Mobile: search (left of hamburger) + hamburger */}
+          <div className="relative z-[2] ml-auto flex shrink-0 items-center gap-2 md:hidden">
           <button
             type="button"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => {
+              setMobileSearchOpen((v) => !v);
+              setOpen(false);
+              setMobileCategoriesOpen(false);
+            }}
+            aria-label={mobileSearchOpen ? "Close search" : "Search products"}
+            aria-expanded={mobileSearchOpen}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/50 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-md transition-transform active:scale-95"
+          >
+            {mobileSearchOpen ? (
+              <svg className="h-5 w-5 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setOpen((v) => !v);
+              setMobileSearchOpen(false);
+            }}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="relative z-[2] ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/50 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-md transition-transform active:scale-95 md:hidden"
+            className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/50 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-md transition-transform active:scale-95"
           >
             <span
               className={`absolute h-[2px] w-6 rounded-full bg-white/90 transition-all duration-300 ${
@@ -299,6 +334,23 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
               }`}
             />
           </button>
+          </div>
+        </div>
+
+        {/* Mobile search reveal */}
+        <div
+          className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+            mobileSearchOpen ? "max-h-[88px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="border-t border-white/15 bg-[var(--dark-primary-green)] px-4 py-3">
+            <NavbarCatalogSearch
+              tone="drawer"
+              className="w-full"
+              autoFocus={mobileSearchOpen}
+              onNavigate={() => setMobileSearchOpen(false)}
+            />
+          </div>
         </div>
 
         {/* Mobile panel */}

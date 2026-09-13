@@ -1,18 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import CategoryGridCard from "./CategoryGridCard";
 import { CATEGORY_LAYOUT_ITEMS } from "./categoriesLayoutData";
-import IndustryPackagingSlider from "@/components/common/IndustryPackagingSlider";
-import {
-  CATEGORY_PAGE_CONFIG,
-  CATEGORY_TAB_ALL_ID,
-  filterTeasersByTab,
-  teasersToIndustryItems,
-} from "@/data/categoryPages";
 
 const FLOURISH_SRC = "/assets/images/categories/categories_layout/flourish.png";
 
@@ -31,13 +23,7 @@ function SectionFlourish() {
   );
 }
 
-function CategoriesCtaBar({
-  showingAllProducts,
-  onViewAllProducts,
-}: {
-  showingAllProducts: boolean;
-  onViewAllProducts: () => void;
-}) {
+function CategoriesCtaBar() {
   return (
     <div className="mt-5 flex flex-col items-center gap-4 rounded-2xl border-2 border-[#c5a059]/70 bg-white px-5 py-5 text-center shadow-[0_8px_28px_rgba(19,47,43,0.06)] sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8 sm:py-5 sm:text-left lg:mt-8">
       <div className="flex min-w-0 flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-5">
@@ -58,61 +44,26 @@ function CategoriesCtaBar({
           </p>
         </div>
       </div>
-      <div className="flex w-full shrink-0 flex-col items-stretch gap-2.5 sm:w-auto sm:flex-row sm:items-center">
-        <Link
-          href="/quote"
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--dark-primary-green)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--dark-primary-green)]/90"
-        >
-          Get a Quote
-          <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
-            <path
-              d="M5 12h14M13 6l6 6-6 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-        <button
-          type="button"
-          aria-pressed={showingAllProducts}
-          onClick={onViewAllProducts}
-          className={`inline-flex items-center justify-center gap-2 rounded-lg border-2 px-5 py-2.5 text-sm font-semibold transition-colors ${
-            showingAllProducts
-              ? "border-[var(--dark-primary-green)] bg-[var(--dark-primary-green)] text-white"
-              : "border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059]/8"
-          }`}
-        >
-          View All Products
-        </button>
-      </div>
+      <Link
+        href="/quote"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--dark-primary-green)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--dark-primary-green)]/90 sm:w-auto"
+      >
+        Get a Quote
+        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </Link>
     </div>
   );
 }
 
 export default function CategoriesLayout() {
-  const [showingAllProducts, setShowingAllProducts] = useState(false);
-
-  const allProducts = useMemo(() => {
-    const seen = new Set<string>();
-    return CATEGORY_PAGE_CONFIG.flatMap((cfg) => {
-      const teasers = cfg.tabs?.length
-        ? filterTeasersByTab(cfg.products, cfg.tabs, CATEGORY_TAB_ALL_ID)
-        : cfg.products;
-      return teasersToIndustryItems(teasers)
-        .filter((item) => {
-          if (seen.has(item.href)) return false;
-          seen.add(item.href);
-          return true;
-        })
-        .map((item) => ({
-          ...item,
-          id: `${cfg.category}-${item.id}`,
-        }));
-    });
-  }, []);
-
   return (
     <section className="w-full bg-[var(--primary-cream)] px-1.5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-[1240px]">
@@ -126,19 +77,12 @@ export default function CategoriesLayout() {
           </p>
         </header>
 
-        {showingAllProducts ? (
-          <IndustryPackagingSlider title="All Products" items={allProducts} itemsKey="home-all-products" />
-        ) : (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5">
-            {CATEGORY_LAYOUT_ITEMS.map((item) => (
-              <CategoryGridCard key={item.slug} item={item} />
-            ))}
-          </div>
-        )}
-        <CategoriesCtaBar
-          showingAllProducts={showingAllProducts}
-          onViewAllProducts={() => setShowingAllProducts(true)}
-        />
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+          {CATEGORY_LAYOUT_ITEMS.map((item) => (
+            <CategoryGridCard key={item.slug} item={item} />
+          ))}
+        </div>
+        <CategoriesCtaBar />
       </div>
     </section>
   );

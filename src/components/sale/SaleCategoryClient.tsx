@@ -172,6 +172,23 @@ export default function SaleCategoryClient({ categorySlug }: Props) {
         <IndustryPackagingSlider title={categoryTitle} items={productItems} />
       )}
 
+      {hasProductTabs && (
+        <div className="flex justify-center px-4 pb-12 md:-mt-2 md:pb-16">
+          <button
+            type="button"
+            aria-pressed={activeTabId === CATEGORY_TAB_ALL_ID}
+            onClick={() => setActiveTabId(CATEGORY_TAB_ALL_ID)}
+            className={`inline-flex items-center justify-center gap-2 rounded-lg border-2 px-5 py-2.5 text-sm font-semibold transition-colors ${
+              activeTabId === CATEGORY_TAB_ALL_ID
+                ? "border-[var(--dark-primary-green)] bg-[var(--dark-primary-green)] text-white"
+                : "border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059]/8"
+            }`}
+          >
+            View All Products
+          </button>
+        </div>
+      )}
+
       {/* <AdvanceStudioShowCase /> */}
       <PackagingInfoTabs />
       <WhyChooseUs

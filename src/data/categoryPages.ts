@@ -204,7 +204,7 @@ export function getAllCategorySlugs(): string[] {
   return HOME_CARDS.map((c) => c.category);
 }
 
-/** Unique PDP slugs from `CATEGORY_PAGE_CONFIG` (for sitemap / static params). */
+/** Unique PDP slugs from `CATEGORY_PAGE_CONFIG` (for static params / full catalog). */
 export function getAllCatalogProductSlugs(): string[] {
   const seen = new Set<string>();
   const slugs: string[] = [];
@@ -216,6 +216,44 @@ export function getAllCatalogProductSlugs(): string[] {
       slugs.push(slug);
     }
   }
+  return slugs;
+}
+
+/** How many PDPs to list in the sitemap (and allow in robots.txt) per category hub. */
+export const SITEMAP_PRODUCTS_PER_CATEGORY = 3;
+
+const CORE_TAB_ID = "core_products";
+
+/**
+ * Flagship PDP slugs for crawl/index: up to `SITEMAP_PRODUCTS_PER_CATEGORY` per hub,
+ * preferring Core Products so category pages and a few SKUs rank instead of the full catalog.
+ */
+export function getSitemapFeaturedProductSlugs(
+  perCategory: number = SITEMAP_PRODUCTS_PER_CATEGORY,
+): string[] {
+  const seen = new Set<string>();
+  const slugs: string[] = [];
+
+  for (const category of getAllCategorySlugs()) {
+    const cfg = getCategoryPageConfig(category);
+    if (!cfg?.products.length) continue;
+
+    const ranked = [
+      ...cfg.products.filter((p) => p.tabId === CORE_TAB_ID),
+      ...cfg.products.filter((p) => p.tabId !== CORE_TAB_ID),
+    ];
+
+    let added = 0;
+    for (const product of ranked) {
+      if (added >= perCategory) break;
+      const slug = product.slug?.trim();
+      if (!slug || seen.has(slug)) continue;
+      seen.add(slug);
+      slugs.push(slug);
+      added += 1;
+    }
+  }
+
   return slugs;
 }
 

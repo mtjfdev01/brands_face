@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getSitemapFeaturedProductSlugs } from "@/data/categoryPages";
 
 function siteOrigin(): string {
   const fromEnv = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "").trim();
@@ -8,12 +9,15 @@ function siteOrigin(): string {
 /** Crawler rules + sitemap pointer. Private admin/invoice routes are blocked. */
 export default function robots(): MetadataRoute.Robots {
   const origin = siteOrigin();
+  const featuredProductPaths = getSitemapFeaturedProductSlugs().map(
+    (slug) => `/products/${encodeURIComponent(slug)}`,
+  );
 
   return {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
+        allow: ["/", ...featuredProductPaths],
         disallow: [
           "/admin/",
           "/admin",
@@ -22,6 +26,7 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/checkout/",
           "/checkout",
+          "/products/",
         ],
       },
     ],

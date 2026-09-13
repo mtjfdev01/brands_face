@@ -15,6 +15,8 @@ type Props = {
   onNavigate?: () => void;
   /** Chrome tuned for dark green nav bar vs mobile drawer. */
   tone?: "nav" | "drawer";
+  /** Focus the input when this becomes true (mobile search reveal). */
+  autoFocus?: boolean;
 };
 
 function partitionMatches(index: NavSearchResult[], q: string) {
@@ -41,13 +43,25 @@ function partitionMatches(index: NavSearchResult[], q: string) {
   };
 }
 
-export default function NavbarCatalogSearch({ className = "", onNavigate, tone = "nav" }: Props) {
+export default function NavbarCatalogSearch({
+  className = "",
+  onNavigate,
+  tone = "nav",
+  autoFocus = false,
+}: Props) {
   const inputId = useId();
   const index = useMemo(() => getCatalogSearchIndex(), []);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!autoFocus) return;
+    const id = window.setTimeout(() => inputRef.current?.focus(), 40);
+    return () => window.clearTimeout(id);
+  }, [autoFocus]);
 
   const positionDrawerPanel = useCallback(() => {
     if (tone !== "drawer" || !panelRef.current || !rootRef.current) return;
@@ -151,6 +165,7 @@ export default function NavbarCatalogSearch({ className = "", onNavigate, tone =
       </span>
       <input
         id={inputId}
+        ref={inputRef}
         type="search"
         value={query}
         onChange={(e) => {
@@ -163,7 +178,7 @@ export default function NavbarCatalogSearch({ className = "", onNavigate, tone =
         }}
         autoComplete="off"
         enterKeyHint="search"
-        placeholder="Search categories & products…"
+        placeholder="Search products…"
         className={inputClass}
       />
       {showPanel && (
