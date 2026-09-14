@@ -19,7 +19,6 @@ type HeroSlide = {
   mobileSrc: string;
   desktopSrc: string;
   imageAlt: string;
-  barLabel: string;
   eyebrow: string;
   title: string;
   highlight: string;
@@ -38,7 +37,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-christmas.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-christmas.png",
     imageAlt: "Four Christmas packaging products: gift bag, wrapping paper, sweet box, and art-card carton",
-    barLabel: "Christmas Packaging",
     eyebrow: "Custom Christmas Packaging",
     title: "Christmas Gift Boxes",
     highlight: "Bags & Wrap",
@@ -53,7 +51,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-artcard.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-artcard.png",
     imageAlt: "Four premium art-card boxes: printed, foiled, embossed, and matte finish",
-    barLabel: "Art Card Boxes",
     eyebrow: "Custom Art Card Boxes",
     title: "Printed, Foiled",
     highlight: "Embossed & Matte",
@@ -68,7 +65,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-corrugated.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-corrugated.png",
     imageAlt: "Four premium corrugated boxes: printed, kraft, white, and heavy-duty",
-    barLabel: "Corrugated Boxes",
     eyebrow: "Custom Corrugated Boxes",
     title: "Printed, Kraft",
     highlight: "White & Heavy Duty",
@@ -83,7 +79,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-pouches.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-pouches.png",
     imageAlt: "Four premium pouches: printed, matte, gloss, and foil",
-    barLabel: "Custom Pouches",
     eyebrow: "Custom Pouches",
     title: "Printed, Matte",
     highlight: "Gloss & Foil",
@@ -98,7 +93,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-bags.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-bags.png",
     imageAlt: "Four premium carry bags: printed, foiled, embossed, and matte",
-    barLabel: "Carry Bags",
     eyebrow: "Custom Carry Bags",
     title: "Printed, Foiled",
     highlight: "Embossed & Matte",
@@ -113,7 +107,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-kraft.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-kraft.png",
     imageAlt: "Four premium kraft boxes: printed, foiled, embossed, and matte",
-    barLabel: "Kraft Boxes",
     eyebrow: "Custom Kraft Boxes",
     title: "Printed, Foiled",
     highlight: "Embossed & Matte",
@@ -128,7 +121,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-labels.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-labels.png",
     imageAlt: "Four premium labels and tags: clear, embossed, foil, and gloss",
-    barLabel: "Labels & Tags",
     eyebrow: "Custom Labels & Tags",
     title: "Clear, Embossed",
     highlight: "Foil & Gloss",
@@ -143,7 +135,6 @@ const HERO_SLIDES: HeroSlide[] = [
     mobileSrc: "/assets/images/home_hero/v3-mobile-rigid.png",
     desktopSrc: "/assets/images/home_hero/v3-desktop-rigid.png",
     imageAlt: "Four premium rigid boxes: foam insert, velvet, divider, and printed magnetic",
-    barLabel: "Rigid Boxes",
     eyebrow: "Custom Rigid Boxes",
     title: "Inserts, Velvet",
     highlight: "Dividers & Print",
@@ -242,7 +233,6 @@ type HomeHeroProps = {
 export default function HomeHero({ onReady }: HomeHeroProps) {
   const swiperRef = useRef<SwiperType | null>(null);
   const [active, setActive] = useState(0);
-  const [progress, setProgress] = useState(0);
   const slide = HERO_SLIDES[active] ?? HERO_SLIDES[0];
 
   useEffect(() => {
@@ -281,10 +271,6 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
         }}
         onSlideChange={(swiper) => {
           setActive(swiper.realIndex);
-          setProgress(0);
-        }}
-        onAutoplayTimeLeft={(_swiper, _time, ratio) => {
-          setProgress(1 - ratio);
         }}
         className="home-hero-swiper !h-full min-h-0 w-full max-w-full overflow-hidden [&_.swiper-wrapper]:h-full [&_.swiper-slide]:!h-full [&_.swiper-slide]:max-w-full [&_.swiper-slide]:overflow-hidden"
       >
@@ -299,7 +285,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
                   priority={idx === 0}
                   quality={95}
                   sizes="100vw"
-                  className="object-cover object-bottom lg:hidden"
+                  className="object-cover object-[center_88%] lg:hidden"
                 />
                 <Image
                   src={item.desktopSrc}
@@ -308,7 +294,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
                   priority={idx === 0}
                   quality={95}
                   sizes="100vw"
-                  className="hidden object-cover object-right lg:block"
+                  className="hidden object-cover object-[78%_center] lg:block"
                 />
               </div>
               <span
@@ -328,12 +314,12 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
         className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[52%] bg-gradient-to-r from-[#132f2b]/92 via-[#132f2b]/58 to-transparent lg:block xl:w-[48%]"
         aria-hidden
       />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#132f2b]/50 via-transparent to-transparent" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#132f2b]/28 via-transparent to-transparent" aria-hidden />
 
       <span className="home-hero-orb pointer-events-none absolute left-[18%] top-[22%] z-[2] hidden h-24 w-24 rounded-full bg-[#c5a059]/18 blur-2xl lg:block" aria-hidden />
       <span className="home-hero-orb home-hero-orb-b pointer-events-none absolute bottom-[28%] right-[14%] z-[2] hidden h-32 w-32 rounded-full bg-[#ead9b8]/12 blur-3xl lg:block" aria-hidden />
 
-      <div className="pointer-events-none absolute inset-0 z-10 flex h-full flex-col px-4 pb-[5.5rem] pt-6 sm:px-6 sm:pt-8 lg:justify-center lg:px-12 lg:pb-28 lg:pt-10 xl:px-16">
+      <div className="pointer-events-none absolute inset-0 z-10 flex h-full flex-col px-4 pb-16 pt-6 sm:px-6 sm:pt-8 lg:justify-center lg:px-12 lg:pb-20 lg:pt-10 xl:px-16">
         <div className="pointer-events-auto lg:hidden">
           <SlideCopy slide={slide} compact />
         </div>
@@ -342,50 +328,27 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-40 px-4 pb-5 sm:px-6 lg:px-12 lg:pb-7">
-        <div className="flex flex-col gap-3 rounded-2xl border border-white/15 bg-[#132f2b]/55 px-3 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-5">
-          <div className="min-w-0 flex-1">
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <p className="font-[family-name:var(--font-playfair)] text-sm font-bold tracking-[0.18em] text-[#ead9b8]">
-                {String(active + 1).padStart(2, "0")}
-                <span className="ml-1 font-sans text-[11px] font-semibold tracking-normal text-white/45">
-                  / {String(HERO_SLIDES.length).padStart(2, "0")}
-                </span>
-              </p>
-              <p className="truncate text-[10px] font-semibold uppercase tracking-[0.16em] text-white/55 sm:text-[11px]">
-                {slide.barLabel}
-              </p>
-            </div>
-            <div className="h-[2px] overflow-hidden rounded-full bg-white/15" aria-hidden>
-              <div
-                className="h-full rounded-full bg-[#c5a059] transition-[width] duration-150 ease-linear"
-                style={{ width: `${Math.max(progress, 0.03) * 100}%` }}
-              />
-            </div>
-          </div>
-          <div className="flex shrink-0 items-center justify-end gap-2">
-            <button
-              type="button"
-              aria-label="Previous slide"
-              onClick={() => swiperRef.current?.slidePrev()}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a059]/60 text-[#ead9b8] transition hover:bg-[#c5a059] hover:text-[#132f2b]"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 6 9 12l6 6" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              aria-label="Next slide"
-              onClick={() => swiperRef.current?.slideNext()}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a059]/60 text-[#ead9b8] transition hover:bg-[#c5a059] hover:text-[#132f2b]"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 6l6 6-6 6" />
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div className="absolute bottom-5 right-4 z-40 flex items-center gap-2 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-12 xl:right-16">
+        <button
+          type="button"
+          aria-label="Previous slide"
+          onClick={() => swiperRef.current?.slidePrev()}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a059]/60 text-[#ead9b8] transition hover:bg-[#c5a059] hover:text-[#132f2b]"
+        >
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 6 9 12l6 6" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          aria-label="Next slide"
+          onClick={() => swiperRef.current?.slideNext()}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a059]/60 text-[#ead9b8] transition hover:bg-[#c5a059] hover:text-[#132f2b]"
+        >
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 6l6 6-6 6" />
+          </svg>
+        </button>
       </div>
     </section>
   );
