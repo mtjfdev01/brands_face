@@ -484,25 +484,44 @@
   width: auto !important;
 }
 
-@keyframes hero-from-left {
+@keyframes hero-kenburns {
   from {
-    opacity: 0;
-    transform: translate3d(-2rem, 0, 0);
+    transform: scale(1.18) translate3d(-1.5%, 0, 0);
   }
   to {
-    opacity: 1;
-    transform: none;
+    transform: scale(1.05) translate3d(1.2%, 0, 0);
   }
 }
 
-@keyframes hero-from-right {
+@keyframes hero-reveal {
   from {
-    opacity: 0;
-    transform: translate3d(2rem, 0, 0);
+    clip-path: inset(0 18% 0 0);
+    filter: brightness(0.72) saturate(0.9);
   }
   to {
-    opacity: 1;
-    transform: none;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+  }
+}
+
+@keyframes hero-shine {
+  from {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(180%) skewX(-18deg);
+  }
+}
+
+@keyframes hero-orb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(12px, -18px, 0);
+    opacity: 0.7;
   }
 }
 
@@ -517,17 +536,33 @@
   max-width: 100%;
 }
 
-.home-hero-swiper .swiper-slide-active .hero-from-left {
-  animation: hero-from-left 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.home-hero-swiper .hero-photo {
+  transform: scale(1.12);
+  transform-origin: center center;
+  will-change: transform, clip-path, filter;
 }
 
-.home-hero-swiper .swiper-slide-active .hero-from-right {
-  animation: hero-from-right 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.home-hero-swiper .swiper-slide-active .hero-photo {
+  animation:
+    hero-reveal 1.15s cubic-bezier(0.22, 1, 0.36, 1) both,
+    hero-kenburns 8.5s linear 0.2s both;
 }
 
-.home-hero-swiper .swiper-slide:not(.swiper-slide-active) .hero-line {
-  animation: none;
-  opacity: 0;
+.home-hero-swiper .swiper-slide-active .hero-shine {
+  animation: hero-shine 1.8s ease-in-out 0.25s both;
+}
+
+.home-hero-swiper .hero-shine {
+  transform: translateX(-130%) skewX(-18deg);
+}
+
+.home-hero-orb {
+  animation: hero-orb 5.5s ease-in-out infinite;
+}
+
+.home-hero-orb-b {
+  animation-duration: 7s;
+  animation-delay: -1.6s;
 }
 
 /* ── Respect prefers-reduced-motion ── */
@@ -537,12 +572,15 @@
     transform: none;
   }
 
-  .home-hero-swiper .hero-line,
-  .home-hero-swiper .swiper-slide-active .hero-from-left,
-  .home-hero-swiper .swiper-slide-active .hero-from-right {
+  .home-hero-swiper .hero-photo,
+  .home-hero-swiper .swiper-slide-active .hero-photo,
+  .home-hero-swiper .hero-shine,
+  .home-hero-orb {
     animation: none;
     opacity: 1;
     transform: none;
+    filter: none;
+    clip-path: none;
   }
 
   .category-slider-card-in {
