@@ -14,7 +14,7 @@ const LIGHT_SRC = "/assets/images/ui/loader-light.png";
 export default function Loader({
   className = "",
   size = 1,
-  label = "Loading",
+  label = "LOADING...",
   tone = "onDark",
 }: LoaderProps) {
   return (

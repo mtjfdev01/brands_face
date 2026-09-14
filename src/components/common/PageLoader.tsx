@@ -11,7 +11,7 @@ type PageLoaderProps = {
 
 export default function PageLoader({
   className = "",
-  label = "Loading",
+  label = "LOADING...",
   overlay = false,
   compact = false,
   size = 1,

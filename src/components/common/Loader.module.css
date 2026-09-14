@@ -8,7 +8,7 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(16 * var(--size));
+  gap: calc(22 * var(--size));
   line-height: 1;
 }
 
@@ -18,8 +18,8 @@
 
 .jewel {
   position: relative;
-  width: calc(108 * var(--size));
-  height: calc(108 * var(--size));
+  width: calc(156 * var(--size));
+  height: calc(156 * var(--size));
 }
 
 .glow {
@@ -88,9 +88,9 @@
 
 .label {
   font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
-  font-size: calc(14 * var(--size));
+  font-size: calc(22 * var(--size));
   font-weight: 700;
-  letter-spacing: calc(5.2 * var(--size));
+  letter-spacing: calc(6.4 * var(--size));
   text-transform: uppercase;
   color: var(--ink);
 }
@@ -98,9 +98,9 @@
 .label::after {
   content: "";
   display: block;
-  width: calc(36 * var(--size));
-  height: calc(1 * var(--size));
-  margin: calc(8 * var(--size)) auto 0;
+  width: calc(56 * var(--size));
+  height: calc(1.15 * var(--size));
+  margin: calc(10 * var(--size)) auto 0;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
