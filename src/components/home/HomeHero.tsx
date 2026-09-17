@@ -46,90 +46,6 @@ const HERO_SLIDES: HeroSlide[] = [
     secondary: QUOTE_CTA,
   },
   {
-    id: "artcard",
-    headingTag: "h2",
-    mobileSrc: "/assets/images/home_hero/v3-mobile-artcard.png",
-    desktopSrc: "/assets/images/home_hero/v3-desktop-artcard.png",
-    imageAlt: "Four premium art-card boxes: printed, foiled, embossed, and matte finish",
-    eyebrow: "Custom Art Card Boxes",
-    title: "Printed, Foiled",
-    highlight: "Embossed & Matte",
-    sub: "Four premium art-card finishes with sharp print and refined construction.",
-    desc: "Printed, foiled, embossed, and matte-finish cartons for cosmetics, gifts, and retail.",
-    primary: { href: "/category/art_card_boxes", label: "Explore Art Card Boxes" },
-    secondary: QUOTE_CTA,
-  },
-  {
-    id: "corrugated",
-    headingTag: "h2",
-    mobileSrc: "/assets/images/home_hero/v3-mobile-corrugated.png",
-    desktopSrc: "/assets/images/home_hero/v3-desktop-corrugated.png",
-    imageAlt: "Four premium corrugated boxes: printed, kraft, white, and heavy-duty",
-    eyebrow: "Custom Corrugated Boxes",
-    title: "Printed, Kraft",
-    highlight: "White & Heavy Duty",
-    sub: "Four premium corrugated builds for shipping, retail, and branded fulfilment.",
-    desc: "Custom printed, kraft, white, and heavy-duty cartons engineered for transit and shelf.",
-    primary: { href: "/category/corrugated_boxes", label: "Explore Corrugated Boxes" },
-    secondary: QUOTE_CTA,
-  },
-  {
-    id: "pouches",
-    headingTag: "h2",
-    mobileSrc: "/assets/images/home_hero/v3-mobile-pouches.png",
-    desktopSrc: "/assets/images/home_hero/v3-desktop-pouches.png",
-    imageAlt: "Four premium pouches: printed, matte, gloss, and foil",
-    eyebrow: "Custom Pouches",
-    title: "Printed, Matte",
-    highlight: "Gloss & Foil",
-    sub: "Four premium pouch finishes with barrier films and retail-ready seals.",
-    desc: "Printed, matte, gloss, and foil stand-up pouches for food, beauty, and refill lines.",
-    primary: { href: "/category/custom_pouches", label: "Explore Custom Pouches" },
-    secondary: QUOTE_CTA,
-  },
-  {
-    id: "bags",
-    headingTag: "h2",
-    mobileSrc: "/assets/images/home_hero/v3-mobile-bags.png",
-    desktopSrc: "/assets/images/home_hero/v3-desktop-bags.png",
-    imageAlt: "Four premium carry bags: printed, foiled, embossed, and matte",
-    eyebrow: "Custom Carry Bags",
-    title: "Printed, Foiled",
-    highlight: "Embossed & Matte",
-    sub: "Four premium retail bags with rope, ribbon, and campaign-grade print.",
-    desc: "Custom printed, foiled, embossed, and matte carry bags for boutiques and gifting.",
-    primary: { href: "/category/carry_bags", label: "Explore Carry Bags" },
-    secondary: QUOTE_CTA,
-  },
-  {
-    id: "kraft",
-    headingTag: "h2",
-    mobileSrc: "/assets/images/home_hero/v3-mobile-kraft.png",
-    desktopSrc: "/assets/images/home_hero/v3-desktop-kraft.png",
-    imageAlt: "Four premium kraft boxes: printed, foiled, embossed, and matte",
-    eyebrow: "Custom Kraft Boxes",
-    title: "Printed, Foiled",
-    highlight: "Embossed & Matte",
-    sub: "Four premium kraft finishes with natural fibre and clean brand print.",
-    desc: "Printed, foiled, embossed, and matte kraft boxes for eco-forward retail and gifts.",
-    primary: { href: "/category/kraft_boxes", label: "Explore Kraft Boxes" },
-    secondary: QUOTE_CTA,
-  },
-  {
-    id: "labels",
-    headingTag: "h2",
-    mobileSrc: "/assets/images/home_hero/v3-mobile-labels.png",
-    desktopSrc: "/assets/images/home_hero/v3-desktop-labels.png",
-    imageAlt: "Four premium labels and tags: clear, embossed, foil, and gloss",
-    eyebrow: "Custom Labels & Tags",
-    title: "Clear, Embossed",
-    highlight: "Foil & Gloss",
-    sub: "Four premium label finishes for bottles, hang tags, and retail seals.",
-    desc: "Clear, embossed, foil, and gloss labels and tags that keep every SKU on-brand.",
-    primary: { href: "/category/labels_and_tags", label: "Explore Labels & Tags" },
-    secondary: QUOTE_CTA,
-  },
-  {
     id: "rigid",
     headingTag: "h2",
     mobileSrc: "/assets/images/home_hero/v3-mobile-rigid.png",
@@ -143,6 +59,20 @@ const HERO_SLIDES: HeroSlide[] = [
     primary: { href: "/category/rigid_boxes", label: "Explore Rigid Boxes" },
     secondary: QUOTE_CTA,
   },
+  {
+    id: "collection",
+    headingTag: "h2",
+    mobileSrc: "/assets/images/home_hero/v3-mobile-collection.png",
+    desktopSrc: "/assets/images/home_hero/v3-desktop-collection.png",
+    imageAlt: "Kraft window pouch, art-card burger and fry cartons, carry bag, kraft box, and hang tags",
+    eyebrow: "Custom Packaging Company",
+    title: "Boxes, Bags",
+    highlight: "Pouches & Labels",
+    sub: "One product from each remaining line — art card, corrugated, pouches, bags, kraft, and tags.",
+    desc: "Premium packaging for every idea, industry, and occasion across the USA.",
+    primary: { href: "/catalog", label: "Explore All Products" },
+    secondary: QUOTE_CTA,
+  },
 ];
 
 function preloadImage(src: string): Promise<void> {
@@ -154,12 +84,82 @@ function preloadImage(src: string): Promise<void> {
   });
 }
 
-function getHeroAssetUrls(): string[] {
-  const first = HERO_SLIDES[0];
+function getViewportHeroSrc(slide: HeroSlide): string {
   if (typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches) {
-    return [first.mobileSrc];
+    return slide.mobileSrc;
   }
-  return [first.desktopSrc];
+  return slide.desktopSrc;
+}
+
+function getHeroAssetUrls(): string[] {
+  return [getViewportHeroSrc(HERO_SLIDES[0])];
+}
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return isDesktop;
+}
+
+function HeroSlidePhoto({
+  item,
+  eager,
+  priority,
+}: {
+  item: HeroSlide;
+  eager: boolean;
+  priority: boolean;
+}) {
+  const isDesktop = useIsDesktop();
+  if (!eager) return null;
+
+  const showMobile = isDesktop !== true;
+  const showDesktop = isDesktop !== false;
+
+  return (
+    <>
+      {showMobile ? (
+        <Image
+          src={item.mobileSrc}
+          alt={item.imageAlt}
+          fill
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          quality={90}
+          sizes="100vw"
+          className={
+            isDesktop === null
+              ? "object-cover object-[center_88%] lg:hidden"
+              : "object-cover object-[center_88%]"
+          }
+        />
+      ) : null}
+      {showDesktop ? (
+        <Image
+          src={item.desktopSrc}
+          alt={item.imageAlt}
+          fill
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          quality={90}
+          sizes="100vw"
+          className={
+            isDesktop === null
+              ? "hidden object-cover object-[78%_center] lg:block"
+              : "object-cover object-[78%_center]"
+          }
+        />
+      ) : null}
+    </>
+  );
 }
 
 function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boolean }) {
@@ -201,7 +201,7 @@ function SlideCopy({ slide, compact = false }: { slide: HeroSlide; compact?: boo
         {slide.sub}
       </p>
       {compact ? null : (
-        <p className="mt-3 text-sm leading-relaxed text-white/88 [text-shadow:0_1px_16px_rgba(19,47,43,0.5)] xl:text-[15px]">
+        <p className="mt-3 text-sm leading-relaxed !text-white [text-shadow:0_1px_16px_rgba(19,47,43,0.55)] xl:text-[15px]">
           {slide.desc}
         </p>
       )}
@@ -233,16 +233,33 @@ type HomeHeroProps = {
 export default function HomeHero({ onReady }: HomeHeroProps) {
   const swiperRef = useRef<SwiperType | null>(null);
   const [active, setActive] = useState(0);
+  const [loadRest, setLoadRest] = useState(false);
   const slide = HERO_SLIDES[active] ?? HERO_SLIDES[0];
 
   useEffect(() => {
     let cancelled = false;
     let didNotify = false;
+    let idleId = 0;
+    let restTimer = 0;
     const finish = () => {
       if (cancelled || didNotify) return;
       didNotify = true;
       onReady?.();
       window.setTimeout(() => swiperRef.current?.autoplay?.start(), 400);
+
+      const startRest = () => {
+        if (cancelled) return;
+        setLoadRest(true);
+        HERO_SLIDES.slice(1).forEach((item) => {
+          void preloadImage(getViewportHeroSrc(item));
+        });
+      };
+
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(startRest, { timeout: 1500 });
+      } else {
+        restTimer = window.setTimeout(startRest, 500);
+      }
     };
 
     const maxTimer = window.setTimeout(finish, HERO_READY_MAX_MS);
@@ -251,6 +268,10 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
     return () => {
       cancelled = true;
       window.clearTimeout(maxTimer);
+      window.clearTimeout(restTimer);
+      if (idleId && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
     };
   }, [onReady]);
 
@@ -278,23 +299,10 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
           <SwiperSlide key={item.id} className="!h-full overflow-hidden">
             <div className="relative h-full min-h-0 w-full overflow-hidden">
               <div className="hero-photo absolute inset-0">
-                <Image
-                  src={item.mobileSrc}
-                  alt={item.imageAlt}
-                  fill
+                <HeroSlidePhoto
+                  item={item}
+                  eager={idx === 0 || loadRest || idx === active}
                   priority={idx === 0}
-                  quality={95}
-                  sizes="100vw"
-                  className="object-cover object-[center_88%] lg:hidden"
-                />
-                <Image
-                  src={item.desktopSrc}
-                  alt={item.imageAlt}
-                  fill
-                  priority={idx === 0}
-                  quality={95}
-                  sizes="100vw"
-                  className="hidden object-cover object-[78%_center] lg:block"
                 />
               </div>
               <span

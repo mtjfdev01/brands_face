@@ -16,6 +16,7 @@ function SectionFlourish() {
         alt=""
         width={280}
         height={48}
+        loading="lazy"
         className="h-auto w-[200px] max-w-full object-contain sm:w-[260px]"
         priority={false}
       />
