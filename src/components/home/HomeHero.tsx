@@ -239,7 +239,6 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
   useEffect(() => {
     let cancelled = false;
     let didNotify = false;
-    let idleId = 0;
     let restTimer = 0;
     const finish = () => {
       if (cancelled || didNotify) return;
@@ -255,11 +254,7 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
         });
       };
 
-      if ("requestIdleCallback" in window) {
-        idleId = window.requestIdleCallback(startRest, { timeout: 1500 });
-      } else {
-        restTimer = window.setTimeout(startRest, 500);
-      }
+      restTimer = window.setTimeout(startRest, 500);
     };
 
     const maxTimer = window.setTimeout(finish, HERO_READY_MAX_MS);
@@ -269,9 +264,6 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
       cancelled = true;
       window.clearTimeout(maxTimer);
       window.clearTimeout(restTimer);
-      if (idleId && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idleId);
-      }
     };
   }, [onReady]);
 
