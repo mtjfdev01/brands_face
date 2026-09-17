@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Autoplay } from "swiper/modules";
@@ -62,25 +62,8 @@ function SlideDots({
 export default function CategoryGridCard({ item }: Props) {
   const href = `/category/${item.slug}`;
   const slideCount = item.images.length;
-  const cardRef = useRef<HTMLElement>(null);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setInView(true);
-        io.disconnect();
-      },
-      { rootMargin: "220px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   const goToSlide = (idx: number) => {
     swiperRef.current?.slideToLoop(idx);
@@ -88,10 +71,7 @@ export default function CategoryGridCard({ item }: Props) {
   };
 
   return (
-    <article
-      ref={cardRef}
-      className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8dcc8] bg-white shadow-[0_6px_24px_rgba(19,47,43,0.07)]"
-    >
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8dcc8] bg-white shadow-[0_6px_24px_rgba(19,47,43,0.07)]">
       <Link href={href} className="flex min-h-0 flex-1 flex-col">
         <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-[#f5f2eb]">
           <Swiper
@@ -100,7 +80,7 @@ export default function CategoryGridCard({ item }: Props) {
             loop={slideCount > 1}
             speed={700}
             autoplay={
-              inView && slideCount > 1
+              slideCount > 1
                 ? { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }
                 : false
             }
@@ -112,26 +92,21 @@ export default function CategoryGridCard({ item }: Props) {
             }}
             className="h-full w-full"
           >
-            {item.images.map((src, idx) => {
-              const shouldLoad = inView && (idx === 0 || idx === activeIndex);
-              return (
-                <SwiperSlide key={`${src}-${idx}`}>
-                  <div className="relative h-full w-full">
-                    {shouldLoad ? (
-                      <Image
-                        src={src}
-                        alt=""
-                        fill
-                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 25vw"
-                        quality={80}
-                        loading={idx === 0 ? "eager" : "lazy"}
-                        className="object-cover"
-                      />
-                    ) : null}
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+            {item.images.map((src, idx) => (
+              <SwiperSlide key={`${src}-${idx}`}>
+                <div className="relative h-full w-full">
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 25vw"
+                    quality={90}
+                    loading="eager"
+                    className="object-cover"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
 
