@@ -268,7 +268,10 @@ export default function HomeHero({ onReady }: HomeHeroProps) {
   }, [onReady]);
 
   return (
-    <section className="relative h-[calc(100dvh-var(--site-header-h))] max-h-[calc(100dvh-var(--site-header-h))] w-full max-w-full overflow-hidden bg-[var(--dark-primary-green)]">
+    <section
+      id="home-hero"
+      className="relative h-[calc(100dvh-var(--site-header-h))] max-h-[calc(100dvh-var(--site-header-h))] w-full max-w-full overflow-hidden bg-[var(--dark-primary-green)]"
+    >
       <Swiper
         modules={[Autoplay, EffectFade, Keyboard]}
         effect="fade"
