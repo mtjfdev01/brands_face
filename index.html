@@ -155,10 +155,35 @@
     <!-- Navbar will be injected here by navbar.js -->
 </header>
 
-<!-- Live chat FAB handler: opens Tawk.to widget if available -->
+<!-- Live chat FAB handler: opens Tawk.to widget if available (desktop only) -->
 <script>
     (function(){
+        function isMobile(){
+            return window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        }
+
+        function hideTawkOnMobile(){
+            if(!isMobile()) return;
+            window.Tawk_API = window.Tawk_API || {};
+            var hide = function(){
+                try {
+                    if (window.Tawk_API && typeof window.Tawk_API.hideWidget === 'function') {
+                        window.Tawk_API.hideWidget();
+                    }
+                } catch (err) {}
+            };
+            hide();
+            var prev = window.Tawk_API.onLoad;
+            window.Tawk_API.onLoad = function(){
+                if (typeof prev === 'function') {
+                    try { prev(); } catch (err) {}
+                }
+                hide();
+            };
+        }
+
         function tryOpenTawk(){
+            if(isMobile()) return;
             if(window.Tawk_API && typeof window.Tawk_API.toggle === 'function'){
                 window.Tawk_API.toggle();
                 return;
@@ -177,6 +202,7 @@
             var queued = false;
             var onLoad = function(){
                 if(queued) return; queued = true;
+                if(isMobile()) { hideTawkOnMobile(); return; }
                 if(window.Tawk_API && typeof window.Tawk_API.toggle === 'function') window.Tawk_API.toggle();
                 else if(window.Tawk_API && typeof window.Tawk_API.maximize === 'function') window.Tawk_API.maximize();
             };
@@ -188,9 +214,12 @@
             }
         }
 
+        hideTawkOnMobile();
+        window.addEventListener('resize', hideTawkOnMobile);
+
         document.addEventListener('click', function(e){
             var el = e.target.closest && e.target.closest('#fab-livechat');
-            if(el){ e.preventDefault(); tryOpenTawk(); }
+            if(el){ e.preventDefault(); if(!isMobile()) tryOpenTawk(); }
         }, false);
     })();
 </script>

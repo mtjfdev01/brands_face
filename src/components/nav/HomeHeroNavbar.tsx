@@ -273,7 +273,7 @@ export default function HomeHeroNavbar({ variant = "overlay" }: HomeHeroNavbarPr
             <NavbarCatalogSearch className="mr-1 w-full max-w-[200px] lg:max-w-[240px] xl:max-w-[260px]" />
             <Link
               href="/quote"
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-4 py-2.5 text-sm font-semibold text-white/85 backdrop-blur transition-colors hover:text-white active:scale-[0.99] lg:px-5"
+              className="nav-quote-cta inline-flex items-center justify-center rounded-full border border-[#1dd1a1] bg-[var(--dark-primary-green)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#1a3d38] hover:text-white active:scale-[0.99] lg:px-5"
             >
               Get a Quote
             </Link>

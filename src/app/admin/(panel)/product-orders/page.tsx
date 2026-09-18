@@ -37,6 +37,8 @@ type OrderRow = {
   phone: string | null;
   company: string | null;
   customer_notes: string | null;
+  artwork_url: string | null;
+  product_image: string | null;
   admin_notes: string | null;
   created_at: string;
   updated_at: string;
@@ -60,6 +62,47 @@ function formatMoney(v: string | null) {
   if (v === null || v === "") return "—";
   const n = Number(v);
   return Number.isFinite(n) ? `$${n.toFixed(2)}` : v;
+}
+
+function isPreviewableImage(url: string) {
+  return /\.(jpe?g|png|webp|gif|svg)(\?|$)/i.test(url);
+}
+
+function OrderImageCard({
+  label,
+  url,
+  emptyText,
+}: {
+  label: string;
+  url: string | null;
+  emptyText: string;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-semibold uppercase text-slate-400">{label}</p>
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 block overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
+        >
+          {isPreviewableImage(url) ? (
+            <div className="relative aspect-square w-full bg-white">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={url} alt={label} className="h-full w-full object-contain p-2" />
+            </div>
+          ) : (
+            <div className="flex aspect-square items-center justify-center px-4 text-center text-sm font-semibold text-emerald-700">
+              Open file
+            </div>
+          )}
+        </a>
+      ) : (
+        <p className="mt-2 text-sm text-slate-500">{emptyText}</p>
+      )}
+    </div>
+  );
 }
 
 function paymentBadgeClasses(paymentStatus: string) {
@@ -517,6 +560,19 @@ export default function AdminProductOrdersPage() {
                     <p className="text-xs font-semibold uppercase text-slate-400">Customer notes</p>
                     <p className="mt-1 text-sm text-slate-600">{o.customer_notes || "—"}</p>
                   </div>
+                </div>
+
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <OrderImageCard
+                    label="Selected product"
+                    url={o.product_image}
+                    emptyText="No catalog image for this product."
+                  />
+                  <OrderImageCard
+                    label="Artwork"
+                    url={o.artwork_url}
+                    emptyText="No artwork uploaded."
+                  />
                 </div>
 
                 {edit && (

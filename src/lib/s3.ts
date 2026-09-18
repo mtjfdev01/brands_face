@@ -47,6 +47,13 @@ export function getQuotesS3Folder(): string {
   return (process.env.AWS_S3_QUOTES_PREFIX?.trim() || "quotes_requests").replace(/^\/+|\/+$/g, "");
 }
 
+/** Folder for product-order artwork; nested under the quotes prefix unless overridden. */
+export function getProductOrdersS3Folder(): string {
+  const explicit = process.env.AWS_S3_PRODUCT_ORDERS_PREFIX?.trim();
+  if (explicit) return explicit.replace(/^\/+|\/+$/g, "");
+  return `${getQuotesS3Folder()}/product_orders`;
+}
+
 export type UploadToS3Input = {
   file: File;
   /** Folder prefix inside the bucket, e.g. `quotes_requests` */

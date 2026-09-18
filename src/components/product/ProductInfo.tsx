@@ -174,22 +174,6 @@ export default function ProductInfo({
           selectedQuantity={currentQty}
           selectedSize={currentSize}
         />
-        <p className={`mt-3 text-sm ${textSoft}`}>
-          Bigger needs?{" "}
-          <Link
-            href="/quote"
-            className={`inline-flex items-center gap-1 font-semibold ${text} underline decoration-[#103a2a]/30 underline-offset-2 transition-colors hover:text-[#0c2e22] hover:decoration-[#1dd1a1]/60`}
-          >
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
-            Let&apos;s talk
-          </Link>
-        </p>
       </div>
 
       {/* <div>

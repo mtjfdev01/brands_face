@@ -166,13 +166,13 @@ export default function GetQuotePage() {
 
               <div>
                 <label htmlFor="quote-requirement" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
-                  Requirement <span className="font-normal text-[#103a2a]/55">(optional)</span>
+                  Additional information
                 </label>
                 <textarea
                   id="quote-requirement"
                   value={requirement}
                   onChange={(e) => setRequirement(e.target.value)}
-                  placeholder="Type Your requirement"
+                  placeholder="Anything else you want to inform us...."
                   rows={3}
                   className={`${fieldClass} min-h-[5.5rem] resize-y py-3`}
                 />
@@ -180,7 +180,7 @@ export default function GetQuotePage() {
 
               <div>
                 <label htmlFor="quote-file" className="mb-1.5 block text-sm font-semibold text-[#103a2a]">
-                  Related image <span className="font-normal text-[#103a2a]/55">(optional)</span>
+                  Upload artwork
                 </label>
                 <div className="rounded-xl border border-dashed border-[#103a2a]/25 bg-white px-3 py-2.5">
                   <input

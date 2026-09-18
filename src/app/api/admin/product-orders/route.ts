@@ -11,6 +11,7 @@ import {
 } from "@/lib/orderLineItems";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
 import { getAdminSessionFromRequest } from "@/lib/adminAuth";
+import { getProductCardImage } from "@/data/categoryPages";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +38,8 @@ type ProductOrderRow = QueryResultRow & {
   phone: string | null;
   company: string | null;
   customer_notes: string | null;
+  artwork_url: string | null;
+  product_image: string | null;
   admin_notes: string | null;
   created_at: string;
   updated_at: string;
@@ -205,6 +208,7 @@ export async function GET(request: Request) {
         phone,
         company,
         customer_notes,
+        artwork_url,
         admin_notes,
         created_at,
         updated_at
@@ -214,7 +218,15 @@ export async function GET(request: Request) {
       values,
     );
 
-    return NextResponse.json({ orders: result.rows }, { status: 200 });
+    return NextResponse.json(
+      {
+        orders: result.rows.map((row) => ({
+          ...row,
+          product_image: getProductCardImage(row.product_slug),
+        })),
+      },
+      { status: 200 },
+    );
   } catch (error) {
     console.error("admin product-orders GET:", error);
     return NextResponse.json({ message: "Unable to load orders." }, { status: 500 });

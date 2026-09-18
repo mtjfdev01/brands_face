@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import TawkToScript from '@/components/TawkToScript';
 import WhatsAppChatFab from '@/components/WhatsAppChatFab';
 import SiteHeader from '@/components/nav/SiteHeader';
+import MobileQuoteTab from '@/components/nav/MobileQuoteTab';
 import NavigationLoader from '@/components/common/NavigationLoader';
 import { homeShareMetadata, siteOrigin } from '@/lib/seo';
 import './globals.css';
@@ -46,6 +47,7 @@ export default function RootLayout({
         {children}
         <TawkToScript />
         <WhatsAppChatFab />
+        <MobileQuoteTab />
       </body>
     </html>
   );

@@ -39,17 +39,19 @@
     </div>
     <script src="/talkto.js" defer data-talkto-injected></script>
 
-    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script (desktop only) -->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69859bc40204fe1c37634cea/1jgouguiq';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    if (window.matchMedia && window.matchMedia('(min-width: 769px)').matches) {
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/69859bc40204fe1c37634cea/1jgouguiq';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+      })();
+    }
     </script>
     <!--End of Tawk.to Script-->
   `;
@@ -100,7 +102,11 @@
 
       document.addEventListener('click', function(e){
         var el = e.target.closest && e.target.closest('#fab-livechat');
-        if(el){ e.preventDefault(); tryOpenTawk(); }
+        if(el){
+          e.preventDefault();
+          if(window.matchMedia && window.matchMedia('(max-width: 768px)').matches) return;
+          tryOpenTawk();
+        }
       }, false);
     })();
 

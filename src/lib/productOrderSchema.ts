@@ -41,6 +41,10 @@ async function migrateProductOrderTotalsAndDueDate() {
   await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS due_date DATE;`);
 }
 
+async function migrateProductOrderArtworkUrl() {
+  await dbQuery(`ALTER TABLE product_orders ADD COLUMN IF NOT EXISTS artwork_url TEXT;`);
+}
+
 async function migrateOrderLineItemsTable() {
   await dbQuery(`
     CREATE TABLE IF NOT EXISTS order_line_items (
@@ -126,6 +130,7 @@ export async function ensureProductOrderSchema() {
   await migrateProductOrderPaymentColumns();
   await migrateProductOrderCtaAndInvoice();
   await migrateProductOrderTotalsAndDueDate();
+  await migrateProductOrderArtworkUrl();
   await migrateOrderLineItemsTable();
 
   await dbQuery(

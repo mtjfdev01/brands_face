@@ -6,6 +6,7 @@ import {
   useImperativeHandle,
   useRef,
   useState,
+  type ChangeEvent,
   type FormEvent,
   type ReactNode,
 } from "react";
@@ -14,6 +15,15 @@ import { submitBrandsfacePayfastCheckout } from "@/lib/payfastClient";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
 
 const PAYFAST_CHECKOUT_HINT = process.env.NEXT_PUBLIC_PAYFAST_CHECKOUT === "1";
+const ARTWORK_MAX_BYTES = 2 * 1024 * 1024;
+const ARTWORK_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".pdf", ".zip", ".ai", ".eps", ".svg"]);
+const ARTWORK_ACCEPT =
+  ".jpg,.jpeg,.png,.webp,.pdf,.zip,.ai,.eps,.svg,image/jpeg,image/png,image/webp,application/pdf,application/zip";
+
+function artworkExtension(name: string) {
+  const dot = name.lastIndexOf(".");
+  return dot >= 0 ? name.slice(dot).toLowerCase() : "";
+}
 
 export type ProductLeadFormsHandle = {
   /** Scrolls the order block into view and opens the standard “place order” form. */
@@ -72,6 +82,9 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
   const [stdPhone, setStdPhone] = useState("");
   const [stdCompany, setStdCompany] = useState("");
   const [stdNotes, setStdNotes] = useState("");
+  const [artworkFile, setArtworkFile] = useState<File | null>(null);
+  const [artworkError, setArtworkError] = useState("");
+  const artworkInputRef = useRef<HTMLInputElement>(null);
 
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: "ok" | "err"; text: string } | null>(null);
@@ -105,17 +118,44 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
     checkoutError?: boolean;
   };
 
-  const postOrder = async (payload: Record<string, unknown>) => {
+  const postOrder = async (formData: FormData) => {
     const res = await fetch("/api/product-orders", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: formData,
     });
     const data = (await res.json()) as OrderPostResponse;
     if (!res.ok) {
       throw new Error(data.message ?? "Request failed");
     }
     return data;
+  };
+
+  const clearArtwork = () => {
+    setArtworkFile(null);
+    setArtworkError("");
+    if (artworkInputRef.current) artworkInputRef.current.value = "";
+  };
+
+  const onArtworkChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setArtworkError("");
+    const next = e.target.files?.[0] ?? null;
+    if (!next) {
+      setArtworkFile(null);
+      return;
+    }
+    if (!ARTWORK_EXT.has(artworkExtension(next.name))) {
+      setArtworkError("Please upload a JPG, PNG, WEBP, PDF, ZIP, AI, EPS, or SVG file.");
+      setArtworkFile(null);
+      e.target.value = "";
+      return;
+    }
+    if (next.size > ARTWORK_MAX_BYTES) {
+      setArtworkError("Artwork must be 2 MB or smaller.");
+      setArtworkFile(null);
+      e.target.value = "";
+      return;
+    }
+    setArtworkFile(next);
   };
 
   const parsedQty = parseInt(orderQty, 10);
@@ -139,22 +179,23 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
     }
     try {
       setSubmitting(true);
-      const data = await postOrder({
-        requestType: "standard_order",
-        ctaSource: "place_order",
-        productSlug,
-        productTitle,
-        quantity: parsedQty,
-        sizeLabel: selectedSize.label,
-        sizeDimensions: selectedSize.dimensions,
-        pricePerPiece: selectedQuantity.pricePerPiece,
-        lineTotal: lineTotalComputed,
-        fullName: stdFullName.trim(),
-        email: stdEmail.trim(),
-        phone: stdPhone.trim() || null,
-        company: stdCompany.trim() || null,
-        customerNotes: stdNotes.trim() || null,
-      });
+      const formData = new FormData();
+      formData.append("requestType", "standard_order");
+      formData.append("ctaSource", "place_order");
+      formData.append("productSlug", productSlug);
+      formData.append("productTitle", productTitle);
+      formData.append("quantity", String(parsedQty));
+      formData.append("sizeLabel", selectedSize.label);
+      formData.append("sizeDimensions", selectedSize.dimensions);
+      formData.append("pricePerPiece", String(selectedQuantity.pricePerPiece));
+      formData.append("lineTotal", String(lineTotalComputed));
+      formData.append("fullName", stdFullName.trim());
+      formData.append("email", stdEmail.trim());
+      formData.append("phone", stdPhone.trim());
+      formData.append("company", stdCompany.trim());
+      formData.append("customerNotes", stdNotes.trim());
+      if (artworkFile) formData.append("artwork", artworkFile);
+      const data = await postOrder(formData);
 
       if (data.checkoutError) {
         setMessage({
@@ -186,6 +227,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
       setStdPhone("");
       setStdCompany("");
       setStdNotes("");
+      clearArtwork();
       setOrderQty(String(selectedQuantity.qty));
       setOrderPanelOpen(false);
     } catch (err) {
@@ -196,7 +238,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
   };
 
   return (
-    <div ref={rootRef} id="pdp-order-section" className="space-y-3 scroll-mt-28">
+    <div ref={rootRef} id="pdp-order-section" className="space-y-1 scroll-mt-28">
       <Collapsible open={!showActions}>
         <p className={`pb-1 text-xs leading-relaxed ${textSoft}`}>
           Order actions will appear here when this section is available.
@@ -204,7 +246,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
       </Collapsible>
 
       <Collapsible open={showActions}>
-        <div className="space-y-3 pt-1">
+        <div className="space-y-1">
           {message && (
             <div
               role="status"
@@ -223,7 +265,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
               onSubmit={submitOrder}
               className={`mt-1 rounded-2xl border ${border} ${surface} p-4 sm:p-5`}
             >
-              <p className={`text-xs ${textMuted}`}>
+              {/* <p className={`text-xs ${textMuted}`}>
                 <span className={`font-semibold ${text}`}>Summary · </span>
                 {productTitle} · {selectedSize.label} ({selectedSize.dimensions})
                 {lineTotalComputed !== null && (
@@ -232,9 +274,9 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
                     · Est. ${lineTotalComputed.toFixed(2)} (${selectedQuantity.pricePerPiece.toFixed(2)}/piece)
                   </>
                 )}
-              </p>
+              </p> */}
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                <div className="sm:col-span-2">
+                <div className="sm:col-span-1">
                   <label htmlFor="std-qty" className={`mb-1 block text-xs font-medium ${textSoft}`}>
                     Quantity *
                   </label>
@@ -251,7 +293,7 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
                 </div>
                 <div>
                   <label htmlFor="std-name" className={`mb-1 block text-xs font-medium ${textSoft}`}>
-                    Full name *
+                    Your name *
                   </label>
                   <input
                     id="std-name"
@@ -287,38 +329,80 @@ const ProductLeadForms = forwardRef<ProductLeadFormsHandle, Props>(function Prod
                     autoComplete="tel"
                   />
                 </div>
-                <div>
-                  <label htmlFor="std-company" className={`mb-1 block text-xs font-medium ${textSoft}`}>
-                    Company
-                  </label>
-                  <input
-                    id="std-company"
-                    value={stdCompany}
-                    onChange={(e) => setStdCompany(e.target.value)}
-                    className={inputClass}
-                    autoComplete="organization"
-                  />
+                <div className="grid gap-3 sm:col-span-2 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="std-company" className={`mb-1 block text-xs font-medium ${textSoft}`}>
+                      Company
+                    </label>
+                    <input
+                      id="std-company"
+                      value={stdCompany}
+                      onChange={(e) => setStdCompany(e.target.value)}
+                      className={inputClass}
+                      autoComplete="organization"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <label htmlFor="std-artwork" className={`mb-1 block text-xs font-medium ${textSoft}`}>
+                      Upload artwork
+                    </label>
+                    <div className={`${inputClass} relative flex items-center gap-2`}>
+                      <input
+                        ref={artworkInputRef}
+                        id="std-artwork"
+                        type="file"
+                        accept={ARTWORK_ACCEPT}
+                        onChange={onArtworkChange}
+                        className="absolute inset-0 z-10 cursor-pointer opacity-0"
+                      />
+                      <span className="pointer-events-none shrink-0 rounded-lg bg-[#103a2a] px-3 py-1 leading-none text-xs font-semibold text-white">
+                        Choose file
+                      </span>
+                      <span
+                        className={`pointer-events-none min-w-0 flex-1 truncate ${
+                          artworkFile ? "font-medium" : "text-[#103a2a]/40"
+                        }`}
+                      >
+                        {artworkFile ? artworkFile.name : "No file chosen"}
+                      </span>
+                      {artworkFile ? (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            clearArtwork();
+                          }}
+                          className="relative z-20 shrink-0 text-xs font-semibold text-rose-700 hover:underline"
+                        >
+                          Remove
+                        </button>
+                      ) : null}
+                    </div>
+                    {artworkError ? <p className="mt-1 text-sm font-medium text-rose-600">{artworkError}</p> : null}
+                  </div>
                 </div>
               </div>
               <div className="mt-3">
                 <label htmlFor="std-notes" className={`mb-1 block text-xs font-medium ${textSoft}`}>
-                  Notes (optional)
+                  Additional information
                 </label>
                 <textarea
                   id="std-notes"
                   rows={2}
                   value={stdNotes}
                   onChange={(e) => setStdNotes(e.target.value)}
+                  placeholder="Anything else you want to inform us...."
                   className={inputClass}
                 />
               </div>
-              <div className="mt-4">
+              <div className="mt-4 flex justify-center">
                 <button
                   type="submit"
                   disabled={submitting}
                   className="w-full rounded-full bg-[#1dd1a1] py-3 text-sm font-bold text-[#0f2f22] shadow-[0_6px_20px_rgba(29,209,161,0.3)] transition hover:bg-[#37dfb2] disabled:opacity-60 sm:w-auto sm:min-w-[200px] sm:px-8"
                 >
-                  {submitting ? "Sending…" : "Submit order request"}
+                  {submitting ? "Sending…" : "Submit Quote Request"}
                 </button>
               </div>
             </form>

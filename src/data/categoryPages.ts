@@ -112,6 +112,18 @@ export function getProductFromCategoryConfig(slug: string): ProductData | undefi
   return undefined;
 }
 
+/** Catalog card image for an ordered product slug (admin thumbnails). */
+export function getProductCardImage(slug: string | null | undefined): string | null {
+  const key = slug?.trim();
+  if (!key) return null;
+
+  for (const cfg of CATEGORY_PAGE_CONFIG) {
+    const teaser = cfg.products.find((p) => p.slug === key);
+    if (teaser?.cardImage) return teaser.cardImage;
+  }
+  return null;
+}
+
 const CONFIG_BY_CATEGORY: Record<string, CategoryPageConfig> = Object.fromEntries(
   CATEGORY_PAGE_CONFIG.map((c) => [c.category.toLowerCase(), c as CategoryPageConfig]),
 );

@@ -1,3 +1,4 @@
+import path from "path";
 import { NextResponse } from "next/server";
 import { dbQuery } from "@/lib/postgres";
 import { upsertCustomerFromLead } from "@/lib/customerSchema";
@@ -12,6 +13,7 @@ import {
 import { insertOrderLineItems } from "@/lib/orderLineItems";
 import { ensureProductOrderSchema } from "@/lib/productOrderSchema";
 import type { PayfastCheckoutBranding } from "@/lib/payfastTypes";
+import { getProductOrdersS3Folder, isS3Configured, uploadFileToS3 } from "@/lib/s3";
 
 type Body = {
   requestType?: string;
@@ -31,11 +33,64 @@ type Body = {
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const ARTWORK_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".pdf", ".zip", ".ai", ".eps", ".svg"]);
+const ARTWORK_MIME = new Set([
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+  "application/pdf",
+  "application/zip",
+  "application/x-zip-compressed",
+  "application/postscript",
+  "application/illustrator",
+  "image/svg+xml",
+  "application/octet-stream",
+]);
+const MAX_ARTWORK_BYTES = 2 * 1024 * 1024;
+
+function getString(formData: FormData, key: string) {
+  const value = formData.get(key);
+  return typeof value === "string" ? value.trim() : "";
+}
+
+async function parseOrderRequest(request: Request): Promise<{ fields: Body; artwork: File | null }> {
+  const contentType = request.headers.get("content-type") || "";
+  if (contentType.includes("multipart/form-data")) {
+    const formData = await request.formData();
+    const raw = formData.get("artwork");
+    const artwork = raw instanceof File && raw.size > 0 ? raw : null;
+    const qtyRaw = getString(formData, "quantity");
+    const priceRaw = getString(formData, "pricePerPiece");
+    const totalRaw = getString(formData, "lineTotal");
+    return {
+      fields: {
+        requestType: getString(formData, "requestType"),
+        ctaSource: getString(formData, "ctaSource"),
+        productSlug: getString(formData, "productSlug"),
+        productTitle: getString(formData, "productTitle"),
+        quantity: qtyRaw ? Number(qtyRaw) : undefined,
+        sizeLabel: getString(formData, "sizeLabel") || null,
+        sizeDimensions: getString(formData, "sizeDimensions") || null,
+        pricePerPiece: priceRaw ? Number(priceRaw) : null,
+        lineTotal: totalRaw ? Number(totalRaw) : null,
+        fullName: getString(formData, "fullName"),
+        email: getString(formData, "email"),
+        phone: getString(formData, "phone") || null,
+        company: getString(formData, "company") || null,
+        customerNotes: getString(formData, "customerNotes") || null,
+      },
+      artwork,
+    };
+  }
+
+  return { fields: (await request.json()) as Body, artwork: null };
+}
 
 export async function POST(request: Request) {
   try {
     await ensureProductOrderSchema();
-    const body = (await request.json()) as Body;
+    const { fields: body, artwork } = await parseOrderRequest(request);
 
     const requestType = body.requestType?.trim().toLowerCase() ?? "";
     if (requestType !== "custom_quote" && requestType !== "standard_order") {
@@ -99,6 +154,41 @@ export async function POST(request: Request) {
       lineTotal = null;
     }
 
+    let artworkUrl: string | null = null;
+    if (artwork) {
+      if (!isS3Configured()) {
+        return NextResponse.json(
+          {
+            message:
+              "File upload is not available yet. Please try again later or submit without artwork.",
+          },
+          { status: 503 },
+        );
+      }
+
+      const ext = path.extname(artwork.name).toLowerCase();
+      const mimeOk = !artwork.type || ARTWORK_MIME.has(artwork.type);
+      if (!ARTWORK_EXT.has(ext) || !mimeOk) {
+        return NextResponse.json(
+          { message: "Artwork must be JPG, PNG, WEBP, PDF, ZIP, AI, EPS, or SVG." },
+          { status: 400 },
+        );
+      }
+      if (artwork.size > MAX_ARTWORK_BYTES) {
+        return NextResponse.json({ message: "Artwork must be 2 MB or smaller." }, { status: 400 });
+      }
+
+      try {
+        artworkUrl = await uploadFileToS3({ file: artwork, folder: getProductOrdersS3Folder() });
+      } catch (uploadError) {
+        console.error("product-orders S3 upload error:", uploadError);
+        return NextResponse.json(
+          { message: "Unable to upload artwork right now. Please try again." },
+          { status: 502 },
+        );
+      }
+    }
+
     const customerId = await upsertCustomerFromLead({
       email,
       fullName,
@@ -123,9 +213,10 @@ export async function POST(request: Request) {
         phone,
         company,
         customer_notes,
+        artwork_url,
         customer_id
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
       RETURNING id`,
       [
         requestType,
@@ -143,6 +234,7 @@ export async function POST(request: Request) {
         phone,
         company,
         customerNotes,
+        artworkUrl,
         customerId,
       ],
     );
